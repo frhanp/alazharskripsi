@@ -13,7 +13,7 @@ class Pembayaran extends Model
     protected $fillable = [
         'id_siswa', 'bulan', 'tahun', 'jumlah', 'metode',
         'bukti_transfer', 'status', 'verified_by', 'tanggal_verifikasi', 'catatan',
-        'midtrans_order_id', 'midtrans_transaction_status', 'is_midtrans'
+        'midtrans_order_id', 'midtrans_transaction_status', 'is_midtrans', 'snap_token'
     ];
 
     protected $attributes = [

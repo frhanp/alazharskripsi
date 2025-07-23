@@ -8,6 +8,7 @@ use App\Models\Pengaturan;
 use App\Models\Pembayaran;
 use Midtrans\Config;
 use Midtrans\Snap;
+use Illuminate\Support\Facades\Log;
 
 class MidtransController extends Controller
 {
@@ -25,21 +26,48 @@ public function createMidtrans(Request $request, $id_siswa)
 {
     $siswa = Siswa::findOrFail($id_siswa);
 
-    // Validasi: bulan harus array, setiap elemen string dan valid bulan
+    // Validasi input dasar
     $request->validate([
         'bulan' => 'required|array|min:1',
         'bulan.*' => 'string|in:Januari,Februari,Maret,April,Mei,Juni,Juli,Agustus,September,Oktober,November,Desember',
         'tahun' => 'required|integer',
     ]);
 
-    $jumlahSPP = Pengaturan::where('key', 'jumlah_spp')->value('value') ?? 700000;
+    // =======================================================
+    // BLOK VALIDASI ANTI-DUPLIKAT (PERBAIKAN)
+    // =======================================================
+    $bulanYangDipilih = $request->bulan;
+    $tahunYangDipilih = $request->tahun;
+    $konflikBulan = [];
 
-    // Hitung total bayar = harga per bulan * jumlah bulan
+    foreach ($bulanYangDipilih as $bulan) {
+        $pembayaranSudahAda = Pembayaran::where('id_siswa', $id_siswa)
+            ->where('bulan', $bulan)
+            ->where('tahun', $tahunYangDipilih)
+            ->whereIn('status', ['menunggu', 'diterima']) // Cek jika status 'menunggu' ATAU 'diterima'
+            ->exists(); // Cukup cek apakah ada (true/false), lebih efisien
+
+        if ($pembayaranSudahAda) {
+            $konflikBulan[] = $bulan; // Kumpulkan nama bulan yang konflik
+        }
+    }
+
+    // Jika ada bulan yang konflik, hentikan proses dan kirim pesan error
+    if (!empty($konflikBulan)) {
+        $pesanError = 'Pembayaran untuk bulan ' . implode(', ', $konflikBulan) . ' sudah ada atau sedang menunggu konfirmasi.';
+        // Kembalikan error sebagai JSON, karena frontend Anda menggunakan fetch
+        return response()->json(['message' => $pesanError], 422); // 422 Unprocessable Entity
+    }
+    // =======================================================
+    // AKHIR BLOK VALIDASI
+    // =======================================================
+
+    // Lanjutkan proses ke Midtrans jika tidak ada konflik...
+    $jumlahSPP = Pengaturan::where('key', 'jumlah_spp')->value('value') ?? 700000;
     $totalBayar = $jumlahSPP * count($request->bulan);
 
-    // Setup Midtrans config
-    Config::$serverKey = config('midtrans.server_key');
-    Config::$isProduction = config('midtrans.is_production');
+    Config::$serverKey = env('MIDTRANS_SERVER_KEY');
+    Config::$isProduction = env('MIDTRANS_IS_PRODUCTION', false);
     Config::$isSanitized = true;
     Config::$is3ds = true;
 
@@ -52,10 +80,18 @@ public function createMidtrans(Request $request, $id_siswa)
         ],
         'customer_details' => [
             'first_name' => $siswa->nama_siswa,
+            'email' => $siswa->wali->email ?? 'email@wali.com', // Beri email default jika tidak ada
         ],
     ];
 
-    $snapToken = Snap::getSnapToken($params);
+    try {
+        $snapToken = Snap::getSnapToken($params);
+    } catch (\Exception $e) {
+        Log::error('Gagal membuat Snap Token: ' . $e->getMessage());
+        return response()->json(['message' => 'Gagal terhubung dengan Midtrans. Silakan coba lagi nanti.'], 500);
+    }
+    // Simpan snap token ke database
+    // dd($snapToken);
 
     // Simpan pembayaran, buat satu record per bulan
     foreach ($request->bulan as $bulan) {
@@ -66,13 +102,13 @@ public function createMidtrans(Request $request, $id_siswa)
             'jumlah' => $jumlahSPP,
             'metode' => 'midtrans',
             'status' => 'menunggu',
+            'snap_token' => $snapToken,
             'midtrans_order_id' => $orderId,
-            'midtrans_transaction_status' => 'pending',
             'is_midtrans' => true,
         ]);
     }
 
-    return response()->json(['snapToken' => $snapToken]);
+    return response()->json(['snapToken' => $snapToken, 'orderId' => $orderId]);
 }
 
 

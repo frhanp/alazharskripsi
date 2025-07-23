@@ -140,13 +140,14 @@
                             },
                             onPending: function(result) {
                                 alert("Menunggu pembayaran!");
-                                window.location.reload();
+                                window.location.href = "{{ route('riwayat.index') }}";
                             },
                             onError: function(result) {
                                 alert("Pembayaran gagal!");
                             },
                             onClose: function() {
                                 console.log('Anda menutup popup pembayaran.');
+                                window.location.href = "{{ route('riwayat.index') }}";
                             }
                         });
                     } else {
