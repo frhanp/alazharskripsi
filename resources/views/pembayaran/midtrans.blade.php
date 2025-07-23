@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="text-2xl font-bold leading-tight text-gray-900">
-            Pembayaran Online
+            Pembayaran Onlines
         </h2>
     </x-slot>
 
