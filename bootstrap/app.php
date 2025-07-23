@@ -14,6 +14,11 @@ return Application::configure(basePath: dirname(__DIR__))
     ->withMiddleware(function (Middleware $middleware) {
         $middleware->alias([
             'role' => RoleMiddleware::class,
+            
+        ]);
+        // Tambahkan baris ini untuk mengecualikan Webhook dari CSRF
+        $middleware->validateCsrfTokens(except: [
+            '/midtrans/callback'
         ]);
     })
     ->withExceptions(function (Exceptions $exceptions) {
