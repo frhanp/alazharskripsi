@@ -7,31 +7,32 @@
 
     <form id="midtrans-form" action="{{ route('pembayaran.midtrans', $siswa->id_siswa) }}" method="POST">
         @csrf
-        <div class="py-8 max-w-2xl mx-auto" 
-             x-data="{
-                months: ['Januari','Februari','Maret','April','Mei','Juni','Juli','Agustus','September','Oktober','November','Desember'],
-                selectedMonths: [],
-                jumlahSPP: {{ $jumlahSPP ?? 0 }},
-                get totalBayar() {
-                    return this.selectedMonths.length * this.jumlahSPP;
-                }
-             }"
-             x-init="console.log('Jumlah SPP per bulan:', jumlahSPP)"
-        >
+        <div class="py-8 max-w-2xl mx-auto" x-data="{
+            months: ['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'],
+            selectedMonths: [],
+            jumlahSPP: {{ $jumlahSPP ?? 0 }},
+            get totalBayar() {
+                return this.selectedMonths.length * this.jumlahSPP;
+            }
+        }" x-init="console.log('Jumlah SPP per bulan:', jumlahSPP)">
             <div class="bg-white p-8 rounded-xl shadow-lg border border-gray-100 transition-all duration-300">
                 <div class="space-y-4">
-                    <p class="text-lg text-gray-800">Nama Siswa: <span class="font-medium">{{ $siswa->nama_siswa }}</span></p>
-                    <p class="text-lg text-gray-800">SPP per bulan: <span class="font-medium">Rp {{ number_format($jumlahSPP ?? 0, 0, ',', '.') }}</span></p>
+                    <p class="text-lg text-gray-800">Nama Siswa: <span
+                            class="font-medium">{{ $siswa->nama_siswa }}</span></p>
+                    <p class="text-lg text-gray-800">SPP per bulan: <span class="font-medium">Rp
+                            {{ number_format($jumlahSPP ?? 0, 0, ',', '.') }}</span></p>
                 </div>
 
                 <!-- Pilih bulan -->
                 <div class="mt-6">
-                    <label for="bulan" class="block text-sm font-semibold text-gray-700 mb-2">Bulan Pembayaran</label>
+                    <label for="bulan" class="block text-sm font-semibold text-gray-700 mb-2">Bulan
+                        Pembayaran</label>
 
                     <!-- Tag bulan yang sudah dipilih -->
                     <div class="flex flex-wrap gap-2 mb-3">
                         <template x-for="month in selectedMonths" :key="month">
-                            <span class="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-indigo-100 text-indigo-800 transition-all duration-200 hover:bg-indigo-200">
+                            <span
+                                class="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-indigo-100 text-indigo-800 transition-all duration-200 hover:bg-indigo-200">
                                 <span x-text="month"></span>
                                 <button @click.prevent="selectedMonths = selectedMonths.filter(m => m !== month)"
                                     class="ml-2 text-indigo-600 hover:text-indigo-800 transition-colors duration-200">
@@ -51,10 +52,10 @@
                             selectedMonths.push($event.target.value);
                             $event.target.value = '';
                         }"
-                        class="block w-full border-gray-300 rounded-lg shadow-sm focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-all duration-200 bg-gray-50 text-gray-800"
-                    >
+                        class="block w-full border-gray-300 rounded-lg shadow-sm focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-all duration-200 bg-gray-50 text-gray-800">
                         <option value="">Pilih Bulan</option>
-                        <template x-for="month in months.filter(m => !selectedMonths.includes(m))" :key="month">
+                        <template x-for="month in months.filter(m => !selectedMonths.includes(m))"
+                            :key="month">
                             <option :value="month" x-text="month"></option>
                         </template>
                     </select>
@@ -68,7 +69,8 @@
                 <!-- Pilih tahun -->
                 <div class="mt-6">
                     <label for="tahun" class="block text-sm font-semibold text-gray-700 mb-2">Tahun</label>
-                    <select name="tahun" id="tahun" required class="mt-1 block w-full rounded-lg border-gray-300 shadow-sm focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-all duration-200 bg-gray-50 text-gray-800">
+                    <select name="tahun" id="tahun" required
+                        class="mt-1 block w-full rounded-lg border-gray-300 shadow-sm focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-all duration-200 bg-gray-50 text-gray-800">
                         @for ($i = now()->year; $i >= now()->year - 5; $i--)
                             <option value="{{ $i }}">{{ $i }}</option>
                         @endfor
@@ -77,7 +79,8 @@
 
                 <!-- Total bayar -->
                 <div class="mt-6 text-lg font-semibold text-indigo-800">
-                    Total Bayar: <span x-text="'Rp ' + totalBayar.toLocaleString('id-ID')" class="text-indigo-600"></span>
+                    Total Bayar: <span x-text="'Rp ' + totalBayar.toLocaleString('id-ID')"
+                        class="text-indigo-600"></span>
                 </div>
 
                 <!-- Form bayar -->
@@ -92,54 +95,69 @@
         </div>
     </form>
 
-    <script src="https://app.sandbox.midtrans.com/snap/snap.js" data-client-key="{{ config('midtrans.client_key') }}"></script>
+    <script src="https://app.sandbox.midtrans.com/snap/snap.js" data-client-key="{{ config('midtrans.client_key') }}">
+    </script>
     <script>
-        document.getElementById('midtrans-form').addEventListener('submit', function (e) {
+        // Ambil formnya
+        const midtransForm = document.getElementById('midtrans-form');
+
+        midtransForm.addEventListener('submit', function(e) {
             e.preventDefault();
 
-            const bulan = Array.from(document.querySelectorAll('input[name="bulan[]"]')).map(i => i.value);
-            const tahun = document.getElementById('tahun').value;
-            const jumlah = document.querySelector('input[name="jumlah"]').value;
+            const formData = new FormData(midtransForm);
+            // Dapatkan URL langsung dari atribut 'action' form (INI PERBAIKANNYA)
+            const formActionUrl = midtransForm.action;
 
-            fetch("{{ route('pembayaran.midtrans', $siswa->id_siswa) }}", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                    "X-CSRF-TOKEN": '{{ csrf_token() }}'
-                },
-                body: JSON.stringify({ bulan, tahun, jumlah })
-            })
-            .then(res => {
-                if (!res.ok) {
-                    throw new Error(`HTTP error! Status: ${res.status}`);
-                }
-                return res.json();
-            })
-            .then(data => {
-                if (data.snapToken) {
-                    snap.pay(data.snapToken, {
-                        onSuccess: function(result) {
-                            alert("Pembayaran berhasil!");
-                            console.log(result);
-                        },
-                        onPending: function(result) {
-                            alert("Menunggu pembayaran!");
-                            console.log(result);
-                        },
-                        onError: function(result) {
-                            alert("Pembayaran gagal!");
-                            console.log(result);
-                        }
-                    });
-                } else {
-                    alert("Gagal mendapatkan Snap Token!");
-                    console.log(data);
-                }
-            })
-            .catch(error => {
-                console.error('Error:', error);
-                alert("Terjadi kesalahan: " + error.message);
-            });
+            fetch(formActionUrl, { // <-- GUNAKAN VARIABEL URL DI SINI
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                        "Accept": "application/json", // Header ini best practice
+                        "X-CSRF-TOKEN": formData.get('_token') // Ambil token dari form data
+                    },
+                    // Kirim data sebagai JSON
+                    body: JSON.stringify({
+                        bulan: formData.getAll('bulan[]'),
+                        tahun: formData.get('tahun'),
+                        jumlah: formData.get('jumlah')
+                    })
+                })
+                .then(res => {
+                    if (!res.ok) {
+                        // Log response error jika ada
+                        return res.text().then(text => {
+                            throw new Error(text)
+                        });
+                    }
+                    return res.json();
+                })
+                .then(data => {
+                    if (data.snapToken) {
+                        snap.pay(data.snapToken, {
+                            onSuccess: function(result) {
+                                alert("Pembayaran berhasil!");
+                                window.location.reload(); // Muat ulang halaman
+                            },
+                            onPending: function(result) {
+                                alert("Menunggu pembayaran!");
+                                window.location.reload();
+                            },
+                            onError: function(result) {
+                                alert("Pembayaran gagal!");
+                            },
+                            onClose: function() {
+                                console.log('Anda menutup popup pembayaran.');
+                            }
+                        });
+                    } else {
+                        alert("Gagal mendapatkan Snap Token! Cek console untuk detail.");
+                        console.log(data);
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    alert("Terjadi kesalahan fatal. Cek console untuk detail.");
+                });
         });
     </script>
 </x-app-layout>
