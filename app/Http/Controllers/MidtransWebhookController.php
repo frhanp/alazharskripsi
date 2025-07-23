@@ -10,61 +10,61 @@ use App\Models\Pembayaran;
 
 class MidtransWebhookController extends Controller
 {
+
     public function handle(Request $request)
     {
-        // 1. Ambil payload notifikasi dan server key
+        // 1. Validasi Signature Key (Sudah Benar)
         $notificationPayload = $request->all();
-        $serverKey = config('services.midtrans.server_key'); // Pastikan ini ada di config/services.php
-
-        // 2. Validasi Signature Key (Lebih Aman)
+        $serverKey = config('services.midtrans.server_key');
         $orderId = $notificationPayload['order_id'] ?? null;
         $statusCode = $notificationPayload['status_code'] ?? null;
         $grossAmount = $notificationPayload['gross_amount'] ?? null;
-        
-        // Buat string untuk di-hash
+
         $stringToHash = $orderId . $statusCode . $grossAmount . $serverKey;
         $calculatedSignature = hash('sha512', $stringToHash);
 
-        // Bandingkan signature
         if (empty($notificationPayload['signature_key']) || $calculatedSignature !== $notificationPayload['signature_key']) {
             Log::error("Webhook Midtrans: Signature tidak valid untuk Order ID '$orderId'.");
             return response()->json(['message' => 'Invalid signature'], 403);
         }
 
-        // 3. Proses Notifikasi Setelah Signature Valid
+        // 2. Tentukan status baru berdasarkan notifikasi
         $transactionStatus = $notificationPayload['transaction_status'];
         $fraudStatus = $notificationPayload['fraud_status'] ?? null;
+        $newStatus = null;
 
-        // Cari pembayaran berdasarkan 'midtrans_order_id' (Sesuai ERD Anda)
-        $pembayaran = Pembayaran::where('midtrans_order_id', $orderId)->first();
-
-        if (!$pembayaran) {
-            // Abaikan notifikasi tes dari dashboard Midtrans
-            if (str_starts_with($orderId, 'payment_notif_test_')) {
-                return response()->json(['message' => 'Notifikasi tes diterima dan diabaikan.'], 200);
-            }
-            // Jika transaksi asli tidak ditemukan, catat sebagai error
-            Log::error("Webhook Midtrans: Pembayaran dengan Order ID '$orderId' tidak ditemukan.");
-            return response()->json(['message' => 'Pembayaran tidak ditemukan'], 404);
-        }
-
-        // 4. Update Status Pembayaran (Sesuai Status Proyek Anda)
         if ($transactionStatus == 'capture') {
             if ($fraudStatus == 'accept') {
-                $pembayaran->status = 'diterima';
+                $newStatus = 'diterima';
             }
         } elseif ($transactionStatus == 'settlement') {
-            $pembayaran->status = 'diterima';
+            $newStatus = 'diterima';
         } elseif ($transactionStatus == 'pending') {
-            $pembayaran->status = 'menunggu';
+            $newStatus = 'menunggu';
         } elseif (in_array($transactionStatus, ['deny', 'cancel', 'expire'])) {
-            $pembayaran->status = 'ditolak';
+            $newStatus = 'ditolak';
         }
-        
-        // Simpan perubahan
-        $pembayaran->save();
-        
-        Log::info("Webhook Midtrans: Status untuk Order ID '$orderId' berhasil diupdate menjadi '$pembayaran->status'.");
+
+        // 3. Jika ada status baru, lakukan update ke database
+        if ($newStatus) {
+            // --- INI BAGIAN YANG DIPERBAIKI ---
+            // Lakukan update ke SEMUA record pembayaran yang cocok dengan order_id
+            $updatedRows = Pembayaran::where('midtrans_order_id', $orderId)->update([
+                'status' => $newStatus,
+                'midtrans_transaction_status' => $transactionStatus // Simpan juga status asli dari Midtrans
+            ]);
+            // --- AKHIR PERBAIKAN ---
+
+            if ($updatedRows > 0) {
+                Log::info("Webhook Midtrans: $updatedRows baris untuk Order ID '$orderId' berhasil diupdate menjadi '$newStatus'.");
+            } else {
+                 // Abaikan notifikasi tes dari dashboard Midtrans
+                 if (str_starts_with($orderId, 'payment_notif_test_')) {
+                    return response()->json(['message' => 'Notifikasi tes diterima dan diabaikan.'], 200);
+                }
+                Log::warning("Webhook Midtrans: Tidak ada baris yang diupdate untuk Order ID '$orderId'. Mungkin sudah diupdate sebelumnya atau tidak ditemukan.");
+            }
+        }
 
         return response()->json(['message' => 'Webhook berhasil diproses'], 200);
     }
