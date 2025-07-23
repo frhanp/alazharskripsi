@@ -74,4 +74,5 @@ class MidtransWebhookController extends Controller
 
         return response()->json(['message' => 'Webhook berhasil diproses'], 200);
     }
+    
 }
