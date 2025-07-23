@@ -100,7 +100,7 @@ public function createMidtrans(Request $request, $id_siswa)
             'bulan' => $bulan,
             'tahun' => $request->tahun,
             'jumlah' => $jumlahSPP,
-            'metode' => 'midtrans',
+            'metode' => 'Pembayaran Online',
             'status' => 'menunggu',
             'snap_token' => $snapToken,
             'midtrans_order_id' => $orderId,
