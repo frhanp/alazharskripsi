@@ -15,7 +15,7 @@ class MidtransWebhookController extends Controller
     {
         // 1. Validasi Signature Key (Sudah Benar)
         $notificationPayload = $request->all();
-        $serverKey = config('services.midtrans.server_key');
+        $serverKey = env('MIDTRANS_SERVER_KEY');
         $orderId = $notificationPayload['order_id'] ?? null;
         $statusCode = $notificationPayload['status_code'] ?? null;
         $grossAmount = $notificationPayload['gross_amount'] ?? null;
