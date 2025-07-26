@@ -259,39 +259,64 @@ class PembayaranController extends Controller
     public function storeUpload(Request $request)
     {
         $request->validate([
-            'id_siswa' => 'required|exists:siswa,id_siswa', // Validasi id_siswa
+            'id_siswa' => 'required|exists:siswa,id_siswa',
             'bulan' => 'required|array|min:1',
             'bulan.*' => 'string',
             'tahun' => 'required|integer|min:2000|max:2100',
-            'jumlah' => 'required|numeric|min:0', // Untuk validasi total saja
+            'jumlah' => 'required|numeric|min:0',
             'bukti_transfer' => 'required|image|mimes:jpeg,png,jpg,pdf|max:2048',
             'catatan' => 'nullable|string',
         ]);
 
-        // Validasi bahwa id_siswa terkait dengan wali murid yang login
+        // Validasi bahwa siswa terkait dengan wali murid yang login
         $siswa = Siswa::where('id_wali', Auth::id())->where('id_siswa', $request->id_siswa)->first();
         if (!$siswa) {
-            return back()->withErrors(['id_siswa' => 'Siswa tidak valid atau tidak terkait dengan akun Anda.']);
+            return back()->withErrors(['id_siswa' => 'Siswa tidak valid atau tidak terkait dengan akun Anda.'])->withInput();
+        }
+        
+        // =======================================================
+        // TAMBAHKAN BLOK VALIDASI ANTI-DUPLIKAT DI SINI
+        // =======================================================
+        $bulanYangDipilih = $request->bulan;
+        $tahunYangDipilih = $request->tahun;
+        $konflikBulan = [];
+
+        foreach ($bulanYangDipilih as $bulan) {
+            $pembayaranSudahAda = Pembayaran::where('id_siswa', $request->id_siswa)
+                ->where('bulan', $bulan)
+                ->where('tahun', $tahunYangDipilih)
+                ->whereIn('status', ['menunggu', 'diterima']) // Cek jika status 'menunggu' ATAU 'diterima'
+                ->exists();
+
+            if ($pembayaranSudahAda) {
+                $konflikBulan[] = $bulan;
+            }
         }
 
-        // Ambil jumlah SPP per bulan
-        $jumlahSPP = Pengaturan::where('key', 'jumlah_spp')->value('value') ?? 700000;
+        if (!empty($konflikBulan)) {
+            $pesanError = 'Pembayaran untuk bulan ' . implode(', ', $konflikBulan) . ' sudah ada atau sedang diproses.';
+            // Kembali ke halaman sebelumnya dengan pesan error
+            return back()->with('error', $pesanError)->withInput();
+        }
+        // =======================================================
+        // AKHIR BLOK VALIDASI
+        // =======================================================
 
-        // Validasi jumlah total sama dengan hitungan backend
+        // Lanjutkan proses jika tidak ada konflik...
+        $jumlahSPP = Pengaturan::where('key', 'jumlah_spp')->value('value') ?? 700000;
         $expectedTotal = count($request->bulan) * $jumlahSPP;
         if ($request->jumlah != $expectedTotal) {
-            return back()->withErrors(['jumlah' => 'Total jumlah tidak sesuai dengan perhitungan.']);
+            return back()->withErrors(['jumlah' => 'Total jumlah tidak sesuai dengan perhitungan.'])->withInput();
         }
 
-        // Upload file bukti transfer
         $path = $request->file('bukti_transfer')->store('bukti-transfer', 'public');
 
         foreach ($request->bulan as $bulan) {
             Pembayaran::create([
-                'id_siswa' => $request->id_siswa, // Gunakan id_siswa dari form
+                'id_siswa' => $request->id_siswa,
                 'bulan' => $bulan,
                 'tahun' => $request->tahun,
-                'jumlah' => $jumlahSPP, // Gunakan jumlah per bulan dari pengaturan
+                'jumlah' => $jumlahSPP,
                 'bukti_transfer' => $path,
                 'metode' => 'transfer',
                 'status' => 'menunggu',

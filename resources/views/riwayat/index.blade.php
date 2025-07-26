@@ -64,6 +64,8 @@
                         <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                             Jumlah</th>
                         <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                            Metode</th>
+                        <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                             Status</th>
                         {{-- /// TAMBAHKAN HEADER BARU UNTUK AKSI /// --}}
                         <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Aksi
@@ -82,6 +84,7 @@
                             <td class="px-4 py-3 text-sm text-gray-900">{{ $p->tahun }}</td>
                             <td class="px-4 py-3 text-sm text-gray-900">Rp {{ number_format($p->jumlah, 0, ',', '.') }}
                             </td>
+                            <td class="px-4 py-3 text-sm text-gray-900">{{ $p->metode }}</td>
                             <td class="px-4 py-3 text-sm">
                                 {{-- Logika untuk menampilkan status dengan badge warna --}}
                                 @if ($p->status == 'diterima')
@@ -130,53 +133,43 @@
         </div>
     </div>
 
-    {{-- /// TAMBAHKAN SCRIPT DI BAWAH INI /// --}}
-    {{-- Ganti seluruh blok @push('scripts') atau <script> di riwayat.blade.php dengan ini --}}
 
     @push('scripts')
+        {{-- 1. Impor library SweetAlert dan Snap.js --}}
+        <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
         <script src="https://app.sandbox.midtrans.com/snap/snap.js" data-client-key="{{ env('MIDTRANS_CLIENT_KEY') }}">
         </script>
-        <script>
-            // Pastikan skrip berjalan setelah semua elemen HTML dimuat
-            document.addEventListener('DOMContentLoaded', function() {
 
-                // 1. Cari semua tombol dengan kelas '.lanjut-bayar-btn'
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
                 const continueButtons = document.querySelectorAll('.lanjut-bayar-btn');
 
-                // Jika Anda ingin debug, cek apakah tombolnya ditemukan
-                console.log(`Ditemukan ${continueButtons.length} tombol 'Lanjutkan Pembayaran'.`);
-
-                // 2. Tambahkan 'event listener' untuk setiap tombol
                 continueButtons.forEach(button => {
                     button.addEventListener('click', function() {
-
-                        // Ambil snap token dari atribut data-snap-token
                         const snapToken = this.dataset.snapToken;
 
-                        console.log('Tombol diklik. Snap Token:',
-                            snapToken); // Debug: Tampilkan token di console
-
                         if (snapToken) {
-                            // 3. Panggil snap.pay() dengan token yang sudah ada
                             window.snap.pay(snapToken, {
                                 onSuccess: function(result) {
-                                    alert("Pembayaran berhasil!");
-                                    window.location.reload();
+                                    Swal.fire('Berhasil!',
+                                            'Pembayaran Anda telah berhasil.', 'success')
+                                        .then(() => window.location.reload());
                                 },
                                 onPending: function(result) {
-                                    alert("Menunggu pembayaran Anda!");
+                                    Swal.fire('Menunggu',
+                                        'Pembayaran Anda sedang diproses.', 'info');
                                 },
                                 onError: function(result) {
-                                    alert("Pembayaran gagal atau token sudah kedaluwarsa.");
-                                    // Jika error karena token kedaluwarsa, idealnya di sini kita minta token baru.
-                                    // Tapi untuk sekarang, kita tampilkan pesan saja.
+                                    Swal.fire('Gagal',
+                                        'Pembayaran gagal atau token sudah kedaluwarsa.',
+                                        'error');
                                 },
                                 onClose: function() {
                                     console.log('Popup ditutup oleh pengguna.');
                                 }
                             });
                         } else {
-                            alert('Error: Snap Token tidak ditemukan pada tombol ini.');
+                            Swal.fire('Error', 'Snap Token tidak ditemukan pada tombol ini.', 'error');
                         }
                     });
                 });

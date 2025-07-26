@@ -95,70 +95,78 @@
         </div>
     </form>
 
-    <script src="https://app.sandbox.midtrans.com/snap/snap.js" data-client-key="{{ config('midtrans.client_key') }}">
-    </script>
-    <script>
-        // Ambil formnya
-        const midtransForm = document.getElementById('midtrans-form');
+    {{-- Ganti seluruh blok <script> di midtrans.blade.php dengan ini --}}
 
-        midtransForm.addEventListener('submit', function(e) {
-            e.preventDefault();
+{{-- 1. Impor library SweetAlert dan Snap.js --}}
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="https://app.sandbox.midtrans.com/snap/snap.js" data-client-key="{{ config('midtrans.client_key') }}"></script>
 
-            const formData = new FormData(midtransForm);
-            // Dapatkan URL langsung dari atribut 'action' form (INI PERBAIKANNYA)
-            const formActionUrl = midtransForm.action;
+<script>
+    const midtransForm = document.getElementById('midtrans-form');
+    midtransForm.addEventListener('submit', function(e) {
+        e.preventDefault();
 
-            fetch(formActionUrl, { // <-- GUNAKAN VARIABEL URL DI SINI
-                    method: "POST",
-                    headers: {
-                        "Content-Type": "application/json",
-                        "Accept": "application/json", // Header ini best practice
-                        "X-CSRF-TOKEN": formData.get('_token') // Ambil token dari form data
+        const formData = new FormData(midtransForm);
+        const formActionUrl = midtransForm.action;
+
+        fetch(formActionUrl, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                "Accept": "application/json",
+                "X-CSRF-TOKEN": formData.get('_token')
+            },
+            body: JSON.stringify({
+                bulan: formData.getAll('bulan[]'),
+                tahun: formData.get('tahun'),
+                jumlah: formData.get('jumlah')
+            })
+        })
+        .then(res => {
+            if (!res.ok) {
+                // Jika server mengembalikan error (seperti 422 untuk duplikat),
+                // kita coba baca pesannya sebagai JSON dan lemparkan sebagai error
+                return res.json().then(errData => { throw errData; });
+            }
+            return res.json();
+        })
+        .then(data => {
+            if (data.snapToken) {
+                snap.pay(data.snapToken, {
+                    onSuccess: function(result) {
+                        Swal.fire('Berhasil!', 'Pembayaran Anda telah berhasil.', 'success')
+                            .then(() => window.location.href = "{{ route('riwayat.index') }}");
                     },
-                    // Kirim data sebagai JSON
-                    body: JSON.stringify({
-                        bulan: formData.getAll('bulan[]'),
-                        tahun: formData.get('tahun'),
-                        jumlah: formData.get('jumlah')
-                    })
-                })
-                .then(res => {
-                    if (!res.ok) {
-                        // Log response error jika ada
-                        return res.text().then(text => {
-                            throw new Error(text)
-                        });
+                    onPending: function(result) {
+                        Swal.fire('Menunggu', 'Pembayaran Anda sedang diproses.', 'info')
+                            .then(() => window.location.href = "{{ route('riwayat.index') }}");
+                    },
+                    onError: function(result) {
+                        Swal.fire('Gagal', 'Pembayaran gagal diproses.', 'error');
+                    },
+                    onClose: function() {
+                        console.log('Anda menutup popup pembayaran.');
+                        window.location.href = "{{ route('riwayat.index') }}";
                     }
-                    return res.json();
-                })
-                .then(data => {
-                    if (data.snapToken) {
-                        snap.pay(data.snapToken, {
-                            onSuccess: function(result) {
-                                alert("Pembayaran berhasil!");
-                                window.location.reload(); // Muat ulang halaman
-                            },
-                            onPending: function(result) {
-                                alert("Menunggu pembayaran!");
-                                window.location.href = "{{ route('riwayat.index') }}";
-                            },
-                            onError: function(result) {
-                                alert("Pembayaran gagal!");
-                            },
-                            onClose: function() {
-                                console.log('Anda menutup popup pembayaran.');
-                                window.location.href = "{{ route('riwayat.index') }}";
-                            }
-                        });
-                    } else {
-                        alert("Gagal mendapatkan Snap Token! Cek console untuk detail.");
-                        console.log(data);
-                    }
-                })
-                .catch(error => {
-                    console.error('Error:', error);
-                    alert("Terjadi kesalahan fatal. Cek console untuk detail.");
                 });
+            } else {
+                 // Ini terjadi jika ada masalah tak terduga tapi respons server OK
+                 Swal.fire('Error', 'Gagal mendapatkan token pembayaran.', 'error');
+            }
+        })
+        .catch(error => {
+            // =======================================================
+            // INI BAGIAN UTAMA UNTUK MENANGANI ERROR DARI SERVER
+            // =======================================================
+            console.error('Error:', error);
+            Swal.fire({
+                title: 'Terjadi Kesalahan',
+                // Tampilkan pesan error dari controller (misal: "Pembayaran bulan... sudah ada")
+                // atau tampilkan pesan default jika tidak ada
+                text: error.message || 'Tidak bisa memproses permintaan. Coba lagi nanti.',
+                icon: 'error'
+            });
         });
-    </script>
+    });
+</script>
 </x-app-layout>
