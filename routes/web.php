@@ -27,6 +27,9 @@ Route::middleware('auth')->group(function () {
 
     Route::resource('guru', GuruController::class)->except(['show']);
     Route::resource('siswa', SiswaController::class)->except(['show']);
+    Route::get('/riwayat', [RiwayatController::class, 'index'])
+        ->middleware('role:wali_murid,bendahara,ketua_yayasan') // <-- KUNCINYA DI SINI
+        ->name('riwayat.index');
 });
 
 Route::post('/midtrans/token', [PembayaranController::class, 'snapToken'])->name('midtrans.token');
@@ -34,7 +37,7 @@ Route::post('/midtrans/token', [PembayaranController::class, 'snapToken'])->name
 Route::middleware(['auth', 'role:bendahara'])->group(function () {
     Route::get('/pembayaran/manual/create', [PembayaranController::class, 'createManual'])->name('pembayaran.manual.create');
     Route::post('/pembayaran/manual/store', [PembayaranController::class, 'storeManual'])->name('pembayaran.manual.store');
-    Route::get('/pembayaran/manual', [BendaharaController::class, 'indexManual'])->name('pembayaran.manual.index');
+    //Route::get('/pembayaran/manual', [BendaharaController::class, 'indexManual'])->name('pembayaran.manual.index');
 
     //PENGECEKAN PEMBAYARAN
     Route::get('pembayaran/verifikasi', [PembayaranController::class, 'indexVerifikasi'])->name('pembayaran.verifikasi');
@@ -45,7 +48,7 @@ Route::middleware(['auth', 'role:wali_murid'])->group(function () {
     Route::get('/upload-transfer', [PembayaranController::class, 'createUpload'])->name('pembayaran.upload.create');
     Route::post('/upload-transfer', [PembayaranController::class, 'storeUpload'])->name('pembayaran.upload.store');
 
-    Route::get('/riwayat', [RiwayatController::class, 'index'])->name('riwayat.index');
+    //Route::get('/riwayat', [RiwayatController::class, 'index'])->name('riwayat.index');
 
 
 

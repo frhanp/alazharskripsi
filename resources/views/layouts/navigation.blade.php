@@ -28,7 +28,7 @@
             {{ __('Input Manual') }}
         </x-nav-link>
 
-        <x-nav-link :href="route('pembayaran.manual.index')" :active="request()->routeIs('pembayaran.manual.index')">
+        <x-nav-link :href="route('riwayat.index')" :active="request()->routeIs('riwayat.index')">
             <img src="{{ asset('images/historyicon.png') }}" alt="icon" class="w-4 h-4 mr-2">
             {{ __('Riwayat Pembayaran') }}
         </x-nav-link>

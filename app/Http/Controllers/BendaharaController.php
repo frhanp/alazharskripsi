@@ -66,25 +66,4 @@ class BendaharaController extends Controller
     {
         return 'kwitansi/' . uniqid() . '.pdf';
     }
-
-    public function indexManual(Request $request)
-    {
-        $query = Pembayaran::with('siswa')->orderBy('created_at', 'desc');
-
-        // Filter berdasarkan parameter request
-        if ($request->filled('siswa')) {
-            $query->where('id_siswa', $request->siswa);
-        }
-        if ($request->filled('tahun')) {
-            $query->where('tahun', $request->tahun);
-        }
-        if ($request->filled('metode')) {
-            $query->where('metode', $request->metode);
-        }
-
-        $pembayaranManual = $query->paginate(20);
-        $siswa = Siswa::all(); // Untuk dropdown filter siswa
-
-        return view('pembayaran.manual_index', compact('pembayaranManual', 'siswa'));
-    }
 }
