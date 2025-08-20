@@ -7,6 +7,7 @@ use App\Models\Pembayaran;
 use App\Models\Kwitansi;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Siswa;
+use App\Http\Controllers\KwitansiController;
 
 class BendaharaController extends Controller
 {
@@ -26,6 +27,7 @@ class BendaharaController extends Controller
         return view('bendahara.detailpembayaran', compact('pembayaran'));
     }
 
+    // Method prosesVerifikasi Anda akan menjadi pusat logika ACC
     public function prosesVerifikasi(Request $request, $id)
     {
         $pembayaran = Pembayaran::findOrFail($id);
@@ -42,9 +44,17 @@ class BendaharaController extends Controller
             'catatan' => $request->catatan
         ]);
 
-        if ($request->status === 'diterima') {
-            $this->buatKwitansi($pembayaran);
+        // =======================================================
+        // PEMICU PEMBUATAN KWITANSI
+        // =======================================================
+        if ($pembayaran->status === 'diterima') {
+            // Panggil fungsi dari KwitansiController
+            $kwitansiController = new KwitansiController();
+            $kwitansiController->generateAndSave($pembayaran);
+
+            // Di sini nanti kita akan menambahkan logika kirim WA
         }
+        // =======================================================
 
         return redirect()->route('bendahara.verifikasi')
             ->with('success', 'Pembayaran berhasil diverifikasi');

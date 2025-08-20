@@ -4,8 +4,21 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Kwitansi;
+use App\Models\Pembayaran;
+use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Storage;
+use Barryvdh\DomPDF\Facade\Pdf;
+
 class KwitansiController extends Controller
 {
+    /**
+     * Fungsi utama untuk membuat PDF, menyimpannya, dan mencatat ke database.
+     * Ini akan menjadi pusat logika pembuatan kwitansi.
+     *
+     * @param Pembayaran $pembayaran
+     * @return Kwitansi|null
+     */
+
     public function index()
     {
         $kwitansi = Kwitansi::with('pembayaran.siswa')->latest()->paginate(10);
@@ -28,5 +41,18 @@ class KwitansiController extends Controller
         }
 
         return response()->download($path, $kwitansi->no_kwitansi . '.pdf');
+    }
+
+    public function generateAndSave($pembayaran)
+    {
+        dd('generateAndSave dipanggil', $pembayaran);
+        $noKwitansi = 'KWT-' . date('Ymd') . '-' . uniqid();
+
+        return Kwitansi::create([
+            'id_pembayaran' => $pembayaran->id_pembayaran,
+            'no_kwitansi' => $noKwitansi,
+            'tanggal_terbit' => now(),
+            'file_kwitansi' => 'kwitansi/' . uniqid() . '.pdf'
+        ]);
     }
 }

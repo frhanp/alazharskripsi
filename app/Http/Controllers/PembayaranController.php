@@ -216,6 +216,36 @@ class PembayaranController extends Controller
             'jumlah' => 'required|numeric|min:0', // Tetap validasi untuk memastikan total di form
             'catatan' => 'nullable|string',
         ]);
+        // =======================================================
+        // BLOK VALIDASI ANTI-DUPLIKAT (INI PERBAIKANNYA)
+        // =======================================================
+        $bulanYangDipilih = $request->bulan;
+        $tahunYangDipilih = $request->tahun;
+        $konflikBulan = [];
+
+        foreach ($bulanYangDipilih as $bulan) {
+            $pembayaranSudahAda = Pembayaran::where('id_siswa', $request->id_siswa)
+                ->where('bulan', $bulan)
+                ->where('tahun', $tahunYangDipilih)
+                ->whereIn('status', ['menunggu', 'diterima']) // Cek jika status 'menunggu' ATAU 'diterima'
+                ->exists();
+
+            if ($pembayaranSudahAda) {
+                $konflikBulan[] = $bulan;
+            }
+        }
+
+        // Jika ada bulan yang konflik, hentikan proses dan kirim pesan error
+        if (!empty($konflikBulan)) {
+            $pesanError = 'Pembayaran untuk bulan ' . implode(', ', $konflikBulan) . ' sudah ada atau sedang diproses.';
+            // Kembali ke halaman sebelumnya dengan pesan error
+            return back()->with('error', $pesanError)->withInput();
+        }
+        // =======================================================
+        // AKHIR BLOK VALIDASI
+        // =======================================================
+
+        // Lanjutkan proses penyimpanan jika tidak ada konflik...
 
         // Ambil jumlah SPP per bulan dari tabel pengaturans
         $jumlahSPP = Pengaturan::where('key', 'jumlah_spp')->value('value') ?? 700000;
@@ -273,7 +303,7 @@ class PembayaranController extends Controller
         if (!$siswa) {
             return back()->withErrors(['id_siswa' => 'Siswa tidak valid atau tidak terkait dengan akun Anda.'])->withInput();
         }
-        
+
         // =======================================================
         // TAMBAHKAN BLOK VALIDASI ANTI-DUPLIKAT DI SINI
         // =======================================================
@@ -346,6 +376,21 @@ class PembayaranController extends Controller
         $pembayaran = Pembayaran::findOrFail($id);
         $pembayaran->status = $request->status;
         $pembayaran->save();
+
+        // Buat kwitansi jika diterima
+        if ($request->status === 'diterima') {
+            // Buat kwitansi langsung tanpa controller lain
+            $noKwitansi = 'KWT-' . date('Ymd') . '-' . uniqid();
+
+            $kwitansi = Kwitansi::create([
+                'id_pembayaran' => $pembayaran->id_pembayaran,
+                'no_kwitansi' => $noKwitansi,
+                'tanggal_terbit' => now(),
+                'file_kwitansi' => 'kwitansi/' . uniqid() . '.pdf'
+            ]);
+
+            
+        }
 
         return redirect()->back()->with('success', 'Status pembayaran berhasil diperbarui.');
     }
