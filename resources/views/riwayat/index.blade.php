@@ -103,7 +103,11 @@
                                         Lanjutkan Pembayaran
                                     </button>
                                 @elseif ($p->status == 'diterima' && $p->kwitansi)
-                                    <a href="{{ route('kwitansi.download', $p->kwitansi) }}" 
+                                    <button>
+                                        <a href="{{ route('kwitansi.download', $p->kwitansi) }}">
+                                            Download
+                                        </a>
+                                    </button>
                                 @else
                                     -
                                 @endif

@@ -272,7 +272,7 @@ class PembayaranController extends Controller
             ]);
 
             // Langsung buat kwitansi karena statusnya sudah 'diterima'
-            (new \App\Http\Controllers\BendaharaController)->buatKwitansi($pembayaran);
+            (new KwitansiController)->generateAndSave($pembayaran);
         }
 
         return redirect()->route('pembayaran.manual.create')->with('success', 'Pembayaran manual berhasil disimpan.');
@@ -382,7 +382,7 @@ class PembayaranController extends Controller
 
         // Buat kwitansi jika diterima
         if ($request->status === 'diterima') {
-            (new \App\Http\Controllers\BendaharaController)->buatKwitansi($pembayaran);
+            (new KwitansiController)->generateAndSave($pembayaran);
         }
 
         return redirect()->back()->with('success', 'Status pembayaran berhasil diperbarui.');

@@ -62,7 +62,7 @@ class MidtransWebhookController extends Controller
                 if ($newStatus === 'diterima') {
                     $pembayaranList = Pembayaran::where('midtrans_order_id', $orderId)->get();
                     foreach ($pembayaranList as $pembayaran) {
-                        (new BendaharaController)->buatKwitansi($pembayaran);
+                        (new KwitansiController)->generateAndSave($pembayaran);
                     }
                     Log::info("Webhook Midtrans: Kwitansi otomatis dibuat untuk Order ID '$orderId'.");
                 }

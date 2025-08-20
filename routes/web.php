@@ -10,6 +10,7 @@ use App\Http\Controllers\MidtransController;
 use App\Http\Controllers\MidtransWebhookController;
 use App\Http\Controllers\BendaharaController;
 use App\Http\Controllers\RiwayatController;
+use App\Http\Controllers\KwitansiController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -30,6 +31,8 @@ Route::middleware('auth')->group(function () {
     Route::get('/riwayat', [RiwayatController::class, 'index'])
         ->middleware('role:wali_murid,bendahara,ketua_yayasan') // <-- KUNCINYA DI SINI
         ->name('riwayat.index');
+
+        Route::get('/kwitansi/download/{kwitansi}', [KwitansiController::class, 'download'])->name('kwitansi.download');
 });
 
 Route::post('/midtrans/token', [PembayaranController::class, 'snapToken'])->name('midtrans.token');

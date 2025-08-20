@@ -48,31 +48,11 @@ class BendaharaController extends Controller
         // PEMICU PEMBUATAN KWITANSI
         // =======================================================
         if ($pembayaran->status === 'diterima') {
-            $this->buatKwitansi($pembayaran);
+            (new KwitansiController)->generateAndSave($pembayaran);
         }
         // =======================================================
 
         return redirect()->route('bendahara.verifikasi')
             ->with('success', 'Pembayaran berhasil diverifikasi');
-    }
-
-    public function buatKwitansi(Pembayaran $pembayaran)
-    {
-        // Cek apakah kwitansi sudah ada untuk pembayaran ini
-        $kwitansiExisting = Kwitansi::where('id_pembayaran', $pembayaran->id_pembayaran)->first();
-        if ($kwitansiExisting) {
-            return $kwitansiExisting; // Jangan buat duplikat
-        }
-
-        $noKwitansi = 'KWT-' . date('Ymd') . '-' . $pembayaran->id_pembayaran;
-
-        $kwitansi = Kwitansi::create([
-            'id_pembayaran' => $pembayaran->id_pembayaran,
-            'no_kwitansi' => $noKwitansi,
-            'tanggal_terbit' => now(),
-            'file_kwitansi' => 'kwitansi/' . $noKwitansi . '.pdf'
-        ]);
-
-        return $kwitansi;
     }
 }
