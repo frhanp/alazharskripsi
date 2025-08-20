@@ -112,6 +112,11 @@
                                         data-snap-token="{{ $p->snap_token }}">
                                         Lanjutkan Pembayaran
                                     </button>
+                                @elseif ($p->status == 'diterima')
+                                    <span
+                                        class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
+                                        Lunas
+                                    </span>
                                 @else
                                     -
                                 @endif
