@@ -45,7 +45,6 @@ class KwitansiController extends Controller
 
     public function generateAndSave($pembayaran)
     {
-        dd('generateAndSave dipanggil', $pembayaran);
         $noKwitansi = 'KWT-' . date('Ymd') . '-' . uniqid();
 
         return Kwitansi::create([

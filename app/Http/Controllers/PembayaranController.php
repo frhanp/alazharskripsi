@@ -258,7 +258,7 @@ class PembayaranController extends Controller
 
         // Simpan pembayaran untuk setiap bulan
         foreach ($request->bulan as $bulan) {
-            Pembayaran::create([
+            $pembayaran = Pembayaran::create([
                 'id_siswa' => $request->id_siswa,
                 'bulan' => $bulan,
                 'tahun' => $request->tahun,
@@ -270,6 +270,9 @@ class PembayaranController extends Controller
                 'catatan' => $request->catatan,
                 'is_midtrans' => false,
             ]);
+
+            // Langsung buat kwitansi karena statusnya sudah 'diterima'
+            (new \App\Http\Controllers\BendaharaController)->buatKwitansi($pembayaran);
         }
 
         return redirect()->route('pembayaran.manual.create')->with('success', 'Pembayaran manual berhasil disimpan.');
@@ -379,17 +382,7 @@ class PembayaranController extends Controller
 
         // Buat kwitansi jika diterima
         if ($request->status === 'diterima') {
-            // Buat kwitansi langsung tanpa controller lain
-            $noKwitansi = 'KWT-' . date('Ymd') . '-' . uniqid();
-
-            $kwitansi = Kwitansi::create([
-                'id_pembayaran' => $pembayaran->id_pembayaran,
-                'no_kwitansi' => $noKwitansi,
-                'tanggal_terbit' => now(),
-                'file_kwitansi' => 'kwitansi/' . uniqid() . '.pdf'
-            ]);
-
-            
+            (new \App\Http\Controllers\BendaharaController)->buatKwitansi($pembayaran);
         }
 
         return redirect()->back()->with('success', 'Status pembayaran berhasil diperbarui.');

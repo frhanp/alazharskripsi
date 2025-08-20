@@ -57,6 +57,15 @@ class MidtransWebhookController extends Controller
 
             if ($updatedRows > 0) {
                 Log::info("Webhook Midtrans: $updatedRows baris untuk Order ID '$orderId' berhasil diupdate menjadi '$newStatus'.");
+
+                // Buat kwitansi jika status berubah jadi 'diterima'
+                if ($newStatus === 'diterima') {
+                    $pembayaranList = Pembayaran::where('midtrans_order_id', $orderId)->get();
+                    foreach ($pembayaranList as $pembayaran) {
+                        (new BendaharaController)->buatKwitansi($pembayaran);
+                    }
+                    Log::info("Webhook Midtrans: Kwitansi otomatis dibuat untuk Order ID '$orderId'.");
+                }
             } else {
                 // Abaikan notifikasi tes dari dashboard Midtrans
                 if (str_starts_with($orderId, 'payment_notif_test_')) {

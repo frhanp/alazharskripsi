@@ -48,11 +48,7 @@ class BendaharaController extends Controller
         // PEMICU PEMBUATAN KWITANSI
         // =======================================================
         if ($pembayaran->status === 'diterima') {
-            // Panggil fungsi dari KwitansiController
-            $kwitansiController = new KwitansiController();
-            $kwitansiController->generateAndSave($pembayaran);
-
-            // Di sini nanti kita akan menambahkan logika kirim WA
+            $this->buatKwitansi($pembayaran);
         }
         // =======================================================
 
@@ -60,20 +56,23 @@ class BendaharaController extends Controller
             ->with('success', 'Pembayaran berhasil diverifikasi');
     }
 
-    protected function buatKwitansi(Pembayaran $pembayaran)
+    public function buatKwitansi(Pembayaran $pembayaran)
     {
-        $noKwitansi = 'KWT-' . date('Ymd') . '-' . uniqid();
+        // Cek apakah kwitansi sudah ada untuk pembayaran ini
+        $kwitansiExisting = Kwitansi::where('id_pembayaran', $pembayaran->id_pembayaran)->first();
+        if ($kwitansiExisting) {
+            return $kwitansiExisting; // Jangan buat duplikat
+        }
 
-        return Kwitansi::create([
+        $noKwitansi = 'KWT-' . date('Ymd') . '-' . $pembayaran->id_pembayaran;
+
+        $kwitansi = Kwitansi::create([
             'id_pembayaran' => $pembayaran->id_pembayaran,
             'no_kwitansi' => $noKwitansi,
             'tanggal_terbit' => now(),
-            'file_kwitansi' => $this->generateKwitansiFile($pembayaran)
+            'file_kwitansi' => 'kwitansi/' . $noKwitansi . '.pdf'
         ]);
-    }
 
-    protected function generateKwitansiFile(Pembayaran $pembayaran)
-    {
-        return 'kwitansi/' . uniqid() . '.pdf';
+        return $kwitansi;
     }
 }
