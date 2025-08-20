@@ -100,14 +100,7 @@
         <table class="content-table">
             <tr>
                 <td class="label">Telah Diterima Dari</td>
-                <td>:
-                    {{-- Prioritaskan nama wali jika ada, jika tidak, gunakan nama siswa --}}
-                    @if ($pembayaran->siswa->wali)
-                        {{ $pembayaran->siswa->wali->name }} (Wali dari {{ $pembayaran->siswa->nama_siswa }})
-                    @else
-                        {{ $pembayaran->siswa->nama_siswa }}
-                    @endif
-                </td>
+                <td>: {{ $pembayaran->siswa->nama_siswa }}</td>
             </tr>
             <tr>
                 <td class="label">Uang Sejumlah</td>
