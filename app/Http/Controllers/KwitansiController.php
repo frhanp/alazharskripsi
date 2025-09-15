@@ -8,17 +8,13 @@ use App\Models\Pembayaran;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
 use Barryvdh\DomPDF\Facade\Pdf as PDF;
+use PhpOffice\PhpWord\TemplateProcessor; // Ganti PDF dengan TemplateProcessor
+use Carbon\Carbon; // Tambahkan untuk format tanggal
+use App\Helpers\TerbilangHelper;
+
 
 class KwitansiController extends Controller
 {
-    /**
-     * Fungsi utama untuk membuat PDF, menyimpannya, dan mencatat ke database.
-     * Ini akan menjadi pusat logika pembuatan kwitansi.
-     *
-     * @param Pembayaran $pembayaran
-     * @return Kwitansi|null
-     */
-
     public function index()
     {
         $kwitansi = Kwitansi::with('pembayaran.siswa')->latest()->paginate(10);
@@ -33,15 +29,8 @@ class KwitansiController extends Controller
 
     public function download(Kwitansi $kwitansi)
     {
-        // 1. Ambil path lengkap dari database.
-        // Contoh: "kwitansi/kwitansi-9-1755670818.pdf"
         $pathToFile = $kwitansi->file_kwitansi;
-
-        // 2. Ambil HANYA nama filenya saja menggunakan basename().
-        // Hasilnya: "kwitansi-9-1755670818.pdf"
         $fileName = basename($pathToFile);
-
-        // 3. Panggil fungsi download dengan path absolut dan nama file.
         $fullPath = storage_path('app/public/' . $pathToFile);
 
         if (!file_exists($fullPath)) {
@@ -51,6 +40,12 @@ class KwitansiController extends Controller
         return response()->download($fullPath, $fileName);
     }
 
+    /**
+     * Fungsi utama untuk membuat DOCX, menyimpannya, dan mencatat ke database.
+     *
+     * @param Pembayaran $pembayaran
+     * @return Kwitansi|null
+     */
     public function generateAndSave(Pembayaran $pembayaran): ?Kwitansi
     {
         if ($pembayaran->kwitansi) {
@@ -58,58 +53,67 @@ class KwitansiController extends Controller
         }
 
         try {
-            $pembayaran->load(['siswa.wali']);
-
+            // 1. Buat record kwitansi di database terlebih dahulu
+            $pembayaran->load(['siswa']);
             $noKwitansi = 'KW/' . now()->year . '/' . now()->month . '/' . $pembayaran->id_pembayaran;
             $kwitansi = Kwitansi::create([
                 'id_pembayaran' => $pembayaran->id_pembayaran,
                 'no_kwitansi' => $noKwitansi,
                 'tanggal_terbit' => now(),
-                'file_kwitansi' => '',
+                'file_kwitansi' => '', // Kosongkan dulu, akan diisi nanti
             ]);
 
-            $data = [
-                'pembayaran' => $pembayaran,
-                'kwitansi' => $kwitansi,
-            ];
-
-            $pdf = PDF::loadView('kwitansi.template', $data);
-
-            // ===================================================================
-            // SOLUSI ULTIMATE: MENYIMPAN FILE SECARA LANGSUNG
-            // ===================================================================
-
-            $directoryName = 'kwitansi';
-            $fileName = 'kwitansi-' . $pembayaran->id_pembayaran . '-' . time() . '.pdf';
-
-            // Path relatif untuk disimpan di database
-            $databasePath = $directoryName . '/' . $fileName;
-
-            // Dapatkan path absolut dari root storage 'public' Anda
-            $absoluteStoragePath = storage_path('app/public/' . $directoryName);
-
-            // 1. Pastikan folder tujuan ada, menggunakan fungsi dasar PHP
-            if (!file_exists($absoluteStoragePath)) {
-                mkdir($absoluteStoragePath, 0775, true);
+            // 2. Tentukan path template dan path output
+            $templatePath = storage_path('app/templates/kwitansi_template.docx');
+            if (!file_exists($templatePath)) {
+                Log::error("Template kwitansi tidak ditemukan di: " . $templatePath);
+                return null;
             }
 
-            // 2. Simpan file menggunakan fungsi dasar PHP, bukan Storage Facade
-            $fullPathToFile = $absoluteStoragePath . '/' . $fileName;
-            file_put_contents($fullPathToFile, $pdf->output());
+            $directoryName = 'kwitansi';
+            // Ubah ekstensi file menjadi .docx
+            $fileName = 'kwitansi-' . $pembayaran->id_pembayaran . '-' . time() . '.docx';
+            $databasePath = $directoryName . '/' . $fileName;
+            $fullOutputPath = storage_path('app/public/' . $databasePath);
 
-            // =iatas
-            Log::info("File berhasil disimpan di: " . $fullPathToFile);
+            // Pastikan direktori output ada
+            Storage::disk('public')->makeDirectory($directoryName);
 
-            // 3. Update database dengan path relatif yang benar
+            // 3. Proses template dengan PhpWord
+            $templateProcessor = new TemplateProcessor($templatePath);
+
+            // 4. Siapkan data dan isi placeholder
+            $bulanText = is_array($pembayaran->bulan) ? implode(', ', $pembayaran->bulan) : $pembayaran->bulan;
+            // CATATAN: Fungsi terbilang butuh library tambahan seperti `terbilang/terbilang`.
+            // Untuk sementara kita tampilkan angka saja.
+            $terbilangText = ucwords(TerbilangHelper::convert($pembayaran->jumlah)) . ' Rupiah';
+
+
+            $templateProcessor->setValue('no_kwitansi', $kwitansi->no_kwitansi);
+            $templateProcessor->setValue('tanggal_terbit', Carbon::parse($kwitansi->tanggal_terbit)->translatedFormat('d F Y'));
+            $templateProcessor->setValue('nama_siswa', $pembayaran->siswa->nama_siswa);
+            $templateProcessor->setValue('nis_siswa', $pembayaran->siswa->nis ?? '-');
+            $templateProcessor->setValue('bulan_pembayaran', $bulanText);
+            $templateProcessor->setValue('tahun_pembayaran', $pembayaran->tahun);
+            $templateProcessor->setValue('jumlah_rupiah', number_format($pembayaran->jumlah, 0, ',', '.'));
+            $templateProcessor->setValue('jumlah_terbilang', $terbilangText);
+
+
+            // 5. Simpan file .docx yang sudah diisi
+            $templateProcessor->saveAs($fullOutputPath);
+
+            // 6. Update record kwitansi dengan path file yang baru
             $kwitansi->update(['file_kwitansi' => $databasePath]);
 
-            // ===================================================================
-
-            Log::info("Kwitansi berhasil dibuat untuk pembayaran ID {$pembayaran->id_pembayaran}.");
+            Log::info("Kwitansi .docx berhasil dibuat untuk pembayaran ID {$pembayaran->id_pembayaran}.");
             return $kwitansi;
         } catch (\Exception $e) {
             Log::error("Gagal membuat kwitansi untuk pembayaran ID {$pembayaran->id_pembayaran}: " . $e->getMessage());
             Log::error($e->getTraceAsString());
+            // Jika gagal, hapus record kwitansi yang mungkin sudah terbuat
+            if (isset($kwitansi) && $kwitansi->exists) {
+                $kwitansi->delete();
+            }
             return null;
         }
     }

@@ -1,0 +1,58 @@
+﻿
+  GET|HEAD        / ............................................................................................... 
+  GET|HEAD        _debugbar/assets/javascript ......... debugbar.assets.js ΓÇ║ Barryvdh\Debugbar ΓÇ║ AssetController@js
+  GET|HEAD        _debugbar/assets/stylesheets ...... debugbar.assets.css ΓÇ║ Barryvdh\Debugbar ΓÇ║ AssetController@css
+  DELETE          _debugbar/cache/{key}/{tags?} debugbar.cache.delete ΓÇ║ Barryvdh\Debugbar ΓÇ║ CacheController@delete
+  GET|HEAD        _debugbar/clockwork/{id} debugbar.clockwork ΓÇ║ Barryvdh\Debugbar ΓÇ║ OpenHandlerController@clockwork
+  GET|HEAD        _debugbar/open .......... debugbar.openhandler ΓÇ║ Barryvdh\Debugbar ΓÇ║ OpenHandlerController@handle
+  POST            _debugbar/queries/explain debugbar.queries.explain ΓÇ║ Barryvdh\Debugbar ΓÇ║ QueriesController@explaΓÇª
+  GET|HEAD        confirm-password ..................... password.confirm ΓÇ║ Auth\ConfirmablePasswordController@show
+  POST            confirm-password ....................................... Auth\ConfirmablePasswordController@store
+  GET|HEAD        dashboard ............................................................................. dashboard
+  POST            email/verification-notification verification.send ΓÇ║ Auth\EmailVerificationNotificationControllerΓÇª
+  GET|HEAD        forgot-password ...................... password.request ΓÇ║ Auth\PasswordResetLinkController@create
+  POST            forgot-password ......................... password.email ΓÇ║ Auth\PasswordResetLinkController@store
+  GET|HEAD        guru .......................................................... guru.index ΓÇ║ GuruController@index
+  POST            guru .......................................................... guru.store ΓÇ║ GuruController@store
+  GET|HEAD        guru/create ................................................. guru.create ΓÇ║ GuruController@create
+  PUT|PATCH       guru/{guru} ................................................. guru.update ΓÇ║ GuruController@update
+  DELETE          guru/{guru} ............................................... guru.destroy ΓÇ║ GuruController@destroy
+  GET|HEAD        guru/{guru}/edit ................................................ guru.edit ΓÇ║ GuruController@edit
+  GET|HEAD        kwitansi/download/{kwitansi} .................... kwitansi.download ΓÇ║ KwitansiController@download
+  GET|HEAD        login ........................................ login ΓÇ║ Auth\AuthenticatedSessionController@create
+  POST            login ................................................. Auth\AuthenticatedSessionController@store
+  POST            logout ..................................... logout ΓÇ║ Auth\AuthenticatedSessionController@destroy
+  POST            midtrans/callback .............................................. MidtransWebhookController@handle
+  POST            midtrans/token .................................. midtrans.token ΓÇ║ PembayaranController@snapToken
+  PUT             password ....................................... password.update ΓÇ║ Auth\PasswordController@update
+  POST            payment/token ............................... payment.token ΓÇ║ PaymentController@createTransaction
+  GET|HEAD        pembayaran ..................................... payment.page ΓÇ║ PaymentController@showPaymentPage
+  GET|HEAD        pembayaran/manual/create ........... pembayaran.manual.create ΓÇ║ PembayaranController@createManual
+  POST            pembayaran/manual/store .............. pembayaran.manual.store ΓÇ║ PembayaranController@storeManual
+  GET|HEAD        pembayaran/midtrans/{id_siswa} ........... pembayaran.midtrans.form ΓÇ║ MidtransController@showForm
+  POST            pembayaran/midtrans/{id_siswa} .......... pembayaran.midtrans ΓÇ║ MidtransController@createMidtrans
+  GET|HEAD        pembayaran/verifikasi .............. pembayaran.verifikasi ΓÇ║ PembayaranController@indexVerifikasi
+  PATCH           pembayaran/verifikasi/{id} . pembayaran.verifikasi.update ΓÇ║ PembayaranController@updateVerifikasi
+  GET|HEAD        profile ................................................... profile.edit ΓÇ║ ProfileController@edit
+  PATCH           profile ............................................... profile.update ΓÇ║ ProfileController@update
+  DELETE          profile ............................................. profile.destroy ΓÇ║ ProfileController@destroy
+  GET|HEAD        register ........................................ register ΓÇ║ Auth\RegisteredUserController@create
+  POST            register .................................................... Auth\RegisteredUserController@store
+  POST            reset-password ................................ password.store ΓÇ║ Auth\NewPasswordController@store
+  GET|HEAD        reset-password/{token} ....................... password.reset ΓÇ║ Auth\NewPasswordController@create
+  GET|HEAD        riwayat ................................................. riwayat.index ΓÇ║ RiwayatController@index
+  GET|HEAD        siswa ....................................................... siswa.index ΓÇ║ SiswaController@index
+  POST            siswa ....................................................... siswa.store ΓÇ║ SiswaController@store
+  GET|HEAD        siswa/create .............................................. siswa.create ΓÇ║ SiswaController@create
+  PUT|PATCH       siswa/{siswa} ............................................. siswa.update ΓÇ║ SiswaController@update
+  DELETE          siswa/{siswa} ........................................... siswa.destroy ΓÇ║ SiswaController@destroy
+  GET|HEAD        siswa/{siswa}/edit ............................................ siswa.edit ΓÇ║ SiswaController@edit
+  GET|HEAD        storage/{path} .................................................................... storage.local
+  GET|HEAD        up .............................................................................................. 
+  GET|HEAD        upload-transfer .................... pembayaran.upload.create ΓÇ║ PembayaranController@createUpload
+  POST            upload-transfer ...................... pembayaran.upload.store ΓÇ║ PembayaranController@storeUpload
+  GET|HEAD        verify-email ....................... verification.notice ΓÇ║ Auth\EmailVerificationPromptController
+  GET|HEAD        verify-email/{id}/{hash} ....................... verification.verify ΓÇ║ Auth\VerifyEmailController
+
+                                                                                                Showing [54] routes
+
