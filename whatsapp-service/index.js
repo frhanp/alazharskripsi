@@ -16,7 +16,6 @@ async function connectToWhatsApp() {
     sock = makeWASocket({
         auth: state,
         printQRInTerminal: true,
-        // BARU: Menambahkan logger sesuai referensi Anda, ini sangat penting
         logger: pino({ level: 'silent' }) 
     });
 
@@ -28,7 +27,6 @@ async function connectToWhatsApp() {
             qrcode.generate(qr, { small: true });
         }
         if(connection === 'close') {
-            // Logika reconnect disesuaikan dengan referensi Anda
             const shouldReconnect = (lastDisconnect.error)?.output?.statusCode !== DisconnectReason.loggedOut;
             console.log('Koneksi terputus karena ', lastDisconnect.error, ', mencoba menghubungkan kembali... ', shouldReconnect);
             if(shouldReconnect) {
@@ -43,27 +41,37 @@ async function connectToWhatsApp() {
     sock.ev.on('creds.update', saveCreds);
 }
 
-// Endpoint untuk mengirim pesan
+// Endpoint untuk mengirim file (versi terbaru)
 app.post('/send-message', async (req, res) => {
-    const { number, message } = req.body;
+    // Ambil data baru: fileUrl, fileName, dan caption
+    const { number, fileUrl, fileName, caption } = req.body;
 
-    if (!number || !message) {
-        return res.status(400).json({ status: 'error', message: 'Nomor dan pesan wajib diisi.' });
+    if (!number || !fileUrl) {
+        return res.status(400).json({ status: 'error', message: 'Nomor dan URL file wajib diisi.' });
     }
-    
-    // Pengecekan koneksi yang lebih baik
+
     if (!sock || !sock.user) {
          return res.status(500).json({ status: 'error', message: 'Koneksi WhatsApp belum siap atau belum login.' });
     }
 
     try {
         const formattedNumber = number.startsWith('0') ? '62' + number.substring(1) + '@s.whatsapp.net' : number + '@s.whatsapp.net';
-        await sock.sendMessage(formattedNumber, { text: message });
-        console.log(`Pesan terkirim ke ${number}`);
-        res.status(200).json({ status: 'success', message: 'Pesan berhasil dikirim.' });
+        
+        // Siapkan pesan dalam format dokumen
+        const messageOptions = {
+            document: { url: fileUrl }, // Ambil file dari URL
+            mimetype: 'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
+            fileName: fileName || 'Kwitansi.docx', // Gunakan nama file dari Laravel
+            caption: caption || '' // Tambahkan caption
+        };
+        
+        await sock.sendMessage(formattedNumber, messageOptions);
+
+        console.log(`File terkirim ke ${number}`);
+        res.status(200).json({ status: 'success', message: 'File berhasil dikirim.' });
     } catch (error) {
-        console.error('Gagal mengirim pesan:', error);
-        res.status(500).json({ status: 'error', message: 'Gagal mengirim pesan.', details: error.message });
+        console.error('Gagal mengirim file:', error);
+        res.status(500).json({ status: 'error', message: 'Gagal mengirim file.', details: error.message });
     }
 });
 

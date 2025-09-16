@@ -34,36 +34,37 @@ class SendWhatsappNotification implements ShouldQueue
             return;
         }
 
+        // Buat URL publik ke file kwitansi
+        $fileUrl = asset('storage/' . $this->kwitansi->file_kwitansi);
+
+        // Siapkan caption (teks pendamping) untuk file
         $bulan = is_array($this->kwitansi->pembayaran->bulan) ? implode(', ', $this->kwitansi->pembayaran->bulan) : $this->kwitansi->pembayaran->bulan;
-        $tahun = $this->kwitansi->pembayaran->tahun;
         $namaSiswa = $this->kwitansi->pembayaran->siswa->nama_siswa;
-        $jumlah = number_format($this->kwitansi->pembayaran->jumlah, 0, ',', '.');
+        $tahun = $this->kwitansi->pembayaran->tahun;
 
-        // Link untuk download kwitansi
-        $downloadUrl = route('kwitansi.download', $this->kwitansi->id_kwitansi);
+        $caption = "Yth. Wali Murid dari ananda {$namaSiswa},\n\n" .
+            "Terima kasih, pembayaran SPP bulan *{$bulan} {$tahun}* telah kami terima. Berikut kami lampirkan kwitansinya.\n\n" .
+            "Terima kasih.\n*Bendahara Al-Azhar 43 Gorontalo*";
 
-        $message = "Yth. Wali Murid dari ananda {$namaSiswa},\n\n" .
-                   "Terima kasih, pembayaran SPP bulan {$bulan} {$tahun} sebesar Rp {$jumlah} telah kami terima.\n\n" .
-                   "Kwitansi digital dapat diunduh melalui tautan berikut:\n{$downloadUrl}\n\n" .
-                   "Terima kasih.\n*Bendahara Al-Azhar 43 Gorontalo*";
-
+        // Ini blok try...catch final Anda
         try {
             $response = Http::post('http://localhost:3000/send-message', [
                 'number' => $wali->nomor_wa,
-                'message' => $message,
+                'fileUrl' => $fileUrl, // Data yang dikirim sekarang URL file
+                'fileName' => basename($this->kwitansi->file_kwitansi), // Beserta nama filenya
+                'caption' => $caption, // Dan juga caption
             ]);
 
             if ($response->successful()) {
                 $this->kwitansi->update(['status_kirim' => 'sent']);
-                Log::info('Notifikasi WA berhasil dikirim ke ' . $wali->nomor_wa);
+                Log::info('Notifikasi WA (file) berhasil dikirim ke ' . $wali->nomor_wa);
             } else {
                 $this->kwitansi->update(['status_kirim' => 'failed']);
-                Log::error('Gagal kirim notifikasi WA: ' . $response->body());
+                Log::error('Gagal kirim notifikasi WA (file): ' . $response->body());
             }
         } catch (\Exception $e) {
             $this->kwitansi->update(['status_kirim' => 'failed']);
-            Log::error('Exception saat kirim notifikasi WA: ' . $e->getMessage());
-            // Melempar kembali exception agar job bisa di-retry jika dikonfigurasi
+            Log::error('Exception saat kirim notifikasi WA (file): ' . $e->getMessage());
             $this->fail($e);
         }
     }
