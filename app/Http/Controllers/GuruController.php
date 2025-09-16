@@ -24,6 +24,9 @@ class GuruController extends Controller
             'nama_guru' => 'required|string|max:100',
             'nip' => 'nullable|string|max:50',
             'mapel' => 'nullable|string|max:100',
+            'alamat' => 'nullable|string|max:255',
+            'latitude' => 'nullable|numeric',
+            'longitude' => 'nullable|numeric',
         ]);
 
         Guru::create($request->all());
@@ -42,6 +45,9 @@ class GuruController extends Controller
             'nama_guru' => 'required|string|max:100',
             'nip' => 'nullable|string|max:50',
             'mapel' => 'nullable|string|max:100',
+            'alamat' => 'nullable|string|max:255',
+            'latitude' => 'nullable|numeric',
+            'longitude' => 'nullable|numeric',
         ]);
 
         $guru = Guru::findOrFail($id);

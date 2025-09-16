@@ -26,6 +26,9 @@ class SiswaController extends Controller
             'nama_siswa' => 'required|string|max:100',
             'nis' => 'required|string|max:50|unique:siswa,nis',
             'id_guru' => 'nullable|exists:guru,id_guru',
+            'alamat' => 'nullable|string|max:255',
+            'latitude' => 'nullable|numeric',
+            'longitude' => 'nullable|numeric',
         ]);
 
         Siswa::create($request->all());
@@ -47,6 +50,9 @@ class SiswaController extends Controller
             'nama_siswa' => 'required|string|max:100',
             'nis' => 'required|string|max:50|unique:siswa,nis,' . $siswa->id_siswa . ',id_siswa',
             'id_guru' => 'nullable|exists:guru,id_guru',
+            'alamat' => 'nullable|string|max:255',
+            'latitude' => 'nullable|numeric',
+            'longitude' => 'nullable|numeric',
         ]);
 
         $siswa->update($request->all());

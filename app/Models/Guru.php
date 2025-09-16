@@ -11,7 +11,7 @@ class Guru extends Model
     public $incrementing = true;
 
     protected $fillable = [
-        'nama_guru', 'nip', 'mapel'
+        'nama_guru', 'nip', 'mapel', 'alamat', 'latitude', 'longitude'
     ];
 
     public function siswa()

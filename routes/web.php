@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Api\LocationController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PaymentController;
@@ -11,6 +12,7 @@ use App\Http\Controllers\MidtransWebhookController;
 use App\Http\Controllers\BendaharaController;
 use App\Http\Controllers\RiwayatController;
 use App\Http\Controllers\KwitansiController;
+use App\Http\Controllers\PemetaanController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -71,4 +73,6 @@ Route::post('/midtrans/callback', [MidtransWebhookController::class, 'handle']);
 
 Route::get('/pembayaran', [PaymentController::class, 'showPaymentPage'])->name('payment.page');
 Route::post('/payment/token', [PaymentController::class, 'createTransaction'])->name('payment.token');
+Route::get('/api/locations', [LocationController::class, 'index'])->name('api.locations');
+Route::get('/pemetaan', [PemetaanController::class, 'index'])->name('pemetaan.index');
 require __DIR__ . '/auth.php';

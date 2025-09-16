@@ -15,6 +15,18 @@
             <label>Mata Pelajaran</label>
             <input type="text" name="mapel">
         </div>
+        <div>
+            <label>Alamat</label>
+            <input type="text" name="alamat">
+        </div>
+        <div>
+            <label>Latitude</label>
+            <input type="text" name="latitude">
+        </div>
+        <div>
+            <label>Longitude</label>
+            <input type="text" name="longitude">
+        </div>
         <button type="submit">Simpan</button>
     </form>
 </x-app-layout>

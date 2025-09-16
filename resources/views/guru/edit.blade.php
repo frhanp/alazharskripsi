@@ -15,6 +15,18 @@
             <label>Mata Pelajaran</label>
             <input type="text" name="mapel" value="{{ $guru->mapel }}">
         </div>
+        <div>
+            <label>Alamat</label>
+            <input type="text" name="alamat" value="{{ $guru->alamat }}">
+        </div>
+        <div>
+            <label>Latitude</label>
+            <input type="text" name="latitude" value="{{ $guru->latitude }}">
+        </div>
+        <div>
+            <label>Longitude</label>
+            <input type="text" name="longitude" value="{{ $guru->longitude }}">
+        </div>
         <button type="submit">Update</button>
     </form>
 </x-app-layout>
