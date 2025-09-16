@@ -11,6 +11,7 @@ use Barryvdh\DomPDF\Facade\Pdf as PDF;
 use PhpOffice\PhpWord\TemplateProcessor; // Ganti PDF dengan TemplateProcessor
 use Carbon\Carbon; // Tambahkan untuk format tanggal
 use App\Helpers\TerbilangHelper;
+use App\Jobs\SendWhatsappNotification;
 
 
 class KwitansiController extends Controller
@@ -61,6 +62,7 @@ class KwitansiController extends Controller
                 'no_kwitansi' => $noKwitansi,
                 'tanggal_terbit' => now(),
                 'file_kwitansi' => '', // Kosongkan dulu, akan diisi nanti
+
             ]);
 
             // 2. Tentukan path template dan path output
@@ -104,6 +106,9 @@ class KwitansiController extends Controller
 
             // 6. Update record kwitansi dengan path file yang baru
             $kwitansi->update(['file_kwitansi' => $databasePath]);
+            SendWhatsappNotification::dispatch($kwitansi);
+
+            
 
             Log::info("Kwitansi .docx berhasil dibuat untuk pembayaran ID {$pembayaran->id_pembayaran}.");
             return $kwitansi;
