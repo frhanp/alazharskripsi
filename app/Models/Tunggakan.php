@@ -11,7 +11,7 @@ class Tunggakan extends Model
     public $incrementing = true;
 
     protected $fillable = [
-        'id_siswa', 'bulan', 'tahun', 'jumlah_tunggakan', 'status'
+        'id_siswa', 'bulan', 'tahun', 'jumlah_tunggakan', 'status', 'last_reminder_sent_at'
     ];
 
     public function siswa()

@@ -28,10 +28,28 @@
                                         <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{ $item->bulan }} {{ $item->tahun }}</td>
                                         <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">Rp {{ number_format($item->jumlah_tunggakan, 0, ',', '.') }}</td>
                                         <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
-                                            <form action="{{ route('tunggakan.send-reminder', $item->id_tunggakan) }}" method="POST">
-                                                @csrf
-                                                <button type="submit" class="text-indigo-600 hover:text-indigo-900">Kirim Pengingat</button>
-                                            </form>
+                                            {{-- Logika Tombol Pintar --}}
+                                            @php
+                                                $reminderSent = $item->last_reminder_sent_at;
+                                                $canSendReminder = is_null($reminderSent) || \Carbon\Carbon::parse($reminderSent)->addDay()->isPast();
+                                            @endphp
+
+                                            @if ($canSendReminder)
+                                                <form action="{{ route('tunggakan.send-reminder', $item->id_tunggakan) }}" method="POST">
+                                                    @csrf
+                                                    <button type="submit" class="text-indigo-600 hover:text-indigo-900 font-semibold">Kirim Pengingat</button>
+                                                </form>
+                                            @else
+                                                <div class="flex items-center text-gray-500">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-1 text-green-500" viewBox="0 0 20 20" fill="currentColor">
+                                                      <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+                                                    </svg>
+                                                    <span>Terkirim</span>
+                                                </div>
+                                                <span class="text-xs text-gray-400">
+                                                    {{ \Carbon\Carbon::parse($reminderSent)->diffForHumans() }}
+                                                </span>
+                                            @endif
                                         </td>
                                     </tr>
                                 @empty

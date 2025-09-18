@@ -25,15 +25,21 @@ class TunggakanController extends Controller
     /**
      * Mengirim notifikasi pengingat tunggakan ke wali murid.
      */
+     /**
+     * Mengirim notifikasi pengingat tunggakan ke wali murid.
+     */
     public function sendReminder($id_tunggakan)
     {
         try {
             $tunggakan = Tunggakan::with('siswa.wali')->findOrFail($id_tunggakan);
 
-            // Cek jika wali murid punya nomor WA
             if ($tunggakan->siswa && $tunggakan->siswa->wali && $tunggakan->siswa->wali->nomor_wa) {
                 // Kirim tugas pengiriman WA ke antrian (queue)
                 SendTunggakanNotification::dispatch($tunggakan);
+
+                // Tandai bahwa pengingat telah dikirim
+                $tunggakan->update(['last_reminder_sent_at' => now()]);
+
                 return back()->with('success', 'Notifikasi pengingat untuk ' . $tunggakan->siswa->nama_siswa . ' telah dijadwalkan untuk dikirim.');
             }
 
