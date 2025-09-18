@@ -16,6 +16,7 @@ use App\Http\Controllers\PemetaanController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\Bendahara\DashboardController as BendaharaDashboardController; // Beri alias
 use App\Http\Controllers\KetuaYayasan\DashboardController as KetuaYayasanDashboardController;
+use App\Http\Controllers\TunggakanController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -36,7 +37,7 @@ Route::middleware('auth')->group(function () {
         ->middleware('role:wali_murid,bendahara,ketua_yayasan') // <-- KUNCINYA DI SINI
         ->name('riwayat.index');
 
-        Route::get('/kwitansi/download/{kwitansi}', [KwitansiController::class, 'download'])->name('kwitansi.download');
+    Route::get('/kwitansi/download/{kwitansi}', [KwitansiController::class, 'download'])->name('kwitansi.download');
 });
 
 Route::post('/midtrans/token', [PembayaranController::class, 'snapToken'])->name('midtrans.token');
@@ -50,6 +51,9 @@ Route::middleware(['auth', 'role:bendahara'])->group(function () {
     Route::get('pembayaran/verifikasi', [PembayaranController::class, 'indexVerifikasi'])->name('pembayaran.verifikasi');
     Route::patch('pembayaran/verifikasi/{id}', [PembayaranController::class, 'updateVerifikasi'])->name('pembayaran.verifikasi.update');
     Route::get('/bendahara/dashboard', [BendaharaDashboardController::class, 'index'])->name('bendahara.dashboard');
+
+    Route::get('/tunggakan', [TunggakanController::class, 'index'])->name('tunggakan.index');
+    Route::post('/tunggakan/{id_tunggakan}/send-reminder', [TunggakanController::class, 'sendReminder'])->name('tunggakan.send-reminder');
 });
 
 Route::middleware(['auth', 'role:wali_murid'])->group(function () {
@@ -61,8 +65,8 @@ Route::middleware(['auth', 'role:wali_murid'])->group(function () {
 
 
     // Route GET: tampilkan form bulan/tahun + tombol bayar
-   Route::get('/pembayaran/midtrans/{id_siswa}', [MidtransController::class, 'showForm'])
-    ->name('pembayaran.midtrans.form');
+    Route::get('/pembayaran/midtrans/{id_siswa}', [MidtransController::class, 'showForm'])
+        ->name('pembayaran.midtrans.form');
 
 
     // Route POST: proses Midtrans + tampilkan Snap

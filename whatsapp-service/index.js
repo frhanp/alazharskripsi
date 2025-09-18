@@ -42,12 +42,12 @@ async function connectToWhatsApp() {
 }
 
 // Endpoint untuk mengirim file (versi terbaru)
+// Endpoint PINTAR: Bisa kirim teks atau file
 app.post('/send-message', async (req, res) => {
-    // Ambil data baru: fileUrl, fileName, dan caption
-    const { number, fileUrl, fileName, caption } = req.body;
+    const { number, message, fileUrl, fileName, caption } = req.body;
 
-    if (!number || !fileUrl) {
-        return res.status(400).json({ status: 'error', message: 'Nomor dan URL file wajib diisi.' });
+    if (!number || (!message && !fileUrl)) {
+        return res.status(400).json({ status: 'error', message: 'Nomor dan (message atau fileUrl) wajib diisi.' });
     }
 
     if (!sock || !sock.user) {
@@ -57,21 +57,30 @@ app.post('/send-message', async (req, res) => {
     try {
         const formattedNumber = number.startsWith('0') ? '62' + number.substring(1) + '@s.whatsapp.net' : number + '@s.whatsapp.net';
         
-        // Siapkan pesan dalam format dokumen
-        const messageOptions = {
-            document: { url: fileUrl }, // Ambil file dari URL
-            mimetype: 'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
-            fileName: fileName || 'Kwitansi.docx', // Gunakan nama file dari Laravel
-            caption: caption || '' // Tambahkan caption
-        };
+        let messageOptions;
         
-        await sock.sendMessage(formattedNumber, messageOptions);
+        // Cek jika ada fileUrl, maka kirim sebagai dokumen
+        if (fileUrl) {
+            messageOptions = {
+                document: { url: fileUrl },
+                mimetype: 'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
+                fileName: fileName || 'Kwitansi.docx',
+                caption: caption || ''
+            };
+            await sock.sendMessage(formattedNumber, messageOptions);
+            console.log(`File terkirim ke ${number}`);
+            res.status(200).json({ status: 'success', message: 'File berhasil dikirim.' });
+        } 
+        // Jika tidak ada fileUrl, kirim sebagai teks biasa
+        else {
+            await sock.sendMessage(formattedNumber, { text: message });
+            console.log(`Pesan teks terkirim ke ${number}`);
+            res.status(200).json({ status: 'success', message: 'Pesan teks berhasil dikirim.' });
+        }
 
-        console.log(`File terkirim ke ${number}`);
-        res.status(200).json({ status: 'success', message: 'File berhasil dikirim.' });
     } catch (error) {
-        console.error('Gagal mengirim file:', error);
-        res.status(500).json({ status: 'error', message: 'Gagal mengirim file.', details: error.message });
+        console.error('Gagal mengirim pesan/file:', error);
+        res.status(500).json({ status: 'error', message: 'Gagal mengirim pesan/file.', details: error.message });
     }
 });
 
