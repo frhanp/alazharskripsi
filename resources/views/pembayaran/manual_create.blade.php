@@ -1,8 +1,10 @@
 <x-app-layout>
+    {{-- 1. Tambahkan CSS Tom Select di header --}}
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
             {{ __('Input Manual Pembayaran') }}
         </h2>
+        <link href="https://cdn.jsdelivr.net/npm/tom-select@2.3.1/dist/css/tom-select.css" rel="stylesheet">
     </x-slot>
 
     <div class="py-8">
@@ -14,8 +16,8 @@
                     {{-- Nama Siswa --}}
                     <div class="mb-4">
                         <label for="id_siswa" class="block text-sm font-medium text-gray-700">Nama Siswa</label>
-                        <select name="id_siswa" id="id_siswa"
-                            class="mt-1 block w-full border-gray-300 rounded-md shadow-sm">
+                        {{-- 2. Hapus class bawaan dan berikan ID baru untuk Tom Select --}}
+                        <select name="id_siswa" id="select-siswa" placeholder="Ketik untuk mencari siswa...">
                             @foreach ($siswa as $item)
                                 <option value="{{ $item->id_siswa }}">{{ $item->nama_siswa }}</option>
                             @endforeach
@@ -38,7 +40,6 @@
                         <div class="mb-4">
                             <x-input-label for="bulan" :value="__('Bulan Pembayaran')" />
                             <div>
-                                <!-- Tag bulan terpilih -->
                                 <div class="flex flex-wrap gap-2 mb-2">
                                     <template x-for="month in selectedMonths" :key="month">
                                         <span
@@ -57,12 +58,10 @@
                                     </template>
                                 </div>
     
-                                <!-- Dropdown Bulan -->
                                 <select x-ref="monthSelect"
                                     @change="if ($event.target.value && !selectedMonths.includes($event.target.value)) {
                                         selectedMonths.push($event.target.value);
                                         $event.target.value = '';
-                                        console.log('Selected months:', selectedMonths, 'Total Bayar:', totalBayar);
                                     }"
                                     class="block mt-1 w-full border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm">
                                     <option value="">Pilih Bulan</option>
@@ -72,7 +71,6 @@
                                     </template>
                                 </select>
     
-                                <!-- Hidden input agar data terkirim ke server -->
                                 <template x-for="month in selectedMonths" :key="month">
                                     <input type="hidden" name="bulan[]" :value="month" />
                                 </template>
@@ -88,8 +86,6 @@
                                 class="mt-1 block w-full border-gray-300 rounded-md shadow-sm bg-gray-100" readonly />
                             <small class="text-gray-500">Jumlah akan dihitung otomatis: jumlah bulan ×
                                 {{ number_format($defaultJumlahSPP ?? 0, 0, ',', '.') }}</small>
-                            <!-- Debug -->
-                            <div x-text="'Debug Total Bayar: ' + totalBayar"></div>
                         </div>
                     </div>
     
@@ -99,9 +95,17 @@
                         <select name="tahun" id="tahun"
                             class="mt-1 block w-full border-gray-300 rounded-md shadow-sm">
                             @for ($year = now()->year - 2; $year <= now()->year + 1; $year++)
-                                <option value="{{ $year }}">{{ $year }}</option>
+                                <option value="{{ $year }}" @selected($year == now()->year)>
+                                    {{ $year }}
+                                </option>
                             @endfor
                         </select>
+                    </div>
+
+                    {{-- Catatan --}}
+                    <div class="mb-4">
+                        <label for="catatan" class="block text-sm font-medium text-gray-700">Catatan (Opsional)</label>
+                        <textarea name="catatan" id="catatan" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm"></textarea>
                     </div>
     
                     <div class="mt-6">
@@ -113,4 +117,20 @@
             </div>
         </div>
     </div>
+
+    {{-- 3. Tambahkan script Tom Select di akhir --}}
+    @push('scripts')
+        <script src="https://cdn.jsdelivr.net/npm/tom-select@2.3.1/dist/js/tom-select.complete.min.js"></script>
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                new TomSelect('#select-siswa', {
+                    create: false,
+                    sortField: {
+                        field: "text",
+                        direction: "asc"
+                    }
+                });
+            });
+        </script>
+    @endpush
 </x-app-layout>

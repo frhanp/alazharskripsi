@@ -7,19 +7,11 @@
     </div>
     <!-- Nav Links -->
     <nav class="flex-1 px-4 py-6 space-y-2">
-        <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
+        <x-nav-link :href="route('dashboard')" :active="request()->routeIs(['dashboard', 'bendahara.dashboard', 'ketua.dashboard'])">
             <img src="{{ asset('images/homeicon.png') }}" alt="icon" class="w-4 h-4 mr-2">
 
             {{ __('Dashboard') }}
         </x-nav-link>
-
-        {{-- <x-nav-link :href="route('payment.page')" :active="request()->routeIs('payment.page')">
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-4">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 8.25h19.5M2.25 9h19.5m-16.5 5.25h6m-6 2.25h3m-3.75 3h15a2.25 2.25 0 0 0 2.25-2.25V6.75A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25v10.5A2.25 2.25 0 0 0 4.5 19.5Z" />
-              </svg>
-              
-            {{ __('Pembayaran') }}
-        </x-nav-link> --}}
 
         @if(auth()->user()?->role === 'bendahara')
 
@@ -57,8 +49,6 @@
             <img src="{{ asset('images/historyicon.png') }}" alt="icon" class="w-4 h-4 mr-2">
             {{ __('Riwayat Pembayaran') }}
         </x-nav-link>
-        
-
 
         <!-- Ganti nav-link dengan dropdown -->
         <div class="relative">
@@ -89,11 +79,7 @@
             });
         </script>
         
-        @endif
-
-       
-        
-        
+        @endif   
         
     </nav>
     <!-- User Dropdown -->

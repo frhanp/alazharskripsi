@@ -11,7 +11,14 @@ class Siswa extends Model
     public $incrementing = true;
 
     protected $fillable = [
-        'nis', 'nama_siswa', 'kelas', 'id_wali', 'id_guru', 'alamat', 'latitude', 'longitude'
+        'nis',
+        'nama_siswa',
+        'kelas',
+        'id_wali',
+        'id_guru',
+        'alamat',
+        'latitude',
+        'longitude'
     ];
 
     public function wali()
@@ -27,5 +34,10 @@ class Siswa extends Model
     public function pembayaran()
     {
         return $this->hasMany(Pembayaran::class, 'id_siswa');
+    }
+
+    public function tunggakan()
+    {
+        return $this->hasMany(Tunggakan::class, 'id_siswa');
     }
 }

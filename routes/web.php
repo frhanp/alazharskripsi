@@ -13,14 +13,16 @@ use App\Http\Controllers\BendaharaController;
 use App\Http\Controllers\RiwayatController;
 use App\Http\Controllers\KwitansiController;
 use App\Http\Controllers\PemetaanController;
+use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\Bendahara\DashboardController as BendaharaDashboardController; // Beri alias
+use App\Http\Controllers\KetuaYayasan\DashboardController as KetuaYayasanDashboardController;
 
 Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+// MENJADI SEPERTI INI
+Route::get('/dashboard', DashboardController::class)->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -47,6 +49,7 @@ Route::middleware(['auth', 'role:bendahara'])->group(function () {
     //PENGECEKAN PEMBAYARAN
     Route::get('pembayaran/verifikasi', [PembayaranController::class, 'indexVerifikasi'])->name('pembayaran.verifikasi');
     Route::patch('pembayaran/verifikasi/{id}', [PembayaranController::class, 'updateVerifikasi'])->name('pembayaran.verifikasi.update');
+    Route::get('/bendahara/dashboard', [BendaharaDashboardController::class, 'index'])->name('bendahara.dashboard');
 });
 
 Route::middleware(['auth', 'role:wali_murid'])->group(function () {
@@ -75,4 +78,10 @@ Route::get('/pembayaran', [PaymentController::class, 'showPaymentPage'])->name('
 Route::post('/payment/token', [PaymentController::class, 'createTransaction'])->name('payment.token');
 Route::get('/api/locations', [LocationController::class, 'index'])->name('api.locations');
 Route::get('/pemetaan', [PemetaanController::class, 'index'])->name('pemetaan.index');
+
+
+Route::middleware(['auth', 'role:ketua_yayasan'])->prefix('ketua')->name('ketua.')->group(function () {
+    Route::get('/dashboard', [KetuaYayasanDashboardController::class, 'dashboard'])->name('dashboard');
+    // Nanti kita tambahkan route untuk laporan di sini
+});
 require __DIR__ . '/auth.php';

@@ -28,6 +28,11 @@ class AuthenticatedSessionController extends Controller
 
         $request->session()->regenerate();
 
+        // Cek role setelah login
+        if ($request->user()->role === 'bendahara') {
+            return redirect()->route('bendahara.dashboard');
+        }
+
         return redirect()->intended(route('dashboard', absolute: false));
     }
 
