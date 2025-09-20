@@ -4,6 +4,8 @@ use Illuminate\Foundation\Application;
 use Illuminate\Foundation\Configuration\Exceptions;
 use Illuminate\Foundation\Configuration\Middleware;
 use App\Http\Middleware\RoleMiddleware;
+use Illuminate\Contracts\Console\Kernel as ConsoleKernelContract;
+use App\Console\Kernel as ConsoleKernel;
 
 return Application::configure(basePath: dirname(__DIR__))
     ->withRouting(
@@ -23,4 +25,11 @@ return Application::configure(basePath: dirname(__DIR__))
     })
     ->withExceptions(function (Exceptions $exceptions) {
         //
-    })->create();
+    })
+
+    ->withSingletons([
+        ConsoleKernelContract::class => ConsoleKernel::class,
+    ])
+    ->create();
+
+    

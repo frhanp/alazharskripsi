@@ -57,7 +57,8 @@
 
                             <div class="bg-gray-50 px-6 py-4">
                                 @if (!$anak['spp_bulan_ini_lunas'] || $anak['total_tunggakan'] > 0)
-                                    <a href="{{ route('pembayaran.midtrans.form', $anak['id_siswa']) }}" class="block text-center w-full bg-indigo-600 text-white font-semibold py-2 px-4 rounded-lg hover:bg-indigo-700 transition-colors">
+                                    {{-- Mengarah ke halaman pilih metode --}}
+                                    <a href="{{ route('pembayaran.pilih-metode', $anak['id_siswa']) }}" class="block text-center w-full bg-indigo-600 text-white font-semibold py-2 px-4 rounded-lg hover:bg-indigo-700 transition-colors">
                                         Bayar Sekarang
                                     </a>
                                 @else

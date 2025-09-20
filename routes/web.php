@@ -17,6 +17,7 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\Bendahara\DashboardController as BendaharaDashboardController; // Beri alias
 use App\Http\Controllers\KetuaYayasan\DashboardController as KetuaYayasanDashboardController;
 use App\Http\Controllers\TunggakanController;
+use App\Http\Controllers\PilihMetodeController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -59,6 +60,7 @@ Route::middleware(['auth', 'role:bendahara'])->group(function () {
 Route::middleware(['auth', 'role:wali_murid'])->group(function () {
     Route::get('/upload-transfer', [PembayaranController::class, 'createUpload'])->name('pembayaran.upload.create');
     Route::post('/upload-transfer', [PembayaranController::class, 'storeUpload'])->name('pembayaran.upload.store');
+    Route::get('/pembayaran/{siswa}/pilih-metode', [PilihMetodeController::class, 'index'])->name('pembayaran.pilih-metode');
 
     //Route::get('/riwayat', [RiwayatController::class, 'index'])->name('riwayat.index');
 
