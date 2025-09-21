@@ -20,6 +20,54 @@ class Pembayaran extends Model
         'status' => 'belum_bayar'
     ];
 
+    /**
+     * The "booted" method of the model.
+     *
+     * @return void
+     */
+    protected static function booted()
+    {
+        // Event ini akan berjalan setiap kali record Pembayaran DIBUAT
+        static::created(function (Pembayaran $pembayaran) {
+            // Jika pembayaran baru langsung berstatus 'diterima' (misal: input manual)
+            if ($pembayaran->status === 'diterima') {
+                self::updateTunggakanLunas($pembayaran);
+            }
+        });
+
+        // Event ini akan berjalan setiap kali record Pembayaran DIUPDATE
+        static::updated(function (Pembayaran $pembayaran) {
+            // Cek jika kolom 'status' baru saja diubah menjadi 'diterima'
+            if ($pembayaran->wasChanged('status') && $pembayaran->status === 'diterima') {
+                self::updateTunggakanLunas($pembayaran);
+            }
+        });
+    }
+
+    /**
+     * Fungsi terpusat untuk mengupdate status tunggakan menjadi lunas.
+     */
+    public static function updateTunggakanLunas(Pembayaran $pembayaran)
+    {
+        // Karena 'bulan' bisa jadi array, kita proses satu per satu
+        foreach ($pembayaran->getBulanArray() as $bulan) {
+            Tunggakan::where('id_siswa', $pembayaran->id_siswa)
+                ->where('bulan', $bulan)
+                ->where('tahun', $pembayaran->tahun)
+                ->where('status', 'belum_bayar')
+                ->update(['status' => 'lunas']);
+        }
+    }
+    
+    /**
+     * Helper untuk memastikan 'bulan' selalu array.
+     */
+    public function getBulanArray()
+    {
+        $bulanValue = $this->attributes['bulan'];
+        return is_array($bulanValue) ? $bulanValue : explode(',', $bulanValue);
+    }
+
     public function getBulanAttribute($value)
     {
         return explode(',', $value);
