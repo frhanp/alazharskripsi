@@ -18,7 +18,7 @@ use App\Http\Controllers\Bendahara\DashboardController as BendaharaDashboardCont
 use App\Http\Controllers\KetuaYayasan\DashboardController as KetuaYayasanDashboardController;
 use App\Http\Controllers\TunggakanController;
 use App\Http\Controllers\PilihMetodeController;
-
+use App\Http\Controllers\LaporanController;
 Route::get('/', function () {
     return view('welcome');
 });
@@ -88,6 +88,15 @@ Route::get('/pemetaan', [PemetaanController::class, 'index'])->name('pemetaan.in
 
 Route::middleware(['auth', 'role:ketua_yayasan'])->prefix('ketua')->name('ketua.')->group(function () {
     Route::get('/dashboard', [KetuaYayasanDashboardController::class, 'dashboard'])->name('dashboard');
-    // Nanti kita tambahkan route untuk laporan di sini
+    // Nanti kita tambahkan route untuk laporan di sini\
+});
+
+
+// Grup baru untuk fitur yang bisa diakses oleh Bendahara DAN Ketua Yayasan
+Route::middleware(['auth', 'role:bendahara,ketua_yayasan'])->group(function () {
+    // Semua route terkait laporan dipindahkan ke sini
+    Route::get('/laporan', [LaporanController::class, 'index'])->name('laporan.index');
+    Route::get('/laporan/pdf', [LaporanController::class, 'exportPdf'])->name('laporan.export.pdf');
+    Route::get('/laporan/excel', [LaporanController::class, 'exportExcel'])->name('laporan.export.excel');
 });
 require __DIR__ . '/auth.php';

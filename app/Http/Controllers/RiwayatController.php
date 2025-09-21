@@ -41,6 +41,10 @@ class RiwayatController extends Controller
             $query->where('status', $request->status);
         }
 
+        if ($request->filled('status') && $request->status !== '') {
+            $query->where('status', $request->status);
+        }
+
         // Ambil data yang sudah difilter dan diurutkan, lalu paginasi
         $pembayaran = $query->orderBy('created_at', 'desc')->paginate(10);
 
