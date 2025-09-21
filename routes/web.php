@@ -19,6 +19,7 @@ use App\Http\Controllers\KetuaYayasan\DashboardController as KetuaYayasanDashboa
 use App\Http\Controllers\TunggakanController;
 use App\Http\Controllers\PilihMetodeController;
 use App\Http\Controllers\LaporanController;
+use App\Http\Controllers\PengaturanController;
 Route::get('/', function () {
     return view('welcome');
 });
@@ -55,6 +56,8 @@ Route::middleware(['auth', 'role:bendahara'])->group(function () {
 
     Route::get('/tunggakan', [TunggakanController::class, 'index'])->name('tunggakan.index');
     Route::post('/tunggakan/{id_tunggakan}/send-reminder', [TunggakanController::class, 'sendReminder'])->name('tunggakan.send-reminder');
+    Route::get('/pengaturan', [PengaturanController::class, 'index'])->name('pengaturan.index');
+Route::post('/pengaturan', [PengaturanController::class, 'update'])->name('pengaturan.update');
 });
 
 Route::middleware(['auth', 'role:wali_murid'])->group(function () {

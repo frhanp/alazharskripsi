@@ -24,7 +24,7 @@ class GenerateTunggakan extends Command
         $tahunLalu = $periode->year;
 
         // Ambil jumlah SPP dari pengaturan
-        $jumlahSPP = Pengaturan::where('key', 'jumlah_spp')->value('value') ?? 700000;
+        $jumlahSPP = Pengaturan::where('key', 'jumlah_spp')->value('value') ?? 0;
 
         // Ambil semua siswa aktif
         $siswas = Siswa::all();

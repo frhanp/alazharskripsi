@@ -17,7 +17,8 @@ class MidtransController extends Controller
     public function showForm($id_siswa)
     {
         $siswa = Siswa::findOrFail($id_siswa);
-        $jumlahSPP = Pengaturan::where('key', 'jumlah_spp')->value('value') ?? 700000;
+        // Di dalam method showForm()
+        $jumlahSPP = Pengaturan::where('key', 'jumlah_spp')->value('value') ?? 0;
 
         return view('pembayaran.midtrans', compact('siswa', 'jumlahSPP'));
     }

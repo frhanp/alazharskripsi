@@ -200,6 +200,7 @@ class PembayaranController extends Controller
     public function createManual()
     {
         $siswa = Siswa::orderBy('nama_siswa')->get();
+        // Di dalam method createManual() & createUpload()
         $defaultJumlahSPP = Pengaturan::where('key', 'jumlah_spp')->value('value') ?? 0;
 
         return view('pembayaran.manual_create', compact('siswa', 'defaultJumlahSPP'));
