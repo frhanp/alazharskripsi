@@ -67,6 +67,7 @@
                 <img src="{{ asset('images/historyicon.png') }}" alt="icon" class="w-4 h-4 mr-2">
                 {{ __('Riwayat Pembayaran') }}
             </x-nav-link>
+            @if ($midtransAktif)
             <div class="relative">
                 <button type="button" class="flex items-center px-3 py-2 text-sm font-medium text-gray-700 hover:text-gray-900" id="siswa-menu" aria-expanded="false" aria-haspopup="true">
                     <img src="{{ asset('images/walleticon.png') }}" alt="icon" class="w-5 h-5 mr-2">
@@ -76,7 +77,7 @@
                 <div class="absolute hidden mt-2 w-48 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5" id="siswa-menu-dropdown">
                     <div class="py-1" role="menu" aria-orientation="vertical" aria-labelledby="siswa-menu">
                         @foreach (Auth::user()->siswa as $item)
-                            <a href="{{ route('pembayaran.midtrans.form', $item->id_siswa) }}"
+                            <a href="{{ route('wali.midtrans.form', $item->id_siswa) }}"
                                class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" role="menuitem">
                                 {{ $item->nama_siswa }}
                             </a>
@@ -84,10 +85,14 @@
                     </div>
                 </div>
             </div>
+            @endif
             <script>
-                document.getElementById('siswa-menu').addEventListener('click', function () {
-                    document.getElementById('siswa-menu-dropdown').classList.toggle('hidden');
-                });
+                // Pastikan script hanya ada jika tombolnya ada
+                if (document.getElementById('siswa-menu')) {
+                    document.getElementById('siswa-menu').addEventListener('click', function () {
+                        document.getElementById('siswa-menu-dropdown').classList.toggle('hidden');
+                    });
+                }
             </script>
         @endif
         

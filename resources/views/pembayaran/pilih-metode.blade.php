@@ -13,18 +13,21 @@
                 <p class="text-xs text-gray-500 mt-1">Ini adalah total dari semua bulan yang menunggak.</p>
             </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <a href="{{ route('pembayaran.midtrans.form', $siswa->id_siswa) }}" class="block p-6 bg-white rounded-xl shadow-md hover:shadow-lg hover:border-indigo-500 border-2 border-transparent transition-all transform hover:-translate-y-1">
-                    <h3 class="text-lg font-bold text-gray-900">Bayar Otomatis (Online)</h3>
-                    <p class="text-sm text-gray-600 mt-2">Pilihan pembayaran instan melalui Virtual Account, E-Wallet (GoPay, OVO), Kartu Kredit, dll.</p>
-                    <div class="mt-4 text-indigo-600 font-semibold flex items-center">
-                        Lanjutkan ke Midtrans <span class="ml-2">&rarr;</span>
-                    </div>
-                </a>
+            <div class="grid grid-cols-1 {{ $midtransAktif ? 'md:grid-cols-2' : 'md:max-w-md md:mx-auto' }} gap-6">
+                
+                @if ($midtransAktif)
+                    <a href="{{ route('wali.midtrans.form', $siswa->id_siswa) }}?{{ $menunggakQuery }}" class="block p-6 bg-white rounded-xl shadow-md hover:shadow-lg hover:border-indigo-500 border-2 border-transparent transition-all transform hover:-translate-y-1">
+                        <h3 class="text-lg font-bold text-gray-900">Bayar Otomatis (Online)</h3>
+                        <p class="text-sm text-gray-600 mt-2">Pilihan pembayaran instan melalui Virtual Account, E-Wallet, Kartu Kredit, dll.</p>
+                        <div class="mt-4 text-indigo-600 font-semibold flex items-center">
+                            Lanjutkan ke Midtrans <span class="ml-2">&rarr;</span>
+                        </div>
+                    </a>
+                @endif
 
-                <a href="{{ route('pembayaran.upload.create') }}" class="block p-6 bg-white rounded-xl shadow-md hover:shadow-lg hover:border-green-500 border-2 border-transparent transition-all transform hover:-translate-y-1">
+                <a href="{{ route('pembayaran.upload.create') }}?id_siswa={{ $siswa->id_siswa }}&{{ $menunggakQuery }}" class="block p-6 bg-white rounded-xl shadow-md hover:shadow-lg hover:border-green-500 border-2 border-transparent transition-all transform hover:-translate-y-1">
                     <h3 class="text-lg font-bold text-gray-900">Upload Bukti Transfer</h3>
-                    <p class="text-sm text-gray-600 mt-2">Lakukan transfer manual ke rekening sekolah, lalu unggah bukti pembayaran untuk diverifikasi oleh bendahara.</p>
+                    <p class="text-sm text-gray-600 mt-2">Lakukan transfer manual ke rekening sekolah, lalu unggah bukti pembayaran untuk diverifikasi.</p>
                     <div class="mt-4 text-green-600 font-semibold flex items-center">
                         Upload Bukti <span class="ml-2">&rarr;</span>
                     </div>
