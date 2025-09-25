@@ -23,7 +23,9 @@
                     @foreach ($dataAnak as $anak)
                         <div class="bg-white rounded-xl shadow-md overflow-hidden flex flex-col justify-between">
                             <div class="p-6">
-                                <h4 class="text-xl font-bold text-gray-900">{{ $anak['nama_siswa'] }}</h4>
+                                <a href="{{ route('wali.detail-siswa', $anak['id_siswa']) }}" class="text-xl font-bold text-gray-900 hover:text-indigo-600 hover:underline">
+                                    {{ $anak['nama_siswa'] }}
+                                </a>
                                 <p class="text-sm text-gray-600">Kelas: {{ $anak['kelas'] ?? '-' }}</p>
 
                                 <div class="mt-4">

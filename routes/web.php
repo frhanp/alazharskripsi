@@ -20,6 +20,8 @@ use App\Http\Controllers\TunggakanController;
 use App\Http\Controllers\PilihMetodeController;
 use App\Http\Controllers\LaporanController;
 use App\Http\Controllers\PengaturanController;
+use App\Http\Controllers\DetailSiswaController;
+
 Route::get('/', function () {
     return view('welcome');
 });
@@ -77,6 +79,8 @@ Route::middleware(['auth', 'role:wali_murid'])->group(function () {
     // Route POST: proses Midtrans + tampilkan Snap
     Route::post('/pembayaran/midtrans/{id_siswa}', [MidtransController::class, 'createMidtrans'])
         ->name('pembayaran.midtrans');
+
+    Route::get('/detail-siswa/{siswa}', [DetailSiswaController::class, 'index'])->name('wali.detail-siswa');
 });
 Route::post('/midtrans/callback', [MidtransWebhookController::class, 'handle']);
 
@@ -87,6 +91,8 @@ Route::get('/pembayaran', [PaymentController::class, 'showPaymentPage'])->name('
 Route::post('/payment/token', [PaymentController::class, 'createTransaction'])->name('payment.token');
 Route::get('/api/locations', [LocationController::class, 'index'])->name('api.locations');
 Route::get('/pemetaan', [PemetaanController::class, 'index'])->name('pemetaan.index');
+
+
 
 
 Route::middleware(['auth', 'role:ketua_yayasan'])->prefix('ketua')->name('ketua.')->group(function () {
