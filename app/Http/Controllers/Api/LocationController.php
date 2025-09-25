@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\Guru;
 use App\Models\Siswa;
 
 class LocationController extends Controller
@@ -12,18 +11,18 @@ class LocationController extends Controller
     public function index()
     {
         // Ambil data guru yang memiliki koordinat
-        $gurus = Guru::whereNotNull('latitude')
-            ->whereNotNull('longitude')
-            ->get()
-            ->map(function ($guru) {
-                return [
-                    'nama' => $guru->nama_guru,
-                    'tipe' => 'guru',
-                    'info' => "Alamat: " . ($guru->alamat ?? '-'), // Info tambahan
-                    'latitude' => $guru->latitude,
-                    'longitude' => $guru->longitude,
-                ];
-            });
+        // $gurus = Guru::whereNotNull('latitude')
+        //     ->whereNotNull('longitude')
+        //     ->get()
+        //     ->map(function ($guru) {
+        //         return [
+        //             'nama' => $guru->nama_guru,
+        //             'tipe' => 'guru',
+        //             'info' => "Alamat: " . ($guru->alamat ?? '-'), // Info tambahan
+        //             'latitude' => $guru->latitude,
+        //             'longitude' => $guru->longitude,
+        //         ];
+        //     });
 
         // Ambil data siswa yang memiliki koordinat
         $siswas = Siswa::with('wali')->whereNotNull('latitude') // Eager load relasi wali
@@ -41,7 +40,7 @@ class LocationController extends Controller
             });
 
         // Gabungkan kedua data menjadi satu
-        $locations = $gurus->concat($siswas);
+        $locations = $siswas;
 
         // Kembalikan sebagai response JSON
         return response()->json($locations);

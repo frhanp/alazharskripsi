@@ -5,7 +5,6 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\PembayaranController;
-use App\Http\Controllers\GuruController;
 use App\Http\Controllers\SiswaController;
 use App\Http\Controllers\MidtransController;
 use App\Http\Controllers\MidtransWebhookController;
@@ -33,9 +32,6 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-
-
-    Route::resource('guru', GuruController::class)->except(['show']);
     Route::resource('siswa', SiswaController::class)->except(['show']);
     Route::get('/riwayat', [RiwayatController::class, 'index'])
         ->middleware('role:wali_murid,bendahara,ketua_yayasan') // <-- KUNCINYA DI SINI
@@ -59,7 +55,9 @@ Route::middleware(['auth', 'role:bendahara'])->group(function () {
     Route::get('/tunggakan', [TunggakanController::class, 'index'])->name('tunggakan.index');
     Route::post('/tunggakan/{id_tunggakan}/send-reminder', [TunggakanController::class, 'sendReminder'])->name('tunggakan.send-reminder');
     Route::get('/pengaturan', [PengaturanController::class, 'index'])->name('pengaturan.index');
-Route::post('/pengaturan', [PengaturanController::class, 'update'])->name('pengaturan.update');
+    Route::post('/pengaturan', [PengaturanController::class, 'update'])->name('pengaturan.update');
+
+    Route::resource('siswa', SiswaController::class)->except(['index', 'show']);
 });
 
 Route::middleware(['auth', 'role:wali_murid'])->group(function () {
@@ -107,5 +105,9 @@ Route::middleware(['auth', 'role:bendahara,ketua_yayasan'])->group(function () {
     Route::get('/laporan', [LaporanController::class, 'index'])->name('laporan.index');
     Route::get('/laporan/pdf', [LaporanController::class, 'exportPdf'])->name('laporan.export.pdf');
     Route::get('/laporan/excel', [LaporanController::class, 'exportExcel'])->name('laporan.export.excel');
+
+    Route::get('/pemetaan', [PemetaanController::class, 'index'])->name('pemetaan.index');
+    
+    Route::get('/siswa', [SiswaController::class, 'index'])->name('siswa.index');
 });
 require __DIR__ . '/auth.php';

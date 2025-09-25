@@ -6,7 +6,6 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Pembayaran;
 use App\Models\Siswa;
-use App\Models\Guru;
 use App\Models\Tunggakan;
 use Illuminate\Support\Facades\DB;
 use Carbon\Carbon;
@@ -21,8 +20,10 @@ class DashboardController extends Controller
         // --- DATA UNTUK KARTU STATISTIK ---
         $pemasukanTotal = Pembayaran::where('status', 'diterima')->sum('jumlah');
         $siswaAktif = Siswa::count();
-        $guruAktif = Guru::count();
         $totalTunggakan = Tunggakan::where('status', 'belum_bayar')->sum('jumlah_tunggakan');
+        
+        // Menghitung jumlah wali murid unik yang anaknya terdaftar
+        $waliMuridAktif = Siswa::distinct('id_wali')->count('id_wali');
 
         // --- DATA UNTUK GRAFIK PIE STATUS PEMBAYARAN ---
         $statusPembayaran = Pembayaran::select('status', DB::raw('count(*) as total'))
@@ -50,7 +51,7 @@ class DashboardController extends Controller
         return view('ketua.dashboard', compact(
             'pemasukanTotal',
             'siswaAktif',
-            'guruAktif',
+            'waliMuridAktif', // Menggantikan guruAktif
             'totalTunggakan',
             'statusPembayaran',
             'chartLabels',

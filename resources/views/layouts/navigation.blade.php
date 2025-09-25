@@ -17,7 +17,7 @@
         {{-- ======================================================= --}}
 
         {{-- Menu Khusus Bendahara (Operasional) --}}
-        @if(auth()->user()?->role === 'bendahara')
+        @if (auth()->user()?->role === 'bendahara')
             <x-nav-link :href="route('pembayaran.manual.create')" :active="request()->routeIs('pembayaran.manual.create')">
                 <img src="{{ asset('images/inputicon.png') }}" alt="icon" class="w-4 h-4 mr-2">
                 {{ __('Input Manual') }}
@@ -27,38 +27,64 @@
                 {{ __('Verifikasi Pembayaran') }}
             </x-nav-link>
             <x-nav-link :href="route('tunggakan.index')" :active="request()->routeIs('tunggakan.index')">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-2" fill="none" viewBox="0 0 24 24"
+                    stroke="currentColor" stroke-width="2">
+                    <path stroke-linecap="round" stroke-linejoin="round"
+                        d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
                 {{ __('Tunggakan') }}
             </x-nav-link>
 
-            
-        <x-nav-link :href="route('pengaturan.index')" :active="request()->routeIs('pengaturan.index')">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
-              <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
-            </svg>
-            {{ __('Pengaturan') }}
-        </x-nav-link>
+
+            <x-nav-link :href="route('pengaturan.index')" :active="request()->routeIs('pengaturan.index')">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-2" fill="none" viewBox="0 0 24 24"
+                    stroke="currentColor" stroke-width="2">
+                    <path stroke-linecap="round" stroke-linejoin="round"
+                        d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                </svg>
+                {{ __('Pengaturan') }}
+            </x-nav-link>
         @endif
 
         {{-- Menu Bersama (Bendahara & Ketua Yayasan) --}}
-        @if(in_array(auth()->user()?->role, ['bendahara', 'ketua_yayasan']))
+        @if (in_array(auth()->user()?->role, ['bendahara', 'ketua_yayasan']))
+            <x-nav-link :href="route('siswa.index')" :active="request()->routeIs('siswa.index')">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-2" fill="none" viewBox="0 0 24 24"
+                    stroke="currentColor" stroke-width="2">
+                    <path d="M12 14l9-5-9-5-9 5 9 5z" />
+                    <path
+                        d="M12 14l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-9.998 12.078 12.078 0 01.665-6.479L12 14z" />
+                    <path stroke-linecap="round" stroke-linejoin="round"
+                        d="M12 14l9-5-9-5-9 5 9 5zm0 0l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-9.998 12.078 12.078 0 01.665-6.479L12 14zm-4 6v-7.5l4-2.222 4 2.222V20M12 14.75V20" />
+                </svg>
+                {{ __('Data Siswa') }}
+            </x-nav-link>
             <x-nav-link :href="route('riwayat.index')" :active="request()->routeIs('riwayat.index')">
                 <img src="{{ asset('images/historyicon.png') }}" alt="icon" class="w-4 h-4 mr-2">
                 {{ __('Riwayat Pembayaran') }}
             </x-nav-link>
             <x-nav-link :href="route('pemetaan.index')" :active="request()->routeIs('pemetaan.index')">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" /><path stroke-linecap="round" stroke-linejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" /></svg>
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-2" fill="none" viewBox="0 0 24 24"
+                    stroke="currentColor" stroke-width="2">
+                    <path stroke-linecap="round" stroke-linejoin="round"
+                        d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                </svg>
                 {{ __('Pemetaan') }}
             </x-nav-link>
             <x-nav-link :href="route('laporan.index')" :active="request()->routeIs('laporan.index')">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 17v-2m3 2v-4m3 4v-6m2 10H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" /></svg>
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-2" fill="none" viewBox="0 0 24 24"
+                    stroke="currentColor" stroke-width="2">
+                    <path stroke-linecap="round" stroke-linejoin="round"
+                        d="M9 17v-2m3 2v-4m3 4v-6m2 10H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                </svg>
                 {{ __('Laporan') }}
             </x-nav-link>
         @endif
 
         {{-- Menu Khusus Wali Murid --}}
-        @if(auth()->user()?->role === 'wali_murid')
+        @if (auth()->user()?->role === 'wali_murid')
             <x-nav-link :href="route('pembayaran.upload.create')" :active="request()->routeIs('pembayaran.upload.create')">
                 <img src="{{ asset('images/uploadicon.png') }}" alt="icon" class="w-4 h-4 mr-2">
                 {{ __('Upload Bukti Transfer') }}
@@ -68,34 +94,39 @@
                 {{ __('Riwayat Pembayaran') }}
             </x-nav-link>
             @if ($midtransAktif)
-            <div class="relative">
-                <button type="button" class="flex items-center px-3 py-2 text-sm font-medium text-gray-700 hover:text-gray-900" id="siswa-menu" aria-expanded="false" aria-haspopup="true">
-                    <img src="{{ asset('images/walleticon.png') }}" alt="icon" class="w-5 h-5 mr-2">
-                    {{ __('Pembayaran Online') }}
-                    <svg class="ml-2 h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" /></svg>
-                </button>
-                <div class="absolute hidden mt-2 w-48 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5" id="siswa-menu-dropdown">
-                    <div class="py-1" role="menu" aria-orientation="vertical" aria-labelledby="siswa-menu">
-                        @foreach (Auth::user()->siswa as $item)
-                            <a href="{{ route('wali.midtrans.form', $item->id_siswa) }}"
-                               class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" role="menuitem">
-                                {{ $item->nama_siswa }}
-                            </a>
-                        @endforeach
+                <div class="relative">
+                    <button type="button"
+                        class="flex items-center px-3 py-2 text-sm font-medium text-gray-700 hover:text-gray-900"
+                        id="siswa-menu" aria-expanded="false" aria-haspopup="true">
+                        <img src="{{ asset('images/walleticon.png') }}" alt="icon" class="w-5 h-5 mr-2">
+                        {{ __('Pembayaran Online') }}
+                        <svg class="ml-2 h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                        </svg>
+                    </button>
+                    <div class="absolute hidden mt-2 w-48 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5"
+                        id="siswa-menu-dropdown">
+                        <div class="py-1" role="menu" aria-orientation="vertical" aria-labelledby="siswa-menu">
+                            @foreach (Auth::user()->siswa as $item)
+                                <a href="{{ route('wali.midtrans.form', $item->id_siswa) }}"
+                                    class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" role="menuitem">
+                                    {{ $item->nama_siswa }}
+                                </a>
+                            @endforeach
+                        </div>
                     </div>
                 </div>
-            </div>
             @endif
             <script>
                 // Pastikan script hanya ada jika tombolnya ada
                 if (document.getElementById('siswa-menu')) {
-                    document.getElementById('siswa-menu').addEventListener('click', function () {
+                    document.getElementById('siswa-menu').addEventListener('click', function() {
                         document.getElementById('siswa-menu-dropdown').classList.toggle('hidden');
                     });
                 }
             </script>
         @endif
-        
+
         {{-- ======================================================= --}}
         {{-- AKHIR LOGIKA BARU UNTUK ROLE --}}
         {{-- ======================================================= --}}

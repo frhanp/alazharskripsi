@@ -4,20 +4,20 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Siswa;
-use App\Models\Guru;
+use App\Models\User;
 
 class SiswaController extends Controller
 {
     public function index()
     {
-        $siswas = Siswa::with('guru')->latest()->paginate(10);
+        $siswas = Siswa::latest()->paginate(10); // Relasi 'guru' dihapus
         return view('siswa.index', compact('siswas'));
     }
 
     public function create()
     {
-        $gurus = Guru::all();
-        return view('siswa.create', compact('gurus'));
+        $walis = User::where('role', 'wali_murid')->orderBy('name')->get();
+        return view('siswa.create', compact('walis'));
     }
 
     public function store(Request $request)
@@ -25,7 +25,6 @@ class SiswaController extends Controller
         $request->validate([
             'nama_siswa' => 'required|string|max:100',
             'nis' => 'required|string|max:50|unique:siswa,nis',
-            'id_guru' => 'nullable|exists:guru,id_guru',
             'alamat' => 'nullable|string|max:255',
             'latitude' => 'nullable|numeric',
             'longitude' => 'nullable|numeric',
@@ -38,8 +37,8 @@ class SiswaController extends Controller
     public function edit($id)
     {
         $siswa = Siswa::findOrFail($id);
-        $gurus = Guru::all();
-        return view('siswa.edit', compact('siswa', 'gurus'));
+        $walis = User::where('role', 'wali_murid')->orderBy('name')->get();
+        return view('siswa.edit', compact('siswa', 'walis'));
     }
 
     public function update(Request $request, $id)

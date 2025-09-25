@@ -15,7 +15,6 @@ class Siswa extends Model
         'nama_siswa',
         'kelas',
         'id_wali',
-        'id_guru',
         'alamat',
         'latitude',
         'longitude'
@@ -26,10 +25,7 @@ class Siswa extends Model
         return $this->belongsTo(User::class, 'id_wali');
     }
 
-    public function guru()
-    {
-        return $this->belongsTo(Guru::class, 'id_guru');
-    }
+
 
     public function pembayaran()
     {
