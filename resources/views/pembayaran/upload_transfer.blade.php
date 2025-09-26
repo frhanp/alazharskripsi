@@ -87,8 +87,8 @@
                             x-bind:value="totalBayar" readonly />
                         <small class="text-gray-500">Jumlah akan dihitung otomatis: jumlah bulan ×
                             {{ number_format($defaultJumlahSPP ?? 0, 0, ',', '.') }}</small>
-                        <!-- Debug -->
-                        <div x-text="'Debug Total Bayar: ' + totalBayar"></div>
+                        {{-- <!-- Debug -->
+                        <div x-text="'Debug Total Bayar: ' + totalBayar"></div> --}}
                     </div>
                 </div>
     
