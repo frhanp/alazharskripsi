@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Siswa;
 use App\Models\User;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Validation\Rules;
+
 
 class SiswaController extends Controller
 {
@@ -25,12 +28,37 @@ class SiswaController extends Controller
         $request->validate([
             'nama_siswa' => 'required|string|max:100',
             'nis' => 'required|string|max:50|unique:siswa,nis',
-            'alamat' => 'nullable|string|max:255',
-            'latitude' => 'nullable|numeric',
-            'longitude' => 'nullable|numeric',
+            'kelas' => 'required|string|max:20',
+            'wali_option' => 'required|in:existing,new', // Pilihan metode
         ]);
 
-        Siswa::create($request->all());
+        $id_wali = null;
+
+        // Jika bendahara memilih "wali yang sudah ada"
+        if ($request->wali_option === 'existing') {
+            $request->validate(['id_wali' => 'required|exists:users,id']);
+            $id_wali = $request->id_wali;
+        } 
+        // Jika bendahara memilih "buat akun wali baru"
+        else {
+            $request->validate([
+                'nama_wali' => 'required|string|max:255',
+                'email_wali' => 'required|string|lowercase|email|max:255|unique:'.User::class.',email',
+                'password_wali' => ['required', Rules\Password::defaults()],
+            ]);
+
+            $wali = User::create([
+                'name' => $request->nama_wali,
+                'email' => $request->email_wali,
+                'password' => Hash::make($request->password_wali),
+                'role' => 'wali_murid',
+            ]);
+            $id_wali = $wali->id;
+        }
+
+        // Buat data siswa dengan id_wali yang sudah ditentukan
+        Siswa::create(array_merge($request->only('nama_siswa', 'nis', 'kelas', 'alamat', 'latitude', 'longitude'), ['id_wali' => $id_wali]));
+
         return redirect()->route('siswa.index')->with('success', 'Siswa berhasil ditambahkan.');
     }
 
@@ -44,25 +72,22 @@ class SiswaController extends Controller
     public function update(Request $request, $id)
     {
         $siswa = Siswa::findOrFail($id);
-
         $request->validate([
             'nama_siswa' => 'required|string|max:100',
             'nis' => 'required|string|max:50|unique:siswa,nis,' . $siswa->id_siswa . ',id_siswa',
-            'id_guru' => 'nullable|exists:guru,id_guru',
-            'alamat' => 'nullable|string|max:255',
-            'latitude' => 'nullable|numeric',
-            'longitude' => 'nullable|numeric',
+            'kelas' => 'required|string|max:20',
+            'id_wali' => 'required|exists:users,id',
         ]);
-
+        
         $siswa->update($request->all());
-        return redirect()->route('siswa.index')->with('success', 'Siswa berhasil diperbarui.');
+
+        return redirect()->route('siswa.index')->with('success', 'Data siswa berhasil diperbarui.');
     }
 
     public function destroy($id)
     {
         $siswa = Siswa::findOrFail($id);
         $siswa->delete();
-
         return redirect()->route('siswa.index')->with('success', 'Siswa berhasil dihapus.');
     }
 }
