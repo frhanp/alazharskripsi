@@ -1,5 +1,5 @@
 ﻿# Project Digest (Full Content)
-_Generated: 2025-09-25 09:09:51_
+_Generated: 2025-09-26 17:03:27_
 **Root:** D:\Laragon\www\alazharskripsi
 
 
@@ -38,6 +38,7 @@ README.md
 routes.txt
 structure.txt
 tailwind.config.js
+tes-geocoding.html
 vite.config.js
 app\Console
 app\Exports
@@ -64,7 +65,6 @@ app\Http\Controllers\BendaharaController.php
 app\Http\Controllers\Controller.php
 app\Http\Controllers\DashboardController.php
 app\Http\Controllers\DetailSiswaController.php
-app\Http\Controllers\GuruController.php
 app\Http\Controllers\KwitansiController.php
 app\Http\Controllers\LaporanController.php
 app\Http\Controllers\MidtransController.php
@@ -96,7 +96,6 @@ app\Http\Requests\ProfileUpdateRequest.php
 app\Http\Requests\Auth\LoginRequest.php
 app\Jobs\SendTunggakanNotification.php
 app\Jobs\SendWhatsappNotification.php
-app\Models\Guru.php
 app\Models\Kwitansi.php
 app\Models\Pembayaran.php
 app\Models\Pengaturan.php
@@ -141,8 +140,8 @@ database\migrations\2025_07_23_045357_add_snap_token_to_pembayaran_table.php
 database\migrations\2025_09_15_072256_add_nomor_wa_to_users_table.php
 database\migrations\2025_09_16_051807_add_location_columns_to_gurus_and_siswas_tables.php
 database\migrations\2025_09_18_113003_add_last_reminder_sent_at_to_tunggakan_table.php
+database\migrations\2025_09_25_015523_remove_guru_functionality.php
 database\seeders\DatabaseSeeder.php
-database\seeders\GuruSeeder.php
 database\seeders\PengaturanSeeder.php
 database\seeders\SiswaSeeder.php
 database\seeders\UserSeeder.php
@@ -169,7 +168,6 @@ resources\js\bootstrap.js
 resources\views\auth
 resources\views\bendahara
 resources\views\components
-resources\views\guru
 resources\views\ketua
 resources\views\kwitansi
 resources\views\laporan
@@ -206,9 +204,6 @@ resources\views\components\primary-button.blade.php
 resources\views\components\responsive-nav-link.blade.php
 resources\views\components\secondary-button.blade.php
 resources\views\components\text-input.blade.php
-resources\views\guru\create.blade.php
-resources\views\guru\edit.blade.php
-resources\views\guru\index.blade.php
 resources\views\ketua\dashboard.blade.php
 resources\views\kwitansi\template.blade.php
 resources\views\laporan\index.blade.php
@@ -250,6 +245,7 @@ storage\app\private\.gitignore
 storage\app\public\bukti-transfer
 storage\app\public\kwitansi
 storage\app\public\.gitignore
+storage\app\public\bukti-transfer\0tckG9rLMm36iir2z0etRn5dRBRdE38lARFokqCz.jpg
 storage\app\public\bukti-transfer\3Djwu8Pu2v5pbAReb1LjCNySF3GbR6twsyWSaHil.jpg
 storage\app\public\bukti-transfer\591cEnxJb6pEIpnzRISPk7DhR0mYbwyGq0Oavzag.jpg
 storage\app\public\bukti-transfer\94wzukONzR3kAjn5sYdNZzWOQSdJdeQzZH5b9aaA.jpg
@@ -261,6 +257,7 @@ storage\app\public\bukti-transfer\LNLfheIQA0fiMm2uOtS9MpIyerI3ltQ5FChsxkz1.png
 storage\app\public\bukti-transfer\Ndh2J63qwMTM6v6n46KYOlNSwDjUcGhjaYB8imfj.jpg
 storage\app\public\bukti-transfer\pDcmEWuNbmHYqEnBRpYFFgDMcmJsK5H7YdwV7MiM.jpg
 storage\app\public\bukti-transfer\pI9L5Vox6UAMdopDkebC1qJAB8gtpxgwZbPwUuW4.jpg
+storage\app\public\bukti-transfer\SM413rJ1ZcpfIbotqrprEOvF7cCO4KVkfYhvBo6s.jpg
 storage\app\public\bukti-transfer\U0zUzLbD5WcEKBkXVxTNV3SSY2bQycZr9BHq8ZF2.jpg
 storage\app\public\bukti-transfer\UxWlgIYFjNoinwgVG85pgGiAX6FEdXcrgzhqsYM1.jpg
 storage\app\public\bukti-transfer\yo484sRCnSF1Lpl0bgVqiNyJduY2qqKuqfgBVo6n.jpg
@@ -270,6 +267,7 @@ storage\app\public\kwitansi\kwitansi-1-1758376778.docx
 storage\app\public\kwitansi\kwitansi-1-1758384368.docx
 storage\app\public\kwitansi\kwitansi-1-1758436498.docx
 storage\app\public\kwitansi\kwitansi-1-1758453915.docx
+storage\app\public\kwitansi\kwitansi-1-1758853481.docx
 storage\app\public\kwitansi\kwitansi-10-1755671825.pdf
 storage\app\public\kwitansi\kwitansi-10-1757922868.docx
 storage\app\public\kwitansi\kwitansi-11-1757923712.docx
@@ -284,10 +282,13 @@ storage\app\public\kwitansi\kwitansi-19-1757989447.docx
 storage\app\public\kwitansi\kwitansi-2-1757915457.pdf
 storage\app\public\kwitansi\kwitansi-2-1758384375.docx
 storage\app\public\kwitansi\kwitansi-2-1758438196.docx
+storage\app\public\kwitansi\kwitansi-2-1758853571.docx
+storage\app\public\kwitansi\kwitansi-2-1758877175.docx
 storage\app\public\kwitansi\kwitansi-20-1757989499.docx
 storage\app\public\kwitansi\kwitansi-21-1757989922.docx
 storage\app\public\kwitansi\kwitansi-22-1758003206.docx
 storage\app\public\kwitansi\kwitansi-3-1758438216.docx
+storage\app\public\kwitansi\kwitansi-3-1758877180.docx
 storage\app\public\kwitansi\kwitansi-5-1757917613.docx
 storage\app\public\kwitansi\kwitansi-6-1757918608.docx
 storage\app\public\kwitansi\kwitansi-7-1755669945.pdf
@@ -329,6 +330,7 @@ storage\framework\views\5c0bdedc719924690cced7e302b8bf67.php
 storage\framework\views\61dcbe8020a7f47c9b9ec8b6c99f47fb.php
 storage\framework\views\65df369a4528e71cd6754e70ddb11ac3.php
 storage\framework\views\689d09919c93a0fe09463f0b752ab503.php
+storage\framework\views\68e6789bd5943954ba36bbc75954e838.php
 storage\framework\views\6a938c9f296bb062f05de09fdd65ff72.php
 storage\framework\views\70d31578ce1dab60794f303e4fae25d2.php
 storage\framework\views\72b8fde34fcf0549588b5a90e3193918.php
@@ -506,11 +508,11 @@ Branch:
 main
 
 Last 5 commits:
+c128087 crud siswa
+991e152 testing pre hasil
 0fb2761 fix error
 e300e86 add pengaturan di bendahara
 fa7a320 update tabel tunggakan otomatis
-e19365d update tunggakan
-45aa2d2 buat dashboard wali murid ada tunggakan
 ```
 
 
@@ -609,7 +611,6 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\PembayaranController;
-use App\Http\Controllers\GuruController;
 use App\Http\Controllers\SiswaController;
 use App\Http\Controllers\MidtransController;
 use App\Http\Controllers\MidtransWebhookController;
@@ -637,9 +638,6 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-
-
-    Route::resource('guru', GuruController::class)->except(['show']);
     Route::resource('siswa', SiswaController::class)->except(['show']);
     Route::get('/riwayat', [RiwayatController::class, 'index'])
         ->middleware('role:wali_murid,bendahara,ketua_yayasan') // <-- KUNCINYA DI SINI
@@ -663,7 +661,9 @@ Route::middleware(['auth', 'role:bendahara'])->group(function () {
     Route::get('/tunggakan', [TunggakanController::class, 'index'])->name('tunggakan.index');
     Route::post('/tunggakan/{id_tunggakan}/send-reminder', [TunggakanController::class, 'sendReminder'])->name('tunggakan.send-reminder');
     Route::get('/pengaturan', [PengaturanController::class, 'index'])->name('pengaturan.index');
-Route::post('/pengaturan', [PengaturanController::class, 'update'])->name('pengaturan.update');
+    Route::post('/pengaturan', [PengaturanController::class, 'update'])->name('pengaturan.update');
+
+    Route::resource('siswa', SiswaController::class)->except(['index', 'show']);
 });
 
 Route::middleware(['auth', 'role:wali_murid'])->group(function () {
@@ -711,6 +711,10 @@ Route::middleware(['auth', 'role:bendahara,ketua_yayasan'])->group(function () {
     Route::get('/laporan', [LaporanController::class, 'index'])->name('laporan.index');
     Route::get('/laporan/pdf', [LaporanController::class, 'exportPdf'])->name('laporan.export.pdf');
     Route::get('/laporan/excel', [LaporanController::class, 'exportExcel'])->name('laporan.export.excel');
+
+    Route::get('/pemetaan', [PemetaanController::class, 'index'])->name('pemetaan.index');
+    
+    Route::get('/siswa', [SiswaController::class, 'index'])->name('siswa.index');
 });
 require __DIR__ . '/auth.php';
 
@@ -720,75 +724,69 @@ require __DIR__ . '/auth.php';
 ## Routes (from command)
 ```
 
-  GET|HEAD        / ............................................................................................................... 
-  GET|HEAD        _debugbar/assets/javascript ......................... debugbar.assets.js ΓÇ║ Barryvdh\Debugbar ΓÇ║ AssetController@js
-  GET|HEAD        _debugbar/assets/stylesheets ...................... debugbar.assets.css ΓÇ║ Barryvdh\Debugbar ΓÇ║ AssetController@css
-  DELETE          _debugbar/cache/{key}/{tags?} ................ debugbar.cache.delete ΓÇ║ Barryvdh\Debugbar ΓÇ║ CacheController@delete
-  GET|HEAD        _debugbar/clockwork/{id} ............... debugbar.clockwork ΓÇ║ Barryvdh\Debugbar ΓÇ║ OpenHandlerController@clockwork
-  GET|HEAD        _debugbar/open .......................... debugbar.openhandler ΓÇ║ Barryvdh\Debugbar ΓÇ║ OpenHandlerController@handle
-  POST            _debugbar/queries/explain .............. debugbar.queries.explain ΓÇ║ Barryvdh\Debugbar ΓÇ║ QueriesController@explain
-  GET|HEAD        api/locations ...................................................... api.locations ΓÇ║ Api\LocationController@index
-  GET|HEAD        bendahara/dashboard ................................... bendahara.dashboard ΓÇ║ Bendahara\DashboardController@index
-  GET|HEAD        confirm-password ..................................... password.confirm ΓÇ║ Auth\ConfirmablePasswordController@show
-  POST            confirm-password ....................................................... Auth\ConfirmablePasswordController@store
-  GET|HEAD        dashboard ....................................................................... dashboard ΓÇ║ DashboardController
-  GET|HEAD        detail-siswa/{siswa} ............................................ wali.detail-siswa ΓÇ║ DetailSiswaController@index
-  POST            email/verification-notification .......... verification.send ΓÇ║ Auth\EmailVerificationNotificationController@store
-  GET|HEAD        forgot-password ...................................... password.request ΓÇ║ Auth\PasswordResetLinkController@create
-  POST            forgot-password ......................................... password.email ΓÇ║ Auth\PasswordResetLinkController@store
-  GET|HEAD        guru .......................................................................... guru.index ΓÇ║ GuruController@index
-  POST            guru .......................................................................... guru.store ΓÇ║ GuruController@store
-  GET|HEAD        guru/create ................................................................. guru.create ΓÇ║ GuruController@create
-  PUT|PATCH       guru/{guru} ................................................................. guru.update ΓÇ║ GuruController@update
-  DELETE          guru/{guru} ............................................................... guru.destroy ΓÇ║ GuruController@destroy
-  GET|HEAD        guru/{guru}/edit ................................................................ guru.edit ΓÇ║ GuruController@edit
-  GET|HEAD        ketua/dashboard .................................... ketua.dashboard ΓÇ║ KetuaYayasan\DashboardController@dashboard
-  GET|HEAD        kwitansi/download/{kwitansi} .................................... kwitansi.download ΓÇ║ KwitansiController@download
-  GET|HEAD        laporan ................................................................. laporan.index ΓÇ║ LaporanController@index
-  GET|HEAD        laporan/excel .............................................. laporan.export.excel ΓÇ║ LaporanController@exportExcel
-  GET|HEAD        laporan/pdf .................................................... laporan.export.pdf ΓÇ║ LaporanController@exportPdf
-  GET|HEAD        login ........................................................ login ΓÇ║ Auth\AuthenticatedSessionController@create
-  POST            login ................................................................. Auth\AuthenticatedSessionController@store
-  POST            logout ..................................................... logout ΓÇ║ Auth\AuthenticatedSessionController@destroy
-  POST            midtrans/callback .............................................................. MidtransWebhookController@handle
-  POST            midtrans/token .................................................. midtrans.token ΓÇ║ PembayaranController@snapToken
-  PUT             password ....................................................... password.update ΓÇ║ Auth\PasswordController@update
-  POST            payment/token ............................................... payment.token ΓÇ║ PaymentController@createTransaction
-  GET|HEAD        pembayaran ..................................................... payment.page ΓÇ║ PaymentController@showPaymentPage
-  GET|HEAD        pembayaran/manual/create ........................... pembayaran.manual.create ΓÇ║ PembayaranController@createManual
-  POST            pembayaran/manual/store .............................. pembayaran.manual.store ΓÇ║ PembayaranController@storeManual
-  GET|HEAD        pembayaran/midtrans/{id_siswa} ........................... pembayaran.midtrans.form ΓÇ║ MidtransController@showForm
-  POST            pembayaran/midtrans/{id_siswa} .......................... pembayaran.midtrans ΓÇ║ MidtransController@createMidtrans
-  GET|HEAD        pembayaran/verifikasi .............................. pembayaran.verifikasi ΓÇ║ PembayaranController@indexVerifikasi
-  PATCH           pembayaran/verifikasi/{id} ................. pembayaran.verifikasi.update ΓÇ║ PembayaranController@updateVerifikasi
-  GET|HEAD        pembayaran/{siswa}/pilih-metode ........................... pembayaran.pilih-metode ΓÇ║ PilihMetodeController@index
-  GET|HEAD        pemetaan .............................................................. pemetaan.index ΓÇ║ PemetaanController@index
-  GET|HEAD        pengaturan ........................................................ pengaturan.index ΓÇ║ PengaturanController@index
-  POST            pengaturan ...................................................... pengaturan.update ΓÇ║ PengaturanController@update
-  GET|HEAD        profile ................................................................... profile.edit ΓÇ║ ProfileController@edit
-  PATCH           profile ............................................................... profile.update ΓÇ║ ProfileController@update
-  DELETE          profile ............................................................. profile.destroy ΓÇ║ ProfileController@destroy
-  GET|HEAD        register ........................................................ register ΓÇ║ Auth\RegisteredUserController@create
-  POST            register .................................................................... Auth\RegisteredUserController@store
-  POST            reset-password ................................................ password.store ΓÇ║ Auth\NewPasswordController@store
-  GET|HEAD        reset-password/{token} ....................................... password.reset ΓÇ║ Auth\NewPasswordController@create
-  GET|HEAD        riwayat ................................................................. riwayat.index ΓÇ║ RiwayatController@index
-  GET|HEAD        siswa ....................................................................... siswa.index ΓÇ║ SiswaController@index
-  POST            siswa ....................................................................... siswa.store ΓÇ║ SiswaController@store
-  GET|HEAD        siswa/create .............................................................. siswa.create ΓÇ║ SiswaController@create
-  PUT|PATCH       siswa/{siswa} ............................................................. siswa.update ΓÇ║ SiswaController@update
-  DELETE          siswa/{siswa} ........................................................... siswa.destroy ΓÇ║ SiswaController@destroy
-  GET|HEAD        siswa/{siswa}/edit ............................................................ siswa.edit ΓÇ║ SiswaController@edit
-  GET|HEAD        storage/{path} .................................................................................... storage.local
-  GET|HEAD        tunggakan ........................................................... tunggakan.index ΓÇ║ TunggakanController@index
-  POST            tunggakan/{id_tunggakan}/send-reminder ............... tunggakan.send-reminder ΓÇ║ TunggakanController@sendReminder
-  GET|HEAD        up .............................................................................................................. 
-  GET|HEAD        upload-transfer .................................... pembayaran.upload.create ΓÇ║ PembayaranController@createUpload
-  POST            upload-transfer ...................................... pembayaran.upload.store ΓÇ║ PembayaranController@storeUpload
-  GET|HEAD        verify-email ....................................... verification.notice ΓÇ║ Auth\EmailVerificationPromptController
-  GET|HEAD        verify-email/{id}/{hash} ....................................... verification.verify ΓÇ║ Auth\VerifyEmailController
+  GET|HEAD        / .................................................................................................................. 
+  GET|HEAD        _debugbar/assets/javascript ............................ debugbar.assets.js ΓÇ║ Barryvdh\Debugbar ΓÇ║ AssetController@js
+  GET|HEAD        _debugbar/assets/stylesheets ......................... debugbar.assets.css ΓÇ║ Barryvdh\Debugbar ΓÇ║ AssetController@css
+  DELETE          _debugbar/cache/{key}/{tags?} ................... debugbar.cache.delete ΓÇ║ Barryvdh\Debugbar ΓÇ║ CacheController@delete
+  GET|HEAD        _debugbar/clockwork/{id} .................. debugbar.clockwork ΓÇ║ Barryvdh\Debugbar ΓÇ║ OpenHandlerController@clockwork
+  GET|HEAD        _debugbar/open ............................. debugbar.openhandler ΓÇ║ Barryvdh\Debugbar ΓÇ║ OpenHandlerController@handle
+  POST            _debugbar/queries/explain ................. debugbar.queries.explain ΓÇ║ Barryvdh\Debugbar ΓÇ║ QueriesController@explain
+  GET|HEAD        api/locations ......................................................... api.locations ΓÇ║ Api\LocationController@index
+  GET|HEAD        bendahara/dashboard ...................................... bendahara.dashboard ΓÇ║ Bendahara\DashboardController@index
+  GET|HEAD        confirm-password ........................................ password.confirm ΓÇ║ Auth\ConfirmablePasswordController@show
+  POST            confirm-password .......................................................... Auth\ConfirmablePasswordController@store
+  GET|HEAD        dashboard .......................................................................... dashboard ΓÇ║ DashboardController
+  GET|HEAD        detail-siswa/{siswa} ............................................... wali.detail-siswa ΓÇ║ DetailSiswaController@index
+  POST            email/verification-notification ............. verification.send ΓÇ║ Auth\EmailVerificationNotificationController@store
+  GET|HEAD        forgot-password ......................................... password.request ΓÇ║ Auth\PasswordResetLinkController@create
+  POST            forgot-password ............................................ password.email ΓÇ║ Auth\PasswordResetLinkController@store
+  GET|HEAD        ketua/dashboard ....................................... ketua.dashboard ΓÇ║ KetuaYayasan\DashboardController@dashboard
+  GET|HEAD        kwitansi/download/{kwitansi} ....................................... kwitansi.download ΓÇ║ KwitansiController@download
+  GET|HEAD        laporan .................................................................... laporan.index ΓÇ║ LaporanController@index
+  GET|HEAD        laporan/excel ................................................. laporan.export.excel ΓÇ║ LaporanController@exportExcel
+  GET|HEAD        laporan/pdf ....................................................... laporan.export.pdf ΓÇ║ LaporanController@exportPdf
+  GET|HEAD        login ........................................................... login ΓÇ║ Auth\AuthenticatedSessionController@create
+  POST            login .................................................................... Auth\AuthenticatedSessionController@store
+  POST            logout ........................................................ logout ΓÇ║ Auth\AuthenticatedSessionController@destroy
+  POST            midtrans/callback ................................................................. MidtransWebhookController@handle
+  POST            midtrans/token ..................................................... midtrans.token ΓÇ║ PembayaranController@snapToken
+  PUT             password .......................................................... password.update ΓÇ║ Auth\PasswordController@update
+  POST            payment/token .................................................. payment.token ΓÇ║ PaymentController@createTransaction
+  GET|HEAD        pembayaran ........................................................ payment.page ΓÇ║ PaymentController@showPaymentPage
+  GET|HEAD        pembayaran/manual/create .............................. pembayaran.manual.create ΓÇ║ PembayaranController@createManual
+  POST            pembayaran/manual/store ................................. pembayaran.manual.store ΓÇ║ PembayaranController@storeManual
+  GET|HEAD        pembayaran/midtrans/{id_siswa} .............................. pembayaran.midtrans.form ΓÇ║ MidtransController@showForm
+  POST            pembayaran/midtrans/{id_siswa} ............................. pembayaran.midtrans ΓÇ║ MidtransController@createMidtrans
+  GET|HEAD        pembayaran/verifikasi ................................. pembayaran.verifikasi ΓÇ║ PembayaranController@indexVerifikasi
+  PATCH           pembayaran/verifikasi/{id} .................... pembayaran.verifikasi.update ΓÇ║ PembayaranController@updateVerifikasi
+  GET|HEAD        pembayaran/{siswa}/pilih-metode .............................. pembayaran.pilih-metode ΓÇ║ PilihMetodeController@index
+  GET|HEAD        pemetaan ................................................................. pemetaan.index ΓÇ║ PemetaanController@index
+  GET|HEAD        pengaturan ........................................................... pengaturan.index ΓÇ║ PengaturanController@index
+  POST            pengaturan ......................................................... pengaturan.update ΓÇ║ PengaturanController@update
+  GET|HEAD        profile ...................................................................... profile.edit ΓÇ║ ProfileController@edit
+  PATCH           profile .................................................................. profile.update ΓÇ║ ProfileController@update
+  DELETE          profile ................................................................ profile.destroy ΓÇ║ ProfileController@destroy
+  GET|HEAD        register ........................................................... register ΓÇ║ Auth\RegisteredUserController@create
+  POST            register ....................................................................... Auth\RegisteredUserController@store
+  POST            reset-password ................................................... password.store ΓÇ║ Auth\NewPasswordController@store
+  GET|HEAD        reset-password/{token} .......................................... password.reset ΓÇ║ Auth\NewPasswordController@create
+  GET|HEAD        riwayat .................................................................... riwayat.index ΓÇ║ RiwayatController@index
+  GET|HEAD        siswa .......................................................................... siswa.index ΓÇ║ SiswaController@index
+  POST            siswa .......................................................................... siswa.store ΓÇ║ SiswaController@store
+  GET|HEAD        siswa/create ................................................................. siswa.create ΓÇ║ SiswaController@create
+  PUT|PATCH       siswa/{siswa} ................................................................ siswa.update ΓÇ║ SiswaController@update
+  DELETE          siswa/{siswa} .............................................................. siswa.destroy ΓÇ║ SiswaController@destroy
+  GET|HEAD        siswa/{siswa}/edit ............................................................... siswa.edit ΓÇ║ SiswaController@edit
+  GET|HEAD        storage/{path} ....................................................................................... storage.local
+  GET|HEAD        tunggakan .............................................................. tunggakan.index ΓÇ║ TunggakanController@index
+  POST            tunggakan/{id_tunggakan}/send-reminder .................. tunggakan.send-reminder ΓÇ║ TunggakanController@sendReminder
+  GET|HEAD        up ................................................................................................................. 
+  GET|HEAD        upload-transfer ....................................... pembayaran.upload.create ΓÇ║ PembayaranController@createUpload
+  POST            upload-transfer ......................................... pembayaran.upload.store ΓÇ║ PembayaranController@storeUpload
+  GET|HEAD        verify-email .......................................... verification.notice ΓÇ║ Auth\EmailVerificationPromptController
+  GET|HEAD        verify-email/{id}/{hash} .......................................... verification.verify ΓÇ║ Auth\VerifyEmailController
 
-                                                                                                                Showing [67] routes
+                                                                                                                   Showing [61] routes
 
 ```
 
@@ -802,7 +800,6 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\Guru;
 use App\Models\Siswa;
 
 class LocationController extends Controller
@@ -810,18 +807,18 @@ class LocationController extends Controller
     public function index()
     {
         // Ambil data guru yang memiliki koordinat
-        $gurus = Guru::whereNotNull('latitude')
-            ->whereNotNull('longitude')
-            ->get()
-            ->map(function ($guru) {
-                return [
-                    'nama' => $guru->nama_guru,
-                    'tipe' => 'guru',
-                    'info' => "Alamat: " . ($guru->alamat ?? '-'), // Info tambahan
-                    'latitude' => $guru->latitude,
-                    'longitude' => $guru->longitude,
-                ];
-            });
+        // $gurus = Guru::whereNotNull('latitude')
+        //     ->whereNotNull('longitude')
+        //     ->get()
+        //     ->map(function ($guru) {
+        //         return [
+        //             'nama' => $guru->nama_guru,
+        //             'tipe' => 'guru',
+        //             'info' => "Alamat: " . ($guru->alamat ?? '-'), // Info tambahan
+        //             'latitude' => $guru->latitude,
+        //             'longitude' => $guru->longitude,
+        //         ];
+        //     });
 
         // Ambil data siswa yang memiliki koordinat
         $siswas = Siswa::with('wali')->whereNotNull('latitude') // Eager load relasi wali
@@ -839,7 +836,7 @@ class LocationController extends Controller
             });
 
         // Gabungkan kedua data menjadi satu
-        $locations = $gurus->concat($siswas);
+        $locations = $siswas;
 
         // Kembalikan sebagai response JSON
         return response()->json($locations);
@@ -1300,7 +1297,6 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Pembayaran;
 use App\Models\Siswa;
-use App\Models\Guru;
 use App\Models\Tunggakan;
 use Illuminate\Support\Facades\DB;
 use Carbon\Carbon;
@@ -1315,8 +1311,10 @@ class DashboardController extends Controller
         // --- DATA UNTUK KARTU STATISTIK ---
         $pemasukanTotal = Pembayaran::where('status', 'diterima')->sum('jumlah');
         $siswaAktif = Siswa::count();
-        $guruAktif = Guru::count();
         $totalTunggakan = Tunggakan::where('status', 'belum_bayar')->sum('jumlah_tunggakan');
+        
+        // Menghitung jumlah wali murid unik yang anaknya terdaftar
+        $waliMuridAktif = Siswa::distinct('id_wali')->count('id_wali');
 
         // --- DATA UNTUK GRAFIK PIE STATUS PEMBAYARAN ---
         $statusPembayaran = Pembayaran::select('status', DB::raw('count(*) as total'))
@@ -1344,7 +1342,7 @@ class DashboardController extends Controller
         return view('ketua.dashboard', compact(
             'pemasukanTotal',
             'siswaAktif',
-            'guruAktif',
+            'waliMuridAktif', // Menggantikan guruAktif
             'totalTunggakan',
             'statusPembayaran',
             'chartLabels',
@@ -1452,34 +1450,29 @@ class DashboardController extends Controller
         }
 
         if ($user->role === 'wali_murid') {
-            $anakList = $user->siswa()->get();
-
+            $anakList = $user->siswa()->with('tunggakan')->get();
+        
             $dataAnak = $anakList->map(function ($anak) {
-                // Cek status pembayaran SPP bulan ini
+                $bulanIni = Carbon::now()->format('F');
+                $tahunIni = Carbon::now()->year;
+        
                 $sppBulanIniLunas = Pembayaran::where('id_siswa', $anak->id_siswa)
-                    ->whereJsonContains('bulan', Carbon::now()->format('F'))
-                    ->where('tahun', Carbon::now()->year)
+                    ->where('tahun', $tahunIni)
+                    ->where(function ($query) use ($bulanIni) {
+                        // cek kolom bulan baik JSON maupun string biasa
+                        $query->orWhere(function ($q) use ($bulanIni) {
+                            $q->whereRaw("JSON_VALID(bulan)")
+                              ->whereJsonContains('bulan', $bulanIni);
+                        })
+                        ->orWhere('bulan', $bulanIni);
+                    })
                     ->where('status', 'diterima')
                     ->exists();
-                
-                // Hitung total tunggakan HANYA dari bulan-bulan yang telah lewat
-                $totalTunggakan = Tunggakan::where('id_siswa', $anak->id_siswa)
+        
+                $totalTunggakan = $anak->tunggakan
                     ->where('status', 'belum_bayar')
-                    ->where(function ($query) {
-                        $query->where('tahun', '<', now()->year)
-                              ->orWhere(function ($q) {
-                                  $q->where('tahun', now()->year)
-                                    ->where('bulan', '!=', now()->format('F')); // Logika dasar, perlu disempurnakan
-                              });
-                    })
                     ->sum('jumlah_tunggakan');
-
-                // Logika ini perlu disempurnakan lagi nanti, untuk sementara kita nolkan jika tidak ada data
-                // karena filter bulan di atas tidak akurat untuk perbandingan
-                $totalTunggakan = Tunggakan::where('id_siswa', $anak->id_siswa)
-                    ->where('status', 'belum_bayar')->sum('jumlah_tunggakan');
-
-
+        
                 return [
                     'id_siswa' => $anak->id_siswa,
                     'nama_siswa' => $anak->nama_siswa,
@@ -1488,9 +1481,10 @@ class DashboardController extends Controller
                     'total_tunggakan' => $totalTunggakan,
                 ];
             });
-
+        
             return view('wali.dashboard', ['dataAnak' => $dataAnak]);
         }
+        
 
         if ($user->role === 'ketua_yayasan') {
             // Redirect ke route dashboard ketua yayasan yang baru kita buat
@@ -1549,74 +1543,6 @@ class DetailSiswaController extends Controller
         }
 
         return view('wali.detail-siswa', compact('siswa', 'statusPerBulan'));
-    }
-}
-
-===== app\Http\Controllers\GuruController.php =====
-<?php
-
-namespace App\Http\Controllers;
-
-use Illuminate\Http\Request;
-use App\Models\Guru;
-
-class GuruController extends Controller
-{
-    public function index()
-    {
-        $gurus = Guru::latest()->paginate(10);
-        return view('guru.index', compact('gurus'));
-    }
-
-    public function create()
-    {
-        return view('guru.create');
-    }
-
-    public function store(Request $request)
-    {
-        $request->validate([
-            'nama_guru' => 'required|string|max:100',
-            'nip' => 'nullable|string|max:50',
-            'mapel' => 'nullable|string|max:100',
-            'alamat' => 'nullable|string|max:255',
-            'latitude' => 'nullable|numeric',
-            'longitude' => 'nullable|numeric',
-        ]);
-
-        Guru::create($request->all());
-        return redirect()->route('guru.index')->with('success', 'Guru berhasil ditambahkan.');
-    }
-
-    public function edit($id)
-    {
-        $guru = Guru::findOrFail($id);
-        return view('guru.edit', compact('guru'));
-    }
-
-    public function update(Request $request, $id)
-    {
-        $request->validate([
-            'nama_guru' => 'required|string|max:100',
-            'nip' => 'nullable|string|max:50',
-            'mapel' => 'nullable|string|max:100',
-            'alamat' => 'nullable|string|max:255',
-            'latitude' => 'nullable|numeric',
-            'longitude' => 'nullable|numeric',
-        ]);
-
-        $guru = Guru::findOrFail($id);
-        $guru->update($request->all());
-
-        return redirect()->route('guru.index')->with('success', 'Guru berhasil diperbarui.');
-    }
-
-    public function destroy($id)
-    {
-        $guru = Guru::findOrFail($id);
-        $guru->delete();
-
-        return redirect()->route('guru.index')->with('success', 'Guru berhasil dihapus.');
     }
 }
 
@@ -2671,20 +2597,20 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Siswa;
-use App\Models\Guru;
+use App\Models\User;
 
 class SiswaController extends Controller
 {
     public function index()
     {
-        $siswas = Siswa::with('guru')->latest()->paginate(10);
+        $siswas = Siswa::latest()->paginate(10); // Relasi 'guru' dihapus
         return view('siswa.index', compact('siswas'));
     }
 
     public function create()
     {
-        $gurus = Guru::all();
-        return view('siswa.create', compact('gurus'));
+        $walis = User::where('role', 'wali_murid')->orderBy('name')->get();
+        return view('siswa.create', compact('walis'));
     }
 
     public function store(Request $request)
@@ -2692,7 +2618,6 @@ class SiswaController extends Controller
         $request->validate([
             'nama_siswa' => 'required|string|max:100',
             'nis' => 'required|string|max:50|unique:siswa,nis',
-            'id_guru' => 'nullable|exists:guru,id_guru',
             'alamat' => 'nullable|string|max:255',
             'latitude' => 'nullable|numeric',
             'longitude' => 'nullable|numeric',
@@ -2705,8 +2630,8 @@ class SiswaController extends Controller
     public function edit($id)
     {
         $siswa = Siswa::findOrFail($id);
-        $gurus = Guru::all();
-        return view('siswa.edit', compact('siswa', 'gurus'));
+        $walis = User::where('role', 'wali_murid')->orderBy('name')->get();
+        return view('siswa.edit', compact('siswa', 'walis'));
     }
 
     public function update(Request $request, $id)
@@ -2794,29 +2719,6 @@ class TunggakanController extends Controller
 
 ## Models Content
 ```
-===== app\Models\Guru.php =====
-<?php
-
-namespace App\Models;
-
-use Illuminate\Database\Eloquent\Model;
-
-class Guru extends Model
-{
-    protected $table = 'guru';
-    protected $primaryKey = 'id_guru';
-    public $incrementing = true;
-
-    protected $fillable = [
-        'nama_guru', 'nip', 'mapel', 'alamat', 'latitude', 'longitude'
-    ];
-
-    public function siswa()
-    {
-        return $this->hasMany(Siswa::class, 'id_guru');
-    }
-}
-
 ===== app\Models\Kwitansi.php =====
 <?php
 
@@ -2859,6 +2761,10 @@ class Pembayaran extends Model
         'midtrans_order_id', 'midtrans_transaction_status', 'is_midtrans', 'snap_token'
     ];
 
+    protected $casts = [
+        'bulan' => 'array',
+    ];
+
     protected $attributes = [
         'status' => 'belum_bayar'
     ];
@@ -2893,7 +2799,7 @@ class Pembayaran extends Model
     public static function updateTunggakanLunas(Pembayaran $pembayaran)
     {
         // Karena 'bulan' bisa jadi array, kita proses satu per satu
-        foreach ($pembayaran->getBulanArray() as $bulan) {
+        foreach ($pembayaran->bulan as $bulan) {
             Tunggakan::where('id_siswa', $pembayaran->id_siswa)
                 ->where('bulan', $bulan)
                 ->where('tahun', $pembayaran->tahun)
@@ -2909,7 +2815,7 @@ class Pembayaran extends Model
     {
         $bulanValue = $this->attributes['bulan'];
         return is_array($bulanValue) ? $bulanValue : explode(',', $bulanValue);
-    }
+    }   
 
     public function getBulanAttribute($value)
     {
@@ -2994,7 +2900,6 @@ class Siswa extends Model
         'nama_siswa',
         'kelas',
         'id_wali',
-        'id_guru',
         'alamat',
         'latitude',
         'longitude'
@@ -3005,10 +2910,7 @@ class Siswa extends Model
         return $this->belongsTo(User::class, 'id_wali');
     }
 
-    public function guru()
-    {
-        return $this->belongsTo(Guru::class, 'id_guru');
-    }
+
 
     public function pembayaran()
     {
@@ -3779,114 +3681,6 @@ $classes = ($active ?? false)
 {{-- Menambahkan pl-10 (padding left) untuk memberi ruang bagi ikon --}}
 <input {{ $disabled ? 'disabled' : '' }} {!! $attributes->merge(['class' => 'block w-full pl-10 border-gray-300 focus:border-sky-500 focus:ring-sky-500 rounded-md shadow-sm']) !!}>
 
-===== resources\views\guru\create.blade.php =====
-<x-app-layout>
-    <x-slot name="header">Tambah Guru</x-slot>
-
-    <form action="{{ route('guru.store') }}" method="POST">
-        @csrf
-        <div>
-            <label>Nama Guru</label>
-            <input type="text" name="nama_guru" required>
-        </div>
-        <div>
-            <label>NIP</label>
-            <input type="text" name="nip">
-        </div>
-        <div>
-            <label>Mata Pelajaran</label>
-            <input type="text" name="mapel">
-        </div>
-        <div>
-            <label>Alamat</label>
-            <input type="text" name="alamat">
-        </div>
-        <div>
-            <label>Latitude</label>
-            <input type="text" name="latitude">
-        </div>
-        <div>
-            <label>Longitude</label>
-            <input type="text" name="longitude">
-        </div>
-        <button type="submit">Simpan</button>
-    </form>
-</x-app-layout>
-
-===== resources\views\guru\edit.blade.php =====
-<x-app-layout>
-    <x-slot name="header">Edit Guru</x-slot>
-
-    <form action="{{ route('guru.update', $guru->id_guru) }}" method="POST">
-        @csrf @method('PUT')
-        <div>
-            <label>Nama Guru</label>
-            <input type="text" name="nama_guru" value="{{ $guru->nama_guru }}" required>
-        </div>
-        <div>
-            <label>NIP</label>
-            <input type="text" name="nip" value="{{ $guru->nip }}">
-        </div>
-        <div>
-            <label>Mata Pelajaran</label>
-            <input type="text" name="mapel" value="{{ $guru->mapel }}">
-        </div>
-        <div>
-            <label>Alamat</label>
-            <input type="text" name="alamat" value="{{ $guru->alamat }}">
-        </div>
-        <div>
-            <label>Latitude</label>
-            <input type="text" name="latitude" value="{{ $guru->latitude }}">
-        </div>
-        <div>
-            <label>Longitude</label>
-            <input type="text" name="longitude" value="{{ $guru->longitude }}">
-        </div>
-        <button type="submit">Update</button>
-    </form>
-</x-app-layout>
-
-===== resources\views\guru\index.blade.php =====
-<x-app-layout>
-    <x-slot name="header">Daftar Guru</x-slot>
-
-    <a href="{{ route('guru.create') }}" class="btn btn-primary mb-4">Tambah Guru</a>
-
-    @if (session('success'))
-        <div class="alert alert-success">{{ session('success') }}</div>
-    @endif
-
-    <table class="table-auto w-full">
-        <thead>
-            <tr>
-                <th>Nama</th>
-                <th>NIP</th>
-                <th>Mapel</th>
-                <th>Aksi</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach($gurus as $guru)
-            <tr>
-                <td>{{ $guru->nama_guru }}</td>
-                <td>{{ $guru->nip }}</td>
-                <td>{{ $guru->mapel }}</td>
-                <td>
-                    <a href="{{ route('guru.edit', $guru->id_guru) }}" class="text-blue-600">Edit</a>
-                    <form action="{{ route('guru.destroy', $guru->id_guru) }}" method="POST" class="inline">
-                        @csrf @method('DELETE')
-                        <button onclick="return confirm('Yakin hapus?')" class="text-red-600 ml-2">Hapus</button>
-                    </form>
-                </td>
-            </tr>
-            @endforeach
-        </tbody>
-    </table>
-
-    {{ $gurus->links() }}
-</x-app-layout>
-
 ===== resources\views\ketua\dashboard.blade.php =====
 <x-app-layout>
     <x-slot name="header">
@@ -3897,23 +3691,26 @@ $classes = ($active ?? false)
 
     <div class="py-8">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            
+
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
                 <div class="bg-white p-6 rounded-xl shadow-md">
                     <p class="text-sm font-medium text-gray-500">Total Pemasukan SPP</p>
-                    <p class="text-3xl font-bold text-gray-900 mt-1">Rp {{ number_format($pemasukanTotal, 0, ',', '.') }}</p>
+                    <p class="text-3xl font-bold text-gray-900 mt-1">Rp {{ number_format($pemasukanTotal, 0, ',', '.') }}
+                    </p>
                 </div>
                 <div class="bg-white p-6 rounded-xl shadow-md">
                     <p class="text-sm font-medium text-gray-500">Total Tunggakan</p>
-                    <p class="text-3xl font-bold text-red-600 mt-1">Rp {{ number_format($totalTunggakan, 0, ',', '.') }}</p>
+                    <p class="text-3xl font-bold text-red-600 mt-1">Rp {{ number_format($totalTunggakan, 0, ',', '.') }}
+                    </p>
                 </div>
                 <div class="bg-white p-6 rounded-xl shadow-md">
                     <p class="text-sm font-medium text-gray-500">Siswa Aktif</p>
                     <p class="text-3xl font-bold text-gray-900 mt-1">{{ $siswaAktif }}</p>
                 </div>
+                {{-- Kartu Guru diganti dengan Wali Murid --}}
                 <div class="bg-white p-6 rounded-xl shadow-md">
-                    <p class="text-sm font-medium text-gray-500">Guru & Staf</p>
-                    <p class="text-3xl font-bold text-gray-900 mt-1">{{ $guruAktif }}</p>
+                    <p class="text-sm font-medium text-gray-500">Wali Murid Aktif</p>
+                    <p class="text-3xl font-bold text-gray-900 mt-1">{{ $waliMuridAktif }}</p>
                 </div>
             </div>
 
@@ -3922,26 +3719,66 @@ $classes = ($active ?? false)
                     <h3 class="font-semibold text-lg text-gray-800 mb-4">Grafik Pemasukan (12 Bulan Terakhir)</h3>
                     <div id="incomeChart"></div>
                 </div>
-                <div class="bg-white p-6 rounded-xl shadow-md">
-                    <h3 class="font-semibold text-lg text-gray-800 mb-4">Status Pembayaran</h3>
-                    <div id="statusChart"></div>
+
+                <div class="space-y-8">
+                    <div class="bg-white p-6 rounded-xl shadow-md">
+                        <h3 class="font-semibold text-lg text-gray-800 mb-4">Ringkasan Status Pembayaran</h3>
+                        <div id="statusChart"></div>
+                    </div>
+
+                    <div class="bg-white p-6 rounded-xl shadow-md">
+                        <h3 class="font-semibold text-lg text-gray-800 mb-4">Preview Pemetaan Siswa</h3>
+                        <div class="aspect-video bg-gray-200 rounded-lg overflow-hidden relative">
+
+                            <a href="{{ route('pemetaan.index') }}"
+                                class="absolute inset-0 flex items-center justify-center bg-black bg-opacity-40 text-white font-bold text-lg opacity-0 hover:opacity-100 transition-opacity">
+                                Buka Peta Interaktif
+                            </a>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-    
+
     @push('scripts')
         <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
         <script>
             // Grafik Pemasukan
             var incomeChartOptions = {
-                series: [{ name: 'Pemasukan', data: @json($chartData) }],
-                chart: { type: 'area', height: 350, zoom: { enabled: false }, toolbar: { show: false }},
-                dataLabels: { enabled: false },
-                stroke: { curve: 'smooth' },
-                xaxis: { categories: @json($chartLabels) },
-                yaxis: { labels: { formatter: (val) => (val / 1000000).toFixed(1) + ' Jt' }},
-                tooltip: { y: { formatter: (val) => "Rp " + new Intl.NumberFormat('id-ID').format(val) }},
+                series: [{
+                    name: 'Pemasukan',
+                    data: @json($chartData)
+                }],
+                chart: {
+                    type: 'area',
+                    height: 350,
+                    zoom: {
+                        enabled: false
+                    },
+                    toolbar: {
+                        show: false
+                    }
+                },
+                dataLabels: {
+                    enabled: false
+                },
+                stroke: {
+                    curve: 'smooth'
+                },
+                xaxis: {
+                    categories: @json($chartLabels)
+                },
+                yaxis: {
+                    labels: {
+                        formatter: (val) => (val / 1000000).toFixed(1) + ' Jt'
+                    }
+                },
+                tooltip: {
+                    y: {
+                        formatter: (val) => "Rp " + new Intl.NumberFormat('id-ID').format(val)
+                    }
+                },
             };
             var incomeChart = new ApexCharts(document.querySelector("#incomeChart"), incomeChartOptions);
             incomeChart.render();
@@ -3949,9 +3786,22 @@ $classes = ($active ?? false)
             // Grafik Status
             var statusChartOptions = {
                 series: @json($statusPembayaran->values()),
-                chart: { type: 'donut', height: 350 },
+                chart: {
+                    type: 'donut',
+                    height: 350
+                },
                 labels: @json($statusPembayaran->keys()->map(fn($key) => ucfirst($key))),
-                responsive: [{ breakpoint: 480, options: { chart: { width: 200 }, legend: { position: 'bottom' } } }]
+                responsive: [{
+                    breakpoint: 480,
+                    options: {
+                        chart: {
+                            width: 200
+                        },
+                        legend: {
+                            position: 'bottom'
+                        }
+                    }
+                }]
             };
             var statusChart = new ApexCharts(document.querySelector("#statusChart"), statusChartOptions);
             statusChart.render();
@@ -4413,7 +4263,7 @@ $classes = ($active ?? false)
         {{-- ======================================================= --}}
 
         {{-- Menu Khusus Bendahara (Operasional) --}}
-        @if(auth()->user()?->role === 'bendahara')
+        @if (auth()->user()?->role === 'bendahara')
             <x-nav-link :href="route('pembayaran.manual.create')" :active="request()->routeIs('pembayaran.manual.create')">
                 <img src="{{ asset('images/inputicon.png') }}" alt="icon" class="w-4 h-4 mr-2">
                 {{ __('Input Manual') }}
@@ -4423,38 +4273,64 @@ $classes = ($active ?? false)
                 {{ __('Verifikasi Pembayaran') }}
             </x-nav-link>
             <x-nav-link :href="route('tunggakan.index')" :active="request()->routeIs('tunggakan.index')">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-2" fill="none" viewBox="0 0 24 24"
+                    stroke="currentColor" stroke-width="2">
+                    <path stroke-linecap="round" stroke-linejoin="round"
+                        d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
                 {{ __('Tunggakan') }}
             </x-nav-link>
 
-            
-        <x-nav-link :href="route('pengaturan.index')" :active="request()->routeIs('pengaturan.index')">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
-              <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
-            </svg>
-            {{ __('Pengaturan') }}
-        </x-nav-link>
+
+            <x-nav-link :href="route('pengaturan.index')" :active="request()->routeIs('pengaturan.index')">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-2" fill="none" viewBox="0 0 24 24"
+                    stroke="currentColor" stroke-width="2">
+                    <path stroke-linecap="round" stroke-linejoin="round"
+                        d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                </svg>
+                {{ __('Pengaturan') }}
+            </x-nav-link>
         @endif
 
         {{-- Menu Bersama (Bendahara & Ketua Yayasan) --}}
-        @if(in_array(auth()->user()?->role, ['bendahara', 'ketua_yayasan']))
+        @if (in_array(auth()->user()?->role, ['bendahara', 'ketua_yayasan']))
+            <x-nav-link :href="route('siswa.index')" :active="request()->routeIs('siswa.index')">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-2" fill="none" viewBox="0 0 24 24"
+                    stroke="currentColor" stroke-width="2">
+                    <path d="M12 14l9-5-9-5-9 5 9 5z" />
+                    <path
+                        d="M12 14l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-9.998 12.078 12.078 0 01.665-6.479L12 14z" />
+                    <path stroke-linecap="round" stroke-linejoin="round"
+                        d="M12 14l9-5-9-5-9 5 9 5zm0 0l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-9.998 12.078 12.078 0 01.665-6.479L12 14zm-4 6v-7.5l4-2.222 4 2.222V20M12 14.75V20" />
+                </svg>
+                {{ __('Data Siswa') }}
+            </x-nav-link>
             <x-nav-link :href="route('riwayat.index')" :active="request()->routeIs('riwayat.index')">
                 <img src="{{ asset('images/historyicon.png') }}" alt="icon" class="w-4 h-4 mr-2">
                 {{ __('Riwayat Pembayaran') }}
             </x-nav-link>
             <x-nav-link :href="route('pemetaan.index')" :active="request()->routeIs('pemetaan.index')">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" /><path stroke-linecap="round" stroke-linejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" /></svg>
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-2" fill="none" viewBox="0 0 24 24"
+                    stroke="currentColor" stroke-width="2">
+                    <path stroke-linecap="round" stroke-linejoin="round"
+                        d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                </svg>
                 {{ __('Pemetaan') }}
             </x-nav-link>
             <x-nav-link :href="route('laporan.index')" :active="request()->routeIs('laporan.index')">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 17v-2m3 2v-4m3 4v-6m2 10H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" /></svg>
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-2" fill="none" viewBox="0 0 24 24"
+                    stroke="currentColor" stroke-width="2">
+                    <path stroke-linecap="round" stroke-linejoin="round"
+                        d="M9 17v-2m3 2v-4m3 4v-6m2 10H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                </svg>
                 {{ __('Laporan') }}
             </x-nav-link>
         @endif
 
         {{-- Menu Khusus Wali Murid --}}
-        @if(auth()->user()?->role === 'wali_murid')
+        @if (auth()->user()?->role === 'wali_murid')
             <x-nav-link :href="route('pembayaran.upload.create')" :active="request()->routeIs('pembayaran.upload.create')">
                 <img src="{{ asset('images/uploadicon.png') }}" alt="icon" class="w-4 h-4 mr-2">
                 {{ __('Upload Bukti Transfer') }}
@@ -4464,34 +4340,39 @@ $classes = ($active ?? false)
                 {{ __('Riwayat Pembayaran') }}
             </x-nav-link>
             @if ($midtransAktif)
-            <div class="relative">
-                <button type="button" class="flex items-center px-3 py-2 text-sm font-medium text-gray-700 hover:text-gray-900" id="siswa-menu" aria-expanded="false" aria-haspopup="true">
-                    <img src="{{ asset('images/walleticon.png') }}" alt="icon" class="w-5 h-5 mr-2">
-                    {{ __('Pembayaran Online') }}
-                    <svg class="ml-2 h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" /></svg>
-                </button>
-                <div class="absolute hidden mt-2 w-48 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5" id="siswa-menu-dropdown">
-                    <div class="py-1" role="menu" aria-orientation="vertical" aria-labelledby="siswa-menu">
-                        @foreach (Auth::user()->siswa as $item)
-                            <a href="{{ route('wali.midtrans.form', $item->id_siswa) }}"
-                               class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" role="menuitem">
-                                {{ $item->nama_siswa }}
-                            </a>
-                        @endforeach
+                <div class="relative">
+                    <button type="button"
+                        class="flex items-center px-3 py-2 text-sm font-medium text-gray-700 hover:text-gray-900"
+                        id="siswa-menu" aria-expanded="false" aria-haspopup="true">
+                        <img src="{{ asset('images/walleticon.png') }}" alt="icon" class="w-5 h-5 mr-2">
+                        {{ __('Pembayaran Online') }}
+                        <svg class="ml-2 h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                        </svg>
+                    </button>
+                    <div class="absolute hidden mt-2 w-48 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5"
+                        id="siswa-menu-dropdown">
+                        <div class="py-1" role="menu" aria-orientation="vertical" aria-labelledby="siswa-menu">
+                            @foreach (Auth::user()->siswa as $item)
+                                <a href="{{ route('pembayaran.midtrans.form', $item->id_siswa) }}"
+                                    class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" role="menuitem">
+                                    {{ $item->nama_siswa }}
+                                </a>
+                            @endforeach
+                        </div>
                     </div>
                 </div>
-            </div>
             @endif
             <script>
                 // Pastikan script hanya ada jika tombolnya ada
                 if (document.getElementById('siswa-menu')) {
-                    document.getElementById('siswa-menu').addEventListener('click', function () {
+                    document.getElementById('siswa-menu').addEventListener('click', function() {
                         document.getElementById('siswa-menu-dropdown').classList.toggle('hidden');
                     });
                 }
             </script>
         @endif
-        
+
         {{-- ======================================================= --}}
         {{-- AKHIR LOGIKA BARU UNTUK ROLE --}}
         {{-- ======================================================= --}}
@@ -4953,7 +4834,7 @@ $classes = ($active ?? false)
             <div class="grid grid-cols-1 {{ $midtransAktif ? 'md:grid-cols-2' : 'md:max-w-md md:mx-auto' }} gap-6">
                 
                 @if ($midtransAktif)
-                    <a href="{{ route('wali.midtrans.form', $siswa->id_siswa) }}?{{ $menunggakQuery }}" class="block p-6 bg-white rounded-xl shadow-md hover:shadow-lg hover:border-indigo-500 border-2 border-transparent transition-all transform hover:-translate-y-1">
+                    <a href="{{ route('pembayaran.midtrans.form', $siswa->id_siswa) }}?{{ $menunggakQuery }}" class="block p-6 bg-white rounded-xl shadow-md hover:shadow-lg hover:border-indigo-500 border-2 border-transparent transition-all transform hover:-translate-y-1">
                         <h3 class="text-lg font-bold text-gray-900">Bayar Otomatis (Online)</h3>
                         <p class="text-sm text-gray-600 mt-2">Pilihan pembayaran instan melalui Virtual Account, E-Wallet, Kartu Kredit, dll.</p>
                         <div class="mt-4 text-indigo-600 font-semibold flex items-center">
@@ -5610,130 +5491,404 @@ $classes = ($active ?? false)
 
 ===== resources\views\siswa\create.blade.php =====
 <x-app-layout>
-    <x-slot name="header">Tambah Siswa</x-slot>
+    <x-slot name="header">
+        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+            {{ __('Tambah Data Siswa Baru') }}
+        </h2>
+        <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    </x-slot>
 
-    <form action="{{ route('siswa.store') }}" method="POST">
-        @csrf
-        <div>
-            <label>Nama Siswa</label>
-            <input type="text" name="nama_siswa" required>
+    <div class="py-8">
+        <div class="max-w-4xl mx-auto sm:px-6 lg:px-8">
+            <div class="bg-white p-6 md:p-8 rounded-xl shadow-md">
+                <form action="{{ route('siswa.store') }}" method="POST">
+                    @csrf
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-x-8 gap-y-6">
+
+                        <div class="space-y-4">
+                            <div>
+                                <label for="nama_siswa" class="block text-sm font-medium text-gray-700">Nama
+                                    Siswa</label>
+                                <input type="text" name="nama_siswa" id="nama_siswa" value="{{ old('nama_siswa') }}"
+                                    class="mt-1 block w-full border-gray-300 rounded-md shadow-sm" required>
+                            </div>
+                            <div>
+                                <label for="nis" class="block text-sm font-medium text-gray-700">NIS</label>
+                                <input type="text" name="nis" id="nis" value="{{ old('nis') }}"
+                                    class="mt-1 block w-full border-gray-300 rounded-md shadow-sm" required>
+                            </div>
+                            <div>
+                                <label for="kelas" class="block text-sm font-medium text-gray-700">Kelas</label>
+                                <input type="text" name="kelas" id="kelas" value="{{ old('kelas') }}"
+                                    class="mt-1 block w-full border-gray-300 rounded-md shadow-sm" required
+                                    placeholder="Contoh: 1A">
+                            </div>
+                            <div>
+                                <label for="id_wali" class="block text-sm font-medium text-gray-700">Wali Murid
+                                    (Induk)</label>
+                                <select name="id_wali" id="id_wali"
+                                    class="mt-1 block w-full border-gray-300 rounded-md shadow-sm" required>
+                                    <option value="">- Pilih Wali Murid -</option>
+                                    @foreach ($walis as $wali)
+                                        <option value="{{ $wali->id }}" @selected(old('id_wali') == $wali->id)>
+                                            {{ $wali->name }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="space-y-4">
+                            <div>
+                                <label for="alamat" class="block text-sm font-medium text-gray-700">Alamat
+                                    Lengkap</label>
+                                <textarea name="alamat" id="alamat" rows="2" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm">{{ old('alamat') }}</textarea>
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700">Tandai Lokasi di Peta</label>
+                                <p class="text-xs text-gray-500 mb-2">Klik/geser penanda di peta atau gunakan lokasi
+                                    Anda saat ini.</p>
+                                <div id="map" style="height: 200px; cursor: pointer;"
+                                    class="rounded-lg border z-0"></div>
+                                <button type="button" id="get-location-btn"
+                                    class="text-sm text-indigo-600 hover:underline font-semibold mt-2">Gunakan Lokasi
+                                    Saya</button>
+                                <p id="status" class="text-xs text-gray-500"></p>
+                            </div>
+                            <div class="grid grid-cols-2 gap-4">
+                                <div>
+                                    <label for="latitude"
+                                        class="block text-sm font-medium text-gray-700">Latitude</label>
+                                    <input type="text" name="latitude" id="latitude" value="{{ old('latitude') }}"
+                                        class="mt-1 block w-full border-gray-300 rounded-md shadow-sm bg-gray-100"
+                                        readonly>
+                                </div>
+                                <div>
+                                    <label for="longitude"
+                                        class="block text-sm font-medium text-gray-700">Longitude</label>
+                                    <input type="text" name="longitude" id="longitude" value="{{ old('longitude') }}"
+                                        class="mt-1 block w-full border-gray-300 rounded-md shadow-sm bg-gray-100"
+                                        readonly>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mt-6 border-t pt-6 flex justify-end">
+                        <a href="{{ route('siswa.index') }}"
+                            class="text-gray-600 py-2 px-4 rounded-md hover:bg-gray-100">Batal</a>
+                        <button type="submit"
+                            class="ml-4 px-4 py-2 bg-indigo-600 text-white rounded-md hover:bg-indigo-700">Simpan
+                            Siswa</button>
+                    </div>
+                </form>
+            </div>
         </div>
-        <div>
-            <label>NIS</label>
-            <input type="text" name="nis" required>
-        </div>
-        <div>
-            <label>Kelas</label>
-            <input type="text" name="kelas" required placeholder="Contoh: 10A">
-        </div>
-        <div>
-            <label>Wali Kelas</label>
-            <select name="id_guru">
-                <option value="">- Pilih Wali Kelas -</option>
-                @foreach ($gurus as $guru)
-                    <option value="{{ $guru->id_guru }}">{{ $guru->nama_guru }}</option>
-                @endforeach
-            </select>
-        </div>
-        <div>
-            <label>Alamat</label>
-            <input type="text" name="alamat">
-        </div>
-        <div>
-            <label>Latitude</label>
-            <input type="text" name="latitude">
-        </div>
-        <div>
-            <label>Longitude</label>
-            <input type="text" name="longitude">
-        </div>
-        <button type="submit">Simpan</button>
-    </form>
+    </div>
+
+    @push('scripts')
+        <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+        <script>
+            // PATOKAN: resources/views/siswa/create.blade.php
+
+            document.addEventListener('DOMContentLoaded', function() {
+                const latInput = document.getElementById('latitude');
+                const lonInput = document.getElementById('longitude');
+                const getLocationBtn = document.getElementById('get-location-btn');
+                const statusEl = document.getElementById('status');
+
+                // Koordinat default (Gorontalo)
+                const defaultCoords = [0.542, 123.059];
+
+                // Inisialisasi Peta
+                const map = L.map('map').setView(defaultCoords, 13);
+                L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(map);
+
+                // Buat satu penanda (marker) yang bisa digeser (draggable)
+                const marker = L.marker(defaultCoords, {
+                    draggable: true
+                }).addTo(map);
+
+                // Fungsi untuk mengupdate input form
+                function updateInputs(latlng) {
+                    latInput.value = latlng.lat.toFixed(7);
+                    lonInput.value = latlng.lng.toFixed(7);
+                }
+
+                // Update form saat peta pertama kali dimuat
+                updateInputs(marker.getLatLng());
+
+                // Event listener saat marker selesai digeser
+                marker.on('dragend', function(e) {
+                    updateInputs(e.target.getLatLng());
+                    statusEl.textContent = 'Posisi disesuaikan manual.';
+                });
+
+                // Event listener untuk klik di peta
+                map.on('click', function(e) {
+                    marker.setLatLng(e.latlng);
+                    updateInputs(e.latlng);
+                    statusEl.textContent = 'Posisi diubah via klik peta.';
+                });
+
+                // Event listener untuk tombol "Gunakan Lokasi Saya"
+                getLocationBtn.addEventListener('click', function() {
+                    if (!navigator.geolocation) {
+                        statusEl.textContent = 'Geolocation tidak didukung.';
+                        return;
+                    }
+                    statusEl.textContent = 'Meminta lokasi...';
+                    navigator.geolocation.getCurrentPosition(function(position) {
+                        const userCoords = {
+                            lat: position.coords.latitude,
+                            lng: position.coords.longitude
+                        };
+                        map.setView(userCoords, 16);
+                        marker.setLatLng(userCoords);
+                        updateInputs(userCoords);
+                        statusEl.textContent = 'Lokasi ditemukan! Geser penanda jika kurang akurat.';
+                    }, function() {
+                        statusEl.textContent = 'Gagal mendapatkan lokasi.';
+                    });
+                });
+            });
+        </script>
+    @endpush
 </x-app-layout>
 
 ===== resources\views\siswa\edit.blade.php =====
 <x-app-layout>
-    <x-slot name="header">Edit Siswa</x-slot>
+    <x-slot name="header">
+        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+            {{ __('Edit Data Siswa: ') }} {{ $siswa->nama_siswa }}
+        </h2>
+        <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    </x-slot>
 
-    <form action="{{ route('siswa.update', $siswa->id_siswa) }}" method="POST">
-        @csrf @method('PUT')
-        <div>
-            <label>Nama Siswa</label>
-            <input type="text" name="nama_siswa" value="{{ $siswa->nama_siswa }}" required>
+    <div class="py-8">
+        <div class="max-w-4xl mx-auto sm:px-6 lg:px-8">
+            <div class="bg-white p-6 md:p-8 rounded-xl shadow-md">
+                <form action="{{ route('siswa.update', $siswa->id_siswa) }}" method="POST">
+                    @csrf
+                    @method('PUT')
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-x-8 gap-y-6">
+
+                        <div class="space-y-4">
+                            <div>
+                                <label for="nama_siswa" class="block text-sm font-medium text-gray-700">Nama
+                                    Siswa</label>
+                                <input type="text" name="nama_siswa" id="nama_siswa"
+                                    value="{{ old('nama_siswa', $siswa->nama_siswa) }}"
+                                    class="mt-1 block w-full border-gray-300 rounded-md shadow-sm" required>
+                            </div>
+                            <div>
+                                <label for="nis" class="block text-sm font-medium text-gray-700">NIS</label>
+                                <input type="text" name="nis" id="nis"
+                                    value="{{ old('nis', $siswa->nis) }}"
+                                    class="mt-1 block w-full border-gray-300 rounded-md shadow-sm" required>
+                            </div>
+                            <div>
+                                <label for="kelas" class="block text-sm font-medium text-gray-700">Kelas</label>
+                                <input type="text" name="kelas" id="kelas"
+                                    value="{{ old('kelas', $siswa->kelas) }}"
+                                    class="mt-1 block w-full border-gray-300 rounded-md shadow-sm" required>
+                            </div>
+                            <div>
+                                <label for="id_wali" class="block text-sm font-medium text-gray-700">Wali Murid
+                                    (Induk)</label>
+                                <select name="id_wali" id="id_wali"
+                                    class="mt-1 block w-full border-gray-300 rounded-md shadow-sm" required>
+                                    @foreach ($walis as $wali)
+                                        <option value="{{ $wali->id }}" @selected(old('id_wali', $siswa->id_wali) == $wali->id)>
+                                            {{ $wali->name }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="space-y-4">
+                            <div>
+                                <label for="alamat" class="block text-sm font-medium text-gray-700">Alamat
+                                    Lengkap</label>
+                                <textarea name="alamat" id="alamat" rows="2" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm">{{ old('alamat', $siswa->alamat) }}</textarea>
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700">Tandai Lokasi di Peta</label>
+                                <p class="text-xs text-gray-500 mb-2">Klik/geser penanda di peta atau gunakan lokasi
+                                    Anda saat ini.</p>
+                                <div id="map" style="height: 200px; cursor: pointer;"
+                                    class="rounded-lg border z-0"></div>
+                                <button type="button" id="get-location-btn"
+                                    class="text-sm text-indigo-600 hover:underline font-semibold mt-2">Gunakan Lokasi
+                                    Saya</button>
+                                <p id="status" class="text-xs text-gray-500"></p>
+                            </div>
+                            <div class="grid grid-cols-2 gap-4">
+                                <div>
+                                    <label for="latitude"
+                                        class="block text-sm font-medium text-gray-700">Latitude</label>
+                                    <input type="text" name="latitude" id="latitude"
+                                        value="{{ old('latitude', $siswa->latitude) }}"
+                                        class="mt-1 block w-full border-gray-300 rounded-md shadow-sm bg-gray-100"
+                                        readonly>
+                                </div>
+                                <div>
+                                    <label for="longitude"
+                                        class="block text-sm font-medium text-gray-700">Longitude</label>
+                                    <input type="text" name="longitude" id="longitude"
+                                        value="{{ old('longitude', $siswa->longitude) }}"
+                                        class="mt-1 block w-full border-gray-300 rounded-md shadow-sm bg-gray-100"
+                                        readonly>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mt-6 border-t pt-6 flex justify-end">
+                        <a href="{{ route('siswa.index') }}"
+                            class="text-gray-600 py-2 px-4 rounded-md hover:bg-gray-100">Batal</a>
+                        <button type="submit"
+                            class="ml-4 px-4 py-2 bg-indigo-600 text-white rounded-md hover:bg-indigo-700">Update
+                            Siswa</button>
+                    </div>
+                </form>
+            </div>
         </div>
-        <div>
-            <label>NIS</label>
-            <input type="text" name="nis" value="{{ $siswa->nis }}" required>
-        </div>
-        <div>
-            <label>Kelas</label>
-            <input type="text" name="kelas" value="{{ $siswa->kelas }}" required placeholder="Contoh: 10A">
-        </div>
-        <div>
-            <label>Wali Kelas</label>
-            <select name="id_guru">
-                <option value="">- Pilih Wali Kelas -</option>
-                @foreach ($gurus as $guru)
-                    <option value="{{ $guru->id_guru }}" {{ $siswa->id_guru == $guru->id_guru ? 'selected' : '' }}>
-                        {{ $guru->nama_guru }}
-                    </option>
-                @endforeach
-            </select>
-        </div>
-        <div>
-            <label>Alamat</label>
-            <input type="text" name="alamat" value="{{ $siswa->alamat }}">
-        </div>
-        <div>
-            <label>Latitude</label>
-            <input type="text" name="latitude" value="{{ $siswa->latitude }}">
-        </div>
-        <div>
-            <label>Longitude</label>
-            <input type="text" name="longitude" value="{{ $siswa->longitude }}">
-        </div>
-        <button type="submit">Update</button>
-    </form>
+    </div>
+
+    @push('scripts')
+        <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+        <script>
+            // PATOKAN: resources/views/siswa/edit.blade.php
+
+            document.addEventListener('DOMContentLoaded', function() {
+                const latInput = document.getElementById('latitude');
+                const lonInput = document.getElementById('longitude');
+                const getLocationBtn = document.getElementById('get-location-btn');
+                const statusEl = document.getElementById('status');
+
+                // Coba baca koordinat awal dari input form, jika tidak ada, gunakan default Gorontalo
+                const initialLat = parseFloat(latInput.value) || 0.542;
+                const initialLon = parseFloat(lonInput.value) || 123.059;
+                const initialCoords = [initialLat, initialLon];
+                const initialZoom = latInput.value ? 16 : 13; // Zoom lebih dekat jika sudah ada koordinat
+
+                // Inisialisasi Peta
+                const map = L.map('map').setView(initialCoords, initialZoom);
+                L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(map);
+
+                // Buat satu penanda (marker) yang bisa digeser (draggable)
+                const marker = L.marker(initialCoords, {
+                    draggable: true
+                }).addTo(map);
+
+                // Fungsi untuk mengupdate input form
+                function updateInputs(latlng) {
+                    latInput.value = latlng.lat.toFixed(7);
+                    lonInput.value = latlng.lng.toFixed(7);
+                }
+
+                // (Event listener lainnya sama persis seperti di atas)
+
+                marker.on('dragend', function(e) {
+                    updateInputs(e.target.getLatLng());
+                    statusEl.textContent = 'Posisi disesuaikan manual.';
+                });
+
+                map.on('click', function(e) {
+                    marker.setLatLng(e.latlng);
+                    updateInputs(e.latlng);
+                    statusEl.textContent = 'Posisi diubah via klik peta.';
+                });
+
+                getLocationBtn.addEventListener('click', function() {
+                    if (!navigator.geolocation) {
+                        statusEl.textContent = 'Geolocation tidak didukung.';
+                        return;
+                    }
+                    statusEl.textContent = 'Meminta lokasi...';
+                    navigator.geolocation.getCurrentPosition(function(position) {
+                        const userCoords = {
+                            lat: position.coords.latitude,
+                            lng: position.coords.longitude
+                        };
+                        map.setView(userCoords, 16);
+                        marker.setLatLng(userCoords);
+                        updateInputs(userCoords);
+                        statusEl.textContent = 'Lokasi ditemukan! Geser penanda jika kurang akurat.';
+                    }, function() {
+                        statusEl.textContent = 'Gagal mendapatkan lokasi.';
+                    });
+                });
+            });
+        </script>
+    @endpush
 </x-app-layout>
 
 ===== resources\views\siswa\index.blade.php =====
 <x-app-layout>
-    <x-slot name="header">Daftar Siswa</x-slot>
+    <x-slot name="header">
+        <div class="flex justify-between items-center">
+            <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+                {{ __('Data Siswa') }}
+            </h2>
+            @if(auth()->user()->role === 'bendahara')
+                <a href="{{ route('siswa.create') }}" class="px-4 py-2 bg-indigo-600 text-white text-sm font-semibold rounded-lg shadow-md hover:bg-indigo-700 transition-colors">
+                    Tambah Siswa Baru
+                </a>
+            @endif
+        </div>
+    </x-slot>
 
-    <a href="{{ route('siswa.create') }}" class="btn btn-primary mb-4">Tambah Siswa</a>
-
-    @if (session('success'))
-        <div class="alert alert-success">{{ session('success') }}</div>
-    @endif
-
-    <table class="table-auto w-full">
-        <thead>
-            <tr>
-                <th>Nama</th>
-                <th>NIS</th>
-                <th>Wali Kelas</th>
-                <th>Aksi</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach($siswas as $siswa)
-            <tr>
-                <td>{{ $siswa->nama_siswa }}</td>
-                <td>{{ $siswa->nis }}</td>
-                <td>{{ $siswa->guru->nama_guru ?? '-' }}</td>
-                <td>
-                    <a href="{{ route('siswa.edit', $siswa->id_siswa) }}" class="text-blue-600">Edit</a>
-                    <form action="{{ route('siswa.destroy', $siswa->id_siswa) }}" method="POST" class="inline">
-                        @csrf @method('DELETE')
-                        <button onclick="return confirm('Yakin hapus?')" class="text-red-600 ml-2">Hapus</button>
-                    </form>
-                </td>
-            </tr>
-            @endforeach
-        </tbody>
-    </table>
-
-    {{ $siswas->links() }}
+    <div class="py-8">
+        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
+                <div class="overflow-x-auto">
+                    <table class="min-w-full divide-y divide-gray-200">
+                        <thead class="bg-gray-50">
+                            <tr>
+                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Nama Siswa</th>
+                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">NIS</th>
+                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Kelas</th>
+                                @if(auth()->user()->role === 'bendahara')
+                                    <th class="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase">Aksi</th>
+                                @endif
+                            </tr>
+                        </thead>
+                        <tbody class="bg-white divide-y divide-gray-200">
+                            @forelse ($siswas as $siswa)
+                                <tr class="hover:bg-gray-50 transition-colors">
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">{{ $siswa->nama_siswa }}</td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{ $siswa->nis }}</td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{ $siswa->kelas }}</td>
+                                    @if(auth()->user()->role === 'bendahara')
+                                        <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium space-x-4">
+                                            <a href="{{ route('siswa.edit', $siswa->id_siswa) }}" class="text-indigo-600 hover:text-indigo-900">Edit</a>
+                                            <form action="{{ route('siswa.destroy', $siswa->id_siswa) }}" method="POST" class="inline" onsubmit="return confirm('Apakah Anda yakin ingin menghapus data ini?');">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button type="submit" class="text-red-600 hover:text-red-900">Hapus</button>
+                                            </form>
+                                        </td>
+                                    @endif
+                                </tr>
+                            @empty
+                                <tr>
+                                    <td colspan="{{ auth()->user()->role === 'bendahara' ? '4' : '3' }}" class="px-6 py-12 text-center text-sm text-gray-500">
+                                        Belum ada data siswa yang ditambahkan.
+                                    </td>
+                                </tr>
+                            @endforelse
+                        </tbody>
+                    </table>
+                </div>
+                @if ($siswas->hasPages())
+                    <div class="p-4 border-t border-gray-200">
+                        {{ $siswas->links() }}
+                    </div>
+                @endif
+            </div>
+        </div>
+    </div>
 </x-app-layout>
 
 ===== resources\views\tunggakan\index.blade.php =====

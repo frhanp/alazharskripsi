@@ -16,30 +16,35 @@ class SiswaSeeder extends Seeder
     public function run(): void
     {
         // Cari user wali murid (pastikan sudah ada di seeder User)
-        $wali = User::where('role', 'wali_murid')->first();
+        $waliIds = User::where('role', 'wali_murid')->pluck('id');
 
-        // Cari guru
-        $guru = Guru::first();
-
-        if (!$wali || !$guru) {
-            $this->command->error('Seeder gagal: User wali murid atau guru belum tersedia.');
+        if ($waliIds->isEmpty()) {
+            $this->command->info('Tidak ada wali murid ditemukan, silakan jalankan UserSeeder terlebih dahulu.');
             return;
         }
 
+        // =======================================================
+        // PATOKAN: database/seeders/SiswaSeeder.php
+        // AWAL PERUBAHAN
+        // =======================================================
+
+        // Buat data siswa dummy tanpa 'id_guru'
         Siswa::create([
             'nis' => '123456789',
             'nama_siswa' => 'Ahmad Fauzi',
             'kelas' => '10A',
-            'id_wali' => $wali->id,
-            'id_guru' => $guru->id_guru,
+            'id_wali' => $waliIds->random(),
         ]);
 
         Siswa::create([
             'nis' => '987654321',
             'nama_siswa' => 'Dewi Lestari',
             'kelas' => '10B',
-            'id_wali' => $wali->id,
-            'id_guru' => $guru->id_guru,
+            'id_wali' => $waliIds->random(),
         ]);
+
+        // =======================================================
+        // AKHIR PERUBAHAN
+        // =======================================================
     }
 }

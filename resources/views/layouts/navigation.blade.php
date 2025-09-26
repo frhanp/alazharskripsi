@@ -94,27 +94,32 @@
                 {{ __('Riwayat Pembayaran') }}
             </x-nav-link>
             @if ($midtransAktif)
+                {{-- JIKA MIDTRANS AKTIF: Tampilkan dropdown fungsional --}}
                 <div class="relative">
-                    <button type="button"
-                        class="flex items-center px-3 py-2 text-sm font-medium text-gray-700 hover:text-gray-900"
-                        id="siswa-menu" aria-expanded="false" aria-haspopup="true">
-                        <img src="{{ asset('images/walleticon.png') }}" alt="icon" class="w-5 h-5 mr-2">
-                        {{ __('Pembayaran Online') }}
-                        <svg class="ml-2 h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
-                        </svg>
+                    <button type="button" class="flex items-center w-full px-4 py-2 rounded-lg text-gray-600 hover:bg-gray-100 hover:text-gray-900" id="siswa-menu" aria-expanded="false" aria-haspopup="true">
+                        <img src="{{ asset('images/walleticon.png') }}" alt="icon" class="w-4 h-4 mr-2">
+                        <span class="text-sm font-medium">{{ __('Pembayaran Online') }}</span>
+                        <svg class="ml-auto h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" /></svg>
                     </button>
-                    <div class="absolute hidden mt-2 w-48 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5"
-                        id="siswa-menu-dropdown">
+                    <div class="absolute hidden mt-2 w-48 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 z-10" id="siswa-menu-dropdown">
                         <div class="py-1" role="menu" aria-orientation="vertical" aria-labelledby="siswa-menu">
                             @foreach (Auth::user()->siswa as $item)
-                                <a href="{{ route('wali.midtrans.form', $item->id_siswa) }}"
-                                    class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" role="menuitem">
+                                <a href="{{ route('pembayaran.midtrans.form', $item->id_siswa) }}"
+                                   class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" role="menuitem">
                                     {{ $item->nama_siswa }}
                                 </a>
                             @endforeach
                         </div>
                     </div>
+                </div>
+            @else
+                {{-- JIKA MIDTRANS NON-AKTIF: Tampilkan menu disabled dengan notifikasi --}}
+                <div 
+                    onclick="Swal.fire('Informasi', 'Pembayaran online saat ini sedang tidak tersedia. Silakan gunakan metode pembayaran lain.', 'info')"
+                    class="flex items-center w-full px-4 py-2 rounded-lg text-gray-400 cursor-not-allowed bg-gray-50"
+                >
+                    <img src="{{ asset('images/walleticon.png') }}" alt="icon" class="w-4 h-4 mr-2 opacity-50">
+                    <span class="text-sm font-medium">{{ __('Pembayaran Online') }}</span>
                 </div>
             @endif
             <script>

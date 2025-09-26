@@ -54,13 +54,13 @@
             </x-primary-button>
         </div>
 
-        <div class="mt-6 text-center">
+        {{-- <div class="mt-6 text-center">
             <p class="text-sm text-slate-500">
                 Belum punya akun?
                 <a href="{{ route('register') }}" class="font-medium text-sky-600 hover:underline">
                     Daftar di sini
                 </a>
             </p>
-        </div>
+        </div> --}}
     </form>
 </x-guest-layout>

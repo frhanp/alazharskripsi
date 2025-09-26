@@ -26,34 +26,29 @@ class DashboardController extends Controller
         }
 
         if ($user->role === 'wali_murid') {
-            $anakList = $user->siswa()->get();
-
+            $anakList = $user->siswa()->with('tunggakan')->get();
+        
             $dataAnak = $anakList->map(function ($anak) {
-                // Cek status pembayaran SPP bulan ini
+                $bulanIni = Carbon::now()->format('F');
+                $tahunIni = Carbon::now()->year;
+        
                 $sppBulanIniLunas = Pembayaran::where('id_siswa', $anak->id_siswa)
-                    ->whereJsonContains('bulan', Carbon::now()->format('F'))
-                    ->where('tahun', Carbon::now()->year)
+                    ->where('tahun', $tahunIni)
+                    ->where(function ($query) use ($bulanIni) {
+                        // cek kolom bulan baik JSON maupun string biasa
+                        $query->orWhere(function ($q) use ($bulanIni) {
+                            $q->whereRaw("JSON_VALID(bulan)")
+                              ->whereJsonContains('bulan', $bulanIni);
+                        })
+                        ->orWhere('bulan', $bulanIni);
+                    })
                     ->where('status', 'diterima')
                     ->exists();
-                
-                // Hitung total tunggakan HANYA dari bulan-bulan yang telah lewat
-                $totalTunggakan = Tunggakan::where('id_siswa', $anak->id_siswa)
+        
+                $totalTunggakan = $anak->tunggakan
                     ->where('status', 'belum_bayar')
-                    ->where(function ($query) {
-                        $query->where('tahun', '<', now()->year)
-                              ->orWhere(function ($q) {
-                                  $q->where('tahun', now()->year)
-                                    ->where('bulan', '!=', now()->format('F')); // Logika dasar, perlu disempurnakan
-                              });
-                    })
                     ->sum('jumlah_tunggakan');
-
-                // Logika ini perlu disempurnakan lagi nanti, untuk sementara kita nolkan jika tidak ada data
-                // karena filter bulan di atas tidak akurat untuk perbandingan
-                $totalTunggakan = Tunggakan::where('id_siswa', $anak->id_siswa)
-                    ->where('status', 'belum_bayar')->sum('jumlah_tunggakan');
-
-
+        
                 return [
                     'id_siswa' => $anak->id_siswa,
                     'nama_siswa' => $anak->nama_siswa,
@@ -62,9 +57,10 @@ class DashboardController extends Controller
                     'total_tunggakan' => $totalTunggakan,
                 ];
             });
-
+        
             return view('wali.dashboard', ['dataAnak' => $dataAnak]);
         }
+        
 
         if ($user->role === 'ketua_yayasan') {
             // Redirect ke route dashboard ketua yayasan yang baru kita buat

@@ -16,6 +16,10 @@ class Pembayaran extends Model
         'midtrans_order_id', 'midtrans_transaction_status', 'is_midtrans', 'snap_token'
     ];
 
+    protected $casts = [
+        'bulan' => 'array',
+    ];
+
     protected $attributes = [
         'status' => 'belum_bayar'
     ];
@@ -50,7 +54,7 @@ class Pembayaran extends Model
     public static function updateTunggakanLunas(Pembayaran $pembayaran)
     {
         // Karena 'bulan' bisa jadi array, kita proses satu per satu
-        foreach ($pembayaran->getBulanArray() as $bulan) {
+        foreach ($pembayaran->bulan as $bulan) {
             Tunggakan::where('id_siswa', $pembayaran->id_siswa)
                 ->where('bulan', $bulan)
                 ->where('tahun', $pembayaran->tahun)
@@ -66,7 +70,7 @@ class Pembayaran extends Model
     {
         $bulanValue = $this->attributes['bulan'];
         return is_array($bulanValue) ? $bulanValue : explode(',', $bulanValue);
-    }
+    }   
 
     public function getBulanAttribute($value)
     {

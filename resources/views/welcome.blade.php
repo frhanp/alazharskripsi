@@ -31,9 +31,12 @@
                         <a href="#fitur" class="font-medium text-slate-600 hover:text-sky-600 transition-colors">Metode Bayar</a>
                         <a href="#testimoni" class="font-medium text-slate-600 hover:text-sky-600 transition-colors">Testimoni</a>
                         <a href="#faq" class="font-medium text-slate-600 hover:text-sky-600 transition-colors">FAQ</a>
-                        <a href="{{ route('login') }}" class="font-medium text-slate-600 hover:text-sky-600 transition-colors">Login</a>
-                        <a href="{{ route('register') }}" class="bg-sky-500 text-white font-semibold px-5 py-2.5 rounded-lg shadow-md hover:bg-sky-600 transition-all duration-200 transform hover:-translate-y-0.5">Daftar</a>
+                        <a href="{{ route('login') }}" 
+                           class="bg-sky-500 text-white font-semibold px-5 py-2.5 rounded-lg shadow-md hover:bg-sky-600 transition-all duration-200 transform hover:-translate-y-0.5">
+                           Login
+                        </a>
                     </nav>
+                    
                     <div class="md:hidden">
                         <button @click="mobileMenuOpen = !mobileMenuOpen" class="text-slate-800"><svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-16 6h16"></path></svg></button>
                     </div>
