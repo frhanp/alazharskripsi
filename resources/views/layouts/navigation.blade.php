@@ -7,25 +7,31 @@
     </div>
     <!-- Nav Links -->
     <nav class="flex-1 px-4 py-6 space-y-2">
+
         <x-nav-link :href="route('dashboard')" :active="request()->routeIs(['dashboard', 'bendahara.dashboard', 'ketua.dashboard'])">
             <img src="{{ asset('images/homeicon.png') }}" alt="icon" class="w-4 h-4 mr-2">
             {{ __('Dashboard') }}
         </x-nav-link>
 
-        {{-- ======================================================= --}}
-        {{-- AWAL LOGIKA BARU UNTUK ROLE --}}
-        {{-- ======================================================= --}}
+        {{-- =======================================================
+            AWAL LOGIKA BARU UNTUK ROLE
+        ======================================================= --}}
 
         {{-- Menu Khusus Bendahara (Operasional) --}}
         @if (auth()->user()?->role === 'bendahara')
+            <hr class="my-2 border-gray-200">
+            <p class="px-4 text-xs font-semibold text-gray-400 uppercase">Operasional</p>
+
             <x-nav-link :href="route('pembayaran.manual.create')" :active="request()->routeIs('pembayaran.manual.create')">
                 <img src="{{ asset('images/inputicon.png') }}" alt="icon" class="w-4 h-4 mr-2">
                 {{ __('Input Manual') }}
             </x-nav-link>
+
             <x-nav-link :href="route('pembayaran.verifikasi')" :active="request()->routeIs('pembayaran.verifikasi')">
                 <img src="{{ asset('images/verifyicon.png') }}" alt="icon" class="w-4 h-4 mr-2">
                 {{ __('Verifikasi Pembayaran') }}
             </x-nav-link>
+
             <x-nav-link :href="route('tunggakan.index')" :active="request()->routeIs('tunggakan.index')">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-2" fill="none" viewBox="0 0 24 24"
                     stroke="currentColor" stroke-width="2">
@@ -34,7 +40,6 @@
                 </svg>
                 {{ __('Tunggakan') }}
             </x-nav-link>
-
 
             <x-nav-link :href="route('pengaturan.index')" :active="request()->routeIs('pengaturan.index')">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-2" fill="none" viewBox="0 0 24 24"
@@ -47,8 +52,11 @@
             </x-nav-link>
         @endif
 
-        {{-- Menu Bersama (Bendahara & Ketua Yayasan) --}}
+        {{-- Menu Bersama Bendahara & Ketua Yayasan --}}
         @if (in_array(auth()->user()?->role, ['bendahara', 'ketua_yayasan']))
+            <hr class="my-2 border-gray-200">
+            <p class="px-4 text-xs font-semibold text-gray-400 uppercase">Data & Laporan</p>
+
             <x-nav-link :href="route('siswa.index')" :active="request()->routeIs('siswa.index')">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-2" fill="none" viewBox="0 0 24 24"
                     stroke="currentColor" stroke-width="2">
@@ -60,10 +68,12 @@
                 </svg>
                 {{ __('Data Siswa') }}
             </x-nav-link>
+
             <x-nav-link :href="route('riwayat.index')" :active="request()->routeIs('riwayat.index')">
                 <img src="{{ asset('images/historyicon.png') }}" alt="icon" class="w-4 h-4 mr-2">
                 {{ __('Riwayat Pembayaran') }}
             </x-nav-link>
+
             <x-nav-link :href="route('pemetaan.index')" :active="request()->routeIs('pemetaan.index')">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-2" fill="none" viewBox="0 0 24 24"
                     stroke="currentColor" stroke-width="2">
@@ -73,6 +83,7 @@
                 </svg>
                 {{ __('Pemetaan') }}
             </x-nav-link>
+
             <x-nav-link :href="route('laporan.index')" :active="request()->routeIs('laporan.index')">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-2" fill="none" viewBox="0 0 24 24"
                     stroke="currentColor" stroke-width="2">
@@ -85,64 +96,41 @@
 
         {{-- Menu Khusus Wali Murid --}}
         @if (auth()->user()?->role === 'wali_murid')
+            <hr class="my-2 border-gray-200">
+            <p class="px-4 text-xs font-semibold text-gray-400 uppercase">Wali Murid</p>
+
             <x-nav-link :href="route('pembayaran.upload.create')" :active="request()->routeIs('pembayaran.upload.create')">
                 <img src="{{ asset('images/uploadicon.png') }}" alt="icon" class="w-4 h-4 mr-2">
                 {{ __('Upload Bukti Transfer') }}
             </x-nav-link>
+
             <x-nav-link :href="route('riwayat.index')" :active="request()->routeIs('riwayat.index')">
                 <img src="{{ asset('images/historyicon.png') }}" alt="icon" class="w-4 h-4 mr-2">
                 {{ __('Riwayat Pembayaran') }}
             </x-nav-link>
-            @if ($midtransAktif)
-                {{-- JIKA MIDTRANS AKTIF: Tampilkan dropdown fungsional --}}
-                <div class="relative">
-                    <button type="button" class="flex items-center w-full px-4 py-2 rounded-lg text-gray-600 hover:bg-gray-100 hover:text-gray-900" id="siswa-menu" aria-expanded="false" aria-haspopup="true">
-                        <img src="{{ asset('images/walleticon.png') }}" alt="icon" class="w-4 h-4 mr-2">
-                        <span class="text-sm font-medium">{{ __('Pembayaran Online') }}</span>
-                        <svg class="ml-auto h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" /></svg>
-                    </button>
-                    <div class="absolute hidden mt-2 w-48 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 z-10" id="siswa-menu-dropdown">
-                        <div class="py-1" role="menu" aria-orientation="vertical" aria-labelledby="siswa-menu">
-                            @foreach (Auth::user()->siswa as $item)
-                                <a href="{{ route('pembayaran.midtrans.form', $item->id_siswa) }}"
-                                   class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" role="menuitem">
-                                    {{ $item->nama_siswa }}
-                                </a>
-                            @endforeach
-                        </div>
-                    </div>
-                </div>
-            @else
-                {{-- JIKA MIDTRANS NON-AKTIF: Tampilkan menu disabled dengan notifikasi --}}
-                <div 
-                    onclick="Swal.fire('Informasi', 'Pembayaran online saat ini sedang tidak tersedia. Silakan gunakan metode pembayaran lain.', 'info')"
-                    class="flex items-center w-full px-4 py-2 rounded-lg text-gray-400 cursor-not-allowed bg-gray-50"
-                >
-                    <img src="{{ asset('images/walleticon.png') }}" alt="icon" class="w-4 h-4 mr-2 opacity-50">
-                    <span class="text-sm font-medium">{{ __('Pembayaran Online') }}</span>
-                </div>
-            @endif
-            <script>
-                // Pastikan script hanya ada jika tombolnya ada
-                if (document.getElementById('siswa-menu')) {
-                    document.getElementById('siswa-menu').addEventListener('click', function() {
-                        document.getElementById('siswa-menu-dropdown').classList.toggle('hidden');
-                    });
-                }
-            </script>
-        @endif
-        <hr class="my-2 border-gray-200">
-        <p class="px-4 text-xs font-semibold text-gray-400 uppercase">Manajemen</p>
 
-        <x-nav-link :href="route('akun.index')" :active="request()->routeIs('akun.index')">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
-            </svg>
-            {{ __('Akun Wali Murid') }}
-        </x-nav-link>
+            {{-- dst untuk midtrans --}}
+        @endif
+
+        {{-- Akun Wali Murid hanya bendahara --}}
+        @if (auth()->user()?->role === 'bendahara')
+            <hr class="my-2 border-gray-200">
+            <p class="px-4 text-xs font-semibold text-gray-400 uppercase">Manajemen</p>
+
+            <x-nav-link :href="route('akun.index')" :active="request()->routeIs('akun.index')">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-2" fill="none" viewBox="0 0 24 24"
+                    stroke="currentColor" stroke-width="2">
+                    <path stroke-linecap="round" stroke-linejoin="round"
+                        d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                </svg>
+                {{ __('Akun Wali Murid') }}
+            </x-nav-link>
+        @endif
+
     </nav>
-    <!-- User Dropdown -->
-    <div x-data="{ open: false }" class="px-4 py-4 border-t border-gray-200">
+
+    <!-- Sidebar Footer -->
+    {{-- <div x-data="{ open: false }" class="px-4 py-4 border-t border-gray-200">
         <button @click="open = !open"
             class="w-full flex items-center justify-between px-4 py-2 text-sm font-medium text-left bg-gray-100 text-gray-700 rounded-lg hover:bg-gray-200">
             <span>{{ Auth::user()->name }}</span>
@@ -153,9 +141,9 @@
         </button>
 
         <div x-show="open" x-cloak class="mt-2 space-y-1 bg-white rounded-lg shadow-inner text-sm text-gray-700">
-            <a href="{{ route('profile.edit') }}"
-                class="block px-4 py-2 hover:bg-gray-100 rounded-lg">{{ __('Profile') }}</a>
-
+            <a href="{{ route('profile.edit') }}" class="block px-4 py-2 hover:bg-gray-100 rounded-lg">
+                {{ __('Profile') }}
+            </a>
             <form method="POST" action="{{ route('logout') }}">
                 @csrf
                 <button type="submit"
@@ -164,5 +152,5 @@
                 </button>
             </form>
         </div>
-    </div>
+    </div> --}}
 </aside>
