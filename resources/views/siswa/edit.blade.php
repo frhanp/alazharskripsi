@@ -9,7 +9,9 @@
     <div class="py-8">
         <div class="max-w-4xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white p-6 md:p-8 rounded-xl shadow-md">
-                <form action="{{ route('siswa.update', $siswa->id_siswa) }}" method="POST">
+                
+                {{-- FORM UTAMA UNTUK UPDATE DATA SISWA --}}
+                <form action="{{ route('siswa.update', $siswa->id_siswa) }}" method="POST" id="edit-siswa-form">
                     @csrf
                     @method('PUT')
                     
@@ -31,8 +33,9 @@
                     </div>
 
                     {{-- Informasi Wali Murid --}}
-                    <h3 class="text-lg font-semibold text-gray-800 border-b pb-2 mb-4">Informasi Wali Murid</h3>
+                    <h3 class="text-lg font-semibold text-gray-800 border-b pb-2 mt-8 mb-4">Informasi Akun Wali Murid</h3>
                     @if ($siswa->wali)
+                        {{-- Jika akun wali sudah ada, tampilkan dan berikan opsi ganti --}}
                         <div>
                             <label for="id_wali" class="block text-sm font-medium text-gray-700">Wali Murid (Induk)</label>
                             <select name="id_wali" id="id_wali" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm" required>
@@ -43,7 +46,8 @@
                             <p class="text-xs text-gray-500 mt-1">Siswa ini sudah terhubung. Anda bisa mengubah tautan wali murid jika diperlukan.</p>
                         </div>
                     @else
-                        <p class="text-sm text-gray-500 mb-4">Siswa ini belum memiliki akun wali murid. Silakan pilih dari daftar di bawah untuk menautkannya.</p>
+                        {{-- Jika akun wali belum ada, berikan opsi untuk menautkan --}}
+                         <p class="text-sm text-gray-500 mb-4">Siswa ini belum memiliki akun wali murid. Silakan pilih dari daftar untuk menautkannya.</p>
                          <div>
                             <label for="id_wali" class="block text-sm font-medium text-gray-700">Pilih Akun Wali</label>
                              <select name="id_wali" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm" required>
@@ -54,7 +58,7 @@
                             </select>
                         </div>
                     @endif
-
+                    
                     {{-- Informasi Lokasi --}}
                     <h3 class="text-lg font-semibold text-gray-800 border-b pb-2 mt-8 mb-4">Informasi Lokasi</h3>
                      <div class="grid grid-cols-1 lg:grid-cols-2 gap-x-8 gap-y-6">
@@ -79,12 +83,29 @@
                             <div id="map" style="height: 200px; cursor: pointer;" class="rounded-lg border z-0 mt-1"></div>
                         </div>
                     </div>
-
-                    <div class="mt-8 border-t pt-6 flex justify-end">
-                        <a href="{{ route('siswa.index') }}" class="text-gray-600 py-2 px-4 rounded-md hover:bg-gray-100">Batal</a>
-                        <button type="submit" class="ml-4 px-4 py-2 bg-indigo-600 text-white rounded-md hover:bg-indigo-700">Update Data</button>
-                    </div>
                 </form>
+
+                {{-- FORM TERPISAH UNTUK RESET PASSWORD (JIKA WALI SUDAH ADA) --}}
+                @if ($siswa->wali)
+                <div class="mt-6">
+                    <label class="block text-sm font-medium text-gray-700">Aksi Cepat</label>
+                    <div class="mt-1">
+                        <form action="{{ route('siswa.reset-password', $siswa) }}" method="POST" onsubmit="return confirm('Yakin ingin me-reset password untuk wali murid ini? Password baru akan dikirim melalui WhatsApp.')" class="inline">
+                            @csrf
+                            <button type="submit" class="px-4 py-2 bg-yellow-500 text-white text-sm font-semibold rounded-lg shadow-sm hover:bg-yellow-600">
+                                Reset Password Wali
+                            </button>
+                        </form>
+                    </div>
+                </div>
+                @endif
+                
+                {{-- TOMBOL SUBMIT UNTUK FORM UTAMA --}}
+                <div class="mt-8 border-t pt-6 flex justify-end">
+                    <a href="{{ route('siswa.index') }}" class="text-gray-600 py-2 px-4 rounded-md hover:bg-gray-100">Batal</a>
+                    <button type="submit" form="edit-siswa-form" class="ml-4 px-4 py-2 bg-indigo-600 text-white rounded-md hover:bg-indigo-700">Update Data</button>
+                </div>
+
             </div>
         </div>
     </div>

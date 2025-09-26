@@ -58,6 +58,8 @@ Route::middleware(['auth', 'role:bendahara'])->group(function () {
     Route::post('/pengaturan', [PengaturanController::class, 'update'])->name('pengaturan.update');
 
     Route::resource('siswa', SiswaController::class)->except(['index', 'show']);
+
+    Route::post('/siswa/{siswa}/reset-password', [SiswaController::class, 'resetPassword'])->name('siswa.reset-password');
 });
 
 Route::middleware(['auth', 'role:wali_murid'])->group(function () {
@@ -109,5 +111,6 @@ Route::middleware(['auth', 'role:bendahara,ketua_yayasan'])->group(function () {
     Route::get('/pemetaan', [PemetaanController::class, 'index'])->name('pemetaan.index');
     
     Route::get('/siswa', [SiswaController::class, 'index'])->name('siswa.index');
+    Route::post('/siswa/{siswa}/reset-password', [SiswaController::class, 'resetPassword'])->name('siswa.reset-password');
 });
 require __DIR__ . '/auth.php';

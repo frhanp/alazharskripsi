@@ -7,6 +7,7 @@ use App\Models\Siswa;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules;
+use App\Jobs\SendPasswordResetNotification;
 
 
 class SiswaController extends Controller
@@ -89,5 +90,27 @@ class SiswaController extends Controller
         $siswa = Siswa::findOrFail($id);
         $siswa->delete();
         return redirect()->route('siswa.index')->with('success', 'Siswa berhasil dihapus.');
+    }
+
+    public function resetPassword(Siswa $siswa)
+    {
+        // Pastikan siswa memiliki wali yang tertaut
+        if (!$siswa->wali) {
+            return back()->with('error', 'Siswa ini tidak memiliki akun wali murid yang tertaut.');
+        }
+
+        $wali = $siswa->wali;
+        
+        // Buat password baru yang acak
+        $newPassword = 'Spp' . rand(1000, 9999);
+
+        // Update password di database
+        $wali->password = Hash::make($newPassword);
+        $wali->save();
+
+        // Kirim notifikasi berisi password baru ke wali murid
+        SendPasswordResetNotification::dispatch($wali, $newPassword);
+
+        return back()->with('success', 'Password untuk wali murid ' . $wali->name . ' berhasil di-reset dan telah dikirimkan melalui WhatsApp.');
     }
 }
