@@ -359,7 +359,7 @@ class PembayaranController extends Controller
             ]);
         }
 
-        return redirect()->route('pembayaran.upload.create')->with('success', 'Bukti transfer berhasil diunggah dan menunggu verifikasi.');
+        return redirect()->route('riwayat.index')->with('success', 'Bukti transfer berhasil diunggah dan menunggu verifikasi.');
     }
 
 

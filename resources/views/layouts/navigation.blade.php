@@ -1,9 +1,21 @@
 <aside class="h-full flex flex-col md:h-screen md:sticky md:top-0">
     <!-- Logo -->
     <div class="p-6 border-b border-gray-200">
-        <a href="{{ route('dashboard') }}" class="text-2xl font-bold text-gray-800">
-            {{ config('app.name', 'MY APP') }}
+        {{-- PATOKAN: resources/views/layouts/navigation.blade.php --}}
+        {{-- AWAL PERUBAHAN --}}
+        <a href="{{ route('dashboard') }}" class="flex items-center justify-center space-x-3">
+            {{-- Logo Kiri --}}
+            <img src="{{ asset('images/logoyayasan.jpg') }}" alt="Logo 1" class="h-10 w-auto">
+
+            {{-- Tulisan di Tengah --}}
+            <span class="text-xl font-bold text-gray-800 whitespace-nowrap">
+                {{ config('app.name', 'Al Azhar') }}
+            </span>
+
+            {{-- Logo Kanan --}}
+            <img src="{{ asset('images/logoalazhar.png') }}" alt="Logo 2" class="h-10 w-auto">
         </a>
+        {{-- AKHIR PERUBAHAN --}}
     </div>
     <!-- Nav Links -->
     <nav class="flex-1 px-4 py-6 space-y-2">
