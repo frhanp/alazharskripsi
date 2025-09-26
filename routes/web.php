@@ -20,6 +20,7 @@ use App\Http\Controllers\PilihMetodeController;
 use App\Http\Controllers\LaporanController;
 use App\Http\Controllers\PengaturanController;
 use App\Http\Controllers\DetailSiswaController;
+use App\Http\Controllers\AkunWaliController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -60,6 +61,8 @@ Route::middleware(['auth', 'role:bendahara'])->group(function () {
     Route::resource('siswa', SiswaController::class)->except(['index', 'show']);
 
     Route::post('/siswa/{siswa}/reset-password', [SiswaController::class, 'resetPassword'])->name('siswa.reset-password');
+    Route::resource('akun', AkunWaliController::class)->except(['create', 'store', 'show', 'destroy'])->parameters(['akun' => 'user']);
+Route::post('/akun/{user}/reset-password', [AkunWaliController::class, 'resetPassword'])->name('akun.reset-password');
 });
 
 Route::middleware(['auth', 'role:wali_murid'])->group(function () {
@@ -111,6 +114,5 @@ Route::middleware(['auth', 'role:bendahara,ketua_yayasan'])->group(function () {
     Route::get('/pemetaan', [PemetaanController::class, 'index'])->name('pemetaan.index');
     
     Route::get('/siswa', [SiswaController::class, 'index'])->name('siswa.index');
-    Route::post('/siswa/{siswa}/reset-password', [SiswaController::class, 'resetPassword'])->name('siswa.reset-password');
 });
 require __DIR__ . '/auth.php';
