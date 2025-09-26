@@ -12,10 +12,30 @@ use App\Jobs\SendPasswordResetNotification;
 
 class SiswaController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $siswas = Siswa::latest()->paginate(10); // Relasi 'guru' dihapus
-        return view('siswa.index', compact('siswas'));
+        $query = Siswa::with('wali')->latest();
+
+        // Logika untuk Search
+        if ($request->filled('search')) {
+            $search = $request->search;
+            $query->where(function ($q) use ($search) {
+                $q->where('nama_siswa', 'like', "%{$search}%")
+                  ->orWhere('nis', 'like', "%{$search}%");
+            });
+        }
+
+        // Logika untuk Filter Kelas
+        if ($request->filled('kelas')) {
+            $query->where('kelas', $request->kelas);
+        }
+
+        $siswas = $query->paginate(15)->withQueryString();
+        
+        // Ambil daftar kelas unik untuk dropdown filter
+        $kelasOptions = Siswa::distinct()->orderBy('kelas')->pluck('kelas');
+
+        return view('siswa.index', compact('siswas', 'kelasOptions'));
     }
 
     public function create()

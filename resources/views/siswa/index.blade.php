@@ -14,6 +14,25 @@
 
     <div class="py-8">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+            <div class="mb-6 bg-white p-4 rounded-xl shadow-md">
+                <form action="{{ route('siswa.index') }}" method="GET">
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                        <div class="md:col-span-2">
+                            <label for="search" class="sr-only">Cari</label>
+                            <input type="text" name="search" id="search" placeholder="Cari Nama Siswa atau NIS..." value="{{ request('search') }}" class="block w-full border-gray-300 rounded-md shadow-sm">
+                        </div>
+                        <div>
+                            <label for="kelas" class="sr-only">Kelas</label>
+                            <select name="kelas" id="kelas" class="block w-full border-gray-300 rounded-md shadow-sm" onchange="this.form.submit()">
+                                <option value="">Semua Kelas</option>
+                                @foreach($kelasOptions as $kelas)
+                                    <option value="{{ $kelas }}" @selected(request('kelas') == $kelas)>{{ $kelas }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                    </div>
+                </form>
+            </div>
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="overflow-x-auto">
                     <table class="min-w-full divide-y divide-gray-200">

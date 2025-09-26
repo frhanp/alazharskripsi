@@ -11,9 +11,26 @@ use App\Jobs\SendPasswordResetNotification;
 class AkunWaliController extends Controller
 {
     // Menampilkan daftar semua akun wali murid
-    public function index()
+    public function index(Request $request) // Tambahkan Request
     {
-        $walis = User::where('role', 'wali_murid')->latest()->paginate(15);
+        // =======================================================
+        // AWAL PERUBAHAN
+        // =======================================================
+        $query = User::where('role', 'wali_murid')->latest();
+
+        if ($request->filled('search')) {
+            $search = $request->search;
+            $query->where(function ($q) use ($search) {
+                $q->where('name', 'like', "%{$search}%")
+                  ->orWhere('email', 'like', "%{$search}%");
+            });
+        }
+
+        $walis = $query->paginate(15)->withQueryString();
+        // =======================================================
+        // AKHIR PERUBAHAN
+        // =======================================================
+
         return view('akun.index', compact('walis'));
     }
 

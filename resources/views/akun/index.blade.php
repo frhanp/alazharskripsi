@@ -7,6 +7,14 @@
 
     <div class="py-8">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+            <div class="mb-6 bg-white p-4 rounded-xl shadow-md">
+                <form action="{{ route('akun.index') }}" method="GET">
+                    <div>
+                        <label for="search" class="sr-only">Cari</label>
+                        <input type="text" name="search" id="search" placeholder="Cari Nama Wali atau Email..." value="{{ request('search') }}" class="block w-full border-gray-300 rounded-md shadow-sm">
+                    </div>
+                </form>
+            </div>
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="overflow-x-auto">
                     <table class="min-w-full divide-y divide-gray-200">
