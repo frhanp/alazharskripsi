@@ -54,68 +54,73 @@ class KwitansiController extends Controller
         }
 
         try {
-            // 1. Buat record kwitansi di database terlebih dahulu
-            $pembayaran->load(['siswa']);
+            // =======================================================
+            // AWAL PERUBAHAN
+            // =======================================================
+            
+            // 1. Muat relasi siswa beserta walinya
+            $pembayaran->load(['siswa.wali']);
+            
+            // =======================================================
+            // AKHIR PERUBAHAN
+            // =======================================================
+            
             $noKwitansi = 'KW/' . now()->year . '/' . now()->month . '/' . $pembayaran->id_pembayaran;
             $kwitansi = Kwitansi::create([
                 'id_pembayaran' => $pembayaran->id_pembayaran,
                 'no_kwitansi' => $noKwitansi,
                 'tanggal_terbit' => now(),
                 'file_kwitansi' => '', // Kosongkan dulu, akan diisi nanti
-
             ]);
-
-            // 2. Tentukan path template dan path output
+    
             $templatePath = storage_path('app/templates/kwitansi_template.docx');
             if (!file_exists($templatePath)) {
                 Log::error("Template kwitansi tidak ditemukan di: " . $templatePath);
                 return null;
             }
-
+    
             $directoryName = 'kwitansi';
-            // Ubah ekstensi file menjadi .docx
             $fileName = 'kwitansi-' . $pembayaran->id_pembayaran . '-' . time() . '.docx';
             $databasePath = $directoryName . '/' . $fileName;
             $fullOutputPath = storage_path('app/public/' . $databasePath);
-
-            // Pastikan direktori output ada
+    
             Storage::disk('public')->makeDirectory($directoryName);
-
-            // 3. Proses template dengan PhpWord
+    
             $templateProcessor = new TemplateProcessor($templatePath);
-
-            // 4. Siapkan data dan isi placeholder
+    
             $bulanText = is_array($pembayaran->bulan) ? implode(', ', $pembayaran->bulan) : $pembayaran->bulan;
-            // CATATAN: Fungsi terbilang butuh library tambahan seperti `terbilang/terbilang`.
-            // Untuk sementara kita tampilkan angka saja.
             $terbilangText = ucwords(TerbilangHelper::convert($pembayaran->jumlah)) . ' Rupiah';
-
-
+    
             $templateProcessor->setValue('no_kwitansi', $kwitansi->no_kwitansi);
             $templateProcessor->setValue('tanggal_terbit', Carbon::parse($kwitansi->tanggal_terbit)->translatedFormat('d F Y'));
             $templateProcessor->setValue('nama_siswa', $pembayaran->siswa->nama_siswa);
+            
+            // =======================================================
+            // AWAL PERUBAHAN
+            // =======================================================
+            // Tambahkan variabel nama_wali di sini
+            $templateProcessor->setValue('nama_wali', $pembayaran->siswa->wali->name ?? 'Wali Murid');
+            // =======================================================
+            // AKHIR PERUBAHAN
+            // =======================================================
+            
             $templateProcessor->setValue('nis_siswa', $pembayaran->siswa->nis ?? '-');
             $templateProcessor->setValue('bulan_pembayaran', $bulanText);
             $templateProcessor->setValue('tahun_pembayaran', $pembayaran->tahun);
             $templateProcessor->setValue('jumlah_rupiah', number_format($pembayaran->jumlah, 0, ',', '.'));
             $templateProcessor->setValue('jumlah_terbilang', $terbilangText);
-
-
-            // 5. Simpan file .docx yang sudah diisi
+    
             $templateProcessor->saveAs($fullOutputPath);
-
-            // 6. Update record kwitansi dengan path file yang baru
+    
             $kwitansi->update(['file_kwitansi' => $databasePath]);
             SendWhatsappNotification::dispatch($kwitansi);
-
-            
-
+    
             Log::info("Kwitansi .docx berhasil dibuat untuk pembayaran ID {$pembayaran->id_pembayaran}.");
             return $kwitansi;
+            
         } catch (\Exception $e) {
             Log::error("Gagal membuat kwitansi untuk pembayaran ID {$pembayaran->id_pembayaran}: " . $e->getMessage());
             Log::error($e->getTraceAsString());
-            // Jika gagal, hapus record kwitansi yang mungkin sudah terbuat
             if (isset($kwitansi) && $kwitansi->exists) {
                 $kwitansi->delete();
             }
