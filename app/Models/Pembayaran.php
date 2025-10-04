@@ -11,9 +11,20 @@ class Pembayaran extends Model
     public $incrementing = true;
 
     protected $fillable = [
-        'id_siswa', 'bulan', 'tahun', 'jumlah', 'metode',
-        'bukti_transfer', 'status', 'verified_by', 'tanggal_verifikasi', 'catatan',
-        'midtrans_order_id', 'midtrans_transaction_status', 'is_midtrans', 'snap_token'
+        'id_siswa',
+        'bulan',
+        'tahun',
+        'jumlah',
+        'metode',
+        'bukti_transfer',
+        'status',
+        'verified_by',
+        'tanggal_verifikasi',
+        'catatan',
+        'midtrans_order_id',
+        'midtrans_transaction_status',
+        'is_midtrans',
+        'snap_token'
     ];
 
     protected $casts = [
@@ -62,7 +73,7 @@ class Pembayaran extends Model
                 ->update(['status' => 'lunas']);
         }
     }
-    
+
     /**
      * Helper untuk memastikan 'bulan' selalu array.
      */
@@ -70,16 +81,31 @@ class Pembayaran extends Model
     {
         $bulanValue = $this->attributes['bulan'];
         return is_array($bulanValue) ? $bulanValue : explode(',', $bulanValue);
-    }   
+    }
 
     public function getBulanAttribute($value)
     {
-        return explode(',', $value);
+        $decoded = json_decode($value, true);
+
+        if (json_last_error() === JSON_ERROR_NONE && is_array($decoded)) {
+            return $decoded;
+        }
+
+        // fallback kalau value bukan JSON valid
+        return $value ? explode(',', $value) : [];
     }
+
 
     public function setBulanAttribute($value)
     {
-        $this->attributes['bulan'] = is_array($value) ? implode(',', $value) : $value;
+        if (is_null($value)) {
+            $this->attributes['bulan'] = json_encode([]);
+        } elseif (is_array($value)) {
+            $this->attributes['bulan'] = json_encode($value);
+        } else {
+            // kalau input string "Januari,Februari"
+            $this->attributes['bulan'] = json_encode(explode(',', $value));
+        }
     }
 
     public function siswa()

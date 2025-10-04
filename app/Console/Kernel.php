@@ -15,6 +15,11 @@ class Kernel extends ConsoleKernel
         // Jalankan command setiap bulan pada tanggal 2, pukul 01:00 pagi
         $schedule->command('app:generate-tunggakan')->monthlyOn(2, '01:00');
         $schedule->command('app:send-tunggakan-reminders')->dailyAt('08:00');
+        $schedule->command('app:send-current-month-reminders')
+            ->dailyAt('08:00')
+            ->when(function () {
+                return now()->day > 10;
+            });
     }
 
     /**
@@ -22,7 +27,7 @@ class Kernel extends ConsoleKernel
      */
     protected function commands(): void
     {
-        $this->load(__DIR__.'/Commands');
+        $this->load(__DIR__ . '/Commands');
 
         require base_path('routes/console.php');
     }

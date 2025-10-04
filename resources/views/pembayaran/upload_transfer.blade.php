@@ -17,15 +17,27 @@
                 <!-- Dropdown Siswa -->
                 <div class="mb-4">
                     <x-input-label for="id_siswa" value="Nama Siswa" />
-                    <select name="id_siswa" id="id_siswa"
-                        class="mt-1 block w-full border-gray-300 rounded-md shadow-sm">
-                        <option value="">Pilih Siswa</option>
-                        @foreach ($siswa as $item)
-                            <option value="{{ $item->id_siswa }}">{{ $item->nama_siswa }}</option>
-                        @endforeach
-                    </select>
+                
+                    @if($siswa->count() === 1)
+                        {{-- Kalau hanya ada 1 siswa --}}
+                        <input type="hidden" name="id_siswa" value="{{ $siswa->first()->id_siswa }}">
+                        <p class="mt-1 block w-full rounded-md bg-gray-100 px-3 py-2">
+                            {{ $siswa->first()->nama_siswa }}
+                        </p>
+                    @else
+                        {{-- Kalau ada lebih dari 1 siswa --}}
+                        <select name="id_siswa" id="id_siswa"
+                            class="mt-1 block w-full border-gray-300 rounded-md shadow-sm">
+                            <option value="">Pilih Siswa</option>
+                            @foreach ($siswa as $item)
+                                <option value="{{ $item->id_siswa }}">{{ $item->nama_siswa }}</option>
+                            @endforeach
+                        </select>
+                    @endif
+                
                     <x-input-error :messages="$errors->get('id_siswa')" class="mt-2" />
                 </div>
+                
 
                 <!-- Multi-select Bulan dan Jumlah dalam satu x-data -->
                 <div x-data="{

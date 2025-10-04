@@ -1,5 +1,5 @@
 ﻿# Project Digest (Full Content)
-_Generated: 2025-09-26 17:03:27_
+_Generated: 2025-10-03 21:30:30_
 **Root:** D:\Laragon\www\alazharskripsi
 
 
@@ -36,6 +36,7 @@ project_digest.md
 project_digest_full.md
 README.md
 routes.txt
+seeder.md
 structure.txt
 tailwind.config.js
 tes-geocoding.html
@@ -61,6 +62,7 @@ app\Http\Controllers\Api
 app\Http\Controllers\Auth
 app\Http\Controllers\Bendahara
 app\Http\Controllers\KetuaYayasan
+app\Http\Controllers\AkunWaliController.php
 app\Http\Controllers\BendaharaController.php
 app\Http\Controllers\Controller.php
 app\Http\Controllers\DashboardController.php
@@ -94,6 +96,7 @@ app\Http\Middleware\RoleMiddleware.php
 app\Http\Requests\Auth
 app\Http\Requests\ProfileUpdateRequest.php
 app\Http\Requests\Auth\LoginRequest.php
+app\Jobs\SendPasswordResetNotification.php
 app\Jobs\SendTunggakanNotification.php
 app\Jobs\SendWhatsappNotification.php
 app\Models\Kwitansi.php
@@ -156,6 +159,8 @@ public\robots.txt
 public\images\historyicon.png
 public\images\homeicon.png
 public\images\inputicon.png
+public\images\logoalazhar.png
+public\images\logoyayasan.jpg
 public\images\uploadicon.png
 public\images\verifyicon.png
 public\images\walleticon.png
@@ -165,6 +170,7 @@ resources\views
 resources\css\app.css
 resources\js\app.js
 resources\js\bootstrap.js
+resources\views\akun
 resources\views\auth
 resources\views\bendahara
 resources\views\components
@@ -183,6 +189,8 @@ resources\views\wali
 resources\views\dashboard.blade.php
 resources\views\payment.blade.php
 resources\views\welcome.blade.php
+resources\views\akun\edit.blade.php
+resources\views\akun\index.blade.php
 resources\views\auth\confirm-password.blade.php
 resources\views\auth\forgot-password.blade.php
 resources\views\auth\login.blade.php
@@ -248,10 +256,12 @@ storage\app\public\.gitignore
 storage\app\public\bukti-transfer\0tckG9rLMm36iir2z0etRn5dRBRdE38lARFokqCz.jpg
 storage\app\public\bukti-transfer\3Djwu8Pu2v5pbAReb1LjCNySF3GbR6twsyWSaHil.jpg
 storage\app\public\bukti-transfer\591cEnxJb6pEIpnzRISPk7DhR0mYbwyGq0Oavzag.jpg
+storage\app\public\bukti-transfer\6WH9rukC3oWZA7g3OT4sWnI7bj3IWHz7qMx2mzhx.jpg
 storage\app\public\bukti-transfer\94wzukONzR3kAjn5sYdNZzWOQSdJdeQzZH5b9aaA.jpg
 storage\app\public\bukti-transfer\bXIVwy5AcJSKvCw8GdUze3T5ry9lsojzmgDsi011.png
 storage\app\public\bukti-transfer\DMPh4D6Rq9X1EGbiTGCCIo37MZDtQAuO2KokdgTu.jpg
 storage\app\public\bukti-transfer\hwbEM4LkBzTGljIqDoDSxCWbuDY0sI8d0nt8O6nS.jpg
+storage\app\public\bukti-transfer\ifJ9CSoYFQyOPsT8YxKmUkdZF9HZp691Pk5HQMQ6.jpg
 storage\app\public\bukti-transfer\JmAQfqBXjq6N68PYof8U18sxYgxj6cKg7oc4honl.jpg
 storage\app\public\bukti-transfer\LNLfheIQA0fiMm2uOtS9MpIyerI3ltQ5FChsxkz1.png
 storage\app\public\bukti-transfer\Ndh2J63qwMTM6v6n46KYOlNSwDjUcGhjaYB8imfj.jpg
@@ -260,6 +270,7 @@ storage\app\public\bukti-transfer\pI9L5Vox6UAMdopDkebC1qJAB8gtpxgwZbPwUuW4.jpg
 storage\app\public\bukti-transfer\SM413rJ1ZcpfIbotqrprEOvF7cCO4KVkfYhvBo6s.jpg
 storage\app\public\bukti-transfer\U0zUzLbD5WcEKBkXVxTNV3SSY2bQycZr9BHq8ZF2.jpg
 storage\app\public\bukti-transfer\UxWlgIYFjNoinwgVG85pgGiAX6FEdXcrgzhqsYM1.jpg
+storage\app\public\bukti-transfer\WYe5AjmxR7UnJwmbeAphVfyCFNLgKxyxHFy7HnWv.jpg
 storage\app\public\bukti-transfer\yo484sRCnSF1Lpl0bgVqiNyJduY2qqKuqfgBVo6n.jpg
 storage\app\public\bukti-transfer\ZS9wSnPMw8pYYZFcQ2wMgqMEw92MXoIazN2tiXlu.jpg
 storage\app\public\kwitansi\kwitansi-1-1757915108.pdf
@@ -268,6 +279,7 @@ storage\app\public\kwitansi\kwitansi-1-1758384368.docx
 storage\app\public\kwitansi\kwitansi-1-1758436498.docx
 storage\app\public\kwitansi\kwitansi-1-1758453915.docx
 storage\app\public\kwitansi\kwitansi-1-1758853481.docx
+storage\app\public\kwitansi\kwitansi-1-1758889832.docx
 storage\app\public\kwitansi\kwitansi-10-1755671825.pdf
 storage\app\public\kwitansi\kwitansi-10-1757922868.docx
 storage\app\public\kwitansi\kwitansi-11-1757923712.docx
@@ -284,6 +296,7 @@ storage\app\public\kwitansi\kwitansi-2-1758384375.docx
 storage\app\public\kwitansi\kwitansi-2-1758438196.docx
 storage\app\public\kwitansi\kwitansi-2-1758853571.docx
 storage\app\public\kwitansi\kwitansi-2-1758877175.docx
+storage\app\public\kwitansi\kwitansi-2-1759426763.docx
 storage\app\public\kwitansi\kwitansi-20-1757989499.docx
 storage\app\public\kwitansi\kwitansi-21-1757989922.docx
 storage\app\public\kwitansi\kwitansi-22-1758003206.docx
@@ -299,6 +312,7 @@ storage\app\public\kwitansi\kwitansi-9-1755670818.pdf
 storage\app\public\kwitansi\kwitansi-9-1757922644.docx
 storage\app\public\kwitansi\kwitansi-KW-2025-8-6.pdf
 storage\app\templates\kwitansi_template.docx
+storage\app\templates\kwitansi_template1.docx
 storage\framework\cache
 storage\framework\sessions
 storage\framework\testing
@@ -308,6 +322,7 @@ storage\framework\cache\data
 storage\framework\cache\laravel-excel
 storage\framework\cache\.gitignore
 storage\framework\cache\data\.gitignore
+storage\framework\cache\laravel-excel\laravel-excel-5d4dQei8S0VZtHkJ27NMjoS7OBBAPlg3.xlsx
 storage\framework\sessions\.gitignore
 storage\framework\testing\.gitignore
 storage\framework\views\.gitignore
@@ -315,10 +330,12 @@ storage\framework\views\020ba7464e85f87c4475ed38c04322b9.php
 storage\framework\views\09a7c8482c6e5a17a0a9a25432fbe547.php
 storage\framework\views\105b5ff0c377491b0ac4a9b05e57a80f.php
 storage\framework\views\140be810c6d1d8c5493a22d62b12e637.php
+storage\framework\views\17626ff0a0bc9a01edf0f8bed992c842.php
 storage\framework\views\228bd0b4605bbaec738e75e233f26191.php
 storage\framework\views\273988ab71d8dce2d7ebd15d7d39b1a0.php
 storage\framework\views\29b9873d46b252660074688efa1aaccd.php
 storage\framework\views\3320c1723d088fe593f5f39481f5b5eb.php
+storage\framework\views\3383ecbf1addae63c1a04ef88a765118.php
 storage\framework\views\3b240750f1d842552d0ea4b7d88091c7.php
 storage\framework\views\40b6ff27839d47f455db6a794796a233.php
 storage\framework\views\4508058a6e0ff5db2e085cfc0bdd9f7a.php
@@ -326,6 +343,7 @@ storage\framework\views\4b20185d74f69916349b547af5921882.php
 storage\framework\views\4b58e8a6b6736953110312d54bf38d31.php
 storage\framework\views\4f95587a7658cb05735a80cb093a497f.php
 storage\framework\views\56595294ee291b65fac38c234a14d063.php
+storage\framework\views\5b290d1076a93087c074cb9b13187cf0.php
 storage\framework\views\5c0bdedc719924690cced7e302b8bf67.php
 storage\framework\views\61dcbe8020a7f47c9b9ec8b6c99f47fb.php
 storage\framework\views\65df369a4528e71cd6754e70ddb11ac3.php
@@ -367,6 +385,7 @@ storage\framework\views\e853581d5a244b297cd5541739ccf847.php
 storage\framework\views\f03997e446bad3f066fd89508960f607.php
 storage\framework\views\f188a06199ad1d49f7dab7ff511d2a90.php
 storage\framework\views\f49d54ba614b452869e77f68e82f8e78.php
+storage\framework\views\fa54ba9e6927a3266ebc1f8a53442eb9.php
 storage\framework\views\fae151e9517f1219a945f6532af53a86.php
 tests\Feature
 tests\Unit
@@ -381,120 +400,10 @@ tests\Feature\Auth\PasswordResetTest.php
 tests\Feature\Auth\PasswordUpdateTest.php
 tests\Feature\Auth\RegistrationTest.php
 tests\Unit\ExampleTest.php
-whatsapp-service\baileys_auth_info
 whatsapp-service\node_modules
 whatsapp-service\index.js
 whatsapp-service\package-lock.json
 whatsapp-service\package.json
-whatsapp-service\baileys_auth_info\app-state-sync-key-AAAAAN4b.json
-whatsapp-service\baileys_auth_info\app-state-sync-key-AAAAAN4K.json
-whatsapp-service\baileys_auth_info\app-state-sync-key-AAAAAN4M.json
-whatsapp-service\baileys_auth_info\app-state-sync-key-AAAAAN4O.json
-whatsapp-service\baileys_auth_info\app-state-sync-key-AAAAAN4Q.json
-whatsapp-service\baileys_auth_info\app-state-sync-key-AAAAAN4R.json
-whatsapp-service\baileys_auth_info\app-state-sync-key-AAAAAN4S.json
-whatsapp-service\baileys_auth_info\app-state-sync-key-AAAAAN4T.json
-whatsapp-service\baileys_auth_info\app-state-sync-key-AAAAAN4U.json
-whatsapp-service\baileys_auth_info\app-state-sync-key-AAAAAN4V.json
-whatsapp-service\baileys_auth_info\app-state-sync-key-AAAAAN4W.json
-whatsapp-service\baileys_auth_info\app-state-sync-key-AAAAAN4X.json
-whatsapp-service\baileys_auth_info\app-state-sync-key-AAAAAN4Y.json
-whatsapp-service\baileys_auth_info\app-state-sync-key-AAAAAN4Z.json
-whatsapp-service\baileys_auth_info\app-state-sync-key-AAcAAN4L.json
-whatsapp-service\baileys_auth_info\app-state-sync-key-AAcAAN4N.json
-whatsapp-service\baileys_auth_info\app-state-sync-key-AAcAAN4P.json
-whatsapp-service\baileys_auth_info\app-state-sync-version-regular.json
-whatsapp-service\baileys_auth_info\app-state-sync-version-regular_low.json
-whatsapp-service\baileys_auth_info\creds.json
-whatsapp-service\baileys_auth_info\lid-mapping-134935490900175_reverse.json
-whatsapp-service\baileys_auth_info\lid-mapping-172439195652152_reverse.json
-whatsapp-service\baileys_auth_info\lid-mapping-195773350293676_reverse.json
-whatsapp-service\baileys_auth_info\lid-mapping-209551487930455_reverse.json
-whatsapp-service\baileys_auth_info\lid-mapping-257088638984268_reverse.json
-whatsapp-service\baileys_auth_info\lid-mapping-272447039393860_reverse.json
-whatsapp-service\baileys_auth_info\lid-mapping-46819874758696_reverse.json
-whatsapp-service\baileys_auth_info\lid-mapping-6282292302808.json
-whatsapp-service\baileys_auth_info\lid-mapping-6282296036930.json
-whatsapp-service\baileys_auth_info\lid-mapping-6285179841091.json
-whatsapp-service\baileys_auth_info\lid-mapping-6285342513758.json
-whatsapp-service\baileys_auth_info\lid-mapping-6285343941074.json
-whatsapp-service\baileys_auth_info\lid-mapping-6285888174479.json
-whatsapp-service\baileys_auth_info\lid-mapping-6287825697994.json
-whatsapp-service\baileys_auth_info\pre-key-1.json
-whatsapp-service\baileys_auth_info\pre-key-10.json
-whatsapp-service\baileys_auth_info\pre-key-11.json
-whatsapp-service\baileys_auth_info\pre-key-12.json
-whatsapp-service\baileys_auth_info\pre-key-13.json
-whatsapp-service\baileys_auth_info\pre-key-14.json
-whatsapp-service\baileys_auth_info\pre-key-15.json
-whatsapp-service\baileys_auth_info\pre-key-16.json
-whatsapp-service\baileys_auth_info\pre-key-17.json
-whatsapp-service\baileys_auth_info\pre-key-18.json
-whatsapp-service\baileys_auth_info\pre-key-2.json
-whatsapp-service\baileys_auth_info\pre-key-20.json
-whatsapp-service\baileys_auth_info\pre-key-22.json
-whatsapp-service\baileys_auth_info\pre-key-24.json
-whatsapp-service\baileys_auth_info\pre-key-25.json
-whatsapp-service\baileys_auth_info\pre-key-26.json
-whatsapp-service\baileys_auth_info\pre-key-27.json
-whatsapp-service\baileys_auth_info\pre-key-3.json
-whatsapp-service\baileys_auth_info\pre-key-30.json
-whatsapp-service\baileys_auth_info\pre-key-4.json
-whatsapp-service\baileys_auth_info\pre-key-41.json
-whatsapp-service\baileys_auth_info\pre-key-42.json
-whatsapp-service\baileys_auth_info\pre-key-43.json
-whatsapp-service\baileys_auth_info\pre-key-44.json
-whatsapp-service\baileys_auth_info\pre-key-45.json
-whatsapp-service\baileys_auth_info\pre-key-49.json
-whatsapp-service\baileys_auth_info\pre-key-5.json
-whatsapp-service\baileys_auth_info\pre-key-50.json
-whatsapp-service\baileys_auth_info\pre-key-51.json
-whatsapp-service\baileys_auth_info\pre-key-52.json
-whatsapp-service\baileys_auth_info\pre-key-53.json
-whatsapp-service\baileys_auth_info\pre-key-54.json
-whatsapp-service\baileys_auth_info\pre-key-55.json
-whatsapp-service\baileys_auth_info\pre-key-56.json
-whatsapp-service\baileys_auth_info\pre-key-57.json
-whatsapp-service\baileys_auth_info\pre-key-58.json
-whatsapp-service\baileys_auth_info\pre-key-59.json
-whatsapp-service\baileys_auth_info\pre-key-6.json
-whatsapp-service\baileys_auth_info\pre-key-60.json
-whatsapp-service\baileys_auth_info\pre-key-61.json
-whatsapp-service\baileys_auth_info\pre-key-62.json
-whatsapp-service\baileys_auth_info\pre-key-63.json
-whatsapp-service\baileys_auth_info\pre-key-64.json
-whatsapp-service\baileys_auth_info\pre-key-65.json
-whatsapp-service\baileys_auth_info\pre-key-66.json
-whatsapp-service\baileys_auth_info\pre-key-67.json
-whatsapp-service\baileys_auth_info\pre-key-68.json
-whatsapp-service\baileys_auth_info\pre-key-69.json
-whatsapp-service\baileys_auth_info\pre-key-7.json
-whatsapp-service\baileys_auth_info\pre-key-70.json
-whatsapp-service\baileys_auth_info\pre-key-71.json
-whatsapp-service\baileys_auth_info\pre-key-72.json
-whatsapp-service\baileys_auth_info\pre-key-73.json
-whatsapp-service\baileys_auth_info\pre-key-74.json
-whatsapp-service\baileys_auth_info\pre-key-75.json
-whatsapp-service\baileys_auth_info\pre-key-76.json
-whatsapp-service\baileys_auth_info\pre-key-77.json
-whatsapp-service\baileys_auth_info\pre-key-78.json
-whatsapp-service\baileys_auth_info\pre-key-8.json
-whatsapp-service\baileys_auth_info\pre-key-9.json
-whatsapp-service\baileys_auth_info\sender-key-120363421135933006@g.us--134935490900175_1--1.json
-whatsapp-service\baileys_auth_info\sender-key-status@broadcast--6282292302808--0.json
-whatsapp-service\baileys_auth_info\sender-key-status@broadcast--6285343941074--0.json
-whatsapp-service\baileys_auth_info\session-134935490900175_1.1.json
-whatsapp-service\baileys_auth_info\session-172439195652152_1.0.json
-whatsapp-service\baileys_auth_info\session-195773350293676_1.0.json
-whatsapp-service\baileys_auth_info\session-209551487930455_1.0.json
-whatsapp-service\baileys_auth_info\session-209551487930455_1.39.json
-whatsapp-service\baileys_auth_info\session-209551487930455_1.40.json
-whatsapp-service\baileys_auth_info\session-257088638984268_1.0.json
-whatsapp-service\baileys_auth_info\session-257088638984268_1.17.json
-whatsapp-service\baileys_auth_info\session-257088638984268_1.18.json
-whatsapp-service\baileys_auth_info\session-257088638984268_1.7.json
-whatsapp-service\baileys_auth_info\session-272447039393860_1.0.json
-whatsapp-service\baileys_auth_info\session-46819874758696_1.0.json
 ```
 
 
@@ -508,11 +417,11 @@ Branch:
 main
 
 Last 5 commits:
-c128087 crud siswa
-991e152 testing pre hasil
-0fb2761 fix error
-e300e86 add pengaturan di bendahara
-fa7a320 update tabel tunggakan otomatis
+e018a25 test deploy
+34889ab ubah format kwitansi
+e2f5296 add filter akun wali dan siswa
+220cb90 tadi hilang midtrans
+1b209e4 fix 1
 ```
 
 
@@ -626,6 +535,7 @@ use App\Http\Controllers\PilihMetodeController;
 use App\Http\Controllers\LaporanController;
 use App\Http\Controllers\PengaturanController;
 use App\Http\Controllers\DetailSiswaController;
+use App\Http\Controllers\AkunWaliController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -664,6 +574,10 @@ Route::middleware(['auth', 'role:bendahara'])->group(function () {
     Route::post('/pengaturan', [PengaturanController::class, 'update'])->name('pengaturan.update');
 
     Route::resource('siswa', SiswaController::class)->except(['index', 'show']);
+
+    Route::post('/siswa/{siswa}/reset-password', [SiswaController::class, 'resetPassword'])->name('siswa.reset-password');
+    Route::resource('akun', AkunWaliController::class)->except(['create', 'store', 'show', 'destroy'])->parameters(['akun' => 'user']);
+Route::post('/akun/{user}/reset-password', [AkunWaliController::class, 'resetPassword'])->name('akun.reset-password');
 });
 
 Route::middleware(['auth', 'role:wali_murid'])->group(function () {
@@ -724,69 +638,74 @@ require __DIR__ . '/auth.php';
 ## Routes (from command)
 ```
 
-  GET|HEAD        / .................................................................................................................. 
-  GET|HEAD        _debugbar/assets/javascript ............................ debugbar.assets.js ΓÇ║ Barryvdh\Debugbar ΓÇ║ AssetController@js
-  GET|HEAD        _debugbar/assets/stylesheets ......................... debugbar.assets.css ΓÇ║ Barryvdh\Debugbar ΓÇ║ AssetController@css
-  DELETE          _debugbar/cache/{key}/{tags?} ................... debugbar.cache.delete ΓÇ║ Barryvdh\Debugbar ΓÇ║ CacheController@delete
-  GET|HEAD        _debugbar/clockwork/{id} .................. debugbar.clockwork ΓÇ║ Barryvdh\Debugbar ΓÇ║ OpenHandlerController@clockwork
-  GET|HEAD        _debugbar/open ............................. debugbar.openhandler ΓÇ║ Barryvdh\Debugbar ΓÇ║ OpenHandlerController@handle
-  POST            _debugbar/queries/explain ................. debugbar.queries.explain ΓÇ║ Barryvdh\Debugbar ΓÇ║ QueriesController@explain
-  GET|HEAD        api/locations ......................................................... api.locations ΓÇ║ Api\LocationController@index
-  GET|HEAD        bendahara/dashboard ...................................... bendahara.dashboard ΓÇ║ Bendahara\DashboardController@index
-  GET|HEAD        confirm-password ........................................ password.confirm ΓÇ║ Auth\ConfirmablePasswordController@show
-  POST            confirm-password .......................................................... Auth\ConfirmablePasswordController@store
-  GET|HEAD        dashboard .......................................................................... dashboard ΓÇ║ DashboardController
-  GET|HEAD        detail-siswa/{siswa} ............................................... wali.detail-siswa ΓÇ║ DetailSiswaController@index
-  POST            email/verification-notification ............. verification.send ΓÇ║ Auth\EmailVerificationNotificationController@store
-  GET|HEAD        forgot-password ......................................... password.request ΓÇ║ Auth\PasswordResetLinkController@create
-  POST            forgot-password ............................................ password.email ΓÇ║ Auth\PasswordResetLinkController@store
-  GET|HEAD        ketua/dashboard ....................................... ketua.dashboard ΓÇ║ KetuaYayasan\DashboardController@dashboard
-  GET|HEAD        kwitansi/download/{kwitansi} ....................................... kwitansi.download ΓÇ║ KwitansiController@download
-  GET|HEAD        laporan .................................................................... laporan.index ΓÇ║ LaporanController@index
-  GET|HEAD        laporan/excel ................................................. laporan.export.excel ΓÇ║ LaporanController@exportExcel
-  GET|HEAD        laporan/pdf ....................................................... laporan.export.pdf ΓÇ║ LaporanController@exportPdf
-  GET|HEAD        login ........................................................... login ΓÇ║ Auth\AuthenticatedSessionController@create
-  POST            login .................................................................... Auth\AuthenticatedSessionController@store
-  POST            logout ........................................................ logout ΓÇ║ Auth\AuthenticatedSessionController@destroy
-  POST            midtrans/callback ................................................................. MidtransWebhookController@handle
-  POST            midtrans/token ..................................................... midtrans.token ΓÇ║ PembayaranController@snapToken
-  PUT             password .......................................................... password.update ΓÇ║ Auth\PasswordController@update
-  POST            payment/token .................................................. payment.token ΓÇ║ PaymentController@createTransaction
-  GET|HEAD        pembayaran ........................................................ payment.page ΓÇ║ PaymentController@showPaymentPage
-  GET|HEAD        pembayaran/manual/create .............................. pembayaran.manual.create ΓÇ║ PembayaranController@createManual
-  POST            pembayaran/manual/store ................................. pembayaran.manual.store ΓÇ║ PembayaranController@storeManual
-  GET|HEAD        pembayaran/midtrans/{id_siswa} .............................. pembayaran.midtrans.form ΓÇ║ MidtransController@showForm
-  POST            pembayaran/midtrans/{id_siswa} ............................. pembayaran.midtrans ΓÇ║ MidtransController@createMidtrans
-  GET|HEAD        pembayaran/verifikasi ................................. pembayaran.verifikasi ΓÇ║ PembayaranController@indexVerifikasi
-  PATCH           pembayaran/verifikasi/{id} .................... pembayaran.verifikasi.update ΓÇ║ PembayaranController@updateVerifikasi
-  GET|HEAD        pembayaran/{siswa}/pilih-metode .............................. pembayaran.pilih-metode ΓÇ║ PilihMetodeController@index
-  GET|HEAD        pemetaan ................................................................. pemetaan.index ΓÇ║ PemetaanController@index
-  GET|HEAD        pengaturan ........................................................... pengaturan.index ΓÇ║ PengaturanController@index
-  POST            pengaturan ......................................................... pengaturan.update ΓÇ║ PengaturanController@update
-  GET|HEAD        profile ...................................................................... profile.edit ΓÇ║ ProfileController@edit
-  PATCH           profile .................................................................. profile.update ΓÇ║ ProfileController@update
-  DELETE          profile ................................................................ profile.destroy ΓÇ║ ProfileController@destroy
-  GET|HEAD        register ........................................................... register ΓÇ║ Auth\RegisteredUserController@create
-  POST            register ....................................................................... Auth\RegisteredUserController@store
-  POST            reset-password ................................................... password.store ΓÇ║ Auth\NewPasswordController@store
-  GET|HEAD        reset-password/{token} .......................................... password.reset ΓÇ║ Auth\NewPasswordController@create
-  GET|HEAD        riwayat .................................................................... riwayat.index ΓÇ║ RiwayatController@index
-  GET|HEAD        siswa .......................................................................... siswa.index ΓÇ║ SiswaController@index
-  POST            siswa .......................................................................... siswa.store ΓÇ║ SiswaController@store
-  GET|HEAD        siswa/create ................................................................. siswa.create ΓÇ║ SiswaController@create
-  PUT|PATCH       siswa/{siswa} ................................................................ siswa.update ΓÇ║ SiswaController@update
-  DELETE          siswa/{siswa} .............................................................. siswa.destroy ΓÇ║ SiswaController@destroy
-  GET|HEAD        siswa/{siswa}/edit ............................................................... siswa.edit ΓÇ║ SiswaController@edit
-  GET|HEAD        storage/{path} ....................................................................................... storage.local
-  GET|HEAD        tunggakan .............................................................. tunggakan.index ΓÇ║ TunggakanController@index
-  POST            tunggakan/{id_tunggakan}/send-reminder .................. tunggakan.send-reminder ΓÇ║ TunggakanController@sendReminder
-  GET|HEAD        up ................................................................................................................. 
-  GET|HEAD        upload-transfer ....................................... pembayaran.upload.create ΓÇ║ PembayaranController@createUpload
-  POST            upload-transfer ......................................... pembayaran.upload.store ΓÇ║ PembayaranController@storeUpload
-  GET|HEAD        verify-email .......................................... verification.notice ΓÇ║ Auth\EmailVerificationPromptController
-  GET|HEAD        verify-email/{id}/{hash} .......................................... verification.verify ΓÇ║ Auth\VerifyEmailController
+  GET|HEAD        / ............................................................................................................................. 
+  GET|HEAD        _debugbar/assets/javascript ....................................... debugbar.assets.js ΓÇ║ Barryvdh\Debugbar ΓÇ║ AssetController@js
+  GET|HEAD        _debugbar/assets/stylesheets .................................... debugbar.assets.css ΓÇ║ Barryvdh\Debugbar ΓÇ║ AssetController@css
+  DELETE          _debugbar/cache/{key}/{tags?} .............................. debugbar.cache.delete ΓÇ║ Barryvdh\Debugbar ΓÇ║ CacheController@delete
+  GET|HEAD        _debugbar/clockwork/{id} ............................. debugbar.clockwork ΓÇ║ Barryvdh\Debugbar ΓÇ║ OpenHandlerController@clockwork
+  GET|HEAD        _debugbar/open ........................................ debugbar.openhandler ΓÇ║ Barryvdh\Debugbar ΓÇ║ OpenHandlerController@handle
+  POST            _debugbar/queries/explain ............................ debugbar.queries.explain ΓÇ║ Barryvdh\Debugbar ΓÇ║ QueriesController@explain
+  GET|HEAD        akun .................................................................................... akun.index ΓÇ║ AkunWaliController@index
+  PUT|PATCH       akun/{user} ........................................................................... akun.update ΓÇ║ AkunWaliController@update
+  GET|HEAD        akun/{user}/edit .......................................................................... akun.edit ΓÇ║ AkunWaliController@edit
+  POST            akun/{user}/reset-password ............................................. akun.reset-password ΓÇ║ AkunWaliController@resetPassword
+  GET|HEAD        api/locations .................................................................... api.locations ΓÇ║ Api\LocationController@index
+  GET|HEAD        bendahara/dashboard ................................................. bendahara.dashboard ΓÇ║ Bendahara\DashboardController@index
+  GET|HEAD        confirm-password ................................................... password.confirm ΓÇ║ Auth\ConfirmablePasswordController@show
+  POST            confirm-password ..................................................................... Auth\ConfirmablePasswordController@store
+  GET|HEAD        dashboard ..................................................................................... dashboard ΓÇ║ DashboardController
+  GET|HEAD        detail-siswa/{siswa} .......................................................... wali.detail-siswa ΓÇ║ DetailSiswaController@index
+  POST            email/verification-notification ........................ verification.send ΓÇ║ Auth\EmailVerificationNotificationController@store
+  GET|HEAD        forgot-password .................................................... password.request ΓÇ║ Auth\PasswordResetLinkController@create
+  POST            forgot-password ....................................................... password.email ΓÇ║ Auth\PasswordResetLinkController@store
+  GET|HEAD        ketua/dashboard .................................................. ketua.dashboard ΓÇ║ KetuaYayasan\DashboardController@dashboard
+  GET|HEAD        kwitansi/download/{kwitansi} .................................................. kwitansi.download ΓÇ║ KwitansiController@download
+  GET|HEAD        laporan ............................................................................... laporan.index ΓÇ║ LaporanController@index
+  GET|HEAD        laporan/excel ............................................................ laporan.export.excel ΓÇ║ LaporanController@exportExcel
+  GET|HEAD        laporan/pdf .................................................................. laporan.export.pdf ΓÇ║ LaporanController@exportPdf
+  GET|HEAD        login ...................................................................... login ΓÇ║ Auth\AuthenticatedSessionController@create
+  POST            login ............................................................................... Auth\AuthenticatedSessionController@store
+  POST            logout ................................................................... logout ΓÇ║ Auth\AuthenticatedSessionController@destroy
+  POST            midtrans/callback ............................................................................ MidtransWebhookController@handle
+  POST            midtrans/token ................................................................ midtrans.token ΓÇ║ PembayaranController@snapToken
+  PUT             password ..................................................................... password.update ΓÇ║ Auth\PasswordController@update
+  POST            payment/token ............................................................. payment.token ΓÇ║ PaymentController@createTransaction
+  GET|HEAD        pembayaran ................................................................... payment.page ΓÇ║ PaymentController@showPaymentPage
+  GET|HEAD        pembayaran/manual/create ......................................... pembayaran.manual.create ΓÇ║ PembayaranController@createManual
+  POST            pembayaran/manual/store ............................................ pembayaran.manual.store ΓÇ║ PembayaranController@storeManual
+  GET|HEAD        pembayaran/midtrans/{id_siswa} ......................................... pembayaran.midtrans.form ΓÇ║ MidtransController@showForm
+  POST            pembayaran/midtrans/{id_siswa} ........................................ pembayaran.midtrans ΓÇ║ MidtransController@createMidtrans
+  GET|HEAD        pembayaran/verifikasi ............................................ pembayaran.verifikasi ΓÇ║ PembayaranController@indexVerifikasi
+  PATCH           pembayaran/verifikasi/{id} ............................... pembayaran.verifikasi.update ΓÇ║ PembayaranController@updateVerifikasi
+  GET|HEAD        pembayaran/{siswa}/pilih-metode ......................................... pembayaran.pilih-metode ΓÇ║ PilihMetodeController@index
+  GET|HEAD        pemetaan ............................................................................ pemetaan.index ΓÇ║ PemetaanController@index
+  GET|HEAD        pengaturan ...................................................................... pengaturan.index ΓÇ║ PengaturanController@index
+  POST            pengaturan .................................................................... pengaturan.update ΓÇ║ PengaturanController@update
+  GET|HEAD        profile ................................................................................. profile.edit ΓÇ║ ProfileController@edit
+  PATCH           profile ............................................................................. profile.update ΓÇ║ ProfileController@update
+  DELETE          profile ........................................................................... profile.destroy ΓÇ║ ProfileController@destroy
+  GET|HEAD        register ...................................................................... register ΓÇ║ Auth\RegisteredUserController@create
+  POST            register .................................................................................. Auth\RegisteredUserController@store
+  POST            reset-password .............................................................. password.store ΓÇ║ Auth\NewPasswordController@store
+  GET|HEAD        reset-password/{token} ..................................................... password.reset ΓÇ║ Auth\NewPasswordController@create
+  GET|HEAD        riwayat ............................................................................... riwayat.index ΓÇ║ RiwayatController@index
+  GET|HEAD        siswa ..................................................................................... siswa.index ΓÇ║ SiswaController@index
+  POST            siswa ..................................................................................... siswa.store ΓÇ║ SiswaController@store
+  GET|HEAD        siswa/create ............................................................................ siswa.create ΓÇ║ SiswaController@create
+  PUT|PATCH       siswa/{siswa} ........................................................................... siswa.update ΓÇ║ SiswaController@update
+  DELETE          siswa/{siswa} ......................................................................... siswa.destroy ΓÇ║ SiswaController@destroy
+  GET|HEAD        siswa/{siswa}/edit .......................................................................... siswa.edit ΓÇ║ SiswaController@edit
+  POST            siswa/{siswa}/reset-password ............................................. siswa.reset-password ΓÇ║ SiswaController@resetPassword
+  GET|HEAD        storage/{path} .................................................................................................. storage.local
+  GET|HEAD        tunggakan ......................................................................... tunggakan.index ΓÇ║ TunggakanController@index
+  POST            tunggakan/{id_tunggakan}/send-reminder ............................. tunggakan.send-reminder ΓÇ║ TunggakanController@sendReminder
+  GET|HEAD        up ............................................................................................................................ 
+  GET|HEAD        upload-transfer .................................................. pembayaran.upload.create ΓÇ║ PembayaranController@createUpload
+  POST            upload-transfer .................................................... pembayaran.upload.store ΓÇ║ PembayaranController@storeUpload
+  GET|HEAD        verify-email ..................................................... verification.notice ΓÇ║ Auth\EmailVerificationPromptController
+  GET|HEAD        verify-email/{id}/{hash} ..................................................... verification.verify ΓÇ║ Auth\VerifyEmailController
 
-                                                                                                                   Showing [61] routes
+                                                                                                                              Showing [66] routes
 
 ```
 
@@ -1351,6 +1270,76 @@ class DashboardController extends Controller
     }
 }
 
+===== app\Http\Controllers\AkunWaliController.php =====
+<?php
+
+namespace App\Http\Controllers;
+
+use Illuminate\Http\Request;
+use App\Models\User;
+use Illuminate\Validation\Rule;
+use Illuminate\Support\Facades\Hash;
+use App\Jobs\SendPasswordResetNotification;
+
+class AkunWaliController extends Controller
+{
+    // Menampilkan daftar semua akun wali murid
+    public function index(Request $request) // Tambahkan Request
+    {
+        // =======================================================
+        // AWAL PERUBAHAN
+        // =======================================================
+        $query = User::where('role', 'wali_murid')->latest();
+
+        if ($request->filled('search')) {
+            $search = $request->search;
+            $query->where(function ($q) use ($search) {
+                $q->where('name', 'like', "%{$search}%")
+                  ->orWhere('email', 'like', "%{$search}%");
+            });
+        }
+
+        $walis = $query->paginate(15)->withQueryString();
+        // =======================================================
+        // AKHIR PERUBAHAN
+        // =======================================================
+
+        return view('akun.index', compact('walis'));
+    }
+
+    // Menampilkan form edit untuk akun wali murid
+    public function edit(User $user)
+    {
+        return view('akun.edit', compact('user'));
+    }
+
+    // Memperbarui data akun wali murid
+    public function update(Request $request, User $user)
+    {
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'email' => ['required', 'email', 'max:255', Rule::unique('users')->ignore($user->id)],
+            'nomor_wa' => 'nullable|string|max:15',
+        ]);
+
+        $user->update($request->only('name', 'email', 'nomor_wa'));
+
+        return redirect()->route('akun.index')->with('success', 'Data akun wali murid berhasil diperbarui.');
+    }
+
+    // Mereset password dari halaman manajemen
+    public function resetPassword(User $user)
+    {
+        $newPassword = 'Spp' . rand(1000, 9999);
+        $user->password = Hash::make($newPassword);
+        $user->save();
+
+        SendPasswordResetNotification::dispatch($user, $newPassword);
+
+        return back()->with('success', 'Password untuk ' . $user->name . ' berhasil di-reset dan notifikasi telah dikirim.');
+    }
+}
+
 ===== app\Http\Controllers\BendaharaController.php =====
 <?php
 
@@ -1603,68 +1592,73 @@ class KwitansiController extends Controller
         }
 
         try {
-            // 1. Buat record kwitansi di database terlebih dahulu
-            $pembayaran->load(['siswa']);
+            // =======================================================
+            // AWAL PERUBAHAN
+            // =======================================================
+            
+            // 1. Muat relasi siswa beserta walinya
+            $pembayaran->load(['siswa.wali']);
+            
+            // =======================================================
+            // AKHIR PERUBAHAN
+            // =======================================================
+            
             $noKwitansi = 'KW/' . now()->year . '/' . now()->month . '/' . $pembayaran->id_pembayaran;
             $kwitansi = Kwitansi::create([
                 'id_pembayaran' => $pembayaran->id_pembayaran,
                 'no_kwitansi' => $noKwitansi,
                 'tanggal_terbit' => now(),
                 'file_kwitansi' => '', // Kosongkan dulu, akan diisi nanti
-
             ]);
-
-            // 2. Tentukan path template dan path output
+    
             $templatePath = storage_path('app/templates/kwitansi_template.docx');
             if (!file_exists($templatePath)) {
                 Log::error("Template kwitansi tidak ditemukan di: " . $templatePath);
                 return null;
             }
-
+    
             $directoryName = 'kwitansi';
-            // Ubah ekstensi file menjadi .docx
             $fileName = 'kwitansi-' . $pembayaran->id_pembayaran . '-' . time() . '.docx';
             $databasePath = $directoryName . '/' . $fileName;
             $fullOutputPath = storage_path('app/public/' . $databasePath);
-
-            // Pastikan direktori output ada
+    
             Storage::disk('public')->makeDirectory($directoryName);
-
-            // 3. Proses template dengan PhpWord
+    
             $templateProcessor = new TemplateProcessor($templatePath);
-
-            // 4. Siapkan data dan isi placeholder
+    
             $bulanText = is_array($pembayaran->bulan) ? implode(', ', $pembayaran->bulan) : $pembayaran->bulan;
-            // CATATAN: Fungsi terbilang butuh library tambahan seperti `terbilang/terbilang`.
-            // Untuk sementara kita tampilkan angka saja.
             $terbilangText = ucwords(TerbilangHelper::convert($pembayaran->jumlah)) . ' Rupiah';
-
-
+    
             $templateProcessor->setValue('no_kwitansi', $kwitansi->no_kwitansi);
             $templateProcessor->setValue('tanggal_terbit', Carbon::parse($kwitansi->tanggal_terbit)->translatedFormat('d F Y'));
             $templateProcessor->setValue('nama_siswa', $pembayaran->siswa->nama_siswa);
+            
+            // =======================================================
+            // AWAL PERUBAHAN
+            // =======================================================
+            // Tambahkan variabel nama_wali di sini
+            $templateProcessor->setValue('nama_wali', $pembayaran->siswa->wali->name ?? 'Wali Murid');
+            // =======================================================
+            // AKHIR PERUBAHAN
+            // =======================================================
+            
             $templateProcessor->setValue('nis_siswa', $pembayaran->siswa->nis ?? '-');
             $templateProcessor->setValue('bulan_pembayaran', $bulanText);
             $templateProcessor->setValue('tahun_pembayaran', $pembayaran->tahun);
             $templateProcessor->setValue('jumlah_rupiah', number_format($pembayaran->jumlah, 0, ',', '.'));
             $templateProcessor->setValue('jumlah_terbilang', $terbilangText);
-
-
-            // 5. Simpan file .docx yang sudah diisi
+    
             $templateProcessor->saveAs($fullOutputPath);
-
-            // 6. Update record kwitansi dengan path file yang baru
+    
             $kwitansi->update(['file_kwitansi' => $databasePath]);
             SendWhatsappNotification::dispatch($kwitansi);
-
-            
-
+    
             Log::info("Kwitansi .docx berhasil dibuat untuk pembayaran ID {$pembayaran->id_pembayaran}.");
             return $kwitansi;
+            
         } catch (\Exception $e) {
             Log::error("Gagal membuat kwitansi untuk pembayaran ID {$pembayaran->id_pembayaran}: " . $e->getMessage());
             Log::error($e->getTraceAsString());
-            // Jika gagal, hapus record kwitansi yang mungkin sudah terbuat
             if (isset($kwitansi) && $kwitansi->exists) {
                 $kwitansi->delete();
             }
@@ -2337,7 +2331,7 @@ class PembayaranController extends Controller
             ]);
         }
 
-        return redirect()->route('pembayaran.upload.create')->with('success', 'Bukti transfer berhasil diunggah dan menunggu verifikasi.');
+        return redirect()->route('riwayat.index')->with('success', 'Bukti transfer berhasil diunggah dan menunggu verifikasi.');
     }
 
 
@@ -2598,13 +2592,37 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Siswa;
 use App\Models\User;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Validation\Rules;
+use App\Jobs\SendPasswordResetNotification;
+
 
 class SiswaController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $siswas = Siswa::latest()->paginate(10); // Relasi 'guru' dihapus
-        return view('siswa.index', compact('siswas'));
+        $query = Siswa::with('wali')->latest();
+
+        // Logika untuk Search
+        if ($request->filled('search')) {
+            $search = $request->search;
+            $query->where(function ($q) use ($search) {
+                $q->where('nama_siswa', 'like', "%{$search}%")
+                  ->orWhere('nis', 'like', "%{$search}%");
+            });
+        }
+
+        // Logika untuk Filter Kelas
+        if ($request->filled('kelas')) {
+            $query->where('kelas', $request->kelas);
+        }
+
+        $siswas = $query->paginate(15)->withQueryString();
+        
+        // Ambil daftar kelas unik untuk dropdown filter
+        $kelasOptions = Siswa::distinct()->orderBy('kelas')->pluck('kelas');
+
+        return view('siswa.index', compact('siswas', 'kelasOptions'));
     }
 
     public function create()
@@ -2618,12 +2636,37 @@ class SiswaController extends Controller
         $request->validate([
             'nama_siswa' => 'required|string|max:100',
             'nis' => 'required|string|max:50|unique:siswa,nis',
-            'alamat' => 'nullable|string|max:255',
-            'latitude' => 'nullable|numeric',
-            'longitude' => 'nullable|numeric',
+            'kelas' => 'required|string|max:20',
+            'wali_option' => 'required|in:existing,new', // Pilihan metode
         ]);
 
-        Siswa::create($request->all());
+        $id_wali = null;
+
+        // Jika bendahara memilih "wali yang sudah ada"
+        if ($request->wali_option === 'existing') {
+            $request->validate(['id_wali' => 'required|exists:users,id']);
+            $id_wali = $request->id_wali;
+        } 
+        // Jika bendahara memilih "buat akun wali baru"
+        else {
+            $request->validate([
+                'nama_wali' => 'required|string|max:255',
+                'email_wali' => 'required|string|lowercase|email|max:255|unique:'.User::class.',email',
+                'password_wali' => ['required', Rules\Password::defaults()],
+            ]);
+
+            $wali = User::create([
+                'name' => $request->nama_wali,
+                'email' => $request->email_wali,
+                'password' => Hash::make($request->password_wali),
+                'role' => 'wali_murid',
+            ]);
+            $id_wali = $wali->id;
+        }
+
+        // Buat data siswa dengan id_wali yang sudah ditentukan
+        Siswa::create(array_merge($request->only('nama_siswa', 'nis', 'kelas', 'alamat', 'latitude', 'longitude'), ['id_wali' => $id_wali]));
+
         return redirect()->route('siswa.index')->with('success', 'Siswa berhasil ditambahkan.');
     }
 
@@ -2637,26 +2680,45 @@ class SiswaController extends Controller
     public function update(Request $request, $id)
     {
         $siswa = Siswa::findOrFail($id);
-
         $request->validate([
             'nama_siswa' => 'required|string|max:100',
             'nis' => 'required|string|max:50|unique:siswa,nis,' . $siswa->id_siswa . ',id_siswa',
-            'id_guru' => 'nullable|exists:guru,id_guru',
-            'alamat' => 'nullable|string|max:255',
-            'latitude' => 'nullable|numeric',
-            'longitude' => 'nullable|numeric',
+            'kelas' => 'required|string|max:20',
+            'id_wali' => 'required|exists:users,id',
         ]);
-
+        
         $siswa->update($request->all());
-        return redirect()->route('siswa.index')->with('success', 'Siswa berhasil diperbarui.');
+
+        return redirect()->route('siswa.index')->with('success', 'Data siswa berhasil diperbarui.');
     }
 
     public function destroy($id)
     {
         $siswa = Siswa::findOrFail($id);
         $siswa->delete();
-
         return redirect()->route('siswa.index')->with('success', 'Siswa berhasil dihapus.');
+    }
+
+    public function resetPassword(Siswa $siswa)
+    {
+        // Pastikan siswa memiliki wali yang tertaut
+        if (!$siswa->wali) {
+            return back()->with('error', 'Siswa ini tidak memiliki akun wali murid yang tertaut.');
+        }
+
+        $wali = $siswa->wali;
+        
+        // Buat password baru yang acak
+        $newPassword = 'Spp' . rand(1000, 9999);
+
+        // Update password di database
+        $wali->password = Hash::make($newPassword);
+        $wali->save();
+
+        // Kirim notifikasi berisi password baru ke wali murid
+        SendPasswordResetNotification::dispatch($wali, $newPassword);
+
+        return back()->with('success', 'Password untuk wali murid ' . $wali->name . ' berhasil di-reset dan telah dikirimkan melalui WhatsApp.');
     }
 }
 
@@ -2952,6 +3014,102 @@ class Tunggakan extends Model
 
 ## Views & UI Files Content
 ```
+===== resources\views\akun\edit.blade.php =====
+<x-app-layout>
+    <x-slot name="header">
+        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+            {{ __('Edit Akun: ') }} {{ $user->name }}
+        </h2>
+    </x-slot>
+
+    <div class="py-8">
+        <div class="max-w-2xl mx-auto sm:px-6 lg:px-8">
+            <div class="bg-white p-6 md:p-8 rounded-xl shadow-md">
+                <form action="{{ route('akun.update', $user) }}" method="POST">
+                    @csrf
+                    @method('PUT')
+                    <div class="space-y-4">
+                        <div>
+                            <label for="name" class="block text-sm font-medium text-gray-700">Nama Lengkap</label>
+                            <input type="text" name="name" id="name" value="{{ old('name', $user->name) }}" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm" required>
+                        </div>
+                        <div>
+                            <label for="email" class="block text-sm font-medium text-gray-700">Email</label>
+                            <input type="email" name="email" id="email" value="{{ old('email', $user->email) }}" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm" required>
+                        </div>
+                        <div>
+                            <label for="nomor_wa" class="block text-sm font-medium text-gray-700">No. WhatsApp</label>
+                            <input type="text" name="nomor_wa" id="nomor_wa" value="{{ old('nomor_wa', $user->nomor_wa) }}" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm">
+                        </div>
+                    </div>
+
+                    <div class="mt-8 border-t pt-6 flex justify-end">
+                        <a href="{{ route('akun.index') }}" class="text-gray-600 py-2 px-4 rounded-md hover:bg-gray-100">Batal</a>
+                        <button type="submit" class="ml-4 px-4 py-2 bg-indigo-600 text-white rounded-md hover:bg-indigo-700">Update Akun</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</x-app-layout>
+
+===== resources\views\akun\index.blade.php =====
+<x-app-layout>
+    <x-slot name="header">
+        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+            {{ __('Manajemen Akun Wali Murid') }}
+        </h2>
+    </x-slot>
+
+    <div class="py-8">
+        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+            <div class="mb-6 bg-white p-4 rounded-xl shadow-md">
+                <form action="{{ route('akun.index') }}" method="GET">
+                    <div>
+                        <label for="search" class="sr-only">Cari</label>
+                        <input type="text" name="search" id="search" placeholder="Cari Nama Wali atau Email..." value="{{ request('search') }}" class="block w-full border-gray-300 rounded-md shadow-sm">
+                    </div>
+                </form>
+            </div>
+            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
+                <div class="overflow-x-auto">
+                    <table class="min-w-full divide-y divide-gray-200">
+                        <thead class="bg-gray-50">
+                            <tr>
+                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Nama Wali Murid</th>
+                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Email</th>
+                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">No. WhatsApp</th>
+                                <th class="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase">Aksi</th>
+                            </tr>
+                        </thead>
+                        <tbody class="bg-white divide-y divide-gray-200">
+                            @forelse ($walis as $wali)
+                                <tr class="hover:bg-gray-50">
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">{{ $wali->name }}</td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{ $wali->email }}</td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{ $wali->nomor_wa ?? '-' }}</td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium space-x-4">
+                                        <form action="{{ route('akun.reset-password', $wali) }}" method="POST" class="inline" onsubmit="return confirm('Yakin ingin me-reset password untuk wali murid ini?')">
+                                            @csrf
+                                            <button type="submit" class="text-yellow-600 hover:text-yellow-900">Reset Pass</button>
+                                        </form>
+                                        <a href="{{ route('akun.edit', $wali) }}" class="text-indigo-600 hover:text-indigo-900">Edit</a>
+                                    </td>
+                                </tr>
+                            @empty
+                                <tr><td colspan="4" class="px-6 py-12 text-center text-gray-500">Belum ada data akun wali murid.</td></tr>
+                            @endforelse
+                        </tbody>
+                    </table>
+                </div>
+                @if ($walis->hasPages())
+                    <div class="p-4 border-t border-gray-200">{{ $walis->links() }}</div>
+                @endif
+            </div>
+        </div>
+    </div>
+</x-app-layout>
+
 ===== resources\views\auth\confirm-password.blade.php =====
 <x-guest-layout>
     <div class="mb-4 text-sm text-gray-600">
@@ -3065,14 +3223,14 @@ class Tunggakan extends Model
             </x-primary-button>
         </div>
 
-        <div class="mt-6 text-center">
+        {{-- <div class="mt-6 text-center">
             <p class="text-sm text-slate-500">
                 Belum punya akun?
                 <a href="{{ route('register') }}" class="font-medium text-sky-600 hover:underline">
                     Daftar di sini
                 </a>
             </p>
-        </div>
+        </div> --}}
     </form>
 </x-guest-layout>
 
@@ -4096,62 +4254,110 @@ $classes = ($active ?? false)
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 
-    <style>[x-cloak] { display: none !important; }</style>
+    <style>
+        [x-cloak] {
+            display: none !important;
+        }
+    </style>
 
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 
     <!-- Di dalam <head> atau sebelum </body> -->
-<script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
 </head>
 
 <body x-data="{ sidebarOpen: false }" class="font-sans antialiased bg-gray-100">
     <div class="min-h-screen flex">
 
         <!-- Sidebar -->
-        <div
-            :class="sidebarOpen ? 'translate-x-0' : '-translate-x-full'"
-            class="fixed inset-y-0 left-0 w-64 z-30 bg-white border-r border-gray-200 transform transition-transform duration-200 ease-in-out md:relative md:translate-x-0 md:z-auto"
-        >
+        <div :class="sidebarOpen ? 'translate-x-0' : '-translate-x-full'"
+            class="fixed inset-y-0 left-0 w-64 z-30 bg-white border-r border-gray-200 transform transition-transform duration-200 ease-in-out md:relative md:translate-x-0 md:z-auto">
             @include('layouts.navigation')
         </div>
 
         <!-- Overlay -->
-        <div
-            x-show="sidebarOpen"
-            @click="sidebarOpen = false"
-            x-cloak
-            class="fixed inset-0 bg-black bg-opacity-25 z-20 md:hidden"
-        ></div>
+    <div x-show="sidebarOpen" @click="sidebarOpen = false" x-cloak
+            class="fixed inset-0 bg-black bg-opacity-25 z-20 md:hidden"></div>
 
         <!-- Main content -->
         <div class="flex-1 flex flex-col w-full">
-
             <!-- Mobile topbar -->
-            <header class="bg-white border-b px-4 py-3 flex items-center justify-between md:hidden relative">
+            <header class="bg-white border-b px-4 py-3 flex items-center justify-between md:hidden relative p">
                 <!-- Tombol hamburger -->
                 <button @click="sidebarOpen = true" class="text-gray-500 focus:outline-none z-10">
-                    <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2"
-                         viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round"
-                              d="M4 6h16M4 12h16M4 18h16"/>
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
                     </svg>
                 </button>
-            
+
                 <!-- Judul di tengah -->
                 <div class="absolute left-1/2 transform -translate-x-1/2 text-lg font-bold text-gray-800">
                     {{ config('app.name', 'MY APP') }}
                 </div>
+
+                <!-- User dropdown (mobile) -->
+                <div x-data="{ open: false }" class="relative z-10">
+                    <button @click="open = !open"
+                        class="flex items-center space-x-1 px-3 py-2 text-sm font-medium bg-gray-100 text-gray-700 rounded-lg hover:bg-gray-200">
+                        <span class="hidden sm:inline">{{ Auth::user()->name }}</span>
+                        <svg :class="{ 'rotate-180': open }" class="w-4 h-4 transform transition-transform"
+                            fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
+                        </svg>
+                    </button>
+
+                    <div x-show="open" x-cloak
+                        class="absolute right-0 mt-2 w-40 bg-white rounded-lg shadow-lg py-1 text-sm text-gray-700">
+                        <a href="{{ route('profile.edit') }}" class="block px-4 py-2 hover:bg-gray-100">
+                            {{ __('Profile') }}
+                        </a>
+                        <form method="POST" action="{{ route('logout') }}">
+                            @csrf
+                            <button type="submit"
+                                class="w-full text-left px-4 py-2 text-red-600 hover:text-red-700 hover:bg-red-50">
+                                {{ __('Log Out') }}
+                            </button>
+                        </form>
+                    </div>
+                </div>
             </header>
-            
+
+
 
             <!-- Optional header (desktop only) -->
             @isset($header)
                 <header class="bg-white shadow hidden md:block">
-                    <div class="px-6 py-7">
+                    <div class="px-6 py-[22px] flex items-center justify-between">
                         {{ $header }}
+
+                        <div x-data="{ open: false }" class="relative">
+                            <button @click="open = !open"
+                                class="flex items-center space-x-2 px-4 py-2 text-sm font-medium bg-gray-100 text-gray-700 rounded-lg hover:bg-gray-200">
+                                <span>{{ Auth::user()->name }}</span>
+                                <svg :class="{ 'rotate-180': open }" class="w-4 h-4 transform transition-transform"
+                                    fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
+                                </svg>
+                            </button>
+
+                            <div x-show="open" x-cloak
+                                class="absolute right-0 mt-2 w-40 bg-white rounded-lg shadow-lg py-1 text-sm text-gray-700">
+                                <a href="{{ route('profile.edit') }}" class="block px-4 py-2 hover:bg-gray-100">
+                                    {{ __('Profile') }}
+                                </a>
+                                <form method="POST" action="{{ route('logout') }}">
+                                    @csrf
+                                    <button type="submit"
+                                        class="w-full text-left px-4 py-2 text-red-600 hover:text-red-700 hover:bg-red-50">
+                                        {{ __('Log Out') }}
+                                    </button>
+                                </form>
+                            </div>
+                        </div>
                     </div>
                 </header>
             @endisset
+
 
             <!-- Page Content -->
             <main class="flex-1 p-6">
@@ -4160,34 +4366,34 @@ $classes = ($active ?? false)
         </div>
     </div>
     @if (session('success'))
-    <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            Swal.fire({
-                icon: 'success',
-                title: 'Berhasil!',
-                text: '{{ session('success') }}',
-                timer: 2500,
-                showConfirmButton: false
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Berhasil!',
+                    text: '{{ session('success') }}',
+                    timer: 2500,
+                    showConfirmButton: false
+                });
             });
-        });
-    </script>
-@endif
+        </script>
+    @endif
 
-@if (session('error'))
-    <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            Swal.fire({
-                icon: 'error',
-                title: 'Gagal!',
-                text: '{{ session('error') }}',
-                timer: 2500,
-                showConfirmButton: false
+    @if (session('error'))
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Gagal!',
+                    text: '{{ session('error') }}',
+                    timer: 2500,
+                    showConfirmButton: false
+                });
             });
-        });
-    </script>
-@endif
+        </script>
+    @endif
 
-@stack('scripts')
+    @stack('scripts')
 </body>
 
 </html>
@@ -4247,40 +4453,57 @@ $classes = ($active ?? false)
 <aside class="h-full flex flex-col md:h-screen md:sticky md:top-0">
     <!-- Logo -->
     <div class="p-6 border-b border-gray-200">
-        <a href="{{ route('dashboard') }}" class="text-2xl font-bold text-gray-800">
-            {{ config('app.name', 'MY APP') }}
+        {{-- PATOKAN: resources/views/layouts/navigation.blade.php --}}
+        {{-- AWAL PERUBAHAN --}}
+        <a href="{{ route('dashboard') }}" class="flex items-center justify-center space-x-3">
+            {{-- Logo Kiri --}}
+            <img src="{{ asset('images/logoyayasan.jpg') }}" alt="Logo 1" class="h-10 w-auto">
+
+            {{-- Tulisan di Tengah --}}
+            <span class="text-xl font-bold text-gray-800 whitespace-nowrap">
+                {{ config('app.name', 'Al Azhar') }}
+            </span>
+
+            {{-- Logo Kanan --}}
+            <img src="{{ asset('images/logoalazhar.png') }}" alt="Logo 2" class="h-10 w-auto">
         </a>
+        {{-- AKHIR PERUBAHAN --}}
     </div>
     <!-- Nav Links -->
     <nav class="flex-1 px-4 py-6 space-y-2">
+
         <x-nav-link :href="route('dashboard')" :active="request()->routeIs(['dashboard', 'bendahara.dashboard', 'ketua.dashboard'])">
             <img src="{{ asset('images/homeicon.png') }}" alt="icon" class="w-4 h-4 mr-2">
             {{ __('Dashboard') }}
         </x-nav-link>
 
-        {{-- ======================================================= --}}
-        {{-- AWAL LOGIKA BARU UNTUK ROLE --}}
-        {{-- ======================================================= --}}
+        {{-- =======================================================
+            AWAL LOGIKA BARU UNTUK ROLE
+        ======================================================= --}}
 
         {{-- Menu Khusus Bendahara (Operasional) --}}
         @if (auth()->user()?->role === 'bendahara')
+            <hr class="my-2 border-gray-200">
+            <p class="px-4 text-xs font-semibold text-gray-400 uppercase">Operasional</p>
+
             <x-nav-link :href="route('pembayaran.manual.create')" :active="request()->routeIs('pembayaran.manual.create')">
                 <img src="{{ asset('images/inputicon.png') }}" alt="icon" class="w-4 h-4 mr-2">
-                {{ __('Input Manual') }}
+                {{ __('Input Pembayaran SPP Manual') }}
             </x-nav-link>
+
             <x-nav-link :href="route('pembayaran.verifikasi')" :active="request()->routeIs('pembayaran.verifikasi')">
                 <img src="{{ asset('images/verifyicon.png') }}" alt="icon" class="w-4 h-4 mr-2">
-                {{ __('Verifikasi Pembayaran') }}
+                {{ __('Verifikasi Pembayaran SPP') }}
             </x-nav-link>
+
             <x-nav-link :href="route('tunggakan.index')" :active="request()->routeIs('tunggakan.index')">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-2" fill="none" viewBox="0 0 24 24"
                     stroke="currentColor" stroke-width="2">
                     <path stroke-linecap="round" stroke-linejoin="round"
                         d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                 </svg>
-                {{ __('Tunggakan') }}
+                {{ __('Tunggakan SPP') }}
             </x-nav-link>
-
 
             <x-nav-link :href="route('pengaturan.index')" :active="request()->routeIs('pengaturan.index')">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-2" fill="none" viewBox="0 0 24 24"
@@ -4293,8 +4516,11 @@ $classes = ($active ?? false)
             </x-nav-link>
         @endif
 
-        {{-- Menu Bersama (Bendahara & Ketua Yayasan) --}}
+        {{-- Menu Bersama Bendahara & Ketua Yayasan --}}
         @if (in_array(auth()->user()?->role, ['bendahara', 'ketua_yayasan']))
+            <hr class="my-2 border-gray-200">
+            <p class="px-4 text-xs font-semibold text-gray-400 uppercase">Data & Laporan</p>
+
             <x-nav-link :href="route('siswa.index')" :active="request()->routeIs('siswa.index')">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-2" fill="none" viewBox="0 0 24 24"
                     stroke="currentColor" stroke-width="2">
@@ -4306,10 +4532,12 @@ $classes = ($active ?? false)
                 </svg>
                 {{ __('Data Siswa') }}
             </x-nav-link>
+
             <x-nav-link :href="route('riwayat.index')" :active="request()->routeIs('riwayat.index')">
                 <img src="{{ asset('images/historyicon.png') }}" alt="icon" class="w-4 h-4 mr-2">
                 {{ __('Riwayat Pembayaran') }}
             </x-nav-link>
+
             <x-nav-link :href="route('pemetaan.index')" :active="request()->routeIs('pemetaan.index')">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-2" fill="none" viewBox="0 0 24 24"
                     stroke="currentColor" stroke-width="2">
@@ -4319,6 +4547,7 @@ $classes = ($active ?? false)
                 </svg>
                 {{ __('Pemetaan') }}
             </x-nav-link>
+
             <x-nav-link :href="route('laporan.index')" :active="request()->routeIs('laporan.index')">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-2" fill="none" viewBox="0 0 24 24"
                     stroke="currentColor" stroke-width="2">
@@ -4331,54 +4560,83 @@ $classes = ($active ?? false)
 
         {{-- Menu Khusus Wali Murid --}}
         @if (auth()->user()?->role === 'wali_murid')
+            <hr class="my-2 border-gray-200">
+            <p class="px-4 text-xs font-semibold text-gray-400 uppercase">Wali Murid</p>
+
             <x-nav-link :href="route('pembayaran.upload.create')" :active="request()->routeIs('pembayaran.upload.create')">
                 <img src="{{ asset('images/uploadicon.png') }}" alt="icon" class="w-4 h-4 mr-2">
                 {{ __('Upload Bukti Transfer') }}
             </x-nav-link>
+
             <x-nav-link :href="route('riwayat.index')" :active="request()->routeIs('riwayat.index')">
                 <img src="{{ asset('images/historyicon.png') }}" alt="icon" class="w-4 h-4 mr-2">
                 {{ __('Riwayat Pembayaran') }}
             </x-nav-link>
             @if ($midtransAktif)
-                <div class="relative">
-                    <button type="button"
-                        class="flex items-center px-3 py-2 text-sm font-medium text-gray-700 hover:text-gray-900"
-                        id="siswa-menu" aria-expanded="false" aria-haspopup="true">
-                        <img src="{{ asset('images/walleticon.png') }}" alt="icon" class="w-5 h-5 mr-2">
+                @php
+                    $anakWali = Auth::user()->siswa;
+                @endphp
+
+                {{-- Jika wali hanya punya 1 anak, tampilkan sebagai link biasa --}}
+                @if ($anakWali->count() == 1)
+                    <x-nav-link :href="route('pembayaran.midtrans.form', $anakWali->first()->id_siswa)" :active="request()->routeIs('pembayaran.midtrans.form')">
+                        <img src="{{ asset('images/walleticon.png') }}" alt="icon" class="w-4 h-4 mr-2">
                         {{ __('Pembayaran Online') }}
-                        <svg class="ml-2 h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
-                        </svg>
-                    </button>
-                    <div class="absolute hidden mt-2 w-48 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5"
-                        id="siswa-menu-dropdown">
-                        <div class="py-1" role="menu" aria-orientation="vertical" aria-labelledby="siswa-menu">
-                            @foreach (Auth::user()->siswa as $item)
-                                <a href="{{ route('pembayaran.midtrans.form', $item->id_siswa) }}"
-                                    class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" role="menuitem">
-                                    {{ $item->nama_siswa }}
-                                </a>
-                            @endforeach
+                    </x-nav-link>
+
+                {{-- Jika punya lebih dari 1 anak, baru tampilkan dropdown --}}
+                @elseif ($anakWali->count() > 1)
+                    <div class="relative">
+                        <button type="button" class="flex items-center w-full px-4 py-2 rounded-lg text-gray-600 hover:bg-gray-100 hover:text-gray-900" id="siswa-menu" aria-expanded="false" aria-haspopup="true">
+                            <img src="{{ asset('images/walleticon.png') }}" alt="icon" class="w-4 h-4 mr-2">
+                            <span class="text-sm font-medium">{{ __('Pembayaran Online') }}</span>
+                            <svg class="ml-auto h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" /></svg>
+                        </button>
+                        <div class="absolute hidden mt-2 w-48 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 z-10" id="siswa-menu-dropdown">
+                            <div class="py-1" role="menu" aria-orientation="vertical" aria-labelledby="siswa-menu">
+                                @foreach ($anakWali as $item)
+                                    <a href="{{ route('pembayaran.midtrans.form', $item->id_siswa) }}"
+                                       class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" role="menuitem">
+                                        {{ $item->nama_siswa }}
+                                    </a>
+                                @endforeach
+                            </div>
                         </div>
                     </div>
+                
+                @endif
+            @else
+                {{-- JIKA MIDTRANS NON-AKTIF: Tampilkan menu disabled --}}
+                <div 
+                    onclick="Swal.fire('Informasi', 'Pembayaran online saat ini sedang tidak tersedia.', 'info')"
+                    class="flex items-center w-full px-4 py-2 rounded-lg text-gray-400 cursor-not-allowed bg-gray-50"
+                >
+                    <img src="{{ asset('images/walleticon.png') }}" alt="icon" class="w-4 h-4 mr-2 opacity-50">
+                    <span class="text-sm font-medium">{{ __('Pembayaran Online') }}</span>
                 </div>
             @endif
-            <script>
-                // Pastikan script hanya ada jika tombolnya ada
-                if (document.getElementById('siswa-menu')) {
-                    document.getElementById('siswa-menu').addEventListener('click', function() {
-                        document.getElementById('siswa-menu-dropdown').classList.toggle('hidden');
-                    });
-                }
-            </script>
+
         @endif
 
-        {{-- ======================================================= --}}
-        {{-- AKHIR LOGIKA BARU UNTUK ROLE --}}
-        {{-- ======================================================= --}}
+        {{-- Akun Wali Murid hanya bendahara --}}
+        @if (auth()->user()?->role === 'bendahara')
+            <hr class="my-2 border-gray-200">
+            <p class="px-4 text-xs font-semibold text-gray-400 uppercase">Manajemen</p>
+
+            <x-nav-link :href="route('akun.index')" :active="request()->routeIs('akun.index')">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-2" fill="none" viewBox="0 0 24 24"
+                    stroke="currentColor" stroke-width="2">
+                    <path stroke-linecap="round" stroke-linejoin="round"
+                        d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                </svg>
+                {{ __('Akun Wali Murid') }}
+            </x-nav-link>
+        @endif
+
     </nav>
-    <!-- User Dropdown -->
-    <div x-data="{ open: false }" class="px-4 py-4 border-t border-gray-200">
+
+    <!-- Sidebar Footer -->
+    {{-- <div x-data="{ open: false }" class="px-4 py-4 border-t border-gray-200">
         <button @click="open = !open"
             class="w-full flex items-center justify-between px-4 py-2 text-sm font-medium text-left bg-gray-100 text-gray-700 rounded-lg hover:bg-gray-200">
             <span>{{ Auth::user()->name }}</span>
@@ -4389,9 +4647,9 @@ $classes = ($active ?? false)
         </button>
 
         <div x-show="open" x-cloak class="mt-2 space-y-1 bg-white rounded-lg shadow-inner text-sm text-gray-700">
-            <a href="{{ route('profile.edit') }}"
-                class="block px-4 py-2 hover:bg-gray-100 rounded-lg">{{ __('Profile') }}</a>
-
+            <a href="{{ route('profile.edit') }}" class="block px-4 py-2 hover:bg-gray-100 rounded-lg">
+                {{ __('Profile') }}
+            </a>
             <form method="POST" action="{{ route('logout') }}">
                 @csrf
                 <button type="submit"
@@ -4400,7 +4658,7 @@ $classes = ($active ?? false)
                 </button>
             </form>
         </div>
-    </div>
+    </div> --}}
 </aside>
 
 ===== resources\views\pembayaran\manual_create.blade.php =====
@@ -4965,8 +5223,8 @@ $classes = ($active ?? false)
                             x-bind:value="totalBayar" readonly />
                         <small class="text-gray-500">Jumlah akan dihitung otomatis: jumlah bulan Ã—
                             {{ number_format($defaultJumlahSPP ?? 0, 0, ',', '.') }}</small>
-                        <!-- Debug -->
-                        <div x-text="'Debug Total Bayar: ' + totalBayar"></div>
+                        {{-- <!-- Debug -->
+                        <div x-text="'Debug Total Bayar: ' + totalBayar"></div> --}}
                     </div>
                 </div>
     
@@ -5066,27 +5324,64 @@ $classes = ($active ?? false)
                     <form action="{{ route('pengaturan.update') }}" method="POST">
                         @csrf
 
-                        <div class="mb-4">
-                            <label for="jumlah_spp" class="block text-sm font-medium text-gray-700">Nominal SPP (Rp)</label>
-                            <input type="number" name="jumlah_spp" id="jumlah_spp" value="{{ old('jumlah_spp', $pengaturan['jumlah_spp'] ?? 700000) }}" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm" required>
+                        <div 
+                            x-data="{
+                                amount: '{{ old('jumlah_spp', $pengaturan['jumlah_spp'] ?? 700000) }}',
+                                formatAmount(value) {
+                                    // Hapus semua karakter non-digit
+                                    let cleanValue = value.toString().replace(/[^0-9]/g, '');
+                                    // Jika kosong, anggap 0
+                                    if (cleanValue === '' || cleanValue === null) cleanValue = '0';
+                                    // Ubah menjadi angka, lalu format ke format Rupiah (tanpa 'Rp')
+                                    return new Intl.NumberFormat('id-ID').format(parseInt(cleanValue, 10));
+                                },
+                                updateValue(event) {
+                                    this.amount = event.target.value.replace(/[^0-9]/g, '');
+                                }
+                            }"
+                            class="mb-4"
+                        >
+                            <label for="jumlah_spp_display" class="block text-sm font-medium text-gray-700">Nominal SPP (Rp)</label>
+                            
+                            {{-- Input yang dilihat pengguna, sekarang dengan event live formatting --}}
+                            <input 
+                                type="text" 
+                                id="jumlah_spp_display"
+                                x-on:input="event.target.value = formatAmount(event.target.value)"
+                                x-init="$el.value = formatAmount(amount)"
+                                @change="updateValue($event)"
+                                class="mt-1 block w-full border-gray-300 rounded-md shadow-sm" 
+                                required
+                            >
+                            
+                            {{-- Input tersembunyi yang dikirim ke server --}}
+                            <input type="hidden" name="jumlah_spp" x-bind:value="amount">
                         </div>
 
                         <div class="mb-4">
-                            <label for="midtrans_active" class="block text-sm font-medium text-gray-700">Pembayaran Midtrans</label>
-                            <select name="midtrans_active" id="midtrans_active" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm">
+                            <label for="midtrans_active" class="block text-sm font-medium text-gray-700">Pembayaran
+                                Midtrans</label>
+                            <select name="midtrans_active" id="midtrans_active"
+                                class="mt-1 block w-full border-gray-300 rounded-md shadow-sm">
                                 <option value="true" @selected(old('midtrans_active', $pengaturan['midtrans_active'] ?? 'false') == 'true')>Aktif</option>
                                 <option value="false" @selected(old('midtrans_active', $pengaturan['midtrans_active'] ?? 'false') == 'false')>Non-Aktif</option>
                             </select>
-                            <p class="text-xs text-gray-500 mt-1">Jika non-aktif, wali murid tidak akan melihat opsi pembayaran online via Midtrans.</p>
+                            <p class="text-xs text-gray-500 mt-1">Jika non-aktif, wali murid tidak akan melihat opsi
+                                pembayaran online via Midtrans.</p>
                         </div>
-                        
+
                         <div class="mb-6">
-                            <label for="nomor_rekening" class="block text-sm font-medium text-gray-700">Nomor Rekening Sekolah</label>
-                            <input type="text" name="nomor_rekening" id="nomor_rekening" value="{{ old('nomor_rekening', $pengaturan['nomor_rekening'] ?? '') }}" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm" placeholder="Contoh: BCA 123456789 a/n Yayasan...">
+                            <label for="nomor_rekening" class="block text-sm font-medium text-gray-700">Nomor Rekening
+                                Sekolah</label>
+                            <input type="text" name="nomor_rekening" id="nomor_rekening"
+                                value="{{ old('nomor_rekening', $pengaturan['nomor_rekening'] ?? '') }}"
+                                class="mt-1 block w-full border-gray-300 rounded-md shadow-sm"
+                                placeholder="Contoh: BCA 123456789 a/n Yayasan...">
                         </div>
 
                         <div class="flex justify-end">
-                            <button type="submit" class="px-4 py-2 bg-indigo-600 text-white rounded-md hover:bg-indigo-700">
+                            <button type="submit"
+                                class="px-4 py-2 bg-indigo-600 text-white rounded-md hover:bg-indigo-700">
                                 Simpan Pengaturan
                             </button>
                         </div>
@@ -5495,7 +5790,7 @@ $classes = ($active ?? false)
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
             {{ __('Tambah Data Siswa Baru') }}
         </h2>
-        <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+        <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
     </x-slot>
 
     <div class="py-8">
@@ -5503,152 +5798,139 @@ $classes = ($active ?? false)
             <div class="bg-white p-6 md:p-8 rounded-xl shadow-md">
                 <form action="{{ route('siswa.store') }}" method="POST">
                     @csrf
-                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-x-8 gap-y-6">
+                    
+                    {{-- Informasi Siswa --}}
+                    <h3 class="text-lg font-semibold text-gray-800 border-b pb-2 mb-4">Informasi Siswa</h3>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+                        <div>
+                            <label for="nama_siswa" class="block text-sm font-medium text-gray-700">Nama Siswa</label>
+                            <input type="text" name="nama_siswa" id="nama_siswa" value="{{ old('nama_siswa') }}" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm" required>
+                        </div>
+                        <div>
+                            <label for="nis" class="block text-sm font-medium text-gray-700">NIS</label>
+                            <input type="text" name="nis" id="nis" value="{{ old('nis') }}" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm" required>
+                        </div>
+                        <div class="md:col-span-2">
+                             <label for="kelas" class="block text-sm font-medium text-gray-700">Kelas</label>
+                            <input type="text" name="kelas" id="kelas" value="{{ old('kelas') }}" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm" required placeholder="Contoh: 1A">
+                        </div>
+                    </div>
 
-                        <div class="space-y-4">
-                            <div>
-                                <label for="nama_siswa" class="block text-sm font-medium text-gray-700">Nama
-                                    Siswa</label>
-                                <input type="text" name="nama_siswa" id="nama_siswa" value="{{ old('nama_siswa') }}"
-                                    class="mt-1 block w-full border-gray-300 rounded-md shadow-sm" required>
-                            </div>
-                            <div>
-                                <label for="nis" class="block text-sm font-medium text-gray-700">NIS</label>
-                                <input type="text" name="nis" id="nis" value="{{ old('nis') }}"
-                                    class="mt-1 block w-full border-gray-300 rounded-md shadow-sm" required>
-                            </div>
-                            <div>
-                                <label for="kelas" class="block text-sm font-medium text-gray-700">Kelas</label>
-                                <input type="text" name="kelas" id="kelas" value="{{ old('kelas') }}"
-                                    class="mt-1 block w-full border-gray-300 rounded-md shadow-sm" required
-                                    placeholder="Contoh: 1A">
-                            </div>
-                            <div>
-                                <label for="id_wali" class="block text-sm font-medium text-gray-700">Wali Murid
-                                    (Induk)</label>
-                                <select name="id_wali" id="id_wali"
-                                    class="mt-1 block w-full border-gray-300 rounded-md shadow-sm" required>
-                                    <option value="">- Pilih Wali Murid -</option>
-                                    @foreach ($walis as $wali)
-                                        <option value="{{ $wali->id }}" @selected(old('id_wali') == $wali->id)>
-                                            {{ $wali->name }}</option>
-                                    @endforeach
-                                </select>
-                            </div>
+                    {{-- Informasi Wali Murid dengan Pilihan Dinamis --}}
+                    <div x-data="{ waliOption: '{{ old('wali_option', 'existing') }}' }" class="mb-8">
+                        <h3 class="text-lg font-semibold text-gray-800 border-b pb-2 mb-4">Informasi Wali Murid</h3>
+                        <div class="flex space-x-4 mb-4">
+                            <label class="flex items-center">
+                                <input type="radio" name="wali_option" value="existing" x-model="waliOption" class="text-indigo-600 focus:ring-indigo-500">
+                                <span class="ml-2 text-sm text-gray-700">Pilih dari Wali Murid yang Sudah Ada</span>
+                            </label>
+                            <label class="flex items-center">
+                                <input type="radio" name="wali_option" value="new" x-model="waliOption" class="text-indigo-600 focus:ring-indigo-500">
+                                <span class="ml-2 text-sm text-gray-700">Buat Akun Wali Murid Baru</span>
+                            </label>
                         </div>
 
-                        <div class="space-y-4">
+                        {{-- Opsi 1: Dropdown Wali yang Sudah Ada --}}
+                        <div x-show="waliOption === 'existing'" class="space-y-4">
+                            <select name="id_wali" id="id_wali" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm">
+                                <option value="">- Pilih Wali Murid -</option>
+                                @foreach ($walis as $wali)
+                                    <option value="{{ $wali->id }}" @selected(old('id_wali') == $wali->id)>{{ $wali->name }} ({{ $wali->email }})</option>
+                                @endforeach
+                            </select>
+                        </div>
+
+                        {{-- Opsi 2: Form Buat Akun Baru --}}
+                        <div x-show="waliOption === 'new'" class="grid grid-cols-1 md:grid-cols-2 gap-6 p-4 border rounded-lg bg-gray-50">
+                            <h4 class="md:col-span-2 font-semibold text-gray-700">Detail Akun Baru</h4>
                             <div>
-                                <label for="alamat" class="block text-sm font-medium text-gray-700">Alamat
-                                    Lengkap</label>
-                                <textarea name="alamat" id="alamat" rows="2" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm">{{ old('alamat') }}</textarea>
+                                <label for="nama_wali" class="block text-sm font-medium text-gray-700">Nama Lengkap Wali</label>
+                                <input type="text" name="nama_wali" id="nama_wali" value="{{ old('nama_wali') }}" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm">
                             </div>
                             <div>
-                                <label class="block text-sm font-medium text-gray-700">Tandai Lokasi di Peta</label>
-                                <p class="text-xs text-gray-500 mb-2">Klik/geser penanda di peta atau gunakan lokasi
-                                    Anda saat ini.</p>
-                                <div id="map" style="height: 200px; cursor: pointer;"
-                                    class="rounded-lg border z-0"></div>
-                                <button type="button" id="get-location-btn"
-                                    class="text-sm text-indigo-600 hover:underline font-semibold mt-2">Gunakan Lokasi
-                                    Saya</button>
-                                <p id="status" class="text-xs text-gray-500"></p>
+                                <label for="email_wali" class="block text-sm font-medium text-gray-700">Email Wali</label>
+                                <input type="email" name="email_wali" id="email_wali" value="{{ old('email_wali') }}" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm">
                             </div>
-                            <div class="grid grid-cols-2 gap-4">
-                                <div>
-                                    <label for="latitude"
-                                        class="block text-sm font-medium text-gray-700">Latitude</label>
-                                    <input type="text" name="latitude" id="latitude" value="{{ old('latitude') }}"
-                                        class="mt-1 block w-full border-gray-300 rounded-md shadow-sm bg-gray-100"
-                                        readonly>
-                                </div>
-                                <div>
-                                    <label for="longitude"
-                                        class="block text-sm font-medium text-gray-700">Longitude</label>
-                                    <input type="text" name="longitude" id="longitude" value="{{ old('longitude') }}"
-                                        class="mt-1 block w-full border-gray-300 rounded-md shadow-sm bg-gray-100"
-                                        readonly>
-                                </div>
+                            <div>
+                                <label for="password_wali" class="block text-sm font-medium text-gray-700">Password</label>
+                                <input type="password" name="password_wali" id="password_wali" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm">
+                            </div>
+                             <div>
+                                <label for="password_wali_confirmation" class="block text-sm font-medium text-gray-700">Konfirmasi Password</label>
+                                <input type="password" name="password_wali_confirmation" id="password_wali_confirmation" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm">
                             </div>
                         </div>
                     </div>
 
-                    <div class="mt-6 border-t pt-6 flex justify-end">
-                        <a href="{{ route('siswa.index') }}"
-                            class="text-gray-600 py-2 px-4 rounded-md hover:bg-gray-100">Batal</a>
-                        <button type="submit"
-                            class="ml-4 px-4 py-2 bg-indigo-600 text-white rounded-md hover:bg-indigo-700">Simpan
-                            Siswa</button>
+                    {{-- Informasi Lokasi --}}
+                    <h3 class="text-lg font-semibold text-gray-800 border-b pb-2 mb-4">Informasi Lokasi</h3>
+                     <div class="grid grid-cols-1 lg:grid-cols-2 gap-x-8 gap-y-6">
+                        <div class="space-y-4">
+                             <div>
+                                <label for="alamat" class="block text-sm font-medium text-gray-700">Alamat Lengkap</label>
+                                <textarea name="alamat" id="alamat" rows="2" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm">{{ old('alamat') }}</textarea>
+                            </div>
+                            <div class="grid grid-cols-2 gap-4">
+                                <div>
+                                    <label for="latitude" class="block text-sm font-medium text-gray-700">Latitude</label>
+                                    <input type="text" name="latitude" id="latitude" value="{{ old('latitude') }}" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm bg-gray-100" readonly>
+                                </div>
+                                <div>
+                                    <label for="longitude" class="block text-sm font-medium text-gray-700">Longitude</label>
+                                    <input type="text" name="longitude" id="longitude" value="{{ old('longitude') }}" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm bg-gray-100" readonly>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="space-y-2">
+                            <label class="block text-sm font-medium text-gray-700">Tandai Lokasi di Peta</label>
+                            <div id="map" style="height: 200px; cursor: pointer;" class="rounded-lg border z-0 mt-1"></div>
+                            <button type="button" id="get-location-btn" class="text-sm text-indigo-600 hover:underline font-semibold mt-2">Gunakan Lokasi Saya</button>
+                            <p id="status" class="text-xs text-gray-500"></p>
+                        </div>
+                    </div>
+
+                    <div class="mt-8 border-t pt-6 flex justify-end">
+                        <a href="{{ route('siswa.index') }}" class="text-gray-600 py-2 px-4 rounded-md hover:bg-gray-100">Batal</a>
+                        <button type="submit" class="ml-4 px-4 py-2 bg-indigo-600 text-white rounded-md hover:bg-indigo-700">Simpan Siswa</button>
                     </div>
                 </form>
             </div>
         </div>
     </div>
-
+    
     @push('scripts')
         <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
         <script>
-            // PATOKAN: resources/views/siswa/create.blade.php
-
             document.addEventListener('DOMContentLoaded', function() {
                 const latInput = document.getElementById('latitude');
                 const lonInput = document.getElementById('longitude');
                 const getLocationBtn = document.getElementById('get-location-btn');
                 const statusEl = document.getElementById('status');
-
-                // Koordinat default (Gorontalo)
                 const defaultCoords = [0.542, 123.059];
-
-                // Inisialisasi Peta
                 const map = L.map('map').setView(defaultCoords, 13);
                 L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(map);
+                const marker = L.marker(defaultCoords, { draggable: true }).addTo(map);
 
-                // Buat satu penanda (marker) yang bisa digeser (draggable)
-                const marker = L.marker(defaultCoords, {
-                    draggable: true
-                }).addTo(map);
-
-                // Fungsi untuk mengupdate input form
                 function updateInputs(latlng) {
                     latInput.value = latlng.lat.toFixed(7);
                     lonInput.value = latlng.lng.toFixed(7);
                 }
 
-                // Update form saat peta pertama kali dimuat
                 updateInputs(marker.getLatLng());
 
-                // Event listener saat marker selesai digeser
-                marker.on('dragend', function(e) {
-                    updateInputs(e.target.getLatLng());
-                    statusEl.textContent = 'Posisi disesuaikan manual.';
-                });
-
-                // Event listener untuk klik di peta
-                map.on('click', function(e) {
-                    marker.setLatLng(e.latlng);
-                    updateInputs(e.latlng);
-                    statusEl.textContent = 'Posisi diubah via klik peta.';
-                });
-
-                // Event listener untuk tombol "Gunakan Lokasi Saya"
+                marker.on('dragend', function(e) { updateInputs(e.target.getLatLng()); statusEl.textContent = 'Posisi disesuaikan.'; });
+                map.on('click', function(e) { marker.setLatLng(e.latlng); updateInputs(e.latlng); statusEl.textContent = 'Posisi ditandai.'; });
+                
                 getLocationBtn.addEventListener('click', function() {
-                    if (!navigator.geolocation) {
-                        statusEl.textContent = 'Geolocation tidak didukung.';
-                        return;
-                    }
+                    if (!navigator.geolocation) { statusEl.textContent = 'Geolocation tidak didukung.'; return; }
                     statusEl.textContent = 'Meminta lokasi...';
                     navigator.geolocation.getCurrentPosition(function(position) {
-                        const userCoords = {
-                            lat: position.coords.latitude,
-                            lng: position.coords.longitude
-                        };
+                        const userCoords = { lat: position.coords.latitude, lng: position.coords.longitude };
                         map.setView(userCoords, 16);
                         marker.setLatLng(userCoords);
                         updateInputs(userCoords);
-                        statusEl.textContent = 'Lokasi ditemukan! Geser penanda jika kurang akurat.';
-                    }, function() {
-                        statusEl.textContent = 'Gagal mendapatkan lokasi.';
-                    });
+                        statusEl.textContent = 'Lokasi ditemukan!';
+                    }, function() { statusEl.textContent = 'Gagal mendapatkan lokasi.'; });
                 });
             });
         </script>
@@ -5661,164 +5943,137 @@ $classes = ($active ?? false)
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
             {{ __('Edit Data Siswa: ') }} {{ $siswa->nama_siswa }}
         </h2>
-        <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+        <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
     </x-slot>
 
     <div class="py-8">
         <div class="max-w-4xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white p-6 md:p-8 rounded-xl shadow-md">
-                <form action="{{ route('siswa.update', $siswa->id_siswa) }}" method="POST">
+                
+                {{-- FORM UTAMA UNTUK UPDATE DATA SISWA --}}
+                <form action="{{ route('siswa.update', $siswa->id_siswa) }}" method="POST" id="edit-siswa-form">
                     @csrf
                     @method('PUT')
-                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-x-8 gap-y-6">
-
-                        <div class="space-y-4">
-                            <div>
-                                <label for="nama_siswa" class="block text-sm font-medium text-gray-700">Nama
-                                    Siswa</label>
-                                <input type="text" name="nama_siswa" id="nama_siswa"
-                                    value="{{ old('nama_siswa', $siswa->nama_siswa) }}"
-                                    class="mt-1 block w-full border-gray-300 rounded-md shadow-sm" required>
-                            </div>
-                            <div>
-                                <label for="nis" class="block text-sm font-medium text-gray-700">NIS</label>
-                                <input type="text" name="nis" id="nis"
-                                    value="{{ old('nis', $siswa->nis) }}"
-                                    class="mt-1 block w-full border-gray-300 rounded-md shadow-sm" required>
-                            </div>
-                            <div>
-                                <label for="kelas" class="block text-sm font-medium text-gray-700">Kelas</label>
-                                <input type="text" name="kelas" id="kelas"
-                                    value="{{ old('kelas', $siswa->kelas) }}"
-                                    class="mt-1 block w-full border-gray-300 rounded-md shadow-sm" required>
-                            </div>
-                            <div>
-                                <label for="id_wali" class="block text-sm font-medium text-gray-700">Wali Murid
-                                    (Induk)</label>
-                                <select name="id_wali" id="id_wali"
-                                    class="mt-1 block w-full border-gray-300 rounded-md shadow-sm" required>
-                                    @foreach ($walis as $wali)
-                                        <option value="{{ $wali->id }}" @selected(old('id_wali', $siswa->id_wali) == $wali->id)>
-                                            {{ $wali->name }}</option>
-                                    @endforeach
-                                </select>
-                            </div>
+                    
+                    {{-- Informasi Siswa --}}
+                    <h3 class="text-lg font-semibold text-gray-800 border-b pb-2 mb-4">Informasi Siswa</h3>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+                        <div>
+                            <label for="nama_siswa" class="block text-sm font-medium text-gray-700">Nama Siswa</label>
+                            <input type="text" name="nama_siswa" id="nama_siswa" value="{{ old('nama_siswa', $siswa->nama_siswa) }}" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm" required>
                         </div>
+                        <div>
+                            <label for="nis" class="block text-sm font-medium text-gray-700">NIS</label>
+                            <input type="text" name="nis" id="nis" value="{{ old('nis', $siswa->nis) }}" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm" required>
+                        </div>
+                        <div class="md:col-span-2">
+                             <label for="kelas" class="block text-sm font-medium text-gray-700">Kelas</label>
+                            <input type="text" name="kelas" id="kelas" value="{{ old('kelas', $siswa->kelas) }}" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm" required>
+                        </div>
+                    </div>
 
+                    {{-- Informasi Wali Murid --}}
+                    <h3 class="text-lg font-semibold text-gray-800 border-b pb-2 mt-8 mb-4">Informasi Akun Wali Murid</h3>
+                    @if ($siswa->wali)
+                        {{-- Jika akun wali sudah ada, tampilkan dan berikan opsi ganti --}}
+                        <div>
+                            <label for="id_wali" class="block text-sm font-medium text-gray-700">Wali Murid (Induk)</label>
+                            <select name="id_wali" id="id_wali" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm" required>
+                                @foreach ($walis as $wali)
+                                    <option value="{{ $wali->id }}" @selected(old('id_wali', $siswa->id_wali) == $wali->id)>{{ $wali->name }} ({{ $wali->email }})</option>
+                                @endforeach
+                            </select>
+                            <p class="text-xs text-gray-500 mt-1">Siswa ini sudah terhubung. Anda bisa mengubah tautan wali murid jika diperlukan.</p>
+                        </div>
+                    @else
+                        {{-- Jika akun wali belum ada, berikan opsi untuk menautkan --}}
+                         <p class="text-sm text-gray-500 mb-4">Siswa ini belum memiliki akun wali murid. Silakan pilih dari daftar untuk menautkannya.</p>
+                         <div>
+                            <label for="id_wali" class="block text-sm font-medium text-gray-700">Pilih Akun Wali</label>
+                             <select name="id_wali" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm" required>
+                                <option value="">- Pilih Wali Murid -</option>
+                                @foreach ($walis as $wali)
+                                    <option value="{{ $wali->id }}">{{ $wali->name }} ({{ $wali->email }})</option>
+                                @endforeach
+                            </select>
+                        </div>
+                    @endif
+                    
+                    {{-- Informasi Lokasi --}}
+                    <h3 class="text-lg font-semibold text-gray-800 border-b pb-2 mt-8 mb-4">Informasi Lokasi</h3>
+                     <div class="grid grid-cols-1 lg:grid-cols-2 gap-x-8 gap-y-6">
                         <div class="space-y-4">
-                            <div>
-                                <label for="alamat" class="block text-sm font-medium text-gray-700">Alamat
-                                    Lengkap</label>
+                             <div>
+                                <label for="alamat" class="block text-sm font-medium text-gray-700">Alamat Lengkap</label>
                                 <textarea name="alamat" id="alamat" rows="2" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm">{{ old('alamat', $siswa->alamat) }}</textarea>
-                            </div>
-                            <div>
-                                <label class="block text-sm font-medium text-gray-700">Tandai Lokasi di Peta</label>
-                                <p class="text-xs text-gray-500 mb-2">Klik/geser penanda di peta atau gunakan lokasi
-                                    Anda saat ini.</p>
-                                <div id="map" style="height: 200px; cursor: pointer;"
-                                    class="rounded-lg border z-0"></div>
-                                <button type="button" id="get-location-btn"
-                                    class="text-sm text-indigo-600 hover:underline font-semibold mt-2">Gunakan Lokasi
-                                    Saya</button>
-                                <p id="status" class="text-xs text-gray-500"></p>
                             </div>
                             <div class="grid grid-cols-2 gap-4">
                                 <div>
-                                    <label for="latitude"
-                                        class="block text-sm font-medium text-gray-700">Latitude</label>
-                                    <input type="text" name="latitude" id="latitude"
-                                        value="{{ old('latitude', $siswa->latitude) }}"
-                                        class="mt-1 block w-full border-gray-300 rounded-md shadow-sm bg-gray-100"
-                                        readonly>
+                                    <label for="latitude" class="block text-sm font-medium text-gray-700">Latitude</label>
+                                    <input type="text" name="latitude" id="latitude" value="{{ old('latitude', $siswa->latitude) }}" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm bg-gray-100" readonly>
                                 </div>
                                 <div>
-                                    <label for="longitude"
-                                        class="block text-sm font-medium text-gray-700">Longitude</label>
-                                    <input type="text" name="longitude" id="longitude"
-                                        value="{{ old('longitude', $siswa->longitude) }}"
-                                        class="mt-1 block w-full border-gray-300 rounded-md shadow-sm bg-gray-100"
-                                        readonly>
+                                    <label for="longitude" class="block text-sm font-medium text-gray-700">Longitude</label>
+                                    <input type="text" name="longitude" id="longitude" value="{{ old('longitude', $siswa->longitude) }}" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm bg-gray-100" readonly>
                                 </div>
                             </div>
                         </div>
-                    </div>
-
-                    <div class="mt-6 border-t pt-6 flex justify-end">
-                        <a href="{{ route('siswa.index') }}"
-                            class="text-gray-600 py-2 px-4 rounded-md hover:bg-gray-100">Batal</a>
-                        <button type="submit"
-                            class="ml-4 px-4 py-2 bg-indigo-600 text-white rounded-md hover:bg-indigo-700">Update
-                            Siswa</button>
+                        <div class="space-y-2">
+                            <label class="block text-sm font-medium text-gray-700">Tandai Lokasi di Peta</label>
+                            <div id="map" style="height: 200px; cursor: pointer;" class="rounded-lg border z-0 mt-1"></div>
+                        </div>
                     </div>
                 </form>
+
+                {{-- FORM TERPISAH UNTUK RESET PASSWORD (JIKA WALI SUDAH ADA) --}}
+                @if ($siswa->wali)
+                <div class="mt-6">
+                    <label class="block text-sm font-medium text-gray-700">Aksi Cepat</label>
+                    <div class="mt-1">
+                        <form action="{{ route('siswa.reset-password', $siswa) }}" method="POST" onsubmit="return confirm('Yakin ingin me-reset password untuk wali murid ini? Password baru akan dikirim melalui WhatsApp.')" class="inline">
+                            @csrf
+                            <button type="submit" class="px-4 py-2 bg-yellow-500 text-white text-sm font-semibold rounded-lg shadow-sm hover:bg-yellow-600">
+                                Reset Password Wali
+                            </button>
+                        </form>
+                    </div>
+                </div>
+                @endif
+                
+                {{-- TOMBOL SUBMIT UNTUK FORM UTAMA --}}
+                <div class="mt-8 border-t pt-6 flex justify-end">
+                    <a href="{{ route('siswa.index') }}" class="text-gray-600 py-2 px-4 rounded-md hover:bg-gray-100">Batal</a>
+                    <button type="submit" form="edit-siswa-form" class="ml-4 px-4 py-2 bg-indigo-600 text-white rounded-md hover:bg-indigo-700">Update Data</button>
+                </div>
+
             </div>
         </div>
     </div>
-
+    
     @push('scripts')
         <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
         <script>
-            // PATOKAN: resources/views/siswa/edit.blade.php
-
             document.addEventListener('DOMContentLoaded', function() {
                 const latInput = document.getElementById('latitude');
                 const lonInput = document.getElementById('longitude');
-                const getLocationBtn = document.getElementById('get-location-btn');
-                const statusEl = document.getElementById('status');
-
-                // Coba baca koordinat awal dari input form, jika tidak ada, gunakan default Gorontalo
+                
                 const initialLat = parseFloat(latInput.value) || 0.542;
                 const initialLon = parseFloat(lonInput.value) || 123.059;
                 const initialCoords = [initialLat, initialLon];
-                const initialZoom = latInput.value ? 16 : 13; // Zoom lebih dekat jika sudah ada koordinat
+                const initialZoom = latInput.value ? 16 : 13;
 
-                // Inisialisasi Peta
                 const map = L.map('map').setView(initialCoords, initialZoom);
                 L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(map);
 
-                // Buat satu penanda (marker) yang bisa digeser (draggable)
-                const marker = L.marker(initialCoords, {
-                    draggable: true
-                }).addTo(map);
+                const marker = L.marker(initialCoords, { draggable: true }).addTo(map);
 
-                // Fungsi untuk mengupdate input form
                 function updateInputs(latlng) {
                     latInput.value = latlng.lat.toFixed(7);
                     lonInput.value = latlng.lng.toFixed(7);
                 }
 
-                // (Event listener lainnya sama persis seperti di atas)
-
-                marker.on('dragend', function(e) {
-                    updateInputs(e.target.getLatLng());
-                    statusEl.textContent = 'Posisi disesuaikan manual.';
-                });
-
-                map.on('click', function(e) {
-                    marker.setLatLng(e.latlng);
-                    updateInputs(e.latlng);
-                    statusEl.textContent = 'Posisi diubah via klik peta.';
-                });
-
-                getLocationBtn.addEventListener('click', function() {
-                    if (!navigator.geolocation) {
-                        statusEl.textContent = 'Geolocation tidak didukung.';
-                        return;
-                    }
-                    statusEl.textContent = 'Meminta lokasi...';
-                    navigator.geolocation.getCurrentPosition(function(position) {
-                        const userCoords = {
-                            lat: position.coords.latitude,
-                            lng: position.coords.longitude
-                        };
-                        map.setView(userCoords, 16);
-                        marker.setLatLng(userCoords);
-                        updateInputs(userCoords);
-                        statusEl.textContent = 'Lokasi ditemukan! Geser penanda jika kurang akurat.';
-                    }, function() {
-                        statusEl.textContent = 'Gagal mendapatkan lokasi.';
-                    });
-                });
+                marker.on('dragend', function(e) { updateInputs(e.target.getLatLng()); });
+                map.on('click', function(e) { marker.setLatLng(e.latlng); updateInputs(e.latlng); });
             });
         </script>
     @endpush
@@ -5841,6 +6096,25 @@ $classes = ($active ?? false)
 
     <div class="py-8">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+            <div class="mb-6 bg-white p-4 rounded-xl shadow-md">
+                <form action="{{ route('siswa.index') }}" method="GET">
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                        <div class="md:col-span-2">
+                            <label for="search" class="sr-only">Cari</label>
+                            <input type="text" name="search" id="search" placeholder="Cari Nama Siswa atau NIS..." value="{{ request('search') }}" class="block w-full border-gray-300 rounded-md shadow-sm">
+                        </div>
+                        <div>
+                            <label for="kelas" class="sr-only">Kelas</label>
+                            <select name="kelas" id="kelas" class="block w-full border-gray-300 rounded-md shadow-sm" onchange="this.form.submit()">
+                                <option value="">Semua Kelas</option>
+                                @foreach($kelasOptions as $kelas)
+                                    <option value="{{ $kelas }}" @selected(request('kelas') == $kelas)>{{ $kelas }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                    </div>
+                </form>
+            </div>
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="overflow-x-auto">
                     <table class="min-w-full divide-y divide-gray-200">
@@ -6212,9 +6486,12 @@ $classes = ($active ?? false)
                         <a href="#fitur" class="font-medium text-slate-600 hover:text-sky-600 transition-colors">Metode Bayar</a>
                         <a href="#testimoni" class="font-medium text-slate-600 hover:text-sky-600 transition-colors">Testimoni</a>
                         <a href="#faq" class="font-medium text-slate-600 hover:text-sky-600 transition-colors">FAQ</a>
-                        <a href="{{ route('login') }}" class="font-medium text-slate-600 hover:text-sky-600 transition-colors">Login</a>
-                        <a href="{{ route('register') }}" class="bg-sky-500 text-white font-semibold px-5 py-2.5 rounded-lg shadow-md hover:bg-sky-600 transition-all duration-200 transform hover:-translate-y-0.5">Daftar</a>
+                        <a href="{{ route('login') }}" 
+                           class="bg-sky-500 text-white font-semibold px-5 py-2.5 rounded-lg shadow-md hover:bg-sky-600 transition-all duration-200 transform hover:-translate-y-0.5">
+                           Login
+                        </a>
                     </nav>
+                    
                     <div class="md:hidden">
                         <button @click="mobileMenuOpen = !mobileMenuOpen" class="text-slate-800"><svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-16 6h16"></path></svg></button>
                     </div>
