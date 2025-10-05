@@ -38,6 +38,7 @@ class SiswaController extends Controller
         return view('siswa.index', compact('siswas', 'kelasOptions'));
     }
 
+
     public function create()
     {
         $walis = User::where('role', 'wali_murid')->orderBy('name')->get();
@@ -51,6 +52,7 @@ class SiswaController extends Controller
             'nis' => 'required|string|max:50|unique:siswa,nis',
             'kelas' => 'required|string|max:20',
             'wali_option' => 'required|in:existing,new', // Pilihan metode
+
         ]);
 
         $id_wali = null;
@@ -66,6 +68,7 @@ class SiswaController extends Controller
                 'nama_wali' => 'required|string|max:255',
                 'email_wali' => 'required|string|lowercase|email|max:255|unique:'.User::class.',email',
                 'password_wali' => ['required', Rules\Password::defaults()],
+                'nomor_wa' => 'nullable|string|max:20',
             ]);
 
             $wali = User::create([
@@ -73,12 +76,13 @@ class SiswaController extends Controller
                 'email' => $request->email_wali,
                 'password' => Hash::make($request->password_wali),
                 'role' => 'wali_murid',
+                'nomor_wa' => $request->nomor_wa,
             ]);
             $id_wali = $wali->id;
         }
 
         // Buat data siswa dengan id_wali yang sudah ditentukan
-        Siswa::create(array_merge($request->only('nama_siswa', 'nis', 'kelas', 'alamat', 'latitude', 'longitude'), ['id_wali' => $id_wali]));
+        Siswa::create(array_merge($request->only('nama_siswa', 'nis', 'kelas', 'alamat', 'latitude', 'longitude'), ['id_wali' => $id_wali], ['nomor_wa' => $request->nomor_wa]));
 
         return redirect()->route('siswa.index')->with('success', 'Siswa berhasil ditambahkan.');
     }
@@ -98,10 +102,11 @@ class SiswaController extends Controller
             'nis' => 'required|string|max:50|unique:siswa,nis,' . $siswa->id_siswa . ',id_siswa',
             'kelas' => 'required|string|max:20',
             'id_wali' => 'required|exists:users,id',
+            'nomor_wa' => 'nullable|string|max:20',
         ]);
         
         $siswa->update($request->all());
-
+        $siswa->wali->update(['nomor_wa' => $request->nomor_wa]);
         return redirect()->route('siswa.index')->with('success', 'Data siswa berhasil diperbarui.');
     }
 

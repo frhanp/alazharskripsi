@@ -286,8 +286,9 @@ class PembayaranController extends Controller
         $defaultJumlahSPP = Pengaturan::where('key', 'jumlah_spp')->value('value') ?? 0;
         // Ambil siswa yang terkait dengan wali murid yang login
         $siswa = Siswa::where('id_wali', Auth::id())->orderBy('nama_siswa')->get();
+        $nomorRekening = Pengaturan::where('key', 'nomor_rekening')->value('value');
 
-        return view('pembayaran.upload_transfer', compact('defaultJumlahSPP', 'siswa'));
+        return view('pembayaran.upload_transfer', compact('defaultJumlahSPP', 'siswa', 'nomorRekening'));
     }
 
     public function storeUpload(Request $request)

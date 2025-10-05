@@ -10,7 +10,12 @@
             @if (session('success'))
                 <div class="mb-4 text-green-600">{{ session('success') }}</div>
             @endif
-    
+            @if (!empty($nomorRekening))
+            <div class="mb-6 p-4 bg-blue-50 border border-blue-200 rounded-lg">
+                <p class="text-sm font-medium text-blue-800">Silakan lakukan transfer ke nomor rekening berikut:</p>
+                <p class="text-lg font-bold text-blue-900 mt-1">{{ $nomorRekening }}</p>
+            </div>
+        @endif
             <form action="{{ route('pembayaran.upload.store') }}" method="POST" enctype="multipart/form-data">
                 @csrf
     

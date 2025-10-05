@@ -1,15 +1,11 @@
 <x-app-layout>
     <x-slot name="header">
-        <div class="flex justify-between items-center">
+        
             <h2 class="font-semibold text-xl text-gray-800 leading-tight">
                 {{ __('Data Siswa') }}
             </h2>
-            @if(auth()->user()->role === 'bendahara')
-                <a href="{{ route('siswa.create') }}" class="px-4 py-2 bg-indigo-600 text-white text-sm font-semibold rounded-lg shadow-md hover:bg-indigo-700 transition-colors">
-                    Tambah Siswa Baru
-                </a>
-            @endif
-        </div>
+            
+        
     </x-slot>
 
     <div class="py-8">
@@ -32,6 +28,13 @@
                         </div>
                     </div>
                 </form>
+            </div>
+            <div class="mb-4 flex justify-end">
+                @if(auth()->user()->role === 'bendahara')
+                    <a href="{{ route('siswa.create') }}" class="px-4 py-2 bg-indigo-600 text-white text-sm font-semibold rounded-lg shadow-md hover:bg-indigo-700 transition-colors">
+                        Tambah Siswa Baru
+                    </a>
+                @endif
             </div>
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="overflow-x-auto">

@@ -1,5 +1,5 @@
 ﻿# Project Digest (Full Content)
-_Generated: 2025-10-03 21:30:30_
+_Generated: 2025-10-04 12:45:14_
 **Root:** D:\Laragon\www\alazharskripsi
 
 
@@ -52,6 +52,7 @@ app\View
 app\Console\Commands
 app\Console\Kernel.php
 app\Console\Commands\GenerateTunggakan.php
+app\Console\Commands\SendCurrentMonthReminders.php
 app\Console\Commands\SendTunggakanReminders.php
 app\Exports\PembayaranExport.php
 app\Helpers\TerbilangHelper.php
@@ -96,6 +97,7 @@ app\Http\Middleware\RoleMiddleware.php
 app\Http\Requests\Auth
 app\Http\Requests\ProfileUpdateRequest.php
 app\Http\Requests\Auth\LoginRequest.php
+app\Jobs\SendCurrentMonthReminderNotification.php
 app\Jobs\SendPasswordResetNotification.php
 app\Jobs\SendTunggakanNotification.php
 app\Jobs\SendWhatsappNotification.php
@@ -297,19 +299,33 @@ storage\app\public\kwitansi\kwitansi-2-1758438196.docx
 storage\app\public\kwitansi\kwitansi-2-1758853571.docx
 storage\app\public\kwitansi\kwitansi-2-1758877175.docx
 storage\app\public\kwitansi\kwitansi-2-1759426763.docx
+storage\app\public\kwitansi\kwitansi-2-1759500407.docx
+storage\app\public\kwitansi\kwitansi-2-1759542794.docx
 storage\app\public\kwitansi\kwitansi-20-1757989499.docx
 storage\app\public\kwitansi\kwitansi-21-1757989922.docx
 storage\app\public\kwitansi\kwitansi-22-1758003206.docx
 storage\app\public\kwitansi\kwitansi-3-1758438216.docx
 storage\app\public\kwitansi\kwitansi-3-1758877180.docx
+storage\app\public\kwitansi\kwitansi-3-1759500408.docx
+storage\app\public\kwitansi\kwitansi-3-1759542807.docx
+storage\app\public\kwitansi\kwitansi-4-1759500409.docx
+storage\app\public\kwitansi\kwitansi-4-1759542808.docx
 storage\app\public\kwitansi\kwitansi-5-1757917613.docx
+storage\app\public\kwitansi\kwitansi-5-1759542820.docx
 storage\app\public\kwitansi\kwitansi-6-1757918608.docx
+storage\app\public\kwitansi\kwitansi-6-1759501016.docx
+storage\app\public\kwitansi\kwitansi-6-1759542821.docx
 storage\app\public\kwitansi\kwitansi-7-1755669945.pdf
 storage\app\public\kwitansi\kwitansi-7-1757922454.docx
+storage\app\public\kwitansi\kwitansi-7-1759501017.docx
+storage\app\public\kwitansi\kwitansi-7-1759542821.docx
 storage\app\public\kwitansi\kwitansi-8-1755670220.pdf
 storage\app\public\kwitansi\kwitansi-8-1757922509.docx
+storage\app\public\kwitansi\kwitansi-8-1759501214.docx
+storage\app\public\kwitansi\kwitansi-8-1759546251.docx
 storage\app\public\kwitansi\kwitansi-9-1755670818.pdf
 storage\app\public\kwitansi\kwitansi-9-1757922644.docx
+storage\app\public\kwitansi\kwitansi-9-1759546350.docx
 storage\app\public\kwitansi\kwitansi-KW-2025-8-6.pdf
 storage\app\templates\kwitansi_template.docx
 storage\app\templates\kwitansi_template1.docx
@@ -417,11 +433,11 @@ Branch:
 main
 
 Last 5 commits:
+166d5d9 hapus baileys
+650517e fix kwitansi
 e018a25 test deploy
 34889ab ubah format kwitansi
 e2f5296 add filter akun wali dan siswa
-220cb90 tadi hilang midtrans
-1b209e4 fix 1
 ```
 
 
@@ -638,74 +654,74 @@ require __DIR__ . '/auth.php';
 ## Routes (from command)
 ```
 
-  GET|HEAD        / ............................................................................................................................. 
-  GET|HEAD        _debugbar/assets/javascript ....................................... debugbar.assets.js ΓÇ║ Barryvdh\Debugbar ΓÇ║ AssetController@js
-  GET|HEAD        _debugbar/assets/stylesheets .................................... debugbar.assets.css ΓÇ║ Barryvdh\Debugbar ΓÇ║ AssetController@css
-  DELETE          _debugbar/cache/{key}/{tags?} .............................. debugbar.cache.delete ΓÇ║ Barryvdh\Debugbar ΓÇ║ CacheController@delete
-  GET|HEAD        _debugbar/clockwork/{id} ............................. debugbar.clockwork ΓÇ║ Barryvdh\Debugbar ΓÇ║ OpenHandlerController@clockwork
-  GET|HEAD        _debugbar/open ........................................ debugbar.openhandler ΓÇ║ Barryvdh\Debugbar ΓÇ║ OpenHandlerController@handle
-  POST            _debugbar/queries/explain ............................ debugbar.queries.explain ΓÇ║ Barryvdh\Debugbar ΓÇ║ QueriesController@explain
-  GET|HEAD        akun .................................................................................... akun.index ΓÇ║ AkunWaliController@index
-  PUT|PATCH       akun/{user} ........................................................................... akun.update ΓÇ║ AkunWaliController@update
-  GET|HEAD        akun/{user}/edit .......................................................................... akun.edit ΓÇ║ AkunWaliController@edit
-  POST            akun/{user}/reset-password ............................................. akun.reset-password ΓÇ║ AkunWaliController@resetPassword
-  GET|HEAD        api/locations .................................................................... api.locations ΓÇ║ Api\LocationController@index
-  GET|HEAD        bendahara/dashboard ................................................. bendahara.dashboard ΓÇ║ Bendahara\DashboardController@index
-  GET|HEAD        confirm-password ................................................... password.confirm ΓÇ║ Auth\ConfirmablePasswordController@show
-  POST            confirm-password ..................................................................... Auth\ConfirmablePasswordController@store
-  GET|HEAD        dashboard ..................................................................................... dashboard ΓÇ║ DashboardController
-  GET|HEAD        detail-siswa/{siswa} .......................................................... wali.detail-siswa ΓÇ║ DetailSiswaController@index
-  POST            email/verification-notification ........................ verification.send ΓÇ║ Auth\EmailVerificationNotificationController@store
-  GET|HEAD        forgot-password .................................................... password.request ΓÇ║ Auth\PasswordResetLinkController@create
-  POST            forgot-password ....................................................... password.email ΓÇ║ Auth\PasswordResetLinkController@store
-  GET|HEAD        ketua/dashboard .................................................. ketua.dashboard ΓÇ║ KetuaYayasan\DashboardController@dashboard
-  GET|HEAD        kwitansi/download/{kwitansi} .................................................. kwitansi.download ΓÇ║ KwitansiController@download
-  GET|HEAD        laporan ............................................................................... laporan.index ΓÇ║ LaporanController@index
-  GET|HEAD        laporan/excel ............................................................ laporan.export.excel ΓÇ║ LaporanController@exportExcel
-  GET|HEAD        laporan/pdf .................................................................. laporan.export.pdf ΓÇ║ LaporanController@exportPdf
-  GET|HEAD        login ...................................................................... login ΓÇ║ Auth\AuthenticatedSessionController@create
-  POST            login ............................................................................... Auth\AuthenticatedSessionController@store
-  POST            logout ................................................................... logout ΓÇ║ Auth\AuthenticatedSessionController@destroy
-  POST            midtrans/callback ............................................................................ MidtransWebhookController@handle
-  POST            midtrans/token ................................................................ midtrans.token ΓÇ║ PembayaranController@snapToken
-  PUT             password ..................................................................... password.update ΓÇ║ Auth\PasswordController@update
-  POST            payment/token ............................................................. payment.token ΓÇ║ PaymentController@createTransaction
-  GET|HEAD        pembayaran ................................................................... payment.page ΓÇ║ PaymentController@showPaymentPage
-  GET|HEAD        pembayaran/manual/create ......................................... pembayaran.manual.create ΓÇ║ PembayaranController@createManual
-  POST            pembayaran/manual/store ............................................ pembayaran.manual.store ΓÇ║ PembayaranController@storeManual
-  GET|HEAD        pembayaran/midtrans/{id_siswa} ......................................... pembayaran.midtrans.form ΓÇ║ MidtransController@showForm
-  POST            pembayaran/midtrans/{id_siswa} ........................................ pembayaran.midtrans ΓÇ║ MidtransController@createMidtrans
-  GET|HEAD        pembayaran/verifikasi ............................................ pembayaran.verifikasi ΓÇ║ PembayaranController@indexVerifikasi
-  PATCH           pembayaran/verifikasi/{id} ............................... pembayaran.verifikasi.update ΓÇ║ PembayaranController@updateVerifikasi
-  GET|HEAD        pembayaran/{siswa}/pilih-metode ......................................... pembayaran.pilih-metode ΓÇ║ PilihMetodeController@index
-  GET|HEAD        pemetaan ............................................................................ pemetaan.index ΓÇ║ PemetaanController@index
-  GET|HEAD        pengaturan ...................................................................... pengaturan.index ΓÇ║ PengaturanController@index
-  POST            pengaturan .................................................................... pengaturan.update ΓÇ║ PengaturanController@update
-  GET|HEAD        profile ................................................................................. profile.edit ΓÇ║ ProfileController@edit
-  PATCH           profile ............................................................................. profile.update ΓÇ║ ProfileController@update
-  DELETE          profile ........................................................................... profile.destroy ΓÇ║ ProfileController@destroy
-  GET|HEAD        register ...................................................................... register ΓÇ║ Auth\RegisteredUserController@create
-  POST            register .................................................................................. Auth\RegisteredUserController@store
-  POST            reset-password .............................................................. password.store ΓÇ║ Auth\NewPasswordController@store
-  GET|HEAD        reset-password/{token} ..................................................... password.reset ΓÇ║ Auth\NewPasswordController@create
-  GET|HEAD        riwayat ............................................................................... riwayat.index ΓÇ║ RiwayatController@index
-  GET|HEAD        siswa ..................................................................................... siswa.index ΓÇ║ SiswaController@index
-  POST            siswa ..................................................................................... siswa.store ΓÇ║ SiswaController@store
-  GET|HEAD        siswa/create ............................................................................ siswa.create ΓÇ║ SiswaController@create
-  PUT|PATCH       siswa/{siswa} ........................................................................... siswa.update ΓÇ║ SiswaController@update
-  DELETE          siswa/{siswa} ......................................................................... siswa.destroy ΓÇ║ SiswaController@destroy
-  GET|HEAD        siswa/{siswa}/edit .......................................................................... siswa.edit ΓÇ║ SiswaController@edit
-  POST            siswa/{siswa}/reset-password ............................................. siswa.reset-password ΓÇ║ SiswaController@resetPassword
-  GET|HEAD        storage/{path} .................................................................................................. storage.local
-  GET|HEAD        tunggakan ......................................................................... tunggakan.index ΓÇ║ TunggakanController@index
-  POST            tunggakan/{id_tunggakan}/send-reminder ............................. tunggakan.send-reminder ΓÇ║ TunggakanController@sendReminder
-  GET|HEAD        up ............................................................................................................................ 
-  GET|HEAD        upload-transfer .................................................. pembayaran.upload.create ΓÇ║ PembayaranController@createUpload
-  POST            upload-transfer .................................................... pembayaran.upload.store ΓÇ║ PembayaranController@storeUpload
-  GET|HEAD        verify-email ..................................................... verification.notice ΓÇ║ Auth\EmailVerificationPromptController
-  GET|HEAD        verify-email/{id}/{hash} ..................................................... verification.verify ΓÇ║ Auth\VerifyEmailController
+  GET|HEAD        / ............................................................................................................ 
+  GET|HEAD        _debugbar/assets/javascript ...................... debugbar.assets.js ΓÇ║ Barryvdh\Debugbar ΓÇ║ AssetController@js
+  GET|HEAD        _debugbar/assets/stylesheets ................... debugbar.assets.css ΓÇ║ Barryvdh\Debugbar ΓÇ║ AssetController@css
+  DELETE          _debugbar/cache/{key}/{tags?} ............. debugbar.cache.delete ΓÇ║ Barryvdh\Debugbar ΓÇ║ CacheController@delete
+  GET|HEAD        _debugbar/clockwork/{id} ............ debugbar.clockwork ΓÇ║ Barryvdh\Debugbar ΓÇ║ OpenHandlerController@clockwork
+  GET|HEAD        _debugbar/open ....................... debugbar.openhandler ΓÇ║ Barryvdh\Debugbar ΓÇ║ OpenHandlerController@handle
+  POST            _debugbar/queries/explain ........... debugbar.queries.explain ΓÇ║ Barryvdh\Debugbar ΓÇ║ QueriesController@explain
+  GET|HEAD        akun ................................................................... akun.index ΓÇ║ AkunWaliController@index
+  PUT|PATCH       akun/{user} .......................................................... akun.update ΓÇ║ AkunWaliController@update
+  GET|HEAD        akun/{user}/edit ......................................................... akun.edit ΓÇ║ AkunWaliController@edit
+  POST            akun/{user}/reset-password ............................ akun.reset-password ΓÇ║ AkunWaliController@resetPassword
+  GET|HEAD        api/locations ................................................... api.locations ΓÇ║ Api\LocationController@index
+  GET|HEAD        bendahara/dashboard ................................ bendahara.dashboard ΓÇ║ Bendahara\DashboardController@index
+  GET|HEAD        confirm-password .................................. password.confirm ΓÇ║ Auth\ConfirmablePasswordController@show
+  POST            confirm-password .................................................... Auth\ConfirmablePasswordController@store
+  GET|HEAD        dashboard .................................................................... dashboard ΓÇ║ DashboardController
+  GET|HEAD        detail-siswa/{siswa} ......................................... wali.detail-siswa ΓÇ║ DetailSiswaController@index
+  POST            email/verification-notification ....... verification.send ΓÇ║ Auth\EmailVerificationNotificationController@store
+  GET|HEAD        forgot-password ................................... password.request ΓÇ║ Auth\PasswordResetLinkController@create
+  POST            forgot-password ...................................... password.email ΓÇ║ Auth\PasswordResetLinkController@store
+  GET|HEAD        ketua/dashboard ................................. ketua.dashboard ΓÇ║ KetuaYayasan\DashboardController@dashboard
+  GET|HEAD        kwitansi/download/{kwitansi} ................................. kwitansi.download ΓÇ║ KwitansiController@download
+  GET|HEAD        laporan .............................................................. laporan.index ΓÇ║ LaporanController@index
+  GET|HEAD        laporan/excel ........................................... laporan.export.excel ΓÇ║ LaporanController@exportExcel
+  GET|HEAD        laporan/pdf ................................................. laporan.export.pdf ΓÇ║ LaporanController@exportPdf
+  GET|HEAD        login ..................................................... login ΓÇ║ Auth\AuthenticatedSessionController@create
+  POST            login .............................................................. Auth\AuthenticatedSessionController@store
+  POST            logout .................................................. logout ΓÇ║ Auth\AuthenticatedSessionController@destroy
+  POST            midtrans/callback ........................................................... MidtransWebhookController@handle
+  POST            midtrans/token ............................................... midtrans.token ΓÇ║ PembayaranController@snapToken
+  PUT             password .................................................... password.update ΓÇ║ Auth\PasswordController@update
+  POST            payment/token ............................................ payment.token ΓÇ║ PaymentController@createTransaction
+  GET|HEAD        pembayaran .................................................. payment.page ΓÇ║ PaymentController@showPaymentPage
+  GET|HEAD        pembayaran/manual/create ........................ pembayaran.manual.create ΓÇ║ PembayaranController@createManual
+  POST            pembayaran/manual/store ........................... pembayaran.manual.store ΓÇ║ PembayaranController@storeManual
+  GET|HEAD        pembayaran/midtrans/{id_siswa} ........................ pembayaran.midtrans.form ΓÇ║ MidtransController@showForm
+  POST            pembayaran/midtrans/{id_siswa} ....................... pembayaran.midtrans ΓÇ║ MidtransController@createMidtrans
+  GET|HEAD        pembayaran/verifikasi ........................... pembayaran.verifikasi ΓÇ║ PembayaranController@indexVerifikasi
+  PATCH           pembayaran/verifikasi/{id} .............. pembayaran.verifikasi.update ΓÇ║ PembayaranController@updateVerifikasi
+  GET|HEAD        pembayaran/{siswa}/pilih-metode ........................ pembayaran.pilih-metode ΓÇ║ PilihMetodeController@index
+  GET|HEAD        pemetaan ........................................................... pemetaan.index ΓÇ║ PemetaanController@index
+  GET|HEAD        pengaturan ..................................................... pengaturan.index ΓÇ║ PengaturanController@index
+  POST            pengaturan ................................................... pengaturan.update ΓÇ║ PengaturanController@update
+  GET|HEAD        profile ................................................................ profile.edit ΓÇ║ ProfileController@edit
+  PATCH           profile ............................................................ profile.update ΓÇ║ ProfileController@update
+  DELETE          profile .......................................................... profile.destroy ΓÇ║ ProfileController@destroy
+  GET|HEAD        register ..................................................... register ΓÇ║ Auth\RegisteredUserController@create
+  POST            register ................................................................. Auth\RegisteredUserController@store
+  POST            reset-password ............................................. password.store ΓÇ║ Auth\NewPasswordController@store
+  GET|HEAD        reset-password/{token} .................................... password.reset ΓÇ║ Auth\NewPasswordController@create
+  GET|HEAD        riwayat .............................................................. riwayat.index ΓÇ║ RiwayatController@index
+  GET|HEAD        siswa .................................................................... siswa.index ΓÇ║ SiswaController@index
+  POST            siswa .................................................................... siswa.store ΓÇ║ SiswaController@store
+  GET|HEAD        siswa/create ........................................................... siswa.create ΓÇ║ SiswaController@create
+  PUT|PATCH       siswa/{siswa} .......................................................... siswa.update ΓÇ║ SiswaController@update
+  DELETE          siswa/{siswa} ........................................................ siswa.destroy ΓÇ║ SiswaController@destroy
+  GET|HEAD        siswa/{siswa}/edit ......................................................... siswa.edit ΓÇ║ SiswaController@edit
+  POST            siswa/{siswa}/reset-password ............................ siswa.reset-password ΓÇ║ SiswaController@resetPassword
+  GET|HEAD        storage/{path} ................................................................................. storage.local
+  GET|HEAD        tunggakan ........................................................ tunggakan.index ΓÇ║ TunggakanController@index
+  POST            tunggakan/{id_tunggakan}/send-reminder ............ tunggakan.send-reminder ΓÇ║ TunggakanController@sendReminder
+  GET|HEAD        up ........................................................................................................... 
+  GET|HEAD        upload-transfer ................................. pembayaran.upload.create ΓÇ║ PembayaranController@createUpload
+  POST            upload-transfer ................................... pembayaran.upload.store ΓÇ║ PembayaranController@storeUpload
+  GET|HEAD        verify-email .................................... verification.notice ΓÇ║ Auth\EmailVerificationPromptController
+  GET|HEAD        verify-email/{id}/{hash} .................................... verification.verify ΓÇ║ Auth\VerifyEmailController
 
-                                                                                                                              Showing [66] routes
+                                                                                                             Showing [66] routes
 
 ```
 
@@ -2818,9 +2834,20 @@ class Pembayaran extends Model
     public $incrementing = true;
 
     protected $fillable = [
-        'id_siswa', 'bulan', 'tahun', 'jumlah', 'metode',
-        'bukti_transfer', 'status', 'verified_by', 'tanggal_verifikasi', 'catatan',
-        'midtrans_order_id', 'midtrans_transaction_status', 'is_midtrans', 'snap_token'
+        'id_siswa',
+        'bulan',
+        'tahun',
+        'jumlah',
+        'metode',
+        'bukti_transfer',
+        'status',
+        'verified_by',
+        'tanggal_verifikasi',
+        'catatan',
+        'midtrans_order_id',
+        'midtrans_transaction_status',
+        'is_midtrans',
+        'snap_token'
     ];
 
     protected $casts = [
@@ -2869,7 +2896,7 @@ class Pembayaran extends Model
                 ->update(['status' => 'lunas']);
         }
     }
-    
+
     /**
      * Helper untuk memastikan 'bulan' selalu array.
      */
@@ -2877,16 +2904,31 @@ class Pembayaran extends Model
     {
         $bulanValue = $this->attributes['bulan'];
         return is_array($bulanValue) ? $bulanValue : explode(',', $bulanValue);
-    }   
+    }
 
     public function getBulanAttribute($value)
     {
-        return explode(',', $value);
+        $decoded = json_decode($value, true);
+
+        if (json_last_error() === JSON_ERROR_NONE && is_array($decoded)) {
+            return $decoded;
+        }
+
+        // fallback kalau value bukan JSON valid
+        return $value ? explode(',', $value) : [];
     }
+
 
     public function setBulanAttribute($value)
     {
-        $this->attributes['bulan'] = is_array($value) ? implode(',', $value) : $value;
+        if (is_null($value)) {
+            $this->attributes['bulan'] = json_encode([]);
+        } elseif (is_array($value)) {
+            $this->attributes['bulan'] = json_encode($value);
+        } else {
+            // kalau input string "Januari,Februari"
+            $this->attributes['bulan'] = json_encode(explode(',', $value));
+        }
     }
 
     public function siswa()
@@ -5153,15 +5195,27 @@ $classes = ($active ?? false)
                 <!-- Dropdown Siswa -->
                 <div class="mb-4">
                     <x-input-label for="id_siswa" value="Nama Siswa" />
-                    <select name="id_siswa" id="id_siswa"
-                        class="mt-1 block w-full border-gray-300 rounded-md shadow-sm">
-                        <option value="">Pilih Siswa</option>
-                        @foreach ($siswa as $item)
-                            <option value="{{ $item->id_siswa }}">{{ $item->nama_siswa }}</option>
-                        @endforeach
-                    </select>
+                
+                    @if($siswa->count() === 1)
+                        {{-- Kalau hanya ada 1 siswa --}}
+                        <input type="hidden" name="id_siswa" value="{{ $siswa->first()->id_siswa }}">
+                        <p class="mt-1 block w-full rounded-md bg-gray-100 px-3 py-2">
+                            {{ $siswa->first()->nama_siswa }}
+                        </p>
+                    @else
+                        {{-- Kalau ada lebih dari 1 siswa --}}
+                        <select name="id_siswa" id="id_siswa"
+                            class="mt-1 block w-full border-gray-300 rounded-md shadow-sm">
+                            <option value="">Pilih Siswa</option>
+                            @foreach ($siswa as $item)
+                                <option value="{{ $item->id_siswa }}">{{ $item->nama_siswa }}</option>
+                            @endforeach
+                        </select>
+                    @endif
+                
                     <x-input-error :messages="$errors->get('id_siswa')" class="mt-2" />
                 </div>
+                
 
                 <!-- Multi-select Bulan dan Jumlah dalam satu x-data -->
                 <div x-data="{
@@ -6673,6 +6727,11 @@ class Kernel extends ConsoleKernel
         // Jalankan command setiap bulan pada tanggal 2, pukul 01:00 pagi
         $schedule->command('app:generate-tunggakan')->monthlyOn(2, '01:00');
         $schedule->command('app:send-tunggakan-reminders')->dailyAt('08:00');
+        $schedule->command('app:send-current-month-reminders')
+            ->dailyAt('08:00')
+            ->when(function () {
+                return now()->day > 10;
+            });
     }
 
     /**
@@ -6680,7 +6739,7 @@ class Kernel extends ConsoleKernel
      */
     protected function commands(): void
     {
-        $this->load(__DIR__.'/Commands');
+        $this->load(__DIR__ . '/Commands');
 
         require base_path('routes/console.php');
     }
