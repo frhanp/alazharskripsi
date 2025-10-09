@@ -42,7 +42,7 @@ class SendWhatsappNotification implements ShouldQueue
         $namaSiswa = $this->kwitansi->pembayaran->siswa->nama_siswa;
         $tahun = $this->kwitansi->pembayaran->tahun;
 
-        $caption = "Yth. Wali Murid dari ananda {$namaSiswa},\n\n" .
+        $caption = "Yth. Wali Murid dari {$namaSiswa},\n\n" .
             "Terima kasih, pembayaran SPP bulan *{$bulan} {$tahun}* telah kami terima. Berikut kami lampirkan kwitansinya.\n\n" .
             "Terima kasih.\n*Bendahara Al-Azhar 43 Gorontalo*";
 

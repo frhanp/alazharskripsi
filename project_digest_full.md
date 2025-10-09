@@ -1,5 +1,5 @@
 ﻿# Project Digest (Full Content)
-_Generated: 2025-10-04 12:45:14_
+_Generated: 2025-10-09 08:21:39_
 **Root:** D:\Laragon\www\alazharskripsi
 
 
@@ -146,6 +146,7 @@ database\migrations\2025_09_15_072256_add_nomor_wa_to_users_table.php
 database\migrations\2025_09_16_051807_add_location_columns_to_gurus_and_siswas_tables.php
 database\migrations\2025_09_18_113003_add_last_reminder_sent_at_to_tunggakan_table.php
 database\migrations\2025_09_25_015523_remove_guru_functionality.php
+database\migrations\2025_10_04_052317_change_value_length_in_pengaturan_table.php
 database\seeders\DatabaseSeeder.php
 database\seeders\PengaturanSeeder.php
 database\seeders\SiswaSeeder.php
@@ -284,8 +285,10 @@ storage\app\public\kwitansi\kwitansi-1-1758853481.docx
 storage\app\public\kwitansi\kwitansi-1-1758889832.docx
 storage\app\public\kwitansi\kwitansi-10-1755671825.pdf
 storage\app\public\kwitansi\kwitansi-10-1757922868.docx
+storage\app\public\kwitansi\kwitansi-10-1759658289.docx
 storage\app\public\kwitansi\kwitansi-11-1757923712.docx
 storage\app\public\kwitansi\kwitansi-12-1757988452.docx
+storage\app\public\kwitansi\kwitansi-12-1759820759.docx
 storage\app\public\kwitansi\kwitansi-13-1757988568.docx
 storage\app\public\kwitansi\kwitansi-14-1757988728.docx
 storage\app\public\kwitansi\kwitansi-15-1757988812.docx
@@ -416,10 +419,74 @@ tests\Feature\Auth\PasswordResetTest.php
 tests\Feature\Auth\PasswordUpdateTest.php
 tests\Feature\Auth\RegistrationTest.php
 tests\Unit\ExampleTest.php
+whatsapp-service\baileys_auth_info
 whatsapp-service\node_modules
 whatsapp-service\index.js
 whatsapp-service\package-lock.json
 whatsapp-service\package.json
+whatsapp-service\baileys_auth_info\app-state-sync-key-AAAAAL7G.json
+whatsapp-service\baileys_auth_info\app-state-sync-version-critical_block.json
+whatsapp-service\baileys_auth_info\app-state-sync-version-regular.json
+whatsapp-service\baileys_auth_info\app-state-sync-version-regular_low.json
+whatsapp-service\baileys_auth_info\creds.json
+whatsapp-service\baileys_auth_info\lid-mapping-123570822856958_reverse.json
+whatsapp-service\baileys_auth_info\lid-mapping-194502543290533_reverse.json
+whatsapp-service\baileys_auth_info\lid-mapping-195773350293676_reverse.json
+whatsapp-service\baileys_auth_info\lid-mapping-209551487930455_reverse.json
+whatsapp-service\baileys_auth_info\lid-mapping-211737945079823_reverse.json
+whatsapp-service\baileys_auth_info\lid-mapping-237163883008141_reverse.json
+whatsapp-service\baileys_auth_info\lid-mapping-257088638984268_reverse.json
+whatsapp-service\baileys_auth_info\lid-mapping-46819874758696_reverse.json
+whatsapp-service\baileys_auth_info\lid-mapping-6281779426849.json
+whatsapp-service\baileys_auth_info\lid-mapping-6282296036930.json
+whatsapp-service\baileys_auth_info\lid-mapping-6282296667535.json
+whatsapp-service\baileys_auth_info\lid-mapping-6282312527494.json
+whatsapp-service\baileys_auth_info\lid-mapping-6285179841091.json
+whatsapp-service\baileys_auth_info\lid-mapping-6285342513758.json
+whatsapp-service\baileys_auth_info\lid-mapping-6285343941074.json
+whatsapp-service\baileys_auth_info\lid-mapping-6289530291587.json
+whatsapp-service\baileys_auth_info\pre-key-1.json
+whatsapp-service\baileys_auth_info\pre-key-10.json
+whatsapp-service\baileys_auth_info\pre-key-11.json
+whatsapp-service\baileys_auth_info\pre-key-12.json
+whatsapp-service\baileys_auth_info\pre-key-14.json
+whatsapp-service\baileys_auth_info\pre-key-15.json
+whatsapp-service\baileys_auth_info\pre-key-16.json
+whatsapp-service\baileys_auth_info\pre-key-17.json
+whatsapp-service\baileys_auth_info\pre-key-18.json
+whatsapp-service\baileys_auth_info\pre-key-2.json
+whatsapp-service\baileys_auth_info\pre-key-20.json
+whatsapp-service\baileys_auth_info\pre-key-24.json
+whatsapp-service\baileys_auth_info\pre-key-26.json
+whatsapp-service\baileys_auth_info\pre-key-29.json
+whatsapp-service\baileys_auth_info\pre-key-3.json
+whatsapp-service\baileys_auth_info\pre-key-30.json
+whatsapp-service\baileys_auth_info\pre-key-4.json
+whatsapp-service\baileys_auth_info\pre-key-6.json
+whatsapp-service\baileys_auth_info\pre-key-7.json
+whatsapp-service\baileys_auth_info\pre-key-8.json
+whatsapp-service\baileys_auth_info\pre-key-9.json
+whatsapp-service\baileys_auth_info\sender-key-120363421135933006@g.us--123570822856958_1--0.json
+whatsapp-service\baileys_auth_info\sender-key-120363421135933006@g.us--209551487930455_1--0.json
+whatsapp-service\baileys_auth_info\sender-key-120363421135933006@g.us--257088638984268_1--0.json
+whatsapp-service\baileys_auth_info\sender-key-120363422464418684@g.us--209551487930455_1--0.json
+whatsapp-service\baileys_auth_info\sender-key-120363422464418684@g.us--209551487930455_1--39.json
+whatsapp-service\baileys_auth_info\sender-key-120363422464418684@g.us--209551487930455_1--40.json
+whatsapp-service\baileys_auth_info\sender-key-120363422464418684@g.us--211737945079823_1--0.json
+whatsapp-service\baileys_auth_info\sender-key-120363422464418684@g.us--237163883008141_1--0.json
+whatsapp-service\baileys_auth_info\sender-key-status@broadcast--6285343941074--0.json
+whatsapp-service\baileys_auth_info\session-123570822856958_1.0.json
+whatsapp-service\baileys_auth_info\session-194502543290533_1.0.json
+whatsapp-service\baileys_auth_info\session-195773350293676_1.0.json
+whatsapp-service\baileys_auth_info\session-195773350293676_1.9.json
+whatsapp-service\baileys_auth_info\session-209551487930455_1.0.json
+whatsapp-service\baileys_auth_info\session-209551487930455_1.39.json
+whatsapp-service\baileys_auth_info\session-209551487930455_1.40.json
+whatsapp-service\baileys_auth_info\session-211737945079823_1.0.json
+whatsapp-service\baileys_auth_info\session-237163883008141_1.0.json
+whatsapp-service\baileys_auth_info\session-257088638984268_1.0.json
+whatsapp-service\baileys_auth_info\session-257088638984268_1.26.json
+whatsapp-service\baileys_auth_info\session-46819874758696_1.0.json
 ```
 
 
@@ -433,11 +500,11 @@ Branch:
 main
 
 Last 5 commits:
+b73f5b4 fix tampilan
 166d5d9 hapus baileys
 650517e fix kwitansi
 e018a25 test deploy
 34889ab ubah format kwitansi
-e2f5296 add filter akun wali dan siswa
 ```
 
 
@@ -654,74 +721,74 @@ require __DIR__ . '/auth.php';
 ## Routes (from command)
 ```
 
-  GET|HEAD        / ............................................................................................................ 
-  GET|HEAD        _debugbar/assets/javascript ...................... debugbar.assets.js ΓÇ║ Barryvdh\Debugbar ΓÇ║ AssetController@js
-  GET|HEAD        _debugbar/assets/stylesheets ................... debugbar.assets.css ΓÇ║ Barryvdh\Debugbar ΓÇ║ AssetController@css
-  DELETE          _debugbar/cache/{key}/{tags?} ............. debugbar.cache.delete ΓÇ║ Barryvdh\Debugbar ΓÇ║ CacheController@delete
-  GET|HEAD        _debugbar/clockwork/{id} ............ debugbar.clockwork ΓÇ║ Barryvdh\Debugbar ΓÇ║ OpenHandlerController@clockwork
-  GET|HEAD        _debugbar/open ....................... debugbar.openhandler ΓÇ║ Barryvdh\Debugbar ΓÇ║ OpenHandlerController@handle
-  POST            _debugbar/queries/explain ........... debugbar.queries.explain ΓÇ║ Barryvdh\Debugbar ΓÇ║ QueriesController@explain
-  GET|HEAD        akun ................................................................... akun.index ΓÇ║ AkunWaliController@index
-  PUT|PATCH       akun/{user} .......................................................... akun.update ΓÇ║ AkunWaliController@update
-  GET|HEAD        akun/{user}/edit ......................................................... akun.edit ΓÇ║ AkunWaliController@edit
-  POST            akun/{user}/reset-password ............................ akun.reset-password ΓÇ║ AkunWaliController@resetPassword
-  GET|HEAD        api/locations ................................................... api.locations ΓÇ║ Api\LocationController@index
-  GET|HEAD        bendahara/dashboard ................................ bendahara.dashboard ΓÇ║ Bendahara\DashboardController@index
-  GET|HEAD        confirm-password .................................. password.confirm ΓÇ║ Auth\ConfirmablePasswordController@show
-  POST            confirm-password .................................................... Auth\ConfirmablePasswordController@store
-  GET|HEAD        dashboard .................................................................... dashboard ΓÇ║ DashboardController
-  GET|HEAD        detail-siswa/{siswa} ......................................... wali.detail-siswa ΓÇ║ DetailSiswaController@index
-  POST            email/verification-notification ....... verification.send ΓÇ║ Auth\EmailVerificationNotificationController@store
-  GET|HEAD        forgot-password ................................... password.request ΓÇ║ Auth\PasswordResetLinkController@create
-  POST            forgot-password ...................................... password.email ΓÇ║ Auth\PasswordResetLinkController@store
-  GET|HEAD        ketua/dashboard ................................. ketua.dashboard ΓÇ║ KetuaYayasan\DashboardController@dashboard
-  GET|HEAD        kwitansi/download/{kwitansi} ................................. kwitansi.download ΓÇ║ KwitansiController@download
-  GET|HEAD        laporan .............................................................. laporan.index ΓÇ║ LaporanController@index
-  GET|HEAD        laporan/excel ........................................... laporan.export.excel ΓÇ║ LaporanController@exportExcel
-  GET|HEAD        laporan/pdf ................................................. laporan.export.pdf ΓÇ║ LaporanController@exportPdf
-  GET|HEAD        login ..................................................... login ΓÇ║ Auth\AuthenticatedSessionController@create
-  POST            login .............................................................. Auth\AuthenticatedSessionController@store
-  POST            logout .................................................. logout ΓÇ║ Auth\AuthenticatedSessionController@destroy
-  POST            midtrans/callback ........................................................... MidtransWebhookController@handle
-  POST            midtrans/token ............................................... midtrans.token ΓÇ║ PembayaranController@snapToken
-  PUT             password .................................................... password.update ΓÇ║ Auth\PasswordController@update
-  POST            payment/token ............................................ payment.token ΓÇ║ PaymentController@createTransaction
-  GET|HEAD        pembayaran .................................................. payment.page ΓÇ║ PaymentController@showPaymentPage
-  GET|HEAD        pembayaran/manual/create ........................ pembayaran.manual.create ΓÇ║ PembayaranController@createManual
-  POST            pembayaran/manual/store ........................... pembayaran.manual.store ΓÇ║ PembayaranController@storeManual
-  GET|HEAD        pembayaran/midtrans/{id_siswa} ........................ pembayaran.midtrans.form ΓÇ║ MidtransController@showForm
-  POST            pembayaran/midtrans/{id_siswa} ....................... pembayaran.midtrans ΓÇ║ MidtransController@createMidtrans
-  GET|HEAD        pembayaran/verifikasi ........................... pembayaran.verifikasi ΓÇ║ PembayaranController@indexVerifikasi
-  PATCH           pembayaran/verifikasi/{id} .............. pembayaran.verifikasi.update ΓÇ║ PembayaranController@updateVerifikasi
-  GET|HEAD        pembayaran/{siswa}/pilih-metode ........................ pembayaran.pilih-metode ΓÇ║ PilihMetodeController@index
-  GET|HEAD        pemetaan ........................................................... pemetaan.index ΓÇ║ PemetaanController@index
-  GET|HEAD        pengaturan ..................................................... pengaturan.index ΓÇ║ PengaturanController@index
-  POST            pengaturan ................................................... pengaturan.update ΓÇ║ PengaturanController@update
-  GET|HEAD        profile ................................................................ profile.edit ΓÇ║ ProfileController@edit
-  PATCH           profile ............................................................ profile.update ΓÇ║ ProfileController@update
-  DELETE          profile .......................................................... profile.destroy ΓÇ║ ProfileController@destroy
-  GET|HEAD        register ..................................................... register ΓÇ║ Auth\RegisteredUserController@create
-  POST            register ................................................................. Auth\RegisteredUserController@store
-  POST            reset-password ............................................. password.store ΓÇ║ Auth\NewPasswordController@store
-  GET|HEAD        reset-password/{token} .................................... password.reset ΓÇ║ Auth\NewPasswordController@create
-  GET|HEAD        riwayat .............................................................. riwayat.index ΓÇ║ RiwayatController@index
-  GET|HEAD        siswa .................................................................... siswa.index ΓÇ║ SiswaController@index
-  POST            siswa .................................................................... siswa.store ΓÇ║ SiswaController@store
-  GET|HEAD        siswa/create ........................................................... siswa.create ΓÇ║ SiswaController@create
-  PUT|PATCH       siswa/{siswa} .......................................................... siswa.update ΓÇ║ SiswaController@update
-  DELETE          siswa/{siswa} ........................................................ siswa.destroy ΓÇ║ SiswaController@destroy
-  GET|HEAD        siswa/{siswa}/edit ......................................................... siswa.edit ΓÇ║ SiswaController@edit
-  POST            siswa/{siswa}/reset-password ............................ siswa.reset-password ΓÇ║ SiswaController@resetPassword
-  GET|HEAD        storage/{path} ................................................................................. storage.local
-  GET|HEAD        tunggakan ........................................................ tunggakan.index ΓÇ║ TunggakanController@index
-  POST            tunggakan/{id_tunggakan}/send-reminder ............ tunggakan.send-reminder ΓÇ║ TunggakanController@sendReminder
-  GET|HEAD        up ........................................................................................................... 
-  GET|HEAD        upload-transfer ................................. pembayaran.upload.create ΓÇ║ PembayaranController@createUpload
-  POST            upload-transfer ................................... pembayaran.upload.store ΓÇ║ PembayaranController@storeUpload
-  GET|HEAD        verify-email .................................... verification.notice ΓÇ║ Auth\EmailVerificationPromptController
-  GET|HEAD        verify-email/{id}/{hash} .................................... verification.verify ΓÇ║ Auth\VerifyEmailController
+  GET|HEAD        / ................................................................................................................ 
+  GET|HEAD        _debugbar/assets/javascript .......................... debugbar.assets.js ΓÇ║ Barryvdh\Debugbar ΓÇ║ AssetController@js
+  GET|HEAD        _debugbar/assets/stylesheets ....................... debugbar.assets.css ΓÇ║ Barryvdh\Debugbar ΓÇ║ AssetController@css
+  DELETE          _debugbar/cache/{key}/{tags?} ................. debugbar.cache.delete ΓÇ║ Barryvdh\Debugbar ΓÇ║ CacheController@delete
+  GET|HEAD        _debugbar/clockwork/{id} ................ debugbar.clockwork ΓÇ║ Barryvdh\Debugbar ΓÇ║ OpenHandlerController@clockwork
+  GET|HEAD        _debugbar/open ........................... debugbar.openhandler ΓÇ║ Barryvdh\Debugbar ΓÇ║ OpenHandlerController@handle
+  POST            _debugbar/queries/explain ............... debugbar.queries.explain ΓÇ║ Barryvdh\Debugbar ΓÇ║ QueriesController@explain
+  GET|HEAD        akun ....................................................................... akun.index ΓÇ║ AkunWaliController@index
+  PUT|PATCH       akun/{user} .............................................................. akun.update ΓÇ║ AkunWaliController@update
+  GET|HEAD        akun/{user}/edit ............................................................. akun.edit ΓÇ║ AkunWaliController@edit
+  POST            akun/{user}/reset-password ................................ akun.reset-password ΓÇ║ AkunWaliController@resetPassword
+  GET|HEAD        api/locations ....................................................... api.locations ΓÇ║ Api\LocationController@index
+  GET|HEAD        bendahara/dashboard .................................... bendahara.dashboard ΓÇ║ Bendahara\DashboardController@index
+  GET|HEAD        confirm-password ...................................... password.confirm ΓÇ║ Auth\ConfirmablePasswordController@show
+  POST            confirm-password ........................................................ Auth\ConfirmablePasswordController@store
+  GET|HEAD        dashboard ........................................................................ dashboard ΓÇ║ DashboardController
+  GET|HEAD        detail-siswa/{siswa} ............................................. wali.detail-siswa ΓÇ║ DetailSiswaController@index
+  POST            email/verification-notification ........... verification.send ΓÇ║ Auth\EmailVerificationNotificationController@store
+  GET|HEAD        forgot-password ....................................... password.request ΓÇ║ Auth\PasswordResetLinkController@create
+  POST            forgot-password .......................................... password.email ΓÇ║ Auth\PasswordResetLinkController@store
+  GET|HEAD        ketua/dashboard ..................................... ketua.dashboard ΓÇ║ KetuaYayasan\DashboardController@dashboard
+  GET|HEAD        kwitansi/download/{kwitansi} ..................................... kwitansi.download ΓÇ║ KwitansiController@download
+  GET|HEAD        laporan .................................................................. laporan.index ΓÇ║ LaporanController@index
+  GET|HEAD        laporan/excel ............................................... laporan.export.excel ΓÇ║ LaporanController@exportExcel
+  GET|HEAD        laporan/pdf ..................................................... laporan.export.pdf ΓÇ║ LaporanController@exportPdf
+  GET|HEAD        login ......................................................... login ΓÇ║ Auth\AuthenticatedSessionController@create
+  POST            login .................................................................. Auth\AuthenticatedSessionController@store
+  POST            logout ...................................................... logout ΓÇ║ Auth\AuthenticatedSessionController@destroy
+  POST            midtrans/callback ............................................................... MidtransWebhookController@handle
+  POST            midtrans/token ................................................... midtrans.token ΓÇ║ PembayaranController@snapToken
+  PUT             password ........................................................ password.update ΓÇ║ Auth\PasswordController@update
+  POST            payment/token ................................................ payment.token ΓÇ║ PaymentController@createTransaction
+  GET|HEAD        pembayaran ...................................................... payment.page ΓÇ║ PaymentController@showPaymentPage
+  GET|HEAD        pembayaran/manual/create ............................ pembayaran.manual.create ΓÇ║ PembayaranController@createManual
+  POST            pembayaran/manual/store ............................... pembayaran.manual.store ΓÇ║ PembayaranController@storeManual
+  GET|HEAD        pembayaran/midtrans/{id_siswa} ............................ pembayaran.midtrans.form ΓÇ║ MidtransController@showForm
+  POST            pembayaran/midtrans/{id_siswa} ........................... pembayaran.midtrans ΓÇ║ MidtransController@createMidtrans
+  GET|HEAD        pembayaran/verifikasi ............................... pembayaran.verifikasi ΓÇ║ PembayaranController@indexVerifikasi
+  PATCH           pembayaran/verifikasi/{id} .................. pembayaran.verifikasi.update ΓÇ║ PembayaranController@updateVerifikasi
+  GET|HEAD        pembayaran/{siswa}/pilih-metode ............................ pembayaran.pilih-metode ΓÇ║ PilihMetodeController@index
+  GET|HEAD        pemetaan ............................................................... pemetaan.index ΓÇ║ PemetaanController@index
+  GET|HEAD        pengaturan ......................................................... pengaturan.index ΓÇ║ PengaturanController@index
+  POST            pengaturan ....................................................... pengaturan.update ΓÇ║ PengaturanController@update
+  GET|HEAD        profile .................................................................... profile.edit ΓÇ║ ProfileController@edit
+  PATCH           profile ................................................................ profile.update ΓÇ║ ProfileController@update
+  DELETE          profile .............................................................. profile.destroy ΓÇ║ ProfileController@destroy
+  GET|HEAD        register ......................................................... register ΓÇ║ Auth\RegisteredUserController@create
+  POST            register ..................................................................... Auth\RegisteredUserController@store
+  POST            reset-password ................................................. password.store ΓÇ║ Auth\NewPasswordController@store
+  GET|HEAD        reset-password/{token} ........................................ password.reset ΓÇ║ Auth\NewPasswordController@create
+  GET|HEAD        riwayat .................................................................. riwayat.index ΓÇ║ RiwayatController@index
+  GET|HEAD        siswa ........................................................................ siswa.index ΓÇ║ SiswaController@index
+  POST            siswa ........................................................................ siswa.store ΓÇ║ SiswaController@store
+  GET|HEAD        siswa/create ............................................................... siswa.create ΓÇ║ SiswaController@create
+  PUT|PATCH       siswa/{siswa} .............................................................. siswa.update ΓÇ║ SiswaController@update
+  DELETE          siswa/{siswa} ............................................................ siswa.destroy ΓÇ║ SiswaController@destroy
+  GET|HEAD        siswa/{siswa}/edit ............................................................. siswa.edit ΓÇ║ SiswaController@edit
+  POST            siswa/{siswa}/reset-password ................................ siswa.reset-password ΓÇ║ SiswaController@resetPassword
+  GET|HEAD        storage/{path} ..................................................................................... storage.local
+  GET|HEAD        tunggakan ............................................................ tunggakan.index ΓÇ║ TunggakanController@index
+  POST            tunggakan/{id_tunggakan}/send-reminder ................ tunggakan.send-reminder ΓÇ║ TunggakanController@sendReminder
+  GET|HEAD        up ............................................................................................................... 
+  GET|HEAD        upload-transfer ..................................... pembayaran.upload.create ΓÇ║ PembayaranController@createUpload
+  POST            upload-transfer ....................................... pembayaran.upload.store ΓÇ║ PembayaranController@storeUpload
+  GET|HEAD        verify-email ........................................ verification.notice ΓÇ║ Auth\EmailVerificationPromptController
+  GET|HEAD        verify-email/{id}/{hash} ........................................ verification.verify ΓÇ║ Auth\VerifyEmailController
 
-                                                                                                             Showing [66] routes
+                                                                                                                 Showing [66] routes
 
 ```
 
@@ -2274,8 +2341,9 @@ class PembayaranController extends Controller
         $defaultJumlahSPP = Pengaturan::where('key', 'jumlah_spp')->value('value') ?? 0;
         // Ambil siswa yang terkait dengan wali murid yang login
         $siswa = Siswa::where('id_wali', Auth::id())->orderBy('nama_siswa')->get();
+        $nomorRekening = Pengaturan::where('key', 'nomor_rekening')->value('value');
 
-        return view('pembayaran.upload_transfer', compact('defaultJumlahSPP', 'siswa'));
+        return view('pembayaran.upload_transfer', compact('defaultJumlahSPP', 'siswa', 'nomorRekening'));
     }
 
     public function storeUpload(Request $request)
@@ -2641,6 +2709,7 @@ class SiswaController extends Controller
         return view('siswa.index', compact('siswas', 'kelasOptions'));
     }
 
+
     public function create()
     {
         $walis = User::where('role', 'wali_murid')->orderBy('name')->get();
@@ -2654,6 +2723,7 @@ class SiswaController extends Controller
             'nis' => 'required|string|max:50|unique:siswa,nis',
             'kelas' => 'required|string|max:20',
             'wali_option' => 'required|in:existing,new', // Pilihan metode
+
         ]);
 
         $id_wali = null;
@@ -2669,6 +2739,7 @@ class SiswaController extends Controller
                 'nama_wali' => 'required|string|max:255',
                 'email_wali' => 'required|string|lowercase|email|max:255|unique:'.User::class.',email',
                 'password_wali' => ['required', Rules\Password::defaults()],
+                'nomor_wa' => 'nullable|string|max:20',
             ]);
 
             $wali = User::create([
@@ -2676,12 +2747,13 @@ class SiswaController extends Controller
                 'email' => $request->email_wali,
                 'password' => Hash::make($request->password_wali),
                 'role' => 'wali_murid',
+                'nomor_wa' => $request->nomor_wa,
             ]);
             $id_wali = $wali->id;
         }
 
         // Buat data siswa dengan id_wali yang sudah ditentukan
-        Siswa::create(array_merge($request->only('nama_siswa', 'nis', 'kelas', 'alamat', 'latitude', 'longitude'), ['id_wali' => $id_wali]));
+        Siswa::create(array_merge($request->only('nama_siswa', 'nis', 'kelas', 'alamat', 'latitude', 'longitude'), ['id_wali' => $id_wali], ['nomor_wa' => $request->nomor_wa]));
 
         return redirect()->route('siswa.index')->with('success', 'Siswa berhasil ditambahkan.');
     }
@@ -2701,10 +2773,11 @@ class SiswaController extends Controller
             'nis' => 'required|string|max:50|unique:siswa,nis,' . $siswa->id_siswa . ',id_siswa',
             'kelas' => 'required|string|max:20',
             'id_wali' => 'required|exists:users,id',
+            'nomor_wa' => 'nullable|string|max:20',
         ]);
         
         $siswa->update($request->all());
-
+        $siswa->wali->update(['nomor_wa' => $request->nomor_wa]);
         return redirect()->route('siswa.index')->with('success', 'Data siswa berhasil diperbarui.');
     }
 
@@ -4493,51 +4566,33 @@ $classes = ($active ?? false)
 
 ===== resources\views\layouts\navigation.blade.php =====
 <aside class="h-full flex flex-col md:h-screen md:sticky md:top-0">
-    <!-- Logo -->
     <div class="p-6 border-b border-gray-200">
-        {{-- PATOKAN: resources/views/layouts/navigation.blade.php --}}
-        {{-- AWAL PERUBAHAN --}}
         <a href="{{ route('dashboard') }}" class="flex items-center justify-center space-x-3">
-            {{-- Logo Kiri --}}
             <img src="{{ asset('images/logoyayasan.jpg') }}" alt="Logo 1" class="h-10 w-auto">
 
-            {{-- Tulisan di Tengah --}}
             <span class="text-xl font-bold text-gray-800 whitespace-nowrap">
                 {{ config('app.name', 'Al Azhar') }}
             </span>
-
-            {{-- Logo Kanan --}}
             <img src="{{ asset('images/logoalazhar.png') }}" alt="Logo 2" class="h-10 w-auto">
         </a>
-        {{-- AKHIR PERUBAHAN --}}
     </div>
-    <!-- Nav Links -->
     <nav class="flex-1 px-4 py-6 space-y-2">
-
         <x-nav-link :href="route('dashboard')" :active="request()->routeIs(['dashboard', 'bendahara.dashboard', 'ketua.dashboard'])">
             <img src="{{ asset('images/homeicon.png') }}" alt="icon" class="w-4 h-4 mr-2">
             {{ __('Dashboard') }}
         </x-nav-link>
 
-        {{-- =======================================================
-            AWAL LOGIKA BARU UNTUK ROLE
-        ======================================================= --}}
-
-        {{-- Menu Khusus Bendahara (Operasional) --}}
         @if (auth()->user()?->role === 'bendahara')
             <hr class="my-2 border-gray-200">
             <p class="px-4 text-xs font-semibold text-gray-400 uppercase">Operasional</p>
-
             <x-nav-link :href="route('pembayaran.manual.create')" :active="request()->routeIs('pembayaran.manual.create')">
                 <img src="{{ asset('images/inputicon.png') }}" alt="icon" class="w-4 h-4 mr-2">
                 {{ __('Input Pembayaran SPP Manual') }}
             </x-nav-link>
-
             <x-nav-link :href="route('pembayaran.verifikasi')" :active="request()->routeIs('pembayaran.verifikasi')">
                 <img src="{{ asset('images/verifyicon.png') }}" alt="icon" class="w-4 h-4 mr-2">
                 {{ __('Verifikasi Pembayaran SPP') }}
             </x-nav-link>
-
             <x-nav-link :href="route('tunggakan.index')" :active="request()->routeIs('tunggakan.index')">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-2" fill="none" viewBox="0 0 24 24"
                     stroke="currentColor" stroke-width="2">
@@ -4546,7 +4601,6 @@ $classes = ($active ?? false)
                 </svg>
                 {{ __('Tunggakan SPP') }}
             </x-nav-link>
-
             <x-nav-link :href="route('pengaturan.index')" :active="request()->routeIs('pengaturan.index')">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-2" fill="none" viewBox="0 0 24 24"
                     stroke="currentColor" stroke-width="2">
@@ -4558,27 +4612,30 @@ $classes = ($active ?? false)
             </x-nav-link>
         @endif
 
-        {{-- Menu Bersama Bendahara & Ketua Yayasan --}}
         @if (in_array(auth()->user()?->role, ['bendahara', 'ketua_yayasan']))
             <hr class="my-2 border-gray-200">
             <p class="px-4 text-xs font-semibold text-gray-400 uppercase">Data & Laporan</p>
 
-            <x-nav-link :href="route('siswa.index')" :active="request()->routeIs('siswa.index')">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-2" fill="none" viewBox="0 0 24 24"
-                    stroke="currentColor" stroke-width="2">
-                    <path d="M12 14l9-5-9-5-9 5 9 5z" />
-                    <path
-                        d="M12 14l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-9.998 12.078 12.078 0 01.665-6.479L12 14z" />
-                    <path stroke-linecap="round" stroke-linejoin="round"
-                        d="M12 14l9-5-9-5-9 5 9 5zm0 0l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-9.998 12.078 12.078 0 01.665-6.479L12 14zm-4 6v-7.5l4-2.222 4 2.222V20M12 14.75V20" />
-                </svg>
-                {{ __('Data Siswa') }}
-            </x-nav-link>
+            @if (auth()->user()?->role === 'bendahara')
+                <x-nav-link :href="route('siswa.index')" :active="request()->routeIs('siswa.index')">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-2" fill="none" viewBox="0 0 24 24"
+                        stroke="currentColor" stroke-width="2">
+                        <path d="M12 14l9-5-9-5-9 5 9 5z" />
+                        <path
+                            d="M12 14l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-9.998 12.078 12.078 0 01.665-6.479L12 14z" />
+                        <path stroke-linecap="round" stroke-linejoin="round"
+                            d="M12 14l9-5-9-5-9 5 9 5zm0 0l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-9.998 12.078 12.078 0 01.665-6.479L12 14zm-4 6v-7.5l4-2.222 4 2.222V20M12 14.75V20" />
+                    </svg>
+                    {{ __('Data Siswa') }}
+                </x-nav-link>
 
-            <x-nav-link :href="route('riwayat.index')" :active="request()->routeIs('riwayat.index')">
-                <img src="{{ asset('images/historyicon.png') }}" alt="icon" class="w-4 h-4 mr-2">
-                {{ __('Riwayat Pembayaran') }}
-            </x-nav-link>
+                <x-nav-link :href="route('riwayat.index')" :active="request()->routeIs('riwayat.index')">
+                    <img src="{{ asset('images/historyicon.png') }}" alt="icon" class="w-4 h-4 mr-2">
+                    {{ __('Riwayat Pembayaran') }}
+                </x-nav-link>
+                
+                
+            @endif
 
             <x-nav-link :href="route('pemetaan.index')" :active="request()->routeIs('pemetaan.index')">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-2" fill="none" viewBox="0 0 24 24"
@@ -4599,8 +4656,7 @@ $classes = ($active ?? false)
                 {{ __('Laporan') }}
             </x-nav-link>
         @endif
-
-        {{-- Menu Khusus Wali Murid --}}
+        
         @if (auth()->user()?->role === 'wali_murid')
             <hr class="my-2 border-gray-200">
             <p class="px-4 text-xs font-semibold text-gray-400 uppercase">Wali Murid</p>
@@ -4610,31 +4666,25 @@ $classes = ($active ?? false)
                 {{ __('Upload Bukti Transfer') }}
             </x-nav-link>
 
-            <x-nav-link :href="route('riwayat.index')" :active="request()->routeIs('riwayat.index')">
-                <img src="{{ asset('images/historyicon.png') }}" alt="icon" class="w-4 h-4 mr-2">
-                {{ __('Riwayat Pembayaran') }}
-            </x-nav-link>
-            @if ($midtransAktif)
+            @if (isset($midtransAktif) && $midtransAktif)
                 @php
                     $anakWali = Auth::user()->siswa;
                 @endphp
 
-                {{-- Jika wali hanya punya 1 anak, tampilkan sebagai link biasa --}}
                 @if ($anakWali->count() == 1)
                     <x-nav-link :href="route('pembayaran.midtrans.form', $anakWali->first()->id_siswa)" :active="request()->routeIs('pembayaran.midtrans.form')">
                         <img src="{{ asset('images/walleticon.png') }}" alt="icon" class="w-4 h-4 mr-2">
                         {{ __('Pembayaran Online') }}
                     </x-nav-link>
 
-                {{-- Jika punya lebih dari 1 anak, baru tampilkan dropdown --}}
                 @elseif ($anakWali->count() > 1)
-                    <div class="relative">
-                        <button type="button" class="flex items-center w-full px-4 py-2 rounded-lg text-gray-600 hover:bg-gray-100 hover:text-gray-900" id="siswa-menu" aria-expanded="false" aria-haspopup="true">
+                    <div x-data="{ open: false }" class="relative">
+                        <button @click="open = !open" type="button" class="flex items-center w-full px-4 py-2 rounded-lg text-gray-600 hover:bg-gray-100 hover:text-gray-900" aria-expanded="false" aria-haspopup="true">
                             <img src="{{ asset('images/walleticon.png') }}" alt="icon" class="w-4 h-4 mr-2">
                             <span class="text-sm font-medium">{{ __('Pembayaran Online') }}</span>
-                            <svg class="ml-auto h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" /></svg>
+                            <svg class="ml-auto h-4 w-4 transform transition-transform" :class="{'rotate-180': open}" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" /></svg>
                         </button>
-                        <div class="absolute hidden mt-2 w-48 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 z-10" id="siswa-menu-dropdown">
+                        <div x-show="open" @click.away="open = false" class="mt-2 w-full rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 z-10" style="display: none;">
                             <div class="py-1" role="menu" aria-orientation="vertical" aria-labelledby="siswa-menu">
                                 @foreach ($anakWali as $item)
                                     <a href="{{ route('pembayaran.midtrans.form', $item->id_siswa) }}"
@@ -4645,10 +4695,8 @@ $classes = ($active ?? false)
                             </div>
                         </div>
                     </div>
-                
                 @endif
             @else
-                {{-- JIKA MIDTRANS NON-AKTIF: Tampilkan menu disabled --}}
                 <div 
                     onclick="Swal.fire('Informasi', 'Pembayaran online saat ini sedang tidak tersedia.', 'info')"
                     class="flex items-center w-full px-4 py-2 rounded-lg text-gray-400 cursor-not-allowed bg-gray-50"
@@ -4658,49 +4706,27 @@ $classes = ($active ?? false)
                 </div>
             @endif
 
-        @endif
-
-        {{-- Akun Wali Murid hanya bendahara --}}
-        @if (auth()->user()?->role === 'bendahara')
-            <hr class="my-2 border-gray-200">
-            <p class="px-4 text-xs font-semibold text-gray-400 uppercase">Manajemen</p>
-
-            <x-nav-link :href="route('akun.index')" :active="request()->routeIs('akun.index')">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-2" fill="none" viewBox="0 0 24 24"
-                    stroke="currentColor" stroke-width="2">
-                    <path stroke-linecap="round" stroke-linejoin="round"
-                        d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
-                </svg>
-                {{ __('Akun Wali Murid') }}
+            <x-nav-link :href="route('riwayat.index')" :active="request()->routeIs('riwayat.index')">
+                <img src="{{ asset('images/historyicon.png') }}" alt="icon" class="w-4 h-4 mr-2">
+                {{ __('Riwayat Pembayaran') }}
             </x-nav-link>
         @endif
 
-    </nav>
+        
+        @if (auth()->user()?->role === 'bendahara')
+        <hr class="my-2 border-gray-200">
+        <p class="px-4 text-xs font-semibold text-gray-400 uppercase">Manajemen</p>
 
-    <!-- Sidebar Footer -->
-    {{-- <div x-data="{ open: false }" class="px-4 py-4 border-t border-gray-200">
-        <button @click="open = !open"
-            class="w-full flex items-center justify-between px-4 py-2 text-sm font-medium text-left bg-gray-100 text-gray-700 rounded-lg hover:bg-gray-200">
-            <span>{{ Auth::user()->name }}</span>
-            <svg :class="{ 'rotate-180': open }" class="w-4 h-4 transform transition-transform" fill="none"
-                stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
+        <x-nav-link :href="route('akun.index')" :active="request()->routeIs('akun.index')">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-2" fill="none" viewBox="0 0 24 24"
+                stroke="currentColor" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round"
+                    d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
             </svg>
-        </button>
-
-        <div x-show="open" x-cloak class="mt-2 space-y-1 bg-white rounded-lg shadow-inner text-sm text-gray-700">
-            <a href="{{ route('profile.edit') }}" class="block px-4 py-2 hover:bg-gray-100 rounded-lg">
-                {{ __('Profile') }}
-            </a>
-            <form method="POST" action="{{ route('logout') }}">
-                @csrf
-                <button type="submit"
-                    class="w-full text-left px-4 py-2 text-red-600 hover:text-red-700 hover:bg-red-50 rounded-lg">
-                    {{ __('Log Out') }}
-                </button>
-            </form>
-        </div>
-    </div> --}}
+            {{ __('Akun Wali Murid') }}
+        </x-nav-link>
+        @endif
+    </nav>
 </aside>
 
 ===== resources\views\pembayaran\manual_create.blade.php =====
@@ -5188,7 +5214,12 @@ $classes = ($active ?? false)
             @if (session('success'))
                 <div class="mb-4 text-green-600">{{ session('success') }}</div>
             @endif
-    
+            @if (!empty($nomorRekening))
+            <div class="mb-6 p-4 bg-blue-50 border border-blue-200 rounded-lg">
+                <p class="text-sm font-medium text-blue-800">Silakan lakukan transfer ke nomor rekening berikut:</p>
+                <p class="text-lg font-bold text-blue-900 mt-1">{{ $nomorRekening }}</p>
+            </div>
+        @endif
             <form action="{{ route('pembayaran.upload.store') }}" method="POST" enctype="multipart/form-data">
                 @csrf
     
@@ -5844,7 +5875,7 @@ $classes = ($active ?? false)
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
             {{ __('Tambah Data Siswa Baru') }}
         </h2>
-        <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+        <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
     </x-slot>
 
     <div class="py-8">
@@ -5852,21 +5883,25 @@ $classes = ($active ?? false)
             <div class="bg-white p-6 md:p-8 rounded-xl shadow-md">
                 <form action="{{ route('siswa.store') }}" method="POST">
                     @csrf
-                    
+
                     {{-- Informasi Siswa --}}
                     <h3 class="text-lg font-semibold text-gray-800 border-b pb-2 mb-4">Informasi Siswa</h3>
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
                         <div>
                             <label for="nama_siswa" class="block text-sm font-medium text-gray-700">Nama Siswa</label>
-                            <input type="text" name="nama_siswa" id="nama_siswa" value="{{ old('nama_siswa') }}" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm" required>
+                            <input type="text" name="nama_siswa" id="nama_siswa" value="{{ old('nama_siswa') }}"
+                                class="mt-1 block w-full border-gray-300 rounded-md shadow-sm" required>
                         </div>
                         <div>
                             <label for="nis" class="block text-sm font-medium text-gray-700">NIS</label>
-                            <input type="text" name="nis" id="nis" value="{{ old('nis') }}" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm" required>
+                            <input type="text" name="nis" id="nis" value="{{ old('nis') }}"
+                                class="mt-1 block w-full border-gray-300 rounded-md shadow-sm" required>
                         </div>
                         <div class="md:col-span-2">
-                             <label for="kelas" class="block text-sm font-medium text-gray-700">Kelas</label>
-                            <input type="text" name="kelas" id="kelas" value="{{ old('kelas') }}" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm" required placeholder="Contoh: 1A">
+                            <label for="kelas" class="block text-sm font-medium text-gray-700">Kelas</label>
+                            <input type="text" name="kelas" id="kelas" value="{{ old('kelas') }}"
+                                class="mt-1 block w-full border-gray-300 rounded-md shadow-sm" required
+                                placeholder="Contoh: 1A">
                         </div>
                     </div>
 
@@ -5875,83 +5910,120 @@ $classes = ($active ?? false)
                         <h3 class="text-lg font-semibold text-gray-800 border-b pb-2 mb-4">Informasi Wali Murid</h3>
                         <div class="flex space-x-4 mb-4">
                             <label class="flex items-center">
-                                <input type="radio" name="wali_option" value="existing" x-model="waliOption" class="text-indigo-600 focus:ring-indigo-500">
+                                <input type="radio" name="wali_option" value="existing" x-model="waliOption"
+                                    class="text-indigo-600 focus:ring-indigo-500">
                                 <span class="ml-2 text-sm text-gray-700">Pilih dari Wali Murid yang Sudah Ada</span>
                             </label>
                             <label class="flex items-center">
-                                <input type="radio" name="wali_option" value="new" x-model="waliOption" class="text-indigo-600 focus:ring-indigo-500">
+                                <input type="radio" name="wali_option" value="new" x-model="waliOption"
+                                    class="text-indigo-600 focus:ring-indigo-500">
                                 <span class="ml-2 text-sm text-gray-700">Buat Akun Wali Murid Baru</span>
                             </label>
                         </div>
 
                         {{-- Opsi 1: Dropdown Wali yang Sudah Ada --}}
                         <div x-show="waliOption === 'existing'" class="space-y-4">
-                            <select name="id_wali" id="id_wali" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm">
+                            <select name="id_wali" id="id_wali"
+                                class="mt-1 block w-full border-gray-300 rounded-md shadow-sm">
                                 <option value="">- Pilih Wali Murid -</option>
                                 @foreach ($walis as $wali)
-                                    <option value="{{ $wali->id }}" @selected(old('id_wali') == $wali->id)>{{ $wali->name }} ({{ $wali->email }})</option>
+                                    <option value="{{ $wali->id }}" @selected(old('id_wali') == $wali->id)>{{ $wali->name }}
+                                        ({{ $wali->email }})</option>
                                 @endforeach
                             </select>
                         </div>
 
                         {{-- Opsi 2: Form Buat Akun Baru --}}
-                        <div x-show="waliOption === 'new'" class="grid grid-cols-1 md:grid-cols-2 gap-6 p-4 border rounded-lg bg-gray-50">
+                        <div x-show="waliOption === 'new'"
+                            class="grid grid-cols-1 md:grid-cols-2 gap-6 p-4 border rounded-lg bg-gray-50">
                             <h4 class="md:col-span-2 font-semibold text-gray-700">Detail Akun Baru</h4>
                             <div>
-                                <label for="nama_wali" class="block text-sm font-medium text-gray-700">Nama Lengkap Wali</label>
-                                <input type="text" name="nama_wali" id="nama_wali" value="{{ old('nama_wali') }}" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm">
+                                <label for="nama_wali" class="block text-sm font-medium text-gray-700">Nama Lengkap
+                                    Wali</label>
+                                <input type="text" name="nama_wali" id="nama_wali" value="{{ old('nama_wali') }}"
+                                    class="mt-1 block w-full border-gray-300 rounded-md shadow-sm">
                             </div>
                             <div>
-                                <label for="email_wali" class="block text-sm font-medium text-gray-700">Email Wali</label>
-                                <input type="email" name="email_wali" id="email_wali" value="{{ old('email_wali') }}" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm">
+                                <label for="email_wali" class="block text-sm font-medium text-gray-700">Email
+                                    Wali</label>
+                                <input type="email" name="email_wali" id="email_wali" value="{{ old('email_wali') }}"
+                                    class="mt-1 block w-full border-gray-300 rounded-md shadow-sm">
                             </div>
                             <div>
-                                <label for="password_wali" class="block text-sm font-medium text-gray-700">Password</label>
-                                <input type="password" name="password_wali" id="password_wali" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm">
+                                <label for="nomor_wa" class="block text-sm font-medium text-gray-700">Nomor
+                                    WhatsApp</label>
+                                <input type="text" name="nomor_wa" id="nomor_wa" value="{{ old('nomor_wa') }}"
+                                    class="mt-1 block w-full border-gray-300 rounded-md shadow-sm"
+                                    placeholder="Contoh: 08123456789">
                             </div>
-                             <div>
-                                <label for="password_wali_confirmation" class="block text-sm font-medium text-gray-700">Konfirmasi Password</label>
-                                <input type="password" name="password_wali_confirmation" id="password_wali_confirmation" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm">
+                            <div>
+                                <label for="password_wali"
+                                    class="block text-sm font-medium text-gray-700">Password</label>
+                                <input type="password" name="password_wali" id="password_wali"
+                                    class="mt-1 block w-full border-gray-300 rounded-md shadow-sm">
                             </div>
+                            <div>
+                                <label for="password_wali_confirmation"
+                                    class="block text-sm font-medium text-gray-700">Konfirmasi Password</label>
+                                <input type="password" name="password_wali_confirmation" id="password_wali_confirmation"
+                                    class="mt-1 block w-full border-gray-300 rounded-md shadow-sm">
+                            </div>
+
                         </div>
                     </div>
 
                     {{-- Informasi Lokasi --}}
                     <h3 class="text-lg font-semibold text-gray-800 border-b pb-2 mb-4">Informasi Lokasi</h3>
-                     <div class="grid grid-cols-1 lg:grid-cols-2 gap-x-8 gap-y-6">
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-x-8 gap-y-6">
                         <div class="space-y-4">
-                             <div>
-                                <label for="alamat" class="block text-sm font-medium text-gray-700">Alamat Lengkap</label>
-                                <textarea name="alamat" id="alamat" rows="2" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm">{{ old('alamat') }}</textarea>
+                            <div>
+                                <label for="alamat" class="block text-sm font-medium text-gray-700">Alamat
+                                    Lengkap</label>
+                                <textarea name="alamat" id="alamat" rows="2"
+                                    class="mt-1 block w-full border-gray-300 rounded-md shadow-sm">{{ old('alamat') }}</textarea>
                             </div>
                             <div class="grid grid-cols-2 gap-4">
                                 <div>
-                                    <label for="latitude" class="block text-sm font-medium text-gray-700">Latitude</label>
-                                    <input type="text" name="latitude" id="latitude" value="{{ old('latitude') }}" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm bg-gray-100" readonly>
+                                    <label for="latitude"
+                                        class="block text-sm font-medium text-gray-700">Latitude</label>
+                                    <input type="text" name="latitude" id="latitude"
+                                        value="{{ old('latitude') }}"
+                                        class="mt-1 block w-full border-gray-300 rounded-md shadow-sm bg-gray-100"
+                                        readonly>
                                 </div>
                                 <div>
-                                    <label for="longitude" class="block text-sm font-medium text-gray-700">Longitude</label>
-                                    <input type="text" name="longitude" id="longitude" value="{{ old('longitude') }}" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm bg-gray-100" readonly>
+                                    <label for="longitude"
+                                        class="block text-sm font-medium text-gray-700">Longitude</label>
+                                    <input type="text" name="longitude" id="longitude"
+                                        value="{{ old('longitude') }}"
+                                        class="mt-1 block w-full border-gray-300 rounded-md shadow-sm bg-gray-100"
+                                        readonly>
                                 </div>
                             </div>
                         </div>
                         <div class="space-y-2">
                             <label class="block text-sm font-medium text-gray-700">Tandai Lokasi di Peta</label>
-                            <div id="map" style="height: 200px; cursor: pointer;" class="rounded-lg border z-0 mt-1"></div>
-                            <button type="button" id="get-location-btn" class="text-sm text-indigo-600 hover:underline font-semibold mt-2">Gunakan Lokasi Saya</button>
+                            <div id="map" style="height: 200px; cursor: pointer;"
+                                class="rounded-lg border z-0 mt-1"></div>
+                            <button type="button" id="get-location-btn"
+                                class="text-sm text-indigo-600 hover:underline font-semibold mt-2">Gunakan Lokasi
+                                Saya</button>
                             <p id="status" class="text-xs text-gray-500"></p>
                         </div>
                     </div>
 
                     <div class="mt-8 border-t pt-6 flex justify-end">
-                        <a href="{{ route('siswa.index') }}" class="text-gray-600 py-2 px-4 rounded-md hover:bg-gray-100">Batal</a>
-                        <button type="submit" class="ml-4 px-4 py-2 bg-indigo-600 text-white rounded-md hover:bg-indigo-700">Simpan Siswa</button>
+                        <a href="{{ route('siswa.index') }}"
+                            class="text-gray-600 py-2 px-4 rounded-md hover:bg-gray-100">Batal</a>
+                        <button type="submit"
+                            class="ml-4 px-4 py-2 bg-indigo-600 text-white rounded-md hover:bg-indigo-700">Simpan
+                            Siswa</button>
                     </div>
                 </form>
             </div>
         </div>
     </div>
-    
+
     @push('scripts')
         <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
         <script>
@@ -5963,7 +6035,9 @@ $classes = ($active ?? false)
                 const defaultCoords = [0.542, 123.059];
                 const map = L.map('map').setView(defaultCoords, 13);
                 L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(map);
-                const marker = L.marker(defaultCoords, { draggable: true }).addTo(map);
+                const marker = L.marker(defaultCoords, {
+                    draggable: true
+                }).addTo(map);
 
                 function updateInputs(latlng) {
                     latInput.value = latlng.lat.toFixed(7);
@@ -5972,19 +6046,34 @@ $classes = ($active ?? false)
 
                 updateInputs(marker.getLatLng());
 
-                marker.on('dragend', function(e) { updateInputs(e.target.getLatLng()); statusEl.textContent = 'Posisi disesuaikan.'; });
-                map.on('click', function(e) { marker.setLatLng(e.latlng); updateInputs(e.latlng); statusEl.textContent = 'Posisi ditandai.'; });
-                
+                marker.on('dragend', function(e) {
+                    updateInputs(e.target.getLatLng());
+                    statusEl.textContent = 'Posisi disesuaikan.';
+                });
+                map.on('click', function(e) {
+                    marker.setLatLng(e.latlng);
+                    updateInputs(e.latlng);
+                    statusEl.textContent = 'Posisi ditandai.';
+                });
+
                 getLocationBtn.addEventListener('click', function() {
-                    if (!navigator.geolocation) { statusEl.textContent = 'Geolocation tidak didukung.'; return; }
+                    if (!navigator.geolocation) {
+                        statusEl.textContent = 'Geolocation tidak didukung.';
+                        return;
+                    }
                     statusEl.textContent = 'Meminta lokasi...';
                     navigator.geolocation.getCurrentPosition(function(position) {
-                        const userCoords = { lat: position.coords.latitude, lng: position.coords.longitude };
+                        const userCoords = {
+                            lat: position.coords.latitude,
+                            lng: position.coords.longitude
+                        };
                         map.setView(userCoords, 16);
                         marker.setLatLng(userCoords);
                         updateInputs(userCoords);
                         statusEl.textContent = 'Lokasi ditemukan!';
-                    }, function() { statusEl.textContent = 'Gagal mendapatkan lokasi.'; });
+                    }, function() {
+                        statusEl.textContent = 'Gagal mendapatkan lokasi.';
+                    });
                 });
             });
         </script>
@@ -6136,16 +6225,12 @@ $classes = ($active ?? false)
 ===== resources\views\siswa\index.blade.php =====
 <x-app-layout>
     <x-slot name="header">
-        <div class="flex justify-between items-center">
+        
             <h2 class="font-semibold text-xl text-gray-800 leading-tight">
                 {{ __('Data Siswa') }}
             </h2>
-            @if(auth()->user()->role === 'bendahara')
-                <a href="{{ route('siswa.create') }}" class="px-4 py-2 bg-indigo-600 text-white text-sm font-semibold rounded-lg shadow-md hover:bg-indigo-700 transition-colors">
-                    Tambah Siswa Baru
-                </a>
-            @endif
-        </div>
+            
+        
     </x-slot>
 
     <div class="py-8">
@@ -6168,6 +6253,13 @@ $classes = ($active ?? false)
                         </div>
                     </div>
                 </form>
+            </div>
+            <div class="mb-4 flex justify-end">
+                @if(auth()->user()->role === 'bendahara')
+                    <a href="{{ route('siswa.create') }}" class="px-4 py-2 bg-indigo-600 text-white text-sm font-semibold rounded-lg shadow-md hover:bg-indigo-700 transition-colors">
+                        Tambah Siswa Baru
+                    </a>
+                @endif
             </div>
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="overflow-x-auto">
@@ -6725,7 +6817,7 @@ class Kernel extends ConsoleKernel
     protected function schedule(Schedule $schedule): void
     {
         // Jalankan command setiap bulan pada tanggal 2, pukul 01:00 pagi
-        $schedule->command('app:generate-tunggakan')->monthlyOn(2, '01:00');
+        $schedule->command('app:generate-tunggakan')->dailyAt('01:00');
         $schedule->command('app:send-tunggakan-reminders')->dailyAt('08:00');
         $schedule->command('app:send-current-month-reminders')
             ->dailyAt('08:00')

@@ -36,7 +36,7 @@ class SendTunggakanNotification implements ShouldQueue
 
         $jumlah = number_format($this->tunggakan->jumlah_tunggakan, 0, ',', '.');
         
-        $message = "Yth. Bpk/Ibu Wali Murid dari ananda {$siswa->nama_siswa},\n\n" .
+        $message = "Yth. Bpk/Ibu Wali Murid dari {$siswa->nama_siswa},\n\n" .
                    "Dengan hormat, kami ingin menginformasikan bahwa masih terdapat tunggakan SPP yang belum diselesaikan untuk:\n\n" .
                    "Bulan: *{$this->tunggakan->bulan} {$this->tunggakan->tahun}*\n" .
                    "Jumlah: *Rp {$jumlah}*\n\n" .
