@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules;
 use App\Jobs\SendPasswordResetNotification;
 use App\Models\Kelas;
+use Illuminate\Support\Facades\Auth;
 
 
 class SiswaController extends Controller
@@ -140,5 +141,36 @@ class SiswaController extends Controller
         SendPasswordResetNotification::dispatch($wali, $newPassword);
 
         return back()->with('success', 'Password untuk wali murid ' . $wali->name . ' berhasil di-reset dan telah dikirimkan melalui WhatsApp.');
+    }
+
+    public function editAlamat(Siswa $siswa)
+    {
+        // Pastikan hanya wali murid yang bersangkutan yang bisa akses
+        if ($siswa->id_wali !== Auth::id()) {
+            abort(403, 'Akses Ditolak');
+        }
+
+        return view('wali.edit-alamat', compact('siswa'));
+    }
+
+    /**
+     * Memproses update alamat oleh wali murid.
+     */
+    public function updateAlamat(Request $request, Siswa $siswa)
+    {
+        
+        if ($siswa->id_wali !== Auth::id()) {
+            abort(403, 'Akses Ditolak');
+        }
+
+        $request->validate([
+            'alamat' => 'nullable|string',
+            'latitude' => 'nullable|numeric',
+            'longitude' => 'nullable|numeric',
+        ]);
+
+        $siswa->update($request->only('alamat', 'latitude', 'longitude'));
+
+        return redirect()->route('profile.edit')->with('status', 'profile-updated');
     }
 }

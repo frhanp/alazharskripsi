@@ -47,6 +47,14 @@
             @endif
         </div>
 
+        @if(Auth::user()->role === 'wali_murid')
+        <div>
+            <x-input-label for="nomor_wa" :value="__('Nomor WhatsApp')" />
+            <x-text-input id="nomor_wa" name="nomor_wa" type="text" class="mt-1 block w-full" :value="old('nomor_wa', $user->nomor_wa)" autocomplete="tel" />
+            <x-input-error class="mt-2" :messages="$errors->get('nomor_wa')" />
+        </div>
+        @endif
+
         <div class="flex items-center gap-4">
             <x-primary-button>{{ __('Save') }}</x-primary-button>
 

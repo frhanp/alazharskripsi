@@ -72,7 +72,10 @@ Route::middleware(['auth', 'role:wali_murid'])->group(function () {
     Route::get('/pembayaran/{siswa}/pilih-metode', [PilihMetodeController::class, 'index'])->name('pembayaran.pilih-metode');
 
     //Route::get('/riwayat', [RiwayatController::class, 'index'])->name('riwayat.index');
-
+    Route::get('/wali/alamat/{siswa}/edit', [SiswaController::class, 'editAlamat'])->name('wali.alamat.edit');
+    Route::put('/wali/alamat/{siswa}', [SiswaController::class, 'updateAlamat'])->name('wali.alamat.update');
+    Route::get('/wali/alamat/{siswa}/edit', [SiswaController::class, 'editAlamat'])->name('wali.alamat.edit');
+    Route::put('/wali/alamat/{siswa}', [SiswaController::class, 'updateAlamat'])->name('wali.alamat.update');
 
 
     // Route GET: tampilkan form bulan/tahun + tombol bayar

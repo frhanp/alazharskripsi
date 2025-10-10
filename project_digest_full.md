@@ -1,5 +1,5 @@
 ﻿# Project Digest (Full Content)
-_Generated: 2025-10-10 11:26:26_
+_Generated: 2025-10-10 15:37:20_
 **Root:** D:\Laragon\www\alazharskripsi
 
 
@@ -120,6 +120,7 @@ app\View\Components\GuestLayout.php
 bootstrap\cache
 bootstrap\app.php
 bootstrap\providers.php
+bootstrap\cache\config.php
 bootstrap\cache\packages.php
 bootstrap\cache\services.php
 config\app.php
@@ -305,17 +306,27 @@ storage\app\public\kwitansi\kwitansi-1-1760063863.docx
 storage\app\public\kwitansi\kwitansi-10-1755671825.pdf
 storage\app\public\kwitansi\kwitansi-10-1757922868.docx
 storage\app\public\kwitansi\kwitansi-10-1759658289.docx
+storage\app\public\kwitansi\kwitansi-10-1760072209.pdf
 storage\app\public\kwitansi\kwitansi-11-1757923712.docx
+storage\app\public\kwitansi\kwitansi-11-1760072936.pdf
 storage\app\public\kwitansi\kwitansi-12-1757988452.docx
 storage\app\public\kwitansi\kwitansi-12-1759820759.docx
+storage\app\public\kwitansi\kwitansi-12-1760073183.pdf
 storage\app\public\kwitansi\kwitansi-13-1757988568.docx
 storage\app\public\kwitansi\kwitansi-13-1759971885.docx
+storage\app\public\kwitansi\kwitansi-13-1760073298.pdf
 storage\app\public\kwitansi\kwitansi-14-1757988728.docx
+storage\app\public\kwitansi\kwitansi-14-1760073640.pdf
 storage\app\public\kwitansi\kwitansi-15-1757988812.docx
+storage\app\public\kwitansi\kwitansi-15-1760073976.pdf
 storage\app\public\kwitansi\kwitansi-16-1757988853.docx
+storage\app\public\kwitansi\kwitansi-16-1760074247.pdf
 storage\app\public\kwitansi\kwitansi-17-1757989031.docx
+storage\app\public\kwitansi\kwitansi-17-1760074767.pdf
 storage\app\public\kwitansi\kwitansi-18-1757989250.docx
+storage\app\public\kwitansi\kwitansi-18-1760074978.pdf
 storage\app\public\kwitansi\kwitansi-19-1757989447.docx
+storage\app\public\kwitansi\kwitansi-19-1760075024.pdf
 storage\app\public\kwitansi\kwitansi-2-1757915457.pdf
 storage\app\public\kwitansi\kwitansi-2-1758384375.docx
 storage\app\public\kwitansi\kwitansi-2-1758438196.docx
@@ -327,7 +338,9 @@ storage\app\public\kwitansi\kwitansi-2-1759542794.docx
 storage\app\public\kwitansi\kwitansi-2-1759972692.docx
 storage\app\public\kwitansi\kwitansi-2-1759995343.docx
 storage\app\public\kwitansi\kwitansi-20-1757989499.docx
+storage\app\public\kwitansi\kwitansi-20-1760075099.pdf
 storage\app\public\kwitansi\kwitansi-21-1757989922.docx
+storage\app\public\kwitansi\kwitansi-21-1760075212.pdf
 storage\app\public\kwitansi\kwitansi-22-1758003206.docx
 storage\app\public\kwitansi\kwitansi-3-1758438216.docx
 storage\app\public\kwitansi\kwitansi-3-1758877180.docx
@@ -349,13 +362,16 @@ storage\app\public\kwitansi\kwitansi-7-1757922454.docx
 storage\app\public\kwitansi\kwitansi-7-1759501017.docx
 storage\app\public\kwitansi\kwitansi-7-1759542821.docx
 storage\app\public\kwitansi\kwitansi-7-1759995538.docx
+storage\app\public\kwitansi\kwitansi-7-1760067177.docx
 storage\app\public\kwitansi\kwitansi-8-1755670220.pdf
 storage\app\public\kwitansi\kwitansi-8-1757922509.docx
 storage\app\public\kwitansi\kwitansi-8-1759501214.docx
 storage\app\public\kwitansi\kwitansi-8-1759546251.docx
+storage\app\public\kwitansi\kwitansi-8-1760071581.pdf
 storage\app\public\kwitansi\kwitansi-9-1755670818.pdf
 storage\app\public\kwitansi\kwitansi-9-1757922644.docx
 storage\app\public\kwitansi\kwitansi-9-1759546350.docx
+storage\app\public\kwitansi\kwitansi-9-1760071998.pdf
 storage\app\public\kwitansi\kwitansi-KW-2025-8-6.pdf
 storage\app\templates\kwitansi_template.docx
 storage\app\templates\kwitansi_template1.docx
@@ -372,69 +388,17 @@ storage\framework\cache\laravel-excel\laravel-excel-5d4dQei8S0VZtHkJ27NMjoS7OBBA
 storage\framework\sessions\.gitignore
 storage\framework\testing\.gitignore
 storage\framework\views\.gitignore
-storage\framework\views\020ba7464e85f87c4475ed38c04322b9.php
-storage\framework\views\09a7c8482c6e5a17a0a9a25432fbe547.php
-storage\framework\views\105b5ff0c377491b0ac4a9b05e57a80f.php
-storage\framework\views\140be810c6d1d8c5493a22d62b12e637.php
-storage\framework\views\17626ff0a0bc9a01edf0f8bed992c842.php
-storage\framework\views\228bd0b4605bbaec738e75e233f26191.php
-storage\framework\views\273988ab71d8dce2d7ebd15d7d39b1a0.php
-storage\framework\views\29b9873d46b252660074688efa1aaccd.php
-storage\framework\views\3320c1723d088fe593f5f39481f5b5eb.php
-storage\framework\views\3383ecbf1addae63c1a04ef88a765118.php
-storage\framework\views\3b240750f1d842552d0ea4b7d88091c7.php
-storage\framework\views\40b6ff27839d47f455db6a794796a233.php
-storage\framework\views\4508058a6e0ff5db2e085cfc0bdd9f7a.php
-storage\framework\views\4b20185d74f69916349b547af5921882.php
-storage\framework\views\4b58e8a6b6736953110312d54bf38d31.php
 storage\framework\views\4f95587a7658cb05735a80cb093a497f.php
-storage\framework\views\56595294ee291b65fac38c234a14d063.php
-storage\framework\views\5b290d1076a93087c074cb9b13187cf0.php
-storage\framework\views\5c0bdedc719924690cced7e302b8bf67.php
-storage\framework\views\61dcbe8020a7f47c9b9ec8b6c99f47fb.php
-storage\framework\views\65df369a4528e71cd6754e70ddb11ac3.php
 storage\framework\views\689d09919c93a0fe09463f0b752ab503.php
 storage\framework\views\68e6789bd5943954ba36bbc75954e838.php
-storage\framework\views\6a938c9f296bb062f05de09fdd65ff72.php
 storage\framework\views\70d31578ce1dab60794f303e4fae25d2.php
-storage\framework\views\72b8fde34fcf0549588b5a90e3193918.php
 storage\framework\views\7328c19bf1b41f51f3599077ae7c3a26.php
-storage\framework\views\73d95d1859230ec11dca0301b54505d0.php
-storage\framework\views\759f27bd6a6de3dfeecf83ef19d91e1b.php
-storage\framework\views\803f96141da497d312849f0f99b6b1f2.php
-storage\framework\views\8e2060a2c7709d5097a3f934e7f4a5ce.php
-storage\framework\views\8ee76bf2dadea44b9e71d6509922d5d2.php
-storage\framework\views\92c395475f552d2d1cedc1d7cf9abdd0.php
 storage\framework\views\986af5cca8def713706249e59bf409fd.php
-storage\framework\views\9b9a37feb8df6f7efbb959e98db31a46.php
-storage\framework\views\9bdff147ec6f9334a38b1aff6714034e.php
-storage\framework\views\9f65c276834c7f4cdec5b39fc5432ff9.php
-storage\framework\views\a6b5dbc9773c165592b1a4e398445956.php
-storage\framework\views\a6f3e9c7fb94fda00f7a95338dde382b.php
-storage\framework\views\a998dc2a3f7f3986099df1ce97876943.php
-storage\framework\views\aeaeafba3e10b429d9b038f56fbfedcf.php
-storage\framework\views\aef77bd3098e4b4d81b83abaa7cdc437.php
-storage\framework\views\b0a54795e0c776b45801907991c89cf4.php
-storage\framework\views\b5d814926f19b152feef1701b7046d0a.php
-storage\framework\views\b7cce8e5d32e8b45e1477b1738a4d727.php
-storage\framework\views\c138776a780a86e1edc42a1a668b094c.php
-storage\framework\views\c3d64acd4d1e73273b252f3b58d96f1d.php
-storage\framework\views\c5ac81f5af9337b26dcb7a15ac07753a.php
 storage\framework\views\ca2fe6989e6fde34b86ac36d3951f9d0.php
-storage\framework\views\caba884bb2abeab7101e594d7d5487ca.php
 storage\framework\views\cbc52b083f3936f9817447ed78b10c91.php
-storage\framework\views\d2c1d62ba99d987ea7be6fb2c6fa66c2.php
-storage\framework\views\d82724f8b123daa8a4067222ecb5de35.php
-storage\framework\views\db45a5f7f23402fc46da9dc15d4920dc.php
 storage\framework\views\e1175654487937b68c5f4f52e6a65eb8.php
-storage\framework\views\e28065e432637db6ed8119ad0244e993.php
 storage\framework\views\e299118d2668b3ebea456fb14f48c4ce.php
-storage\framework\views\e853581d5a244b297cd5541739ccf847.php
-storage\framework\views\f03997e446bad3f066fd89508960f607.php
-storage\framework\views\f188a06199ad1d49f7dab7ff511d2a90.php
 storage\framework\views\f49d54ba614b452869e77f68e82f8e78.php
-storage\framework\views\fa54ba9e6927a3266ebc1f8a53442eb9.php
-storage\framework\views\fae151e9517f1219a945f6532af53a86.php
 tests\Feature
 tests\Unit
 tests\TestCase.php
@@ -494,8 +458,38 @@ whatsapp-service\baileys_auth_info\pre-key-26.json
 whatsapp-service\baileys_auth_info\pre-key-29.json
 whatsapp-service\baileys_auth_info\pre-key-3.json
 whatsapp-service\baileys_auth_info\pre-key-30.json
+whatsapp-service\baileys_auth_info\pre-key-31.json
+whatsapp-service\baileys_auth_info\pre-key-32.json
+whatsapp-service\baileys_auth_info\pre-key-33.json
+whatsapp-service\baileys_auth_info\pre-key-34.json
+whatsapp-service\baileys_auth_info\pre-key-35.json
+whatsapp-service\baileys_auth_info\pre-key-36.json
+whatsapp-service\baileys_auth_info\pre-key-37.json
+whatsapp-service\baileys_auth_info\pre-key-38.json
+whatsapp-service\baileys_auth_info\pre-key-39.json
 whatsapp-service\baileys_auth_info\pre-key-4.json
+whatsapp-service\baileys_auth_info\pre-key-40.json
+whatsapp-service\baileys_auth_info\pre-key-41.json
+whatsapp-service\baileys_auth_info\pre-key-42.json
+whatsapp-service\baileys_auth_info\pre-key-43.json
+whatsapp-service\baileys_auth_info\pre-key-44.json
+whatsapp-service\baileys_auth_info\pre-key-45.json
+whatsapp-service\baileys_auth_info\pre-key-46.json
+whatsapp-service\baileys_auth_info\pre-key-47.json
+whatsapp-service\baileys_auth_info\pre-key-48.json
+whatsapp-service\baileys_auth_info\pre-key-49.json
+whatsapp-service\baileys_auth_info\pre-key-50.json
+whatsapp-service\baileys_auth_info\pre-key-51.json
+whatsapp-service\baileys_auth_info\pre-key-52.json
+whatsapp-service\baileys_auth_info\pre-key-53.json
+whatsapp-service\baileys_auth_info\pre-key-54.json
+whatsapp-service\baileys_auth_info\pre-key-55.json
+whatsapp-service\baileys_auth_info\pre-key-56.json
+whatsapp-service\baileys_auth_info\pre-key-57.json
+whatsapp-service\baileys_auth_info\pre-key-58.json
+whatsapp-service\baileys_auth_info\pre-key-59.json
 whatsapp-service\baileys_auth_info\pre-key-6.json
+whatsapp-service\baileys_auth_info\pre-key-60.json
 whatsapp-service\baileys_auth_info\pre-key-7.json
 whatsapp-service\baileys_auth_info\pre-key-8.json
 whatsapp-service\baileys_auth_info\pre-key-9.json
@@ -536,11 +530,11 @@ Branch:
 main
 
 Last 5 commits:
+70a294b ubah kwitansi doc jadi pdf
+db9e5d4 add anti duplikasi revisi
 0d31a2c fix revisi pemecah ribuan dan kelas
 3068ed1 add jumlah siswa dan peta di landing
 3d8ca81 fix bug tunggakan
-b73f5b4 fix tampilan
-166d5d9 hapus baileys
 ```
 
 
@@ -1745,6 +1739,10 @@ use PhpOffice\PhpWord\TemplateProcessor; // Ganti PDF dengan TemplateProcessor
 use Carbon\Carbon; // Tambahkan untuk format tanggal
 use App\Helpers\TerbilangHelper;
 use App\Jobs\SendWhatsappNotification;
+use Symfony\Component\Process\Exception\ProcessFailedException;
+use Symfony\Component\Process\Process;
+
+
 
 
 class KwitansiController extends Controller
@@ -1786,76 +1784,91 @@ class KwitansiController extends Controller
             return $pembayaran->kwitansi;
         }
 
+        $kwitansi = null;
+        $fullDocxOutputPath = null;
+
         try {
-            // =======================================================
-            // AWAL PERUBAHAN
-            // =======================================================
-            
-            // 1. Muat relasi siswa beserta walinya
             $pembayaran->load(['siswa.wali']);
-            
-            // =======================================================
-            // AKHIR PERUBAHAN
-            // =======================================================
-            
+
             $noKwitansi = 'KW/' . now()->year . '/' . now()->month . '/' . $pembayaran->id_pembayaran;
             $kwitansi = Kwitansi::create([
                 'id_pembayaran' => $pembayaran->id_pembayaran,
                 'no_kwitansi' => $noKwitansi,
                 'tanggal_terbit' => now(),
-                'file_kwitansi' => '', // Kosongkan dulu, akan diisi nanti
+                'file_kwitansi' => '',
             ]);
-    
+
             $templatePath = storage_path('app/templates/kwitansi_template.docx');
             if (!file_exists($templatePath)) {
-                Log::error("Template kwitansi tidak ditemukan di: " . $templatePath);
-                return null;
+                throw new \Exception("Template .docx tidak ditemukan.");
             }
-    
+
             $directoryName = 'kwitansi';
-            $fileName = 'kwitansi-' . $pembayaran->id_pembayaran . '-' . time() . '.docx';
-            $databasePath = $directoryName . '/' . $fileName;
-            $fullOutputPath = storage_path('app/public/' . $databasePath);
-    
             Storage::disk('public')->makeDirectory($directoryName);
-    
+
+            $docxFileName = 'kwitansi-' . $pembayaran->id_pembayaran . '-' . time() . '.docx';
+            $fullDocxOutputPath = storage_path('app/public/' . $directoryName . '/' . $docxFileName);
+
             $templateProcessor = new TemplateProcessor($templatePath);
-    
             $bulanText = is_array($pembayaran->bulan) ? implode(', ', $pembayaran->bulan) : $pembayaran->bulan;
             $terbilangText = ucwords(TerbilangHelper::convert($pembayaran->jumlah)) . ' Rupiah';
-    
+
             $templateProcessor->setValue('no_kwitansi', $kwitansi->no_kwitansi);
             $templateProcessor->setValue('tanggal_terbit', Carbon::parse($kwitansi->tanggal_terbit)->translatedFormat('d F Y'));
             $templateProcessor->setValue('nama_siswa', $pembayaran->siswa->nama_siswa);
-            
-            // =======================================================
-            // AWAL PERUBAHAN
-            // =======================================================
-            // Tambahkan variabel nama_wali di sini
             $templateProcessor->setValue('nama_wali', $pembayaran->siswa->wali->name ?? 'Wali Murid');
-            // =======================================================
-            // AKHIR PERUBAHAN
-            // =======================================================
-            
             $templateProcessor->setValue('nis_siswa', $pembayaran->siswa->nis ?? '-');
             $templateProcessor->setValue('bulan_pembayaran', $bulanText);
             $templateProcessor->setValue('tahun_pembayaran', $pembayaran->tahun);
             $templateProcessor->setValue('jumlah_rupiah', number_format($pembayaran->jumlah, 0, ',', '.'));
             $templateProcessor->setValue('jumlah_terbilang', $terbilangText);
-    
-            $templateProcessor->saveAs($fullOutputPath);
-    
-            $kwitansi->update(['file_kwitansi' => $databasePath]);
+
+            $templateProcessor->saveAs($fullDocxOutputPath);
+
+            $outputDirectory = storage_path('app/public/' . $directoryName);
+            $sofficePath = 'C:\Program Files\LibreOffice\program\soffice.exe';
+
+            $process = new Process([$sofficePath, '--headless', '--convert-to', 'pdf', '--outdir', $outputDirectory, $fullDocxOutputPath]);
+            // Beri batas waktu eksekusi, misal 15 detik
+            $process->setTimeout(15);
+            $process->run();
+
+            // =======================================================
+            // PERUBAHAN UTAMA: Validasi yang lebih ketat
+            // =======================================================
+            $pdfFileName = str_replace('.docx', '.pdf', $docxFileName);
+            $fullPdfPath = storage_path('app/public/' . $directoryName . '/' . $pdfFileName);
+
+            // Cek apakah prosesnya sukses DAN file PDF benar-benar ada
+            if (!$process->isSuccessful() || !file_exists($fullPdfPath)) {
+                // Log error yang lebih detail untuk kita periksa nanti
+                Log::error('Konversi PDF gagal. Exit Code: ' . $process->getExitCode() . ' | Pesan: ' . $process->getErrorOutput());
+
+                // Lemparkan exception untuk menghentikan proses & membatalkan semuanya
+                throw new \Exception('Gagal mengonversi file ke PDF. Proses konversi tidak menghasilkan file output.');
+            }
+
+
+            $pdfDatabasePath = $directoryName . '/' . $pdfFileName;
+            $kwitansi->update(['file_kwitansi' => $pdfDatabasePath]);
+            $kwitansi->fresh();
+
+            if (file_exists($fullDocxOutputPath)) {
+                unlink($fullDocxOutputPath);
+            }
+
             SendWhatsappNotification::dispatch($kwitansi);
-    
-            Log::info("Kwitansi .docx berhasil dibuat untuk pembayaran ID {$pembayaran->id_pembayaran}.");
+
+            Log::info("Kwitansi .pdf (dari .docx) berhasil dibuat untuk pembayaran ID {$pembayaran->id_pembayaran}.");
             return $kwitansi;
-            
         } catch (\Exception $e) {
-            Log::error("Gagal membuat kwitansi untuk pembayaran ID {$pembayaran->id_pembayaran}: " . $e->getMessage());
-            Log::error($e->getTraceAsString());
-            if (isset($kwitansi) && $kwitansi->exists) {
+            // Bagian ini akan menangkap error dari throw di atas
+            Log::error("Gagal total membuat kwitansi: " . $e->getMessage());
+            if ($kwitansi && $kwitansi->exists) {
                 $kwitansi->delete();
+            }
+            if ($fullDocxOutputPath && file_exists($fullDocxOutputPath)) {
+                unlink($fullDocxOutputPath);
             }
             return null;
         }
@@ -1995,7 +2008,7 @@ class MidtransController extends Controller
 
         foreach ($bulanYangDipilih as $bulan) {
             $pembayaranSudahAda = Pembayaran::where('id_siswa', $id_siswa)
-                ->where('bulan', $bulan)
+                ->whereJsonContains('bulan', $bulan)
                 ->where('tahun', $tahunYangDipilih)
                 ->whereIn('status', ['menunggu', 'diterima'])
                 ->exists();
@@ -2070,6 +2083,7 @@ use Midtrans\Config;
 use Midtrans\Notification;
 use Illuminate\Support\Facades\Log;
 use App\Models\Pembayaran;
+use App\Http\Controllers\KwitansiController;
 
 class MidtransWebhookController extends Controller
 {
@@ -2413,7 +2427,7 @@ class PembayaranController extends Controller
 
         foreach ($bulanYangDipilih as $bulan) {
             $pembayaranSudahAda = Pembayaran::where('id_siswa', $request->id_siswa)
-                ->where('bulan', $bulan)
+                ->whereJsonContains('bulan', $bulan)
                 ->where('tahun', $tahunYangDipilih)
                 ->whereIn('status', ['menunggu', 'diterima']) // Cek jika status 'menunggu' ATAU 'diterima'
                 ->exists();
@@ -2505,7 +2519,7 @@ class PembayaranController extends Controller
 
         foreach ($bulanYangDipilih as $bulan) {
             $pembayaranSudahAda = Pembayaran::where('id_siswa', $request->id_siswa)
-                ->where('bulan', $bulan)
+                ->whereJsonContains('bulan', $bulan)
                 ->where('tahun', $tahunYangDipilih)
                 ->whereIn('status', ['menunggu', 'diterima']) // Cek jika status 'menunggu' ATAU 'diterima'
                 ->exists();

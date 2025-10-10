@@ -130,7 +130,7 @@ class KwitansiController extends Controller
                 unlink($fullDocxOutputPath);
             }
 
-            SendWhatsappNotification::dispatchSync($kwitansi);
+            SendWhatsappNotification::dispatch($kwitansi);
 
             Log::info("Kwitansi .pdf (dari .docx) berhasil dibuat untuk pembayaran ID {$pembayaran->id_pembayaran}.");
             return $kwitansi;
