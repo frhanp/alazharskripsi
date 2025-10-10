@@ -15,30 +15,30 @@ use Illuminate\Support\Facades\Auth;
 class SiswaController extends Controller
 {
     public function index(Request $request)
-    {
-        $query = Siswa::with('wali')->latest();
+{
+    // Perbaikan 1: Tambahkan 'kelas' ke eager loading untuk efisiensi
+    $query = Siswa::with(['wali', 'kelas'])->latest();
 
-        // Logika untuk Search
-        if ($request->filled('search')) {
-            $search = $request->search;
-            $query->where(function ($q) use ($search) {
-                $q->where('nama_siswa', 'like', "%{$search}%")
-                  ->orWhere('nis', 'like', "%{$search}%");
-            });
-        }
-
-        // Logika untuk Filter Kelas
-        if ($request->filled('id_kelas')) {
-            $query->where('id_kelas', $request->id_kelas);
-        }
-
-        $siswas = $query->paginate(15)->withQueryString();
-        
-        // Ambil daftar kelas unik untuk dropdown filter
-        $kelasOptions = Siswa::distinct()->orderBy('id_kelas')->pluck('id_kelas');
-
-        return view('siswa.index', compact('siswas', 'kelasOptions'));
+    if ($request->filled('search')) {
+        $search = $request->search;
+        $query->where(function ($q) use ($search) {
+            $q->where('nama_siswa', 'like', "%{$search}%")
+                ->orWhere('nis', 'like', "%{$search}%");
+        });
     }
+
+    // Logika filter yang sudah benar, mencari 'id_kelas'
+    if ($request->filled('id_kelas')) {
+        $query->where('id_kelas', $request->id_kelas);
+    }
+
+    $siswas = $query->paginate(15)->withQueryString();
+    
+    // Perbaikan 2: Ambil opsi filter dari tabel 'kelas'
+    $kelasOptions = Kelas::orderBy('nama')->get();
+
+    return view('siswa.index', compact('siswas', 'kelasOptions'));
+}
 
 
     public function create()

@@ -1,11 +1,8 @@
 <x-app-layout>
     <x-slot name="header">
-        
-            <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-                {{ __('Data Siswa') }}
-            </h2>
-            
-        
+        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+            {{ __('Data Siswa') }}
+        </h2>
     </x-slot>
 
     <div class="py-8">
@@ -18,11 +15,11 @@
                             <input type="text" name="search" id="search" placeholder="Cari Nama Siswa atau NIS..." value="{{ request('search') }}" class="block w-full border-gray-300 rounded-md shadow-sm">
                         </div>
                         <div>
-                            <label for="kelas" class="sr-only">Kelas</label>
-                            <select name="kelas" id="kelas" class="block w-full border-gray-300 rounded-md shadow-sm" onchange="this.form.submit()">
+                            <label for="id_kelas" class="sr-only">Kelas</label>
+                            <select name="id_kelas" id="id_kelas" class="block w-full border-gray-300 rounded-md shadow-sm" onchange="this.form.submit()">
                                 <option value="">Semua Kelas</option>
                                 @foreach($kelasOptions as $kelas)
-                                    <option value="{{ $kelas }}" @selected(request('kelas') == $kelas)>{{ $kelas }}</option>
+                                    <option value="{{ $kelas->id }}" @selected(request('id_kelas') == $kelas->id)>{{ $kelas->nama }}</option>
                                 @endforeach
                             </select>
                         </div>
@@ -54,11 +51,11 @@
                                 <tr class="hover:bg-gray-50 transition-colors">
                                     <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">{{ $siswa->nama_siswa }}</td>
                                     <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{ $siswa->nis }}</td>
-                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{ $siswa->kelas }}</td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{ $siswa->kelas->nama ?? 'N/A' }}</td>
                                     @if(auth()->user()->role === 'bendahara')
                                         <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium space-x-4">
-                                            <a href="{{ route('siswa.edit', $siswa->id_siswa) }}" class="text-indigo-600 hover:text-indigo-900">Edit</a>
-                                            <form action="{{ route('siswa.destroy', $siswa->id_siswa) }}" method="POST" class="inline" onsubmit="return confirm('Apakah Anda yakin ingin menghapus data ini?');">
+                                            <a href="{{ route('siswa.edit', $siswa) }}" class="text-indigo-600 hover:text-indigo-900">Edit</a>
+                                            <form action="{{ route('siswa.destroy', $siswa) }}" method="POST" class="inline" onsubmit="return confirm('Apakah Anda yakin ingin menghapus data ini?');">
                                                 @csrf
                                                 @method('DELETE')
                                                 <button type="submit" class="text-red-600 hover:text-red-900">Hapus</button>
@@ -69,7 +66,7 @@
                             @empty
                                 <tr>
                                     <td colspan="{{ auth()->user()->role === 'bendahara' ? '4' : '3' }}" class="px-6 py-12 text-center text-sm text-gray-500">
-                                        Belum ada data siswa yang ditambahkan.
+                                        Tidak ada data siswa yang cocok dengan filter.
                                     </td>
                                 </tr>
                             @endforelse
