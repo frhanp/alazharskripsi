@@ -54,6 +54,8 @@
                     jumlahSPP: {{ $defaultJumlahSPP ?? 0 }},
                     get totalBayar() {
                         return this.selectedMonths.length * this.jumlahSPP;
+                    },get formattedTotalBayar() {
+                        return new Intl.NumberFormat('id-ID').format(this.totalBayar);
                     }
                 }" x-init="console.log('Alpine initialized, jumlahSPP:', jumlahSPP)">
                     <!-- Multi-select Bulan -->
@@ -99,13 +101,13 @@
     
                     <!-- Jumlah -->
                     <div class="mb-4">
-                        <x-input-label for="jumlah" value="Jumlah" />
-                        <input id="jumlah" name="jumlah" type="number" class="mt-1 block w-full bg-gray-100"
-                            x-bind:value="totalBayar" readonly />
+                        <label for="jumlah" class="block text-sm font-medium text-gray-700">Jumlah SPP
+                            (Rp)</label>
+                        <input type="hidden" name="jumlah" x-bind:value="totalBayar" />
+                        <input type="text" id="jumlah_display" x-bind:value="formattedTotalBayar"
+                            class="mt-1 block w-full border-gray-300 rounded-md shadow-sm bg-gray-100" readonly />
                         <small class="text-gray-500">Jumlah akan dihitung otomatis: jumlah bulan ×
                             {{ number_format($defaultJumlahSPP ?? 0, 0, ',', '.') }}</small>
-                        {{-- <!-- Debug -->
-                        <div x-text="'Debug Total Bayar: ' + totalBayar"></div> --}}
                     </div>
                 </div>
     

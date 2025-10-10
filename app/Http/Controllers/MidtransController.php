@@ -43,7 +43,7 @@ class MidtransController extends Controller
 
         foreach ($bulanYangDipilih as $bulan) {
             $pembayaranSudahAda = Pembayaran::where('id_siswa', $id_siswa)
-                ->where('bulan', $bulan)
+                ->whereJsonContains('bulan', $bulan)
                 ->where('tahun', $tahunYangDipilih)
                 ->whereIn('status', ['menunggu', 'diterima'])
                 ->exists();

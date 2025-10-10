@@ -226,7 +226,7 @@ class PembayaranController extends Controller
 
         foreach ($bulanYangDipilih as $bulan) {
             $pembayaranSudahAda = Pembayaran::where('id_siswa', $request->id_siswa)
-                ->where('bulan', $bulan)
+                ->whereJsonContains('bulan', $bulan)
                 ->where('tahun', $tahunYangDipilih)
                 ->whereIn('status', ['menunggu', 'diterima']) // Cek jika status 'menunggu' ATAU 'diterima'
                 ->exists();
@@ -318,7 +318,7 @@ class PembayaranController extends Controller
 
         foreach ($bulanYangDipilih as $bulan) {
             $pembayaranSudahAda = Pembayaran::where('id_siswa', $request->id_siswa)
-                ->where('bulan', $bulan)
+                ->whereJsonContains('bulan', $bulan)
                 ->where('tahun', $tahunYangDipilih)
                 ->whereIn('status', ['menunggu', 'diterima']) // Cek jika status 'menunggu' ATAU 'diterima'
                 ->exists();

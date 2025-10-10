@@ -1,5 +1,5 @@
 ﻿# Project Digest (Full Content)
-_Generated: 2025-10-09 08:21:39_
+_Generated: 2025-10-10 11:26:26_
 **Root:** D:\Laragon\www\alazharskripsi
 
 
@@ -27,6 +27,7 @@ whatsapp-service
 artisan
 composer.json
 composer.lock
+DAD Level 1.x .md
 digest.ps1
 package-lock.json
 package.json
@@ -51,6 +52,8 @@ app\Providers
 app\View
 app\Console\Commands
 app\Console\Kernel.php
+app\Console\Commands\BuatTunggakanBulanBerjalan.php
+app\Console\Commands\BuatTunggakanLampau.php
 app\Console\Commands\GenerateTunggakan.php
 app\Console\Commands\SendCurrentMonthReminders.php
 app\Console\Commands\SendTunggakanReminders.php
@@ -68,7 +71,9 @@ app\Http\Controllers\BendaharaController.php
 app\Http\Controllers\Controller.php
 app\Http\Controllers\DashboardController.php
 app\Http\Controllers\DetailSiswaController.php
+app\Http\Controllers\KelasController.php
 app\Http\Controllers\KwitansiController.php
+app\Http\Controllers\LandingPageController.php
 app\Http\Controllers\LaporanController.php
 app\Http\Controllers\MidtransController.php
 app\Http\Controllers\MidtransWebhookController.php
@@ -101,6 +106,7 @@ app\Jobs\SendCurrentMonthReminderNotification.php
 app\Jobs\SendPasswordResetNotification.php
 app\Jobs\SendTunggakanNotification.php
 app\Jobs\SendWhatsappNotification.php
+app\Models\Kelas.php
 app\Models\Kwitansi.php
 app\Models\Pembayaran.php
 app\Models\Pengaturan.php
@@ -147,7 +153,10 @@ database\migrations\2025_09_16_051807_add_location_columns_to_gurus_and_siswas_t
 database\migrations\2025_09_18_113003_add_last_reminder_sent_at_to_tunggakan_table.php
 database\migrations\2025_09_25_015523_remove_guru_functionality.php
 database\migrations\2025_10_04_052317_change_value_length_in_pengaturan_table.php
+database\migrations\2025_10_10_015734_create_kelas_table.php
+database\migrations\2025_10_10_015808_modify_kelas_column_in_siswa_table.php
 database\seeders\DatabaseSeeder.php
+database\seeders\KelasSeeder.php
 database\seeders\PengaturanSeeder.php
 database\seeders\SiswaSeeder.php
 database\seeders\UserSeeder.php
@@ -177,6 +186,7 @@ resources\views\akun
 resources\views\auth
 resources\views\bendahara
 resources\views\components
+resources\views\kelas
 resources\views\ketua
 resources\views\kwitansi
 resources\views\laporan
@@ -215,6 +225,9 @@ resources\views\components\primary-button.blade.php
 resources\views\components\responsive-nav-link.blade.php
 resources\views\components\secondary-button.blade.php
 resources\views\components\text-input.blade.php
+resources\views\kelas\create.blade.php
+resources\views\kelas\edit.blade.php
+resources\views\kelas\index.blade.php
 resources\views\ketua\dashboard.blade.php
 resources\views\kwitansi\template.blade.php
 resources\views\laporan\index.blade.php
@@ -258,10 +271,12 @@ storage\app\public\kwitansi
 storage\app\public\.gitignore
 storage\app\public\bukti-transfer\0tckG9rLMm36iir2z0etRn5dRBRdE38lARFokqCz.jpg
 storage\app\public\bukti-transfer\3Djwu8Pu2v5pbAReb1LjCNySF3GbR6twsyWSaHil.jpg
+storage\app\public\bukti-transfer\4vODl9ZIwZtXUhNQqaRecBPaCwkoZO9dYxXCRJIJ.png
 storage\app\public\bukti-transfer\591cEnxJb6pEIpnzRISPk7DhR0mYbwyGq0Oavzag.jpg
 storage\app\public\bukti-transfer\6WH9rukC3oWZA7g3OT4sWnI7bj3IWHz7qMx2mzhx.jpg
 storage\app\public\bukti-transfer\94wzukONzR3kAjn5sYdNZzWOQSdJdeQzZH5b9aaA.jpg
 storage\app\public\bukti-transfer\bXIVwy5AcJSKvCw8GdUze3T5ry9lsojzmgDsi011.png
+storage\app\public\bukti-transfer\c5nsELT8dVG144KifftTY68dJpD2htdiXF1VNK6N.png
 storage\app\public\bukti-transfer\DMPh4D6Rq9X1EGbiTGCCIo37MZDtQAuO2KokdgTu.jpg
 storage\app\public\bukti-transfer\hwbEM4LkBzTGljIqDoDSxCWbuDY0sI8d0nt8O6nS.jpg
 storage\app\public\bukti-transfer\ifJ9CSoYFQyOPsT8YxKmUkdZF9HZp691Pk5HQMQ6.jpg
@@ -270,6 +285,7 @@ storage\app\public\bukti-transfer\LNLfheIQA0fiMm2uOtS9MpIyerI3ltQ5FChsxkz1.png
 storage\app\public\bukti-transfer\Ndh2J63qwMTM6v6n46KYOlNSwDjUcGhjaYB8imfj.jpg
 storage\app\public\bukti-transfer\pDcmEWuNbmHYqEnBRpYFFgDMcmJsK5H7YdwV7MiM.jpg
 storage\app\public\bukti-transfer\pI9L5Vox6UAMdopDkebC1qJAB8gtpxgwZbPwUuW4.jpg
+storage\app\public\bukti-transfer\Rv7cEqSApfAPfuWd1s759o3tlR1gqdTzT2rL8F49.png
 storage\app\public\bukti-transfer\SM413rJ1ZcpfIbotqrprEOvF7cCO4KVkfYhvBo6s.jpg
 storage\app\public\bukti-transfer\U0zUzLbD5WcEKBkXVxTNV3SSY2bQycZr9BHq8ZF2.jpg
 storage\app\public\bukti-transfer\UxWlgIYFjNoinwgVG85pgGiAX6FEdXcrgzhqsYM1.jpg
@@ -283,6 +299,9 @@ storage\app\public\kwitansi\kwitansi-1-1758436498.docx
 storage\app\public\kwitansi\kwitansi-1-1758453915.docx
 storage\app\public\kwitansi\kwitansi-1-1758853481.docx
 storage\app\public\kwitansi\kwitansi-1-1758889832.docx
+storage\app\public\kwitansi\kwitansi-1-1759972626.docx
+storage\app\public\kwitansi\kwitansi-1-1759973084.docx
+storage\app\public\kwitansi\kwitansi-1-1760063863.docx
 storage\app\public\kwitansi\kwitansi-10-1755671825.pdf
 storage\app\public\kwitansi\kwitansi-10-1757922868.docx
 storage\app\public\kwitansi\kwitansi-10-1759658289.docx
@@ -290,6 +309,7 @@ storage\app\public\kwitansi\kwitansi-11-1757923712.docx
 storage\app\public\kwitansi\kwitansi-12-1757988452.docx
 storage\app\public\kwitansi\kwitansi-12-1759820759.docx
 storage\app\public\kwitansi\kwitansi-13-1757988568.docx
+storage\app\public\kwitansi\kwitansi-13-1759971885.docx
 storage\app\public\kwitansi\kwitansi-14-1757988728.docx
 storage\app\public\kwitansi\kwitansi-15-1757988812.docx
 storage\app\public\kwitansi\kwitansi-16-1757988853.docx
@@ -304,6 +324,8 @@ storage\app\public\kwitansi\kwitansi-2-1758877175.docx
 storage\app\public\kwitansi\kwitansi-2-1759426763.docx
 storage\app\public\kwitansi\kwitansi-2-1759500407.docx
 storage\app\public\kwitansi\kwitansi-2-1759542794.docx
+storage\app\public\kwitansi\kwitansi-2-1759972692.docx
+storage\app\public\kwitansi\kwitansi-2-1759995343.docx
 storage\app\public\kwitansi\kwitansi-20-1757989499.docx
 storage\app\public\kwitansi\kwitansi-21-1757989922.docx
 storage\app\public\kwitansi\kwitansi-22-1758003206.docx
@@ -311,17 +333,22 @@ storage\app\public\kwitansi\kwitansi-3-1758438216.docx
 storage\app\public\kwitansi\kwitansi-3-1758877180.docx
 storage\app\public\kwitansi\kwitansi-3-1759500408.docx
 storage\app\public\kwitansi\kwitansi-3-1759542807.docx
+storage\app\public\kwitansi\kwitansi-3-1759972798.docx
 storage\app\public\kwitansi\kwitansi-4-1759500409.docx
 storage\app\public\kwitansi\kwitansi-4-1759542808.docx
 storage\app\public\kwitansi\kwitansi-5-1757917613.docx
 storage\app\public\kwitansi\kwitansi-5-1759542820.docx
+storage\app\public\kwitansi\kwitansi-5-1759995282.docx
+storage\app\public\kwitansi\kwitansi-5-1760066397.docx
 storage\app\public\kwitansi\kwitansi-6-1757918608.docx
 storage\app\public\kwitansi\kwitansi-6-1759501016.docx
 storage\app\public\kwitansi\kwitansi-6-1759542821.docx
+storage\app\public\kwitansi\kwitansi-6-1759995330.docx
 storage\app\public\kwitansi\kwitansi-7-1755669945.pdf
 storage\app\public\kwitansi\kwitansi-7-1757922454.docx
 storage\app\public\kwitansi\kwitansi-7-1759501017.docx
 storage\app\public\kwitansi\kwitansi-7-1759542821.docx
+storage\app\public\kwitansi\kwitansi-7-1759995538.docx
 storage\app\public\kwitansi\kwitansi-8-1755670220.pdf
 storage\app\public\kwitansi\kwitansi-8-1757922509.docx
 storage\app\public\kwitansi\kwitansi-8-1759501214.docx
@@ -380,6 +407,7 @@ storage\framework\views\8ee76bf2dadea44b9e71d6509922d5d2.php
 storage\framework\views\92c395475f552d2d1cedc1d7cf9abdd0.php
 storage\framework\views\986af5cca8def713706249e59bf409fd.php
 storage\framework\views\9b9a37feb8df6f7efbb959e98db31a46.php
+storage\framework\views\9bdff147ec6f9334a38b1aff6714034e.php
 storage\framework\views\9f65c276834c7f4cdec5b39fc5432ff9.php
 storage\framework\views\a6b5dbc9773c165592b1a4e398445956.php
 storage\framework\views\a6f3e9c7fb94fda00f7a95338dde382b.php
@@ -388,6 +416,7 @@ storage\framework\views\aeaeafba3e10b429d9b038f56fbfedcf.php
 storage\framework\views\aef77bd3098e4b4d81b83abaa7cdc437.php
 storage\framework\views\b0a54795e0c776b45801907991c89cf4.php
 storage\framework\views\b5d814926f19b152feef1701b7046d0a.php
+storage\framework\views\b7cce8e5d32e8b45e1477b1738a4d727.php
 storage\framework\views\c138776a780a86e1edc42a1a668b094c.php
 storage\framework\views\c3d64acd4d1e73273b252f3b58d96f1d.php
 storage\framework\views\c5ac81f5af9337b26dcb7a15ac07753a.php
@@ -426,10 +455,14 @@ whatsapp-service\package-lock.json
 whatsapp-service\package.json
 whatsapp-service\baileys_auth_info\app-state-sync-key-AAAAAL7G.json
 whatsapp-service\baileys_auth_info\app-state-sync-version-critical_block.json
+whatsapp-service\baileys_auth_info\app-state-sync-version-critical_unblock_low.json
 whatsapp-service\baileys_auth_info\app-state-sync-version-regular.json
+whatsapp-service\baileys_auth_info\app-state-sync-version-regular_high.json
 whatsapp-service\baileys_auth_info\app-state-sync-version-regular_low.json
 whatsapp-service\baileys_auth_info\creds.json
 whatsapp-service\baileys_auth_info\lid-mapping-123570822856958_reverse.json
+whatsapp-service\baileys_auth_info\lid-mapping-134935490900175_reverse.json
+whatsapp-service\baileys_auth_info\lid-mapping-153983855395014_reverse.json
 whatsapp-service\baileys_auth_info\lid-mapping-194502543290533_reverse.json
 whatsapp-service\baileys_auth_info\lid-mapping-195773350293676_reverse.json
 whatsapp-service\baileys_auth_info\lid-mapping-209551487930455_reverse.json
@@ -438,24 +471,24 @@ whatsapp-service\baileys_auth_info\lid-mapping-237163883008141_reverse.json
 whatsapp-service\baileys_auth_info\lid-mapping-257088638984268_reverse.json
 whatsapp-service\baileys_auth_info\lid-mapping-46819874758696_reverse.json
 whatsapp-service\baileys_auth_info\lid-mapping-6281779426849.json
+whatsapp-service\baileys_auth_info\lid-mapping-6282125068078.json
 whatsapp-service\baileys_auth_info\lid-mapping-6282296036930.json
 whatsapp-service\baileys_auth_info\lid-mapping-6282296667535.json
 whatsapp-service\baileys_auth_info\lid-mapping-6282312527494.json
 whatsapp-service\baileys_auth_info\lid-mapping-6285179841091.json
 whatsapp-service\baileys_auth_info\lid-mapping-6285342513758.json
 whatsapp-service\baileys_auth_info\lid-mapping-6285343941074.json
+whatsapp-service\baileys_auth_info\lid-mapping-6285888174479.json
 whatsapp-service\baileys_auth_info\lid-mapping-6289530291587.json
 whatsapp-service\baileys_auth_info\pre-key-1.json
 whatsapp-service\baileys_auth_info\pre-key-10.json
 whatsapp-service\baileys_auth_info\pre-key-11.json
 whatsapp-service\baileys_auth_info\pre-key-12.json
-whatsapp-service\baileys_auth_info\pre-key-14.json
 whatsapp-service\baileys_auth_info\pre-key-15.json
 whatsapp-service\baileys_auth_info\pre-key-16.json
 whatsapp-service\baileys_auth_info\pre-key-17.json
 whatsapp-service\baileys_auth_info\pre-key-18.json
 whatsapp-service\baileys_auth_info\pre-key-2.json
-whatsapp-service\baileys_auth_info\pre-key-20.json
 whatsapp-service\baileys_auth_info\pre-key-24.json
 whatsapp-service\baileys_auth_info\pre-key-26.json
 whatsapp-service\baileys_auth_info\pre-key-29.json
@@ -467,6 +500,7 @@ whatsapp-service\baileys_auth_info\pre-key-7.json
 whatsapp-service\baileys_auth_info\pre-key-8.json
 whatsapp-service\baileys_auth_info\pre-key-9.json
 whatsapp-service\baileys_auth_info\sender-key-120363421135933006@g.us--123570822856958_1--0.json
+whatsapp-service\baileys_auth_info\sender-key-120363421135933006@g.us--134935490900175_1--1.json
 whatsapp-service\baileys_auth_info\sender-key-120363421135933006@g.us--209551487930455_1--0.json
 whatsapp-service\baileys_auth_info\sender-key-120363421135933006@g.us--257088638984268_1--0.json
 whatsapp-service\baileys_auth_info\sender-key-120363422464418684@g.us--209551487930455_1--0.json
@@ -476,6 +510,8 @@ whatsapp-service\baileys_auth_info\sender-key-120363422464418684@g.us--211737945
 whatsapp-service\baileys_auth_info\sender-key-120363422464418684@g.us--237163883008141_1--0.json
 whatsapp-service\baileys_auth_info\sender-key-status@broadcast--6285343941074--0.json
 whatsapp-service\baileys_auth_info\session-123570822856958_1.0.json
+whatsapp-service\baileys_auth_info\session-134935490900175_1.1.json
+whatsapp-service\baileys_auth_info\session-153983855395014_1.0.json
 whatsapp-service\baileys_auth_info\session-194502543290533_1.0.json
 whatsapp-service\baileys_auth_info\session-195773350293676_1.0.json
 whatsapp-service\baileys_auth_info\session-195773350293676_1.9.json
@@ -500,11 +536,11 @@ Branch:
 main
 
 Last 5 commits:
+0d31a2c fix revisi pemecah ribuan dan kelas
+3068ed1 add jumlah siswa dan peta di landing
+3d8ca81 fix bug tunggakan
 b73f5b4 fix tampilan
 166d5d9 hapus baileys
-650517e fix kwitansi
-e018a25 test deploy
-34889ab ubah format kwitansi
 ```
 
 
@@ -619,12 +655,12 @@ use App\Http\Controllers\LaporanController;
 use App\Http\Controllers\PengaturanController;
 use App\Http\Controllers\DetailSiswaController;
 use App\Http\Controllers\AkunWaliController;
+use App\Http\Controllers\LandingPageController;
+use App\Http\Controllers\KelasController;
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [LandingPageController::class, 'index']);
 
-// MENJADI SEPERTI INI
+
 Route::get('/dashboard', DashboardController::class)->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
@@ -660,7 +696,8 @@ Route::middleware(['auth', 'role:bendahara'])->group(function () {
 
     Route::post('/siswa/{siswa}/reset-password', [SiswaController::class, 'resetPassword'])->name('siswa.reset-password');
     Route::resource('akun', AkunWaliController::class)->except(['create', 'store', 'show', 'destroy'])->parameters(['akun' => 'user']);
-Route::post('/akun/{user}/reset-password', [AkunWaliController::class, 'resetPassword'])->name('akun.reset-password');
+    Route::post('/akun/{user}/reset-password', [AkunWaliController::class, 'resetPassword'])->name('akun.reset-password');
+    Route::resource('kelas', KelasController::class)->except(['show']);
 });
 
 Route::middleware(['auth', 'role:wali_murid'])->group(function () {
@@ -710,7 +747,7 @@ Route::middleware(['auth', 'role:bendahara,ketua_yayasan'])->group(function () {
     Route::get('/laporan/excel', [LaporanController::class, 'exportExcel'])->name('laporan.export.excel');
 
     Route::get('/pemetaan', [PemetaanController::class, 'index'])->name('pemetaan.index');
-    
+
     Route::get('/siswa', [SiswaController::class, 'index'])->name('siswa.index');
 });
 require __DIR__ . '/auth.php';
@@ -721,74 +758,80 @@ require __DIR__ . '/auth.php';
 ## Routes (from command)
 ```
 
-  GET|HEAD        / ................................................................................................................ 
-  GET|HEAD        _debugbar/assets/javascript .......................... debugbar.assets.js ΓÇ║ Barryvdh\Debugbar ΓÇ║ AssetController@js
-  GET|HEAD        _debugbar/assets/stylesheets ....................... debugbar.assets.css ΓÇ║ Barryvdh\Debugbar ΓÇ║ AssetController@css
-  DELETE          _debugbar/cache/{key}/{tags?} ................. debugbar.cache.delete ΓÇ║ Barryvdh\Debugbar ΓÇ║ CacheController@delete
-  GET|HEAD        _debugbar/clockwork/{id} ................ debugbar.clockwork ΓÇ║ Barryvdh\Debugbar ΓÇ║ OpenHandlerController@clockwork
-  GET|HEAD        _debugbar/open ........................... debugbar.openhandler ΓÇ║ Barryvdh\Debugbar ΓÇ║ OpenHandlerController@handle
-  POST            _debugbar/queries/explain ............... debugbar.queries.explain ΓÇ║ Barryvdh\Debugbar ΓÇ║ QueriesController@explain
-  GET|HEAD        akun ....................................................................... akun.index ΓÇ║ AkunWaliController@index
-  PUT|PATCH       akun/{user} .............................................................. akun.update ΓÇ║ AkunWaliController@update
-  GET|HEAD        akun/{user}/edit ............................................................. akun.edit ΓÇ║ AkunWaliController@edit
-  POST            akun/{user}/reset-password ................................ akun.reset-password ΓÇ║ AkunWaliController@resetPassword
-  GET|HEAD        api/locations ....................................................... api.locations ΓÇ║ Api\LocationController@index
-  GET|HEAD        bendahara/dashboard .................................... bendahara.dashboard ΓÇ║ Bendahara\DashboardController@index
-  GET|HEAD        confirm-password ...................................... password.confirm ΓÇ║ Auth\ConfirmablePasswordController@show
-  POST            confirm-password ........................................................ Auth\ConfirmablePasswordController@store
-  GET|HEAD        dashboard ........................................................................ dashboard ΓÇ║ DashboardController
-  GET|HEAD        detail-siswa/{siswa} ............................................. wali.detail-siswa ΓÇ║ DetailSiswaController@index
-  POST            email/verification-notification ........... verification.send ΓÇ║ Auth\EmailVerificationNotificationController@store
-  GET|HEAD        forgot-password ....................................... password.request ΓÇ║ Auth\PasswordResetLinkController@create
-  POST            forgot-password .......................................... password.email ΓÇ║ Auth\PasswordResetLinkController@store
-  GET|HEAD        ketua/dashboard ..................................... ketua.dashboard ΓÇ║ KetuaYayasan\DashboardController@dashboard
-  GET|HEAD        kwitansi/download/{kwitansi} ..................................... kwitansi.download ΓÇ║ KwitansiController@download
-  GET|HEAD        laporan .................................................................. laporan.index ΓÇ║ LaporanController@index
-  GET|HEAD        laporan/excel ............................................... laporan.export.excel ΓÇ║ LaporanController@exportExcel
-  GET|HEAD        laporan/pdf ..................................................... laporan.export.pdf ΓÇ║ LaporanController@exportPdf
-  GET|HEAD        login ......................................................... login ΓÇ║ Auth\AuthenticatedSessionController@create
-  POST            login .................................................................. Auth\AuthenticatedSessionController@store
-  POST            logout ...................................................... logout ΓÇ║ Auth\AuthenticatedSessionController@destroy
-  POST            midtrans/callback ............................................................... MidtransWebhookController@handle
-  POST            midtrans/token ................................................... midtrans.token ΓÇ║ PembayaranController@snapToken
-  PUT             password ........................................................ password.update ΓÇ║ Auth\PasswordController@update
-  POST            payment/token ................................................ payment.token ΓÇ║ PaymentController@createTransaction
-  GET|HEAD        pembayaran ...................................................... payment.page ΓÇ║ PaymentController@showPaymentPage
-  GET|HEAD        pembayaran/manual/create ............................ pembayaran.manual.create ΓÇ║ PembayaranController@createManual
-  POST            pembayaran/manual/store ............................... pembayaran.manual.store ΓÇ║ PembayaranController@storeManual
-  GET|HEAD        pembayaran/midtrans/{id_siswa} ............................ pembayaran.midtrans.form ΓÇ║ MidtransController@showForm
-  POST            pembayaran/midtrans/{id_siswa} ........................... pembayaran.midtrans ΓÇ║ MidtransController@createMidtrans
-  GET|HEAD        pembayaran/verifikasi ............................... pembayaran.verifikasi ΓÇ║ PembayaranController@indexVerifikasi
-  PATCH           pembayaran/verifikasi/{id} .................. pembayaran.verifikasi.update ΓÇ║ PembayaranController@updateVerifikasi
-  GET|HEAD        pembayaran/{siswa}/pilih-metode ............................ pembayaran.pilih-metode ΓÇ║ PilihMetodeController@index
-  GET|HEAD        pemetaan ............................................................... pemetaan.index ΓÇ║ PemetaanController@index
-  GET|HEAD        pengaturan ......................................................... pengaturan.index ΓÇ║ PengaturanController@index
-  POST            pengaturan ....................................................... pengaturan.update ΓÇ║ PengaturanController@update
-  GET|HEAD        profile .................................................................... profile.edit ΓÇ║ ProfileController@edit
-  PATCH           profile ................................................................ profile.update ΓÇ║ ProfileController@update
-  DELETE          profile .............................................................. profile.destroy ΓÇ║ ProfileController@destroy
-  GET|HEAD        register ......................................................... register ΓÇ║ Auth\RegisteredUserController@create
-  POST            register ..................................................................... Auth\RegisteredUserController@store
-  POST            reset-password ................................................. password.store ΓÇ║ Auth\NewPasswordController@store
-  GET|HEAD        reset-password/{token} ........................................ password.reset ΓÇ║ Auth\NewPasswordController@create
-  GET|HEAD        riwayat .................................................................. riwayat.index ΓÇ║ RiwayatController@index
-  GET|HEAD        siswa ........................................................................ siswa.index ΓÇ║ SiswaController@index
-  POST            siswa ........................................................................ siswa.store ΓÇ║ SiswaController@store
-  GET|HEAD        siswa/create ............................................................... siswa.create ΓÇ║ SiswaController@create
-  PUT|PATCH       siswa/{siswa} .............................................................. siswa.update ΓÇ║ SiswaController@update
-  DELETE          siswa/{siswa} ............................................................ siswa.destroy ΓÇ║ SiswaController@destroy
-  GET|HEAD        siswa/{siswa}/edit ............................................................. siswa.edit ΓÇ║ SiswaController@edit
-  POST            siswa/{siswa}/reset-password ................................ siswa.reset-password ΓÇ║ SiswaController@resetPassword
-  GET|HEAD        storage/{path} ..................................................................................... storage.local
-  GET|HEAD        tunggakan ............................................................ tunggakan.index ΓÇ║ TunggakanController@index
-  POST            tunggakan/{id_tunggakan}/send-reminder ................ tunggakan.send-reminder ΓÇ║ TunggakanController@sendReminder
-  GET|HEAD        up ............................................................................................................... 
-  GET|HEAD        upload-transfer ..................................... pembayaran.upload.create ΓÇ║ PembayaranController@createUpload
-  POST            upload-transfer ....................................... pembayaran.upload.store ΓÇ║ PembayaranController@storeUpload
-  GET|HEAD        verify-email ........................................ verification.notice ΓÇ║ Auth\EmailVerificationPromptController
-  GET|HEAD        verify-email/{id}/{hash} ........................................ verification.verify ΓÇ║ Auth\VerifyEmailController
+  GET|HEAD        / .................................................................... LandingPageController@index
+  GET|HEAD        _debugbar/assets/javascript .......... debugbar.assets.js ΓÇ║ Barryvdh\Debugbar ΓÇ║ AssetController@js
+  GET|HEAD        _debugbar/assets/stylesheets ....... debugbar.assets.css ΓÇ║ Barryvdh\Debugbar ΓÇ║ AssetController@css
+  DELETE          _debugbar/cache/{key}/{tags?} . debugbar.cache.delete ΓÇ║ Barryvdh\Debugbar ΓÇ║ CacheController@delete
+  GET|HEAD        _debugbar/clockwork/{id} debugbar.clockwork ΓÇ║ Barryvdh\Debugbar ΓÇ║ OpenHandlerController@clockwork
+  GET|HEAD        _debugbar/open ........... debugbar.openhandler ΓÇ║ Barryvdh\Debugbar ΓÇ║ OpenHandlerController@handle
+  POST            _debugbar/queries/explain debugbar.queries.explain ΓÇ║ Barryvdh\Debugbar ΓÇ║ QueriesController@explain
+  GET|HEAD        akun ....................................................... akun.index ΓÇ║ AkunWaliController@index
+  PUT|PATCH       akun/{user} .............................................. akun.update ΓÇ║ AkunWaliController@update
+  GET|HEAD        akun/{user}/edit ............................................. akun.edit ΓÇ║ AkunWaliController@edit
+  POST            akun/{user}/reset-password ................ akun.reset-password ΓÇ║ AkunWaliController@resetPassword
+  GET|HEAD        api/locations ....................................... api.locations ΓÇ║ Api\LocationController@index
+  GET|HEAD        bendahara/dashboard .................... bendahara.dashboard ΓÇ║ Bendahara\DashboardController@index
+  GET|HEAD        confirm-password ...................... password.confirm ΓÇ║ Auth\ConfirmablePasswordController@show
+  POST            confirm-password ........................................ Auth\ConfirmablePasswordController@store
+  GET|HEAD        dashboard ........................................................ dashboard ΓÇ║ DashboardController
+  GET|HEAD        detail-siswa/{siswa} ............................. wali.detail-siswa ΓÇ║ DetailSiswaController@index
+  POST            email/verification-notification verification.send ΓÇ║ Auth\EmailVerificationNotificationController@ΓÇª
+  GET|HEAD        forgot-password ....................... password.request ΓÇ║ Auth\PasswordResetLinkController@create
+  POST            forgot-password .......................... password.email ΓÇ║ Auth\PasswordResetLinkController@store
+  GET|HEAD        kelas ........................................................ kelas.index ΓÇ║ KelasController@index
+  POST            kelas ........................................................ kelas.store ΓÇ║ KelasController@store
+  GET|HEAD        kelas/create ............................................... kelas.create ΓÇ║ KelasController@create
+  PUT|PATCH       kelas/{kela} ............................................... kelas.update ΓÇ║ KelasController@update
+  DELETE          kelas/{kela} ............................................. kelas.destroy ΓÇ║ KelasController@destroy
+  GET|HEAD        kelas/{kela}/edit .............................................. kelas.edit ΓÇ║ KelasController@edit
+  GET|HEAD        ketua/dashboard ..................... ketua.dashboard ΓÇ║ KetuaYayasan\DashboardController@dashboard
+  GET|HEAD        kwitansi/download/{kwitansi} ..................... kwitansi.download ΓÇ║ KwitansiController@download
+  GET|HEAD        laporan .................................................. laporan.index ΓÇ║ LaporanController@index
+  GET|HEAD        laporan/excel ............................... laporan.export.excel ΓÇ║ LaporanController@exportExcel
+  GET|HEAD        laporan/pdf ..................................... laporan.export.pdf ΓÇ║ LaporanController@exportPdf
+  GET|HEAD        login ......................................... login ΓÇ║ Auth\AuthenticatedSessionController@create
+  POST            login .................................................. Auth\AuthenticatedSessionController@store
+  POST            logout ...................................... logout ΓÇ║ Auth\AuthenticatedSessionController@destroy
+  POST            midtrans/callback ............................................... MidtransWebhookController@handle
+  POST            midtrans/token ................................... midtrans.token ΓÇ║ PembayaranController@snapToken
+  PUT             password ........................................ password.update ΓÇ║ Auth\PasswordController@update
+  POST            payment/token ................................ payment.token ΓÇ║ PaymentController@createTransaction
+  GET|HEAD        pembayaran ...................................... payment.page ΓÇ║ PaymentController@showPaymentPage
+  GET|HEAD        pembayaran/manual/create ............ pembayaran.manual.create ΓÇ║ PembayaranController@createManual
+  POST            pembayaran/manual/store ............... pembayaran.manual.store ΓÇ║ PembayaranController@storeManual
+  GET|HEAD        pembayaran/midtrans/{id_siswa} ............ pembayaran.midtrans.form ΓÇ║ MidtransController@showForm
+  POST            pembayaran/midtrans/{id_siswa} ........... pembayaran.midtrans ΓÇ║ MidtransController@createMidtrans
+  GET|HEAD        pembayaran/verifikasi ............... pembayaran.verifikasi ΓÇ║ PembayaranController@indexVerifikasi
+  PATCH           pembayaran/verifikasi/{id} .. pembayaran.verifikasi.update ΓÇ║ PembayaranController@updateVerifikasi
+  GET|HEAD        pembayaran/{siswa}/pilih-metode ............ pembayaran.pilih-metode ΓÇ║ PilihMetodeController@index
+  GET|HEAD        pemetaan ............................................... pemetaan.index ΓÇ║ PemetaanController@index
+  GET|HEAD        pengaturan ......................................... pengaturan.index ΓÇ║ PengaturanController@index
+  POST            pengaturan ....................................... pengaturan.update ΓÇ║ PengaturanController@update
+  GET|HEAD        profile .................................................... profile.edit ΓÇ║ ProfileController@edit
+  PATCH           profile ................................................ profile.update ΓÇ║ ProfileController@update
+  DELETE          profile .............................................. profile.destroy ΓÇ║ ProfileController@destroy
+  GET|HEAD        register ......................................... register ΓÇ║ Auth\RegisteredUserController@create
+  POST            register ..................................................... Auth\RegisteredUserController@store
+  POST            reset-password ................................. password.store ΓÇ║ Auth\NewPasswordController@store
+  GET|HEAD        reset-password/{token} ........................ password.reset ΓÇ║ Auth\NewPasswordController@create
+  GET|HEAD        riwayat .................................................. riwayat.index ΓÇ║ RiwayatController@index
+  GET|HEAD        siswa ........................................................ siswa.index ΓÇ║ SiswaController@index
+  POST            siswa ........................................................ siswa.store ΓÇ║ SiswaController@store
+  GET|HEAD        siswa/create ............................................... siswa.create ΓÇ║ SiswaController@create
+  PUT|PATCH       siswa/{siswa} .............................................. siswa.update ΓÇ║ SiswaController@update
+  DELETE          siswa/{siswa} ............................................ siswa.destroy ΓÇ║ SiswaController@destroy
+  GET|HEAD        siswa/{siswa}/edit ............................................. siswa.edit ΓÇ║ SiswaController@edit
+  POST            siswa/{siswa}/reset-password ................ siswa.reset-password ΓÇ║ SiswaController@resetPassword
+  GET|HEAD        storage/{path} ..................................................................... storage.local
+  GET|HEAD        tunggakan ............................................ tunggakan.index ΓÇ║ TunggakanController@index
+  POST            tunggakan/{id_tunggakan}/send-reminder tunggakan.send-reminder ΓÇ║ TunggakanController@sendReminder
+  GET|HEAD        up ............................................................................................... 
+  GET|HEAD        upload-transfer ..................... pembayaran.upload.create ΓÇ║ PembayaranController@createUpload
+  POST            upload-transfer ....................... pembayaran.upload.store ΓÇ║ PembayaranController@storeUpload
+  GET|HEAD        verify-email ........................ verification.notice ΓÇ║ Auth\EmailVerificationPromptController
+  GET|HEAD        verify-email/{id}/{hash} ........................ verification.verify ΓÇ║ Auth\VerifyEmailController
 
-                                                                                                                 Showing [66] routes
+                                                                                                 Showing [72] routes
 
 ```
 
@@ -1618,6 +1661,75 @@ class DetailSiswaController extends Controller
     }
 }
 
+===== app\Http\Controllers\KelasController.php =====
+<?php
+
+namespace App\Http\Controllers;
+
+use App\Models\Kelas;
+use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
+
+class KelasController extends Controller
+{
+    public function index(Request $request)
+    {
+        $query = Kelas::query();
+
+        if ($request->filled('search')) {
+            $query->where('nama', 'like', '%' . $request->search . '%');
+        }
+
+        $kelas = $query->orderBy('nama')->paginate(15);
+        return view('kelas.index', compact('kelas'));
+    }
+
+    public function create()
+    {
+        return view('kelas.create');
+    }
+
+    public function store(Request $request)
+    {
+        $request->validate([
+            'nama' => 'required|string|max:255|unique:kelas,nama',
+        ]);
+
+        Kelas::create($request->only('nama'));
+
+        return redirect()->route('kelas.index')->with('success', 'Kelas baru berhasil ditambahkan.');
+    }
+
+    public function edit(Kelas $kela)
+    {
+        // Variabel harus $kela karena 'kelas' adalah nama resource
+        return view('kelas.edit', ['kelas' => $kela]);
+    }
+
+    public function update(Request $request, Kelas $kela)
+    {
+        $request->validate([
+            'nama' => ['required', 'string', 'max:255', Rule::unique('kelas')->ignore($kela->id)],
+        ]);
+
+        $kela->update($request->only('nama'));
+
+        return redirect()->route('kelas.index')->with('success', 'Nama kelas berhasil diperbarui.');
+    }
+
+    public function destroy(Kelas $kela)
+    {
+        // Cek apakah ada siswa yang masih terdaftar di kelas ini
+        if ($kela->siswas()->exists()) {
+            return back()->with('error', 'Gagal! Kelas ini tidak dapat dihapus karena masih ada siswa di dalamnya.');
+        }
+
+        $kela->delete();
+
+        return redirect()->route('kelas.index')->with('success', 'Kelas berhasil dihapus.');
+    }
+}
+
 ===== app\Http\Controllers\KwitansiController.php =====
 <?php
 
@@ -1747,6 +1859,26 @@ class KwitansiController extends Controller
             }
             return null;
         }
+    }
+}
+
+===== app\Http\Controllers\LandingPageController.php =====
+<?php
+
+namespace App\Http\Controllers;
+
+use Illuminate\Http\Request;
+use App\Models\Siswa;
+
+class LandingPageController extends Controller
+{
+    public function index()
+    {
+        // Ambil jumlah total siswa
+        $jumlahSiswa = Siswa::count();
+        
+        // Kirim data ke view welcome
+        return view('welcome', compact('jumlahSiswa'));
     }
 }
 
@@ -2679,6 +2811,7 @@ use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules;
 use App\Jobs\SendPasswordResetNotification;
+use App\Models\Kelas;
 
 
 class SiswaController extends Controller
@@ -2697,14 +2830,14 @@ class SiswaController extends Controller
         }
 
         // Logika untuk Filter Kelas
-        if ($request->filled('kelas')) {
-            $query->where('kelas', $request->kelas);
+        if ($request->filled('id_kelas')) {
+            $query->where('id_kelas', $request->id_kelas);
         }
 
         $siswas = $query->paginate(15)->withQueryString();
         
         // Ambil daftar kelas unik untuk dropdown filter
-        $kelasOptions = Siswa::distinct()->orderBy('kelas')->pluck('kelas');
+        $kelasOptions = Siswa::distinct()->orderBy('id_kelas')->pluck('id_kelas');
 
         return view('siswa.index', compact('siswas', 'kelasOptions'));
     }
@@ -2713,7 +2846,8 @@ class SiswaController extends Controller
     public function create()
     {
         $walis = User::where('role', 'wali_murid')->orderBy('name')->get();
-        return view('siswa.create', compact('walis'));
+        $kelas = Kelas::orderBy('nama')->get();
+        return view('siswa.create', compact('walis', 'kelas')); 
     }
 
     public function store(Request $request)
@@ -2721,7 +2855,7 @@ class SiswaController extends Controller
         $request->validate([
             'nama_siswa' => 'required|string|max:100',
             'nis' => 'required|string|max:50|unique:siswa,nis',
-            'kelas' => 'required|string|max:20',
+            'id_kelas' => 'required|exists:kelas,id',
             'wali_option' => 'required|in:existing,new', // Pilihan metode
 
         ]);
@@ -2753,7 +2887,7 @@ class SiswaController extends Controller
         }
 
         // Buat data siswa dengan id_wali yang sudah ditentukan
-        Siswa::create(array_merge($request->only('nama_siswa', 'nis', 'kelas', 'alamat', 'latitude', 'longitude'), ['id_wali' => $id_wali], ['nomor_wa' => $request->nomor_wa]));
+        Siswa::create(array_merge($request->only('nama_siswa', 'nis', 'id_kelas', 'alamat', 'latitude', 'longitude'), ['id_wali' => $id_wali], ['nomor_wa' => $request->nomor_wa]));
 
         return redirect()->route('siswa.index')->with('success', 'Siswa berhasil ditambahkan.');
     }
@@ -2762,7 +2896,8 @@ class SiswaController extends Controller
     {
         $siswa = Siswa::findOrFail($id);
         $walis = User::where('role', 'wali_murid')->orderBy('name')->get();
-        return view('siswa.edit', compact('siswa', 'walis'));
+        $kelas = Kelas::orderBy('nama')->get();
+        return view('siswa.edit', compact('siswa', 'walis', 'kelas'));
     }
 
     public function update(Request $request, $id)
@@ -2771,7 +2906,7 @@ class SiswaController extends Controller
         $request->validate([
             'nama_siswa' => 'required|string|max:100',
             'nis' => 'required|string|max:50|unique:siswa,nis,' . $siswa->id_siswa . ',id_siswa',
-            'kelas' => 'required|string|max:20',
+            'id_kelas' => 'required|exists:kelas,id',
             'id_wali' => 'required|exists:users,id',
             'nomor_wa' => 'nullable|string|max:20',
         ]);
@@ -2870,6 +3005,27 @@ class TunggakanController extends Controller
 
 ## Models Content
 ```
+===== app\Models\Kelas.php =====
+<?php
+
+namespace App\Models;
+
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+
+class Kelas extends Model
+{
+    use HasFactory;
+
+    protected $table = 'kelas';
+    protected $fillable = ['nama'];
+
+    public function siswas()
+    {
+        return $this->hasMany(Siswa::class, 'id_kelas');
+    }
+}
+
 ===== app\Models\Kwitansi.php =====
 <?php
 
@@ -3075,12 +3231,17 @@ class Siswa extends Model
     protected $fillable = [
         'nis',
         'nama_siswa',
-        'kelas',
+        'id_kelas',
         'id_wali',
         'alamat',
         'latitude',
         'longitude'
     ];
+
+    public function kelas()
+    {
+        return $this->belongsTo(Kelas::class, 'id_kelas');
+    }
 
     public function wali()
     {
@@ -3954,6 +4115,118 @@ $classes = ($active ?? false)
 {{-- Menambahkan pl-10 (padding left) untuk memberi ruang bagi ikon --}}
 <input {{ $disabled ? 'disabled' : '' }} {!! $attributes->merge(['class' => 'block w-full pl-10 border-gray-300 focus:border-sky-500 focus:ring-sky-500 rounded-md shadow-sm']) !!}>
 
+===== resources\views\kelas\create.blade.php =====
+<x-app-layout>
+    <x-slot name="header">
+        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+            {{ __('Tambah Kelas Baru') }}
+        </h2>
+    </x-slot>
+
+    <div class="py-8">
+        <div class="max-w-xl mx-auto sm:px-6 lg:px-8">
+            <div class="bg-white p-6 md:p-8 rounded-xl shadow-md">
+                <form action="{{ route('kelas.store') }}" method="POST">
+                    @csrf
+                    <div>
+                        <label for="nama" class="block text-sm font-medium text-gray-700">Nama Kelas</label>
+                        <input type="text" name="nama" id="nama" value="{{ old('nama') }}" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm" required autofocus>
+                        <x-input-error :messages="$errors->get('nama')" class="mt-2" />
+                    </div>
+
+                    <div class="mt-6 flex justify-end">
+                        <a href="{{ route('kelas.index') }}" class="text-gray-600 py-2 px-4 rounded-md hover:bg-gray-100">Batal</a>
+                        <button type="submit" class="ml-4 px-4 py-2 bg-indigo-600 text-white rounded-md hover:bg-indigo-700">Simpan</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</x-app-layout>
+
+===== resources\views\kelas\edit.blade.php =====
+<x-app-layout>
+    <x-slot name="header">
+        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+            {{ __('Edit Kelas: ') }} {{ $kelas->nama }}
+        </h2>
+    </x-slot>
+
+    <div class="py-8">
+        <div class="max-w-xl mx-auto sm:px-6 lg:px-8">
+            <div class="bg-white p-6 md:p-8 rounded-xl shadow-md">
+                <form action="{{ route('kelas.update', $kelas) }}" method="POST">
+                    @csrf
+                    @method('PUT')
+                    <div>
+                        <label for="nama" class="block text-sm font-medium text-gray-700">Nama Kelas</label>
+                        <input type="text" name="nama" id="nama" value="{{ old('nama', $kelas->nama) }}" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm" required autofocus>
+                        <x-input-error :messages="$errors->get('nama')" class="mt-2" />
+                    </div>
+
+                    <div class="mt-6 flex justify-end">
+                        <a href="{{ route('kelas.index') }}" class="text-gray-600 py-2 px-4 rounded-md hover:bg-gray-100">Batal</a>
+                        <button type="submit" class="ml-4 px-4 py-2 bg-indigo-600 text-white rounded-md hover:bg-indigo-700">Update</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</x-app-layout>
+
+===== resources\views\kelas\index.blade.php =====
+<x-app-layout>
+    <x-slot name="header">
+        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+            {{ __('Manajemen Kelas') }}
+        </h2>
+    </x-slot>
+
+    <div class="py-8">
+        <div class="max-w-4xl mx-auto sm:px-6 lg:px-8">
+            <div class="mb-4 flex justify-end">
+                <a href="{{ route('kelas.create') }}" class="px-4 py-2 bg-indigo-600 text-white text-sm font-semibold rounded-lg shadow-md hover:bg-indigo-700">
+                    Tambah Kelas Baru
+                </a>
+            </div>
+            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
+                <div class="overflow-x-auto">
+                    <table class="min-w-full divide-y divide-gray-200">
+                        <thead class="bg-gray-50">
+                            <tr>
+                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Nama Kelas</th>
+                                <th class="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase">Aksi</th>
+                            </tr>
+                        </thead>
+                        <tbody class="bg-white divide-y divide-gray-200">
+                            @forelse ($kelas as $k)
+                                <tr>
+                                    <td class="px-6 py-4 whitespace-nowrap">{{ $k->nama }}</td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium space-x-4">
+                                        <a href="{{ route('kelas.edit', $k) }}" class="text-indigo-600 hover:text-indigo-900">Edit</a>
+                                        <form action="{{ route('kelas.destroy', $k) }}" method="POST" class="inline" onsubmit="return confirm('Apakah Anda yakin ingin menghapus kelas ini?');">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="submit" class="text-red-600 hover:text-red-900">Hapus</button>
+                                        </form>
+                                    </td>
+                                </tr>
+                            @empty
+                                <tr>
+                                    <td colspan="2" class="px-6 py-12 text-center text-gray-500">Belum ada data kelas.</td>
+                                </tr>
+                            @endforelse
+                        </tbody>
+                    </table>
+                </div>
+                 @if ($kelas->hasPages())
+                    <div class="p-4 border-t border-gray-200">{{ $kelas->links() }}</div>
+                @endif
+            </div>
+        </div>
+    </div>
+</x-app-layout>
+
 ===== resources\views\ketua\dashboard.blade.php =====
 <x-app-layout>
     <x-slot name="header">
@@ -4628,6 +4901,12 @@ $classes = ($active ?? false)
                     </svg>
                     {{ __('Data Siswa') }}
                 </x-nav-link>
+                <x-nav-link :href="route('kelas.index')" :active="request()->routeIs('kelas.index')">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01" />
+                    </svg>
+                    {{ __('Data Kelas') }}
+                </x-nav-link>
 
                 <x-nav-link :href="route('riwayat.index')" :active="request()->routeIs('riwayat.index')">
                     <img src="{{ asset('images/historyicon.png') }}" alt="icon" class="w-4 h-4 mr-2">
@@ -4725,6 +5004,7 @@ $classes = ($active ?? false)
             </svg>
             {{ __('Akun Wali Murid') }}
         </x-nav-link>
+        
         @endif
     </nav>
 </aside>
@@ -4744,7 +5024,7 @@ $classes = ($active ?? false)
             <div class="bg-white shadow sm:rounded-lg p-6">
                 <form action="{{ route('pembayaran.manual.store') }}" method="POST">
                     @csrf
-    
+
                     {{-- Nama Siswa --}}
                     <div class="mb-4">
                         <label for="id_siswa" class="block text-sm font-medium text-gray-700">Nama Siswa</label>
@@ -4755,7 +5035,7 @@ $classes = ($active ?? false)
                             @endforeach
                         </select>
                     </div>
-    
+
                     {{-- Bulan (multi-select) dan Jumlah dalam satu x-data --}}
                     <div x-data="{
                         months: [
@@ -4766,7 +5046,11 @@ $classes = ($active ?? false)
                         jumlahSPP: {{ $defaultJumlahSPP ?? 0 }},
                         get totalBayar() {
                             return this.selectedMonths.length * this.jumlahSPP;
+                        },get formattedTotalBayar() {
+                            return new Intl.NumberFormat('id-ID').format(this.totalBayar);
                         }
+                        
+
                     }" x-init="console.log('Alpine initialized, jumlahSPP:', jumlahSPP)">
                         {{-- Bulan --}}
                         <div class="mb-4">
@@ -4789,7 +5073,7 @@ $classes = ($active ?? false)
                                         </span>
                                     </template>
                                 </div>
-    
+
                                 <select x-ref="monthSelect"
                                     @change="if ($event.target.value && !selectedMonths.includes($event.target.value)) {
                                         selectedMonths.push($event.target.value);
@@ -4802,25 +5086,28 @@ $classes = ($active ?? false)
                                         <option x-text="month" :value="month"></option>
                                     </template>
                                 </select>
-    
+
                                 <template x-for="month in selectedMonths" :key="month">
                                     <input type="hidden" name="bulan[]" :value="month" />
                                 </template>
-    
+
                                 <x-input-error :messages="$errors->get('bulan')" class="mt-2" />
                             </div>
                         </div>
-    
+
+
                         {{-- Jumlah --}}
                         <div class="mb-4">
-                            <label for="jumlah" class="block text-sm font-medium text-gray-700">Jumlah SPP</label>
-                            <input type="number" name="jumlah" id="jumlah" x-bind:value="totalBayar"
+                            <label for="jumlah" class="block text-sm font-medium text-gray-700">Jumlah SPP
+                                (Rp)</label>
+                            <input type="hidden" name="jumlah" x-bind:value="totalBayar" />
+                            <input type="text" id="jumlah_display" x-bind:value="formattedTotalBayar"
                                 class="mt-1 block w-full border-gray-300 rounded-md shadow-sm bg-gray-100" readonly />
                             <small class="text-gray-500">Jumlah akan dihitung otomatis: jumlah bulan Ã—
                                 {{ number_format($defaultJumlahSPP ?? 0, 0, ',', '.') }}</small>
                         </div>
                     </div>
-    
+
                     {{-- Tahun --}}
                     <div class="mb-4">
                         <label for="tahun" class="block text-sm font-medium text-gray-700">Tahun</label>
@@ -4839,7 +5126,7 @@ $classes = ($active ?? false)
                         <label for="catatan" class="block text-sm font-medium text-gray-700">Catatan (Opsional)</label>
                         <textarea name="catatan" id="catatan" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm"></textarea>
                     </div>
-    
+
                     <div class="mt-6">
                         <button type="submit" class="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700">
                             Simpan Pembayaran
@@ -5258,6 +5545,8 @@ $classes = ($active ?? false)
                     jumlahSPP: {{ $defaultJumlahSPP ?? 0 }},
                     get totalBayar() {
                         return this.selectedMonths.length * this.jumlahSPP;
+                    },get formattedTotalBayar() {
+                        return new Intl.NumberFormat('id-ID').format(this.totalBayar);
                     }
                 }" x-init="console.log('Alpine initialized, jumlahSPP:', jumlahSPP)">
                     <!-- Multi-select Bulan -->
@@ -5303,13 +5592,13 @@ $classes = ($active ?? false)
     
                     <!-- Jumlah -->
                     <div class="mb-4">
-                        <x-input-label for="jumlah" value="Jumlah" />
-                        <input id="jumlah" name="jumlah" type="number" class="mt-1 block w-full bg-gray-100"
-                            x-bind:value="totalBayar" readonly />
+                        <label for="jumlah" class="block text-sm font-medium text-gray-700">Jumlah SPP
+                            (Rp)</label>
+                        <input type="hidden" name="jumlah" x-bind:value="totalBayar" />
+                        <input type="text" id="jumlah_display" x-bind:value="formattedTotalBayar"
+                            class="mt-1 block w-full border-gray-300 rounded-md shadow-sm bg-gray-100" readonly />
                         <small class="text-gray-500">Jumlah akan dihitung otomatis: jumlah bulan Ã—
                             {{ number_format($defaultJumlahSPP ?? 0, 0, ',', '.') }}</small>
-                        {{-- <!-- Debug -->
-                        <div x-text="'Debug Total Bayar: ' + totalBayar"></div> --}}
                     </div>
                 </div>
     
@@ -5898,10 +6187,13 @@ $classes = ($active ?? false)
                                 class="mt-1 block w-full border-gray-300 rounded-md shadow-sm" required>
                         </div>
                         <div class="md:col-span-2">
-                            <label for="kelas" class="block text-sm font-medium text-gray-700">Kelas</label>
-                            <input type="text" name="kelas" id="kelas" value="{{ old('kelas') }}"
-                                class="mt-1 block w-full border-gray-300 rounded-md shadow-sm" required
-                                placeholder="Contoh: 1A">
+                            <label for="id_kelas" class="block text-sm font-medium text-gray-700">Kelas</label>
+                            <select name="id_kelas" id="id_kelas" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm" required>
+                                <option value="">-- Pilih Kelas --</option>
+                                @foreach($kelas as $k)
+                                    <option value="{{ $k->id }}" @selected(old('id_kelas') == $k->id)>{{ $k->nama }}</option>
+                                @endforeach
+                            </select>
                         </div>
                     </div>
 
@@ -6110,8 +6402,13 @@ $classes = ($active ?? false)
                             <input type="text" name="nis" id="nis" value="{{ old('nis', $siswa->nis) }}" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm" required>
                         </div>
                         <div class="md:col-span-2">
-                             <label for="kelas" class="block text-sm font-medium text-gray-700">Kelas</label>
-                            <input type="text" name="kelas" id="kelas" value="{{ old('kelas', $siswa->kelas) }}" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm" required>
+                             <label for="id_kelas" class="block text-sm font-medium text-gray-700">Kelas</label>
+                            <select name="id_kelas" id="id_kelas" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm" required>
+                                <option value="">-- Pilih Kelas --</option>
+                                @foreach($kelas as $k)
+                                    <option value="{{ $k->id }}" @selected(old('id_kelas', $siswa->id_kelas) == $k->id)>{{ $k->nama }}</option>
+                                @endforeach
+                            </select>
                         </div>
                     </div>
 
@@ -6609,12 +6906,15 @@ $classes = ($active ?? false)
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    
     <style>
         body { font-family: 'Inter', sans-serif; }
         [x-cloak] { display: none !important; }
     </style>
 </head>
-<body class="bg-white text-slate-900 antialiased">
+<body class="bg-white text-slate-900 antaliased">
 
     {{-- Latar belakang abstrak dengan gradien biru soft --}}
     <div class="absolute top-0 left-0 w-full h-[120vh] bg-slate-50 -z-10"></div>
@@ -6671,20 +6971,41 @@ $classes = ($active ?? false)
                     </div>
                 </div>
             </section>
-
-            <section id="fitur" class="py-24 bg-white">
+            
+            <section id="data" class="py-24 bg-white">
+                <div class="max-w-7xl mx-auto px-6">
+                    <div class="text-center mb-16">
+                        <h2 class="text-4xl font-extrabold text-slate-900">Data & Jangkauan Sekolah</h2>
+                        <p class="mt-4 text-lg text-slate-600">Lihat data statistik dan sebaran lokasi siswa kami secara langsung.</p>
+                    </div>
+                    <div class="grid md:grid-cols-2 gap-12 items-center">
+                        <div>
+                            <div class="bg-sky-50 p-8 rounded-xl border border-sky-200 text-center mb-8">
+                                <p class="text-lg font-medium text-sky-800">Total Siswa Terdaftar Saat Ini</p>
+                                <p class="text-6xl font-black text-sky-600 mt-2">{{ $jumlahSiswa }}</p>
+                            </div>
+                            <h3 class="text-2xl font-bold text-slate-800">Sebaran Lokasi Siswa</h3>
+                            <p class="mt-2 text-slate-600">Peta interaktif ini menunjukkan sebaran domisili siswa Al-Azhar 43 Gorontalo. Data ini membantu kami dalam merencanakan rute antar-jemput dan kegiatan sekolah lainnya. Titik pada peta bersifat anonim dan tidak menampilkan data pribadi.</p>
+                        </div>
+                        <div class="rounded-xl shadow-lg overflow-hidden border-2 border-slate-200 h-96">
+                            <div id="map" style="height: 100%; width: 100%; z-index: 1;"></div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <section id="fitur" class="py-24 bg-slate-50">
                 <div class="max-w-7xl mx-auto px-6 text-center">
                     <h2 class="text-4xl font-extrabold text-slate-900">Tiga Pilihan Pembayaran Untuk Anda</h2>
                     <p class="mt-4 text-lg text-slate-600">Kami menyediakan berbagai pilihan untuk kemudahan dan kenyamanan Ayah/Bunda.</p>
                     <div class="grid md:grid-cols-3 gap-8 mt-16">
                         {{-- Fitur Card 1 --}}
-                        <div class="bg-slate-50 p-8 rounded-xl border border-slate-200 text-center transition-all duration-300 ease-in-out hover:bg-white hover:border-sky-300 hover:shadow-2xl hover:-translate-y-2 cursor-pointer">
+                        <div class="bg-white p-8 rounded-xl border border-slate-200 text-center transition-all duration-300 ease-in-out hover:border-sky-300 hover:shadow-2xl hover:-translate-y-2 cursor-pointer">
                             <div class="bg-sky-100 text-sky-600 w-16 h-16 rounded-full flex items-center justify-center mx-auto"><svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 9V7a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2m2 4h10a2 2 0 002-2v-6a2 2 0 00-2-2H9a2 2 0 00-2 2v6a2 2 0 002 2zm7-5a2 2 0 11-4 0 2 2 0 014 0z" /></svg></div><h3 class="text-xl font-bold mt-6">Bayar Langsung</h3><p class="mt-2 text-slate-600">Silakan datang ke sekolah dan lakukan pembayaran langsung di bagian bendahara.</p></div>
                         {{-- Fitur Card 2 --}}
-                        <div class="bg-slate-50 p-8 rounded-xl border border-slate-200 text-center transition-all duration-300 ease-in-out hover:bg-white hover:border-sky-300 hover:shadow-2xl hover:-translate-y-2 cursor-pointer">
+                        <div class="bg-white p-8 rounded-xl border border-slate-200 text-center transition-all duration-300 ease-in-out hover:border-sky-300 hover:shadow-2xl hover:-translate-y-2 cursor-pointer">
                             <div class="bg-sky-100 text-sky-600 w-16 h-16 rounded-full flex items-center justify-center mx-auto"><svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12" /></svg></div><h3 class="text-xl font-bold mt-6">Upload Bukti Transfer</h3><p class="mt-2 text-slate-600">Transfer manual ke rekening sekolah, lalu upload bukti bayar Anda melalui portal ini.</p></div>
                         {{-- Fitur Card 3 --}}
-                        <div class="bg-slate-50 p-8 rounded-xl border border-slate-200 text-center transition-all duration-300 ease-in-out hover:bg-white hover:border-sky-300 hover:shadow-2xl hover:-translate-y-2 cursor-pointer">
+                        <div class="bg-white p-8 rounded-xl border border-slate-200 text-center transition-all duration-300 ease-in-out hover:border-sky-300 hover:shadow-2xl hover:-translate-y-2 cursor-pointer">
                             <div class="bg-sky-100 text-sky-600 w-16 h-16 rounded-full flex items-center justify-center mx-auto"><svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" /></svg></div><h3 class="text-xl font-bold mt-6">Bayar Otomatis (Midtrans)</h3><p class="mt-2 text-slate-600">Praktis dan instan! Bayar via Virtual Account, E-Wallet (OVO, Gopay), dan lainnya.</p></div>
                     </div>
                 </div>
@@ -6751,6 +7072,33 @@ $classes = ($active ?? false)
         </footer>
 
     </div>
+
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // Koordinat tengah untuk Gorontalo
+            const map = L.map('map').setView([0.542, 123.059], 13);
+
+            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                maxZoom: 19,
+                attribution: 'Ã‚Â© OpenStreetMap'
+            }).addTo(map);
+
+            // Ambil data dari API publik
+            fetch('{{ route('api.locations') }}')
+                .then(response => response.json())
+                .then(data => {
+                    data.forEach(location => {
+                        // Hanya tampilkan siswa di peta landing page
+                        if (location.tipe === 'siswa') {
+                            const marker = L.marker([location.latitude, location.longitude]).addTo(map);
+                            marker.bindTooltip(`<b>${location.nama}</b>`);
+                        }
+                    });
+                })
+                .catch(error => console.error('Error fetching locations:', error));
+        });
+    </script>
 </body>
 </html>
 
@@ -6816,14 +7164,22 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule): void
     {
+
+        // 1. Command SOP: Membuat data tunggakan bulan berjalan & kirim notif.
+        $schedule->command('tunggakan:buat-bulan-berjalan')->dailyAt('01:00');
+
+        // 2. Command Failsafe: Membuat data tunggakan lampau & kirim notif.
+        $schedule->command('tunggakan:buat-lampau')->monthlyOn(2, '02:00');
+
+
         // Jalankan command setiap bulan pada tanggal 2, pukul 01:00 pagi
-        $schedule->command('app:generate-tunggakan')->dailyAt('01:00');
-        $schedule->command('app:send-tunggakan-reminders')->dailyAt('08:00');
-        $schedule->command('app:send-current-month-reminders')
-            ->dailyAt('08:00')
-            ->when(function () {
-                return now()->day > 10;
-            });
+        // $schedule->command('app:generate-tunggakan')->dailyAt('01:00');
+        // $schedule->command('app:send-tunggakan-reminders')->dailyAt('08:00');
+        // $schedule->command('app:send-current-month-reminders')
+        //     ->dailyAt('08:00')
+        //     ->when(function () {
+        //         return now()->day > 10;
+        //     });
     }
 
     /**
@@ -6942,9 +7298,8 @@ return [
     |
     */
 
-    'locale' => env('APP_LOCALE', 'en'),
-
-    'fallback_locale' => env('APP_FALLBACK_LOCALE', 'en'),
+    'locale' => env('APP_LOCALE', 'id'),
+    'fallback_locale' => env('APP_FALLBACK_LOCALE', 'id'),
 
     'faker_locale' => env('APP_FAKER_LOCALE', 'en_US'),
 
