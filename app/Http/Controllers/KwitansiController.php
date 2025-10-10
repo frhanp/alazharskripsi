@@ -12,6 +12,10 @@ use PhpOffice\PhpWord\TemplateProcessor; // Ganti PDF dengan TemplateProcessor
 use Carbon\Carbon; // Tambahkan untuk format tanggal
 use App\Helpers\TerbilangHelper;
 use App\Jobs\SendWhatsappNotification;
+use Symfony\Component\Process\Exception\ProcessFailedException;
+use Symfony\Component\Process\Process;
+
+
 
 
 class KwitansiController extends Controller
@@ -53,76 +57,91 @@ class KwitansiController extends Controller
             return $pembayaran->kwitansi;
         }
 
+        $kwitansi = null;
+        $fullDocxOutputPath = null;
+
         try {
-            // =======================================================
-            // AWAL PERUBAHAN
-            // =======================================================
-            
-            // 1. Muat relasi siswa beserta walinya
             $pembayaran->load(['siswa.wali']);
-            
-            // =======================================================
-            // AKHIR PERUBAHAN
-            // =======================================================
-            
+
             $noKwitansi = 'KW/' . now()->year . '/' . now()->month . '/' . $pembayaran->id_pembayaran;
             $kwitansi = Kwitansi::create([
                 'id_pembayaran' => $pembayaran->id_pembayaran,
                 'no_kwitansi' => $noKwitansi,
                 'tanggal_terbit' => now(),
-                'file_kwitansi' => '', // Kosongkan dulu, akan diisi nanti
+                'file_kwitansi' => '',
             ]);
-    
+
             $templatePath = storage_path('app/templates/kwitansi_template.docx');
             if (!file_exists($templatePath)) {
-                Log::error("Template kwitansi tidak ditemukan di: " . $templatePath);
-                return null;
+                throw new \Exception("Template .docx tidak ditemukan.");
             }
-    
+
             $directoryName = 'kwitansi';
-            $fileName = 'kwitansi-' . $pembayaran->id_pembayaran . '-' . time() . '.docx';
-            $databasePath = $directoryName . '/' . $fileName;
-            $fullOutputPath = storage_path('app/public/' . $databasePath);
-    
             Storage::disk('public')->makeDirectory($directoryName);
-    
+
+            $docxFileName = 'kwitansi-' . $pembayaran->id_pembayaran . '-' . time() . '.docx';
+            $fullDocxOutputPath = storage_path('app/public/' . $directoryName . '/' . $docxFileName);
+
             $templateProcessor = new TemplateProcessor($templatePath);
-    
             $bulanText = is_array($pembayaran->bulan) ? implode(', ', $pembayaran->bulan) : $pembayaran->bulan;
             $terbilangText = ucwords(TerbilangHelper::convert($pembayaran->jumlah)) . ' Rupiah';
-    
+
             $templateProcessor->setValue('no_kwitansi', $kwitansi->no_kwitansi);
             $templateProcessor->setValue('tanggal_terbit', Carbon::parse($kwitansi->tanggal_terbit)->translatedFormat('d F Y'));
             $templateProcessor->setValue('nama_siswa', $pembayaran->siswa->nama_siswa);
-            
-            // =======================================================
-            // AWAL PERUBAHAN
-            // =======================================================
-            // Tambahkan variabel nama_wali di sini
             $templateProcessor->setValue('nama_wali', $pembayaran->siswa->wali->name ?? 'Wali Murid');
-            // =======================================================
-            // AKHIR PERUBAHAN
-            // =======================================================
-            
             $templateProcessor->setValue('nis_siswa', $pembayaran->siswa->nis ?? '-');
             $templateProcessor->setValue('bulan_pembayaran', $bulanText);
             $templateProcessor->setValue('tahun_pembayaran', $pembayaran->tahun);
             $templateProcessor->setValue('jumlah_rupiah', number_format($pembayaran->jumlah, 0, ',', '.'));
             $templateProcessor->setValue('jumlah_terbilang', $terbilangText);
-    
-            $templateProcessor->saveAs($fullOutputPath);
-    
-            $kwitansi->update(['file_kwitansi' => $databasePath]);
-            SendWhatsappNotification::dispatch($kwitansi);
-    
-            Log::info("Kwitansi .docx berhasil dibuat untuk pembayaran ID {$pembayaran->id_pembayaran}.");
+
+            $templateProcessor->saveAs($fullDocxOutputPath);
+
+            $outputDirectory = storage_path('app/public/' . $directoryName);
+            $sofficePath = 'C:\Program Files\LibreOffice\program\soffice.exe';
+
+            $process = new Process([$sofficePath, '--headless', '--convert-to', 'pdf', '--outdir', $outputDirectory, $fullDocxOutputPath]);
+            // Beri batas waktu eksekusi, misal 15 detik
+            $process->setTimeout(15);
+            $process->run();
+
+            // =======================================================
+            // PERUBAHAN UTAMA: Validasi yang lebih ketat
+            // =======================================================
+            $pdfFileName = str_replace('.docx', '.pdf', $docxFileName);
+            $fullPdfPath = storage_path('app/public/' . $directoryName . '/' . $pdfFileName);
+
+            // Cek apakah prosesnya sukses DAN file PDF benar-benar ada
+            if (!$process->isSuccessful() || !file_exists($fullPdfPath)) {
+                // Log error yang lebih detail untuk kita periksa nanti
+                Log::error('Konversi PDF gagal. Exit Code: ' . $process->getExitCode() . ' | Pesan: ' . $process->getErrorOutput());
+
+                // Lemparkan exception untuk menghentikan proses & membatalkan semuanya
+                throw new \Exception('Gagal mengonversi file ke PDF. Proses konversi tidak menghasilkan file output.');
+            }
+
+
+            $pdfDatabasePath = $directoryName . '/' . $pdfFileName;
+            $kwitansi->update(['file_kwitansi' => $pdfDatabasePath]);
+            $kwitansi->fresh();
+
+            if (file_exists($fullDocxOutputPath)) {
+                unlink($fullDocxOutputPath);
+            }
+
+            SendWhatsappNotification::dispatchSync($kwitansi);
+
+            Log::info("Kwitansi .pdf (dari .docx) berhasil dibuat untuk pembayaran ID {$pembayaran->id_pembayaran}.");
             return $kwitansi;
-            
         } catch (\Exception $e) {
-            Log::error("Gagal membuat kwitansi untuk pembayaran ID {$pembayaran->id_pembayaran}: " . $e->getMessage());
-            Log::error($e->getTraceAsString());
-            if (isset($kwitansi) && $kwitansi->exists) {
+            // Bagian ini akan menangkap error dari throw di atas
+            Log::error("Gagal total membuat kwitansi: " . $e->getMessage());
+            if ($kwitansi && $kwitansi->exists) {
                 $kwitansi->delete();
+            }
+            if ($fullDocxOutputPath && file_exists($fullDocxOutputPath)) {
+                unlink($fullDocxOutputPath);
             }
             return null;
         }
