@@ -21,12 +21,11 @@ use App\Http\Controllers\LaporanController;
 use App\Http\Controllers\PengaturanController;
 use App\Http\Controllers\DetailSiswaController;
 use App\Http\Controllers\AkunWaliController;
+use App\Http\Controllers\LandingPageController;
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [LandingPageController::class, 'index']);
 
-// MENJADI SEPERTI INI
+
 Route::get('/dashboard', DashboardController::class)->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {

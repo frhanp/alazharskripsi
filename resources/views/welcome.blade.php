@@ -8,12 +8,15 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    
     <style>
         body { font-family: 'Inter', sans-serif; }
         [x-cloak] { display: none !important; }
     </style>
 </head>
-<body class="bg-white text-slate-900 antialiased">
+<body class="bg-white text-slate-900 antaliased">
 
     {{-- Latar belakang abstrak dengan gradien biru soft --}}
     <div class="absolute top-0 left-0 w-full h-[120vh] bg-slate-50 -z-10"></div>
@@ -70,20 +73,41 @@
                     </div>
                 </div>
             </section>
-
-            <section id="fitur" class="py-24 bg-white">
+            
+            <section id="data" class="py-24 bg-white">
+                <div class="max-w-7xl mx-auto px-6">
+                    <div class="text-center mb-16">
+                        <h2 class="text-4xl font-extrabold text-slate-900">Data & Jangkauan Sekolah</h2>
+                        <p class="mt-4 text-lg text-slate-600">Lihat data statistik dan sebaran lokasi siswa kami secara langsung.</p>
+                    </div>
+                    <div class="grid md:grid-cols-2 gap-12 items-center">
+                        <div>
+                            <div class="bg-sky-50 p-8 rounded-xl border border-sky-200 text-center mb-8">
+                                <p class="text-lg font-medium text-sky-800">Total Siswa Terdaftar Saat Ini</p>
+                                <p class="text-6xl font-black text-sky-600 mt-2">{{ $jumlahSiswa }}</p>
+                            </div>
+                            <h3 class="text-2xl font-bold text-slate-800">Sebaran Lokasi Siswa</h3>
+                            <p class="mt-2 text-slate-600">Peta interaktif ini menunjukkan sebaran domisili siswa Al-Azhar 43 Gorontalo. Data ini membantu kami dalam merencanakan rute antar-jemput dan kegiatan sekolah lainnya. Titik pada peta bersifat anonim dan tidak menampilkan data pribadi.</p>
+                        </div>
+                        <div class="rounded-xl shadow-lg overflow-hidden border-2 border-slate-200 h-96">
+                            <div id="map" style="height: 100%; width: 100%; z-index: 1;"></div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <section id="fitur" class="py-24 bg-slate-50">
                 <div class="max-w-7xl mx-auto px-6 text-center">
                     <h2 class="text-4xl font-extrabold text-slate-900">Tiga Pilihan Pembayaran Untuk Anda</h2>
                     <p class="mt-4 text-lg text-slate-600">Kami menyediakan berbagai pilihan untuk kemudahan dan kenyamanan Ayah/Bunda.</p>
                     <div class="grid md:grid-cols-3 gap-8 mt-16">
                         {{-- Fitur Card 1 --}}
-                        <div class="bg-slate-50 p-8 rounded-xl border border-slate-200 text-center transition-all duration-300 ease-in-out hover:bg-white hover:border-sky-300 hover:shadow-2xl hover:-translate-y-2 cursor-pointer">
+                        <div class="bg-white p-8 rounded-xl border border-slate-200 text-center transition-all duration-300 ease-in-out hover:border-sky-300 hover:shadow-2xl hover:-translate-y-2 cursor-pointer">
                             <div class="bg-sky-100 text-sky-600 w-16 h-16 rounded-full flex items-center justify-center mx-auto"><svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 9V7a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2m2 4h10a2 2 0 002-2v-6a2 2 0 00-2-2H9a2 2 0 00-2 2v6a2 2 0 002 2zm7-5a2 2 0 11-4 0 2 2 0 014 0z" /></svg></div><h3 class="text-xl font-bold mt-6">Bayar Langsung</h3><p class="mt-2 text-slate-600">Silakan datang ke sekolah dan lakukan pembayaran langsung di bagian bendahara.</p></div>
                         {{-- Fitur Card 2 --}}
-                        <div class="bg-slate-50 p-8 rounded-xl border border-slate-200 text-center transition-all duration-300 ease-in-out hover:bg-white hover:border-sky-300 hover:shadow-2xl hover:-translate-y-2 cursor-pointer">
+                        <div class="bg-white p-8 rounded-xl border border-slate-200 text-center transition-all duration-300 ease-in-out hover:border-sky-300 hover:shadow-2xl hover:-translate-y-2 cursor-pointer">
                             <div class="bg-sky-100 text-sky-600 w-16 h-16 rounded-full flex items-center justify-center mx-auto"><svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12" /></svg></div><h3 class="text-xl font-bold mt-6">Upload Bukti Transfer</h3><p class="mt-2 text-slate-600">Transfer manual ke rekening sekolah, lalu upload bukti bayar Anda melalui portal ini.</p></div>
                         {{-- Fitur Card 3 --}}
-                        <div class="bg-slate-50 p-8 rounded-xl border border-slate-200 text-center transition-all duration-300 ease-in-out hover:bg-white hover:border-sky-300 hover:shadow-2xl hover:-translate-y-2 cursor-pointer">
+                        <div class="bg-white p-8 rounded-xl border border-slate-200 text-center transition-all duration-300 ease-in-out hover:border-sky-300 hover:shadow-2xl hover:-translate-y-2 cursor-pointer">
                             <div class="bg-sky-100 text-sky-600 w-16 h-16 rounded-full flex items-center justify-center mx-auto"><svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" /></svg></div><h3 class="text-xl font-bold mt-6">Bayar Otomatis (Midtrans)</h3><p class="mt-2 text-slate-600">Praktis dan instan! Bayar via Virtual Account, E-Wallet (OVO, Gopay), dan lainnya.</p></div>
                     </div>
                 </div>
@@ -150,5 +174,32 @@
         </footer>
 
     </div>
+
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // Koordinat tengah untuk Gorontalo
+            const map = L.map('map').setView([0.542, 123.059], 13);
+
+            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                maxZoom: 19,
+                attribution: 'Â© OpenStreetMap'
+            }).addTo(map);
+
+            // Ambil data dari API publik
+            fetch('{{ route('api.locations') }}')
+                .then(response => response.json())
+                .then(data => {
+                    data.forEach(location => {
+                        // Hanya tampilkan siswa di peta landing page
+                        if (location.tipe === 'siswa') {
+                            const marker = L.marker([location.latitude, location.longitude]).addTo(map);
+                            marker.bindTooltip(`<b>${location.nama}</b>`);
+                        }
+                    });
+                })
+                .catch(error => console.error('Error fetching locations:', error));
+        });
+    </script>
 </body>
 </html>
