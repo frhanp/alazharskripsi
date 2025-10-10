@@ -171,6 +171,6 @@ class SiswaController extends Controller
 
         $siswa->update($request->only('alamat', 'latitude', 'longitude'));
 
-        return redirect()->route('profile.edit')->with('status', 'profile-updated');
+        return redirect()->route('profile.edit')->with('success', 'Alamat ' . $siswa->nama_siswa . ' berhasil diperbarui.');
     }
 }

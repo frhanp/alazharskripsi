@@ -98,7 +98,7 @@
                             </td>
                             <td class="px-4 py-3 text-sm text-gray-900">
                                 {{-- Tombol Aksi yang Cerdas (logika tetap sama) --}}
-                                @if ($p->status == 'menunggu' && $p->is_midtrans)
+                                @if (Auth::user()->role === 'wali_murid' && $p->status == 'menunggu' && $p->is_midtrans)
                                     <button class="lanjut-bayar-btn ..." data-snap-token="{{ $p->snap_token }}">
                                         Lanjutkan Pembayaran
                                     </button>
