@@ -8,6 +8,7 @@ use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules;
 use App\Jobs\SendPasswordResetNotification;
+use App\Models\Kelas;
 
 
 class SiswaController extends Controller
@@ -26,14 +27,14 @@ class SiswaController extends Controller
         }
 
         // Logika untuk Filter Kelas
-        if ($request->filled('kelas')) {
-            $query->where('kelas', $request->kelas);
+        if ($request->filled('id_kelas')) {
+            $query->where('id_kelas', $request->id_kelas);
         }
 
         $siswas = $query->paginate(15)->withQueryString();
         
         // Ambil daftar kelas unik untuk dropdown filter
-        $kelasOptions = Siswa::distinct()->orderBy('kelas')->pluck('kelas');
+        $kelasOptions = Siswa::distinct()->orderBy('id_kelas')->pluck('id_kelas');
 
         return view('siswa.index', compact('siswas', 'kelasOptions'));
     }
@@ -42,7 +43,8 @@ class SiswaController extends Controller
     public function create()
     {
         $walis = User::where('role', 'wali_murid')->orderBy('name')->get();
-        return view('siswa.create', compact('walis'));
+        $kelas = Kelas::orderBy('nama')->get();
+        return view('siswa.create', compact('walis', 'kelas')); 
     }
 
     public function store(Request $request)
@@ -50,7 +52,7 @@ class SiswaController extends Controller
         $request->validate([
             'nama_siswa' => 'required|string|max:100',
             'nis' => 'required|string|max:50|unique:siswa,nis',
-            'kelas' => 'required|string|max:20',
+            'id_kelas' => 'required|exists:kelas,id',
             'wali_option' => 'required|in:existing,new', // Pilihan metode
 
         ]);
@@ -82,7 +84,7 @@ class SiswaController extends Controller
         }
 
         // Buat data siswa dengan id_wali yang sudah ditentukan
-        Siswa::create(array_merge($request->only('nama_siswa', 'nis', 'kelas', 'alamat', 'latitude', 'longitude'), ['id_wali' => $id_wali], ['nomor_wa' => $request->nomor_wa]));
+        Siswa::create(array_merge($request->only('nama_siswa', 'nis', 'id_kelas', 'alamat', 'latitude', 'longitude'), ['id_wali' => $id_wali], ['nomor_wa' => $request->nomor_wa]));
 
         return redirect()->route('siswa.index')->with('success', 'Siswa berhasil ditambahkan.');
     }
@@ -91,7 +93,8 @@ class SiswaController extends Controller
     {
         $siswa = Siswa::findOrFail($id);
         $walis = User::where('role', 'wali_murid')->orderBy('name')->get();
-        return view('siswa.edit', compact('siswa', 'walis'));
+        $kelas = Kelas::orderBy('nama')->get();
+        return view('siswa.edit', compact('siswa', 'walis', 'kelas'));
     }
 
     public function update(Request $request, $id)
@@ -100,7 +103,7 @@ class SiswaController extends Controller
         $request->validate([
             'nama_siswa' => 'required|string|max:100',
             'nis' => 'required|string|max:50|unique:siswa,nis,' . $siswa->id_siswa . ',id_siswa',
-            'kelas' => 'required|string|max:20',
+            'id_kelas' => 'required|exists:kelas,id',
             'id_wali' => 'required|exists:users,id',
             'nomor_wa' => 'nullable|string|max:20',
         ]);

@@ -12,7 +12,7 @@
             <div class="bg-white shadow sm:rounded-lg p-6">
                 <form action="{{ route('pembayaran.manual.store') }}" method="POST">
                     @csrf
-    
+
                     {{-- Nama Siswa --}}
                     <div class="mb-4">
                         <label for="id_siswa" class="block text-sm font-medium text-gray-700">Nama Siswa</label>
@@ -23,7 +23,7 @@
                             @endforeach
                         </select>
                     </div>
-    
+
                     {{-- Bulan (multi-select) dan Jumlah dalam satu x-data --}}
                     <div x-data="{
                         months: [
@@ -34,7 +34,11 @@
                         jumlahSPP: {{ $defaultJumlahSPP ?? 0 }},
                         get totalBayar() {
                             return this.selectedMonths.length * this.jumlahSPP;
+                        },get formattedTotalBayar() {
+                            return new Intl.NumberFormat('id-ID').format(this.totalBayar);
                         }
+                        
+
                     }" x-init="console.log('Alpine initialized, jumlahSPP:', jumlahSPP)">
                         {{-- Bulan --}}
                         <div class="mb-4">
@@ -57,7 +61,7 @@
                                         </span>
                                     </template>
                                 </div>
-    
+
                                 <select x-ref="monthSelect"
                                     @change="if ($event.target.value && !selectedMonths.includes($event.target.value)) {
                                         selectedMonths.push($event.target.value);
@@ -70,25 +74,28 @@
                                         <option x-text="month" :value="month"></option>
                                     </template>
                                 </select>
-    
+
                                 <template x-for="month in selectedMonths" :key="month">
                                     <input type="hidden" name="bulan[]" :value="month" />
                                 </template>
-    
+
                                 <x-input-error :messages="$errors->get('bulan')" class="mt-2" />
                             </div>
                         </div>
-    
+
+
                         {{-- Jumlah --}}
                         <div class="mb-4">
-                            <label for="jumlah" class="block text-sm font-medium text-gray-700">Jumlah SPP</label>
-                            <input type="number" name="jumlah" id="jumlah" x-bind:value="totalBayar"
+                            <label for="jumlah" class="block text-sm font-medium text-gray-700">Jumlah SPP
+                                (Rp)</label>
+                            <input type="hidden" name="jumlah" x-bind:value="totalBayar" />
+                            <input type="text" id="jumlah_display" x-bind:value="formattedTotalBayar"
                                 class="mt-1 block w-full border-gray-300 rounded-md shadow-sm bg-gray-100" readonly />
                             <small class="text-gray-500">Jumlah akan dihitung otomatis: jumlah bulan ×
                                 {{ number_format($defaultJumlahSPP ?? 0, 0, ',', '.') }}</small>
                         </div>
                     </div>
-    
+
                     {{-- Tahun --}}
                     <div class="mb-4">
                         <label for="tahun" class="block text-sm font-medium text-gray-700">Tahun</label>
@@ -107,7 +114,7 @@
                         <label for="catatan" class="block text-sm font-medium text-gray-700">Catatan (Opsional)</label>
                         <textarea name="catatan" id="catatan" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm"></textarea>
                     </div>
-    
+
                     <div class="mt-6">
                         <button type="submit" class="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700">
                             Simpan Pembayaran

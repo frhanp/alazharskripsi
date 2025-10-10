@@ -7,6 +7,7 @@ use Illuminate\Database\Seeder;
 use App\Models\User;
 use App\Models\Siswa;
 use App\Models\Guru;
+use App\Models\Kelas;
 use Illuminate\Support\Facades\Hash;
 
 class SiswaSeeder extends Seeder
@@ -132,45 +133,39 @@ class SiswaSeeder extends Seeder
 
     public function run(): void
     {
-        $this->command->info('Memulai proses seeding data siswa dummy...');
+        // Ambil semua user dengan role wali_murid
+        $walis = User::where('role', 'wali_murid')->get();
 
-        $dataSiswa = [
-            ['kelas' => 'Kelas 1', 'nama' => 'Siswa Dummy 1'],
-            ['kelas' => 'Kelas 1', 'nama' => 'Siswa Dummy 2'],
-            ['kelas' => 'Kelas 2', 'nama' => 'Siswa Dummy 3'],
-            ['kelas' => 'Kelas 2', 'nama' => 'Siswa Dummy 4'],
-            ['kelas' => 'Kelas 3', 'nama' => 'Siswa Dummy 5'],
-            ['kelas' => 'Kelas 4', 'nama' => 'Siswa Dummy 6'],
-            ['kelas' => 'Kelas 5', 'nama' => 'Siswa Dummy 7'],
-            ['kelas' => 'Kelas 6', 'nama' => 'Siswa Dummy 8'],
-            ['kelas' => 'TK A',   'nama' => 'Siswa Dummy 9'],
-            ['kelas' => 'TK B',   'nama' => 'Siswa Dummy 10'],
-        ];
+        // Ambil semua ID dari tabel kelas
+        $kelasIds = Kelas::pluck('id');
 
-        $nisCounter = 1001; // NIS awal dummy
-
-        foreach ($dataSiswa as $data) {
-            $namaSiswa = $data['nama'];
-            $emailName = strtolower(str_replace(' ', '', $namaSiswa));
-
-            // Buat akun Wali Dummy
-            $wali = User::create([
-                'name'     => 'Wali dari ' . $namaSiswa,
-                'email'    => 'wali.' . $emailName . '@example.com',
-                'password' => Hash::make('password'),
-                'role'     => 'wali_murid',
-                
-            ]);
-
-            // Buat Data Siswa Dummy
-            Siswa::create([
-                'nama_siswa' => $namaSiswa,
-                'kelas'      => $data['kelas'],
-                'nis'        => $nisCounter++,
-                'id_wali'    => $wali->id,
-            ]);
+        // Pastikan ada wali dan kelas sebelum membuat siswa
+        if ($walis->isEmpty() || $kelasIds->isEmpty()) {
+            echo "Tidak bisa membuat siswa dummy karena tidak ada data wali murid atau kelas.\n";
+            return;
         }
 
-        $this->command->info('Proses seeding dummy selesai: ' . count($dataSiswa) . ' siswa dibuat.');
+        // Buat 20 siswa dummy sebagai contoh
+        $minLat = 0.480000;
+        $maxLat = 0.600000;
+        $minLon = 122.980000;
+        $maxLon = 123.120000;
+
+        for ($i = 1; $i <= 20; $i++) {
+            // Hasilkan angka acak (float) di antara batas min/max
+            $latitude = $minLat + (mt_rand() / mt_getrandmax()) * ($maxLat - $minLat);
+            $longitude = $minLon + (mt_rand() / mt_getrandmax()) * ($maxLon - $minLon);
+
+            Siswa::create([
+                'nama_siswa' => 'Siswa Dummy ' . $i,
+                'nis' => (string)(1000 + $i),
+                'id_wali' => $walis->random()->id,
+                'id_kelas' => $kelasIds->random(),
+                'alamat' => 'Alamat Siswa Dummy ' . $i,
+                // Gunakan koordinat yang baru dibuat
+                'latitude' => $latitude,
+                'longitude' => $longitude,
+            ]);
+        }
     }
 }

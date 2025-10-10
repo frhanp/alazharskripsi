@@ -26,10 +26,13 @@
                                 class="mt-1 block w-full border-gray-300 rounded-md shadow-sm" required>
                         </div>
                         <div class="md:col-span-2">
-                            <label for="kelas" class="block text-sm font-medium text-gray-700">Kelas</label>
-                            <input type="text" name="kelas" id="kelas" value="{{ old('kelas') }}"
-                                class="mt-1 block w-full border-gray-300 rounded-md shadow-sm" required
-                                placeholder="Contoh: 1A">
+                            <label for="id_kelas" class="block text-sm font-medium text-gray-700">Kelas</label>
+                            <select name="id_kelas" id="id_kelas" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm" required>
+                                <option value="">-- Pilih Kelas --</option>
+                                @foreach($kelas as $k)
+                                    <option value="{{ $k->id }}" @selected(old('id_kelas') == $k->id)>{{ $k->nama }}</option>
+                                @endforeach
+                            </select>
                         </div>
                     </div>
 
