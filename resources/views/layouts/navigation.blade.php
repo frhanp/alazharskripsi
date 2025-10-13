@@ -27,11 +27,7 @@
                 {{ __('Verifikasi Pembayaran SPP') }}
             </x-nav-link>
             <x-nav-link :href="route('tunggakan.index')" :active="request()->routeIs('tunggakan.index')">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-2" fill="none" viewBox="0 0 24 24"
-                    stroke="currentColor" stroke-width="2">
-                    <path stroke-linecap="round" stroke-linejoin="round"
-                        d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-                </svg>
+                <img src="{{ asset('images/loan.png') }}" alt="icon" class="w-4 h-4 mr-2">
                 {{ __('Tunggakan SPP') }}
             </x-nav-link>
             <x-nav-link :href="route('pengaturan.index')" :active="request()->routeIs('pengaturan.index')">
@@ -51,14 +47,7 @@
 
             @if (auth()->user()?->role === 'bendahara')
                 <x-nav-link :href="route('siswa.index')" :active="request()->routeIs('siswa.index')">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-2" fill="none" viewBox="0 0 24 24"
-                        stroke="currentColor" stroke-width="2">
-                        <path d="M12 14l9-5-9-5-9 5 9 5z" />
-                        <path
-                            d="M12 14l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-9.998 12.078 12.078 0 01.665-6.479L12 14z" />
-                        <path stroke-linecap="round" stroke-linejoin="round"
-                            d="M12 14l9-5-9-5-9 5 9 5zm0 0l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-9.998 12.078 12.078 0 01.665-6.479L12 14zm-4 6v-7.5l4-2.222 4 2.222V20M12 14.75V20" />
-                    </svg>
+                    <img src="{{ asset('images/studenticon.png') }}" alt="icon" class="w-4 h-4 mr-2">
                     {{ __('Data Siswa') }}
                 </x-nav-link>
                 <x-nav-link :href="route('kelas.index')" :active="request()->routeIs('kelas.index')">

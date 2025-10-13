@@ -7,6 +7,7 @@ const pino = require("pino");
 const express = require("express");
 const bodyParser = require("body-parser");
 const qrcode = require("qrcode-terminal");
+const fs = require("fs");
 
 const app = express();
 app.use(bodyParser.json());
@@ -21,7 +22,7 @@ async function connectToWhatsApp() {
 
     sock = makeWASocket({
         auth: state,
-        printQRInTerminal: true,
+        printQRInTerminal: false,
         logger: pino({ level: "silent" }),
     });
 
@@ -30,7 +31,7 @@ async function connectToWhatsApp() {
         if (qr) {
             qrCodeData = qr;
             console.log("QR Code diterima, silakan scan:");
-            qrcode.generate(qr, { small: true });
+            // qrcode.generate(qr, { small: true });
         }
         if (connection === "close") {
             const shouldReconnect =
@@ -128,6 +129,27 @@ app.get("/status", (req, res) => {
         });
     } else {
         res.json({ connected: false, message: "WhatsApp tidak terhubung." });
+    }
+});
+
+app.post("/logout", async (req, res) => {
+    console.log('Menerima permintaan logout...');
+    qrCodeData = null; // Hapus QR code yang mungkin masih tersimpan
+    try {
+        if (sock) {
+            await sock.logout();
+            console.log('Logout dari Baileys berhasil.');
+        }
+        if (fs.existsSync("baileys_auth_info")) {
+            fs.rmSync("baileys_auth_info", { recursive: true, force: true });
+            console.log('Folder baileys_auth_info berhasil dihapus.');
+        }
+        // Coba hubungkan kembali untuk menghasilkan QR baru
+        connectToWhatsApp();
+        res.status(200).json({ status: 'success', message: 'Logout berhasil, memuat ulang koneksi...' });
+    } catch (e) {
+        console.error('Gagal melakukan logout:', e);
+        res.status(500).json({ status: 'error', message: 'Gagal melakukan logout.' });
     }
 });
 

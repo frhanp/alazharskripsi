@@ -119,4 +119,25 @@ Route::middleware(['auth', 'role:bendahara,ketua_yayasan'])->group(function () {
 
     Route::get('/siswa', [SiswaController::class, 'index'])->name('siswa.index');
 });
+
+
+Route::middleware(['auth', 'role:bendahara'])->prefix('api/whatsapp')->group(function () {
+    Route::get('/status', function () {
+        try {
+            $response = \Illuminate\Support\Facades\Http::get('http://localhost:3000/status');
+            return $response->json();
+        } catch (\Exception $e) {
+            return response()->json(['connected' => false, 'message' => 'Layanan WhatsApp tidak aktif.'], 500);
+        }
+    });
+
+    Route::post('/logout', function () {
+        try {
+            $response = \Illuminate\Support\Facades\Http::post('http://localhost:3000/logout');
+            return $response->json();
+        } catch (\Exception $e) {
+            return response()->json(['status' => 'error', 'message' => 'Tidak bisa terhubung ke layanan WhatsApp.'], 500);
+        }
+    });
+});
 require __DIR__ . '/auth.php';
