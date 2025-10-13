@@ -26,7 +26,7 @@
                                 <a href="{{ route('wali.detail-siswa', $anak['id_siswa']) }}" class="text-xl font-bold text-gray-900 hover:text-indigo-600 hover:underline">
                                     {{ $anak['nama_siswa'] }}
                                 </a>
-                                <p class="text-sm text-gray-600">Kelas: {{ $anak['kelas'] ?? '-' }}</p>
+                                <p class="text-sm text-gray-600">Kelas: {{ $anak['kelas']['nama'] ?? '-' }}</p>
 
                                 <div class="mt-4">
                                     <p class="text-xs font-semibold text-gray-400 uppercase">SPP Bulan {{ \Carbon\Carbon::now()->format('F') }}</p>

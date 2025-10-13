@@ -33,7 +33,7 @@ class LocationController extends Controller
                     'nama' => $siswa->nama_siswa,
                     'tipe' => 'siswa',
                     // Info tambahan untuk siswa
-                    'info' => "Kelas: {$siswa->kelas}<br>Wali: {$siswa->wali->name}<br>Alamat: " . ($siswa->alamat ?? '-'),
+                    'info' => "Kelas: {$siswa->kelas->nama}<br>Wali: {$siswa->wali->name}<br>Alamat: " . ($siswa->alamat ?? '-'),
                     'latitude' => $siswa->latitude,
                     'longitude' => $siswa->longitude,
                 ];

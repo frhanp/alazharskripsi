@@ -32,7 +32,7 @@
                     <a href="/" class="text-xl md:text-2xl font-bold text-sky-600">Al-Azhar 43 Gorontalo</a>
                     <nav class="hidden md:flex items-center space-x-8">
                         <a href="#fitur" class="font-medium text-slate-600 hover:text-sky-600 transition-colors">Metode Bayar</a>
-                        <a href="#testimoni" class="font-medium text-slate-600 hover:text-sky-600 transition-colors">Testimoni</a>
+                        {{-- <a href="#testimoni" class="font-medium text-slate-600 hover:text-sky-600 transition-colors">Testimoni</a> --}}
                         <a href="#faq" class="font-medium text-slate-600 hover:text-sky-600 transition-colors">FAQ</a>
                         <a href="{{ route('login') }}" 
                            class="bg-sky-500 text-white font-semibold px-5 py-2.5 rounded-lg shadow-md hover:bg-sky-600 transition-all duration-200 transform hover:-translate-y-0.5">
@@ -47,10 +47,9 @@
             </div>
             <div x-show="mobileMenuOpen" x-transition @click.away="mobileMenuOpen = false" class="md:hidden absolute top-full w-full bg-white shadow-lg rounded-b-lg p-5 space-y-3">
                 <a href="#fitur" @click="mobileMenuOpen=false" class="block w-full text-left font-medium text-slate-600 hover:text-sky-600">Metode Bayar</a>
-                <a href="#testimoni" @click="mobileMenuOpen=false" class="block w-full text-left font-medium text-slate-600 hover:text-sky-600">Testimoni</a>
                 <a href="#faq" @click="mobileMenuOpen=false" class="block w-full text-left font-medium text-slate-600 hover:text-sky-600">FAQ</a>
-                <a href="{{ route('login') }}" class="block w-full text-left font-medium text-slate-600 hover:text-sky-600">Login</a>
-                <a href="{{ route('register') }}" class="block w-full text-left bg-sky-500 text-white font-semibold px-5 py-2.5 rounded-lg text-center">Daftar</a>
+                {{-- <a href="{{ route('login') }}" class="block w-full text-left font-medium text-slate-600 hover:text-sky-600">Login</a> --}}
+                <a href="{{ route('login') }}" class="block w-full text-left bg-sky-500 text-white font-semibold px-5 py-2.5 rounded-lg text-center">Masuk</a>
             </div>
         </header>
 
@@ -126,7 +125,7 @@
                 </div>
             </section>
 
-            <section id="testimoni" class="py-24 bg-slate-50">
+            {{-- <section id="testimoni" class="py-24 bg-slate-50">
                 <div class="max-w-7xl mx-auto px-6 text-center">
                     <h2 class="text-4xl font-extrabold text-slate-900">Apa Kata Keluarga Al-Azhar 43?</h2>
                     <div class="grid md:grid-cols-3 gap-8 mt-16 text-left">
@@ -135,7 +134,7 @@
                         <div class="bg-white p-8 rounded-xl shadow-lg"><p class="text-slate-600">"Fitur upload bukti transfer dan konfirmasi otomatis dari Midtrans sangat meringankan pekerjaan saya. Rekonsiliasi data jadi cepat dan minim kesalahan."</p><div class="flex items-center mt-6"><img class="w-12 h-12 rounded-full" src="https://i.pravatar.cc/48?u=3" alt=""><div class="ml-4"><div class="font-bold text-slate-900">Ibu Bendahara</div><div class="text-sm text-slate-500">Staf Keuangan Sekolah</div></div></div></div>
                     </div>
                 </div>
-            </section>
+            </section> --}}
 
             <section id="faq" class="py-24 bg-white">
                 <div class="max-w-4xl mx-auto px-6">
@@ -156,7 +155,7 @@
                     <h2 class="text-4xl font-extrabold text-white">Siap Merasakan Kemudahan Administrasi SPP?</h2>
                     <p class="mt-4 text-lg text-sky-100 max-w-2xl mx-auto">Masuk ke portal wali murid untuk melihat tagihan, riwayat pembayaran, dan memilih metode bayar yang paling sesuai untuk Anda.</p>
                     <a href="{{ route('login') }}" class="mt-8 inline-block bg-white text-sky-600 font-bold text-lg px-8 py-4 rounded-lg shadow-lg hover:bg-slate-100 transition-all duration-300 ease-in-out transform hover:scale-105">
-                        Daftar Langsung
+                        Masuk
                     </a>
                 </div>
             </section>
