@@ -10,7 +10,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@whiskeysockets/baileys": "^7.0.0-rc.3",
+    "@whiskeysockets/baileys": "^6.6.0",
     "body-parser": "^2.2.0",
     "express": "^5.1.0",
     "pino": "^9.9.5",

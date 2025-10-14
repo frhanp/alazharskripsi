@@ -34,21 +34,32 @@ async function connectToWhatsApp() {
             // qrcode.generate(qr, { small: true });
         }
         if (connection === "close") {
-            const shouldReconnect =
-                lastDisconnect.error?.output?.statusCode !==
-                DisconnectReason.loggedOut;
-            console.log(
-                "Koneksi terputus karena ",
-                lastDisconnect.error,
-                ", mencoba menghubungkan kembali... ",
-                shouldReconnect
-            );
-            if (shouldReconnect) {
+            const statusCode = lastDisconnect?.error?.output?.statusCode;
+            console.log("Koneksi terputus karena:", lastDisconnect?.error);
+
+            // Kalau session tidak valid atau error 405, hapus folder & reset ulang
+            if (
+                statusCode === 405 ||
+                statusCode === DisconnectReason.loggedOut
+            ) {
+                console.log(
+                    "Session rusak atau logout, membersihkan auth info..."
+                );
+                try {
+                    fs.rmSync("baileys_auth_info", {
+                        recursive: true,
+                        force: true,
+                    });
+                } catch (err) {
+                    console.log("Gagal hapus folder auth:", err);
+                }
+                qrCodeData = null;
+                console.log("Menunggu QR baru...");
+                connectToWhatsApp();
+            } else {
+                console.log("Mencoba koneksi ulang otomatis...");
                 connectToWhatsApp();
             }
-        } else if (connection === "open") {
-            console.log("Koneksi WhatsApp berhasil dibuka!");
-            qrCodeData = null;
         }
     });
 
@@ -133,23 +144,29 @@ app.get("/status", (req, res) => {
 });
 
 app.post("/logout", async (req, res) => {
-    console.log('Menerima permintaan logout...');
+    console.log("Menerima permintaan logout...");
     qrCodeData = null; // Hapus QR code yang mungkin masih tersimpan
     try {
         if (sock) {
             await sock.logout();
-            console.log('Logout dari Baileys berhasil.');
+            console.log("Logout dari Baileys berhasil.");
         }
         if (fs.existsSync("baileys_auth_info")) {
             fs.rmSync("baileys_auth_info", { recursive: true, force: true });
-            console.log('Folder baileys_auth_info berhasil dihapus.');
+            console.log("Folder baileys_auth_info berhasil dihapus.");
         }
         // Coba hubungkan kembali untuk menghasilkan QR baru
         connectToWhatsApp();
-        res.status(200).json({ status: 'success', message: 'Logout berhasil, memuat ulang koneksi...' });
+        res.status(200).json({
+            status: "success",
+            message: "Logout berhasil, memuat ulang koneksi...",
+        });
     } catch (e) {
-        console.error('Gagal melakukan logout:', e);
-        res.status(500).json({ status: 'error', message: 'Gagal melakukan logout.' });
+        console.error("Gagal melakukan logout:", e);
+        res.status(500).json({
+            status: "error",
+            message: "Gagal melakukan logout.",
+        });
     }
 });
 
