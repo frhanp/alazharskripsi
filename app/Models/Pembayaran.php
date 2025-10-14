@@ -21,6 +21,7 @@ class Pembayaran extends Model
         'verified_by',
         'tanggal_verifikasi',
         'catatan',
+        'catatan_verifikasi',
         'midtrans_order_id',
         'midtrans_transaction_status',
         'is_midtrans',

@@ -108,6 +108,11 @@
                                             Download
                                         </a>
                                     </button>
+                                @elseif (Auth::user()->role === 'wali_murid' && $p->status == 'ditolak')
+                                    <a href="{{ route('pembayaran.resubmit.form', $p) }}"
+                                        class="text-yellow-600 hover:text-yellow-800 font-semibold">
+                                        Upload Ulang
+                                    </a>
                                 @else
                                     -
                                 @endif

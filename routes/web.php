@@ -88,6 +88,9 @@ Route::middleware(['auth', 'role:wali_murid'])->group(function () {
         ->name('pembayaran.midtrans');
 
     Route::get('/detail-siswa/{siswa}', [DetailSiswaController::class, 'index'])->name('wali.detail-siswa');
+
+    Route::get('/pembayaran/{pembayaran}/resubmit', [PembayaranController::class, 'showResubmitForm'])->name('pembayaran.resubmit.form');
+    Route::post('/pembayaran/{pembayaran}/resubmit', [PembayaranController::class, 'handleResubmit'])->name('pembayaran.resubmit.handle');
 });
 Route::post('/midtrans/callback', [MidtransWebhookController::class, 'handle']);
 

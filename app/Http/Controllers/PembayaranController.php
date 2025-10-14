@@ -12,6 +12,7 @@ use App\Models\Tunggakan;
 use App\Models\Pengaturan;
 use Midtrans\Config;
 use Midtrans\Snap;
+use App\Jobs\SendRejectionNotification;
 
 class PembayaranController extends Controller
 {
@@ -376,17 +377,58 @@ class PembayaranController extends Controller
 
     public function updateVerifikasi(Request $request, $id)
     {
-        $request->validate(['status' => 'required|in:diterima,ditolak']);
+        $request->validate(['status' => 'required|in:diterima,ditolak',
+        'catatan_verifikasi' => 'nullable|string',
+    ]);
 
         $pembayaran = Pembayaran::findOrFail($id);
         $pembayaran->status = $request->status;
+        $pembayaran->catatan_verifikasi = $request->catatan_verifikasi;
         $pembayaran->save();
 
         // Buat kwitansi jika diterima
         if ($request->status === 'diterima') {
             (new KwitansiController)->generateAndSave($pembayaran);
         }
+        elseif ($request->status === 'ditolak') {
+            SendRejectionNotification::dispatch($pembayaran);
+        }
 
         return redirect()->back()->with('success', 'Status pembayaran berhasil diperbarui.');
+    }
+
+    public function showResubmitForm(Pembayaran $pembayaran)
+    {
+        // Pastikan hanya wali murid pemilik pembayaran yang bisa akses
+        if ($pembayaran->siswa->id_wali !== Auth::id()) {
+            abort(403);
+        }
+        return view('pembayaran.resubmit', compact('pembayaran'));
+    }
+
+    public function handleResubmit(Request $request, Pembayaran $pembayaran)
+    {
+        if ($pembayaran->siswa->id_wali !== Auth::id()) {
+            abort(403);
+        }
+
+        $request->validate([
+            'bukti_transfer' => 'required|image|mimes:jpeg,png,jpg|max:2048',
+        ]);
+
+        // Hapus bukti transfer lama jika ada
+        if ($pembayaran->bukti_transfer) {
+            Storage::disk('public')->delete($pembayaran->bukti_transfer);
+        }
+        
+        // Simpan bukti baru dan update status
+        $path = $request->file('bukti_transfer')->store('bukti-transfer', 'public');
+        $pembayaran->update([
+            'bukti_transfer' => $path,
+            'status' => 'menunggu',
+            'catatan_verifikasi' => null, // Kosongkan lagi catatan
+        ]);
+
+        return redirect()->route('riwayat.index')->with('success', 'Bukti transfer baru berhasil diunggah dan menunggu verifikasi.');
     }
 }
