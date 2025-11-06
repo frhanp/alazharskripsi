@@ -29,7 +29,7 @@
                 attribution: '© OpenStreetMap'
             }).addTo(map);
 
-            fetch('{{ route('api.locations') }}')
+            fetch('{{ route('api.locations', [], false) }}')
                 .then(response => response.json())
                 .then(data => {
                     data.forEach(location => {

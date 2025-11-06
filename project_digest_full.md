@@ -1,5 +1,5 @@
 ﻿# Project Digest (Full Content)
-_Generated: 2025-11-04 08:57:51_
+_Generated: 2025-11-06 08:40:20_
 **Root:** D:\Laragon\www\alazharskripsi
 
 
@@ -163,12 +163,14 @@ database\seeders\DatabaseSeeder.php
 database\seeders\KelasSeeder.php
 database\seeders\PengaturanSeeder.php
 database\seeders\SiswaSeeder.php
+database\seeders\TunggakanSeeder.php
 database\seeders\UserSeeder.php
 public\build
 public\images
 public\storage
 public\.htaccess
 public\favicon.ico
+public\hot
 public\index.php
 public\robots.txt
 public\images\bell.png
@@ -298,6 +300,7 @@ storage\app\public\bukti-transfer\Ndh2J63qwMTM6v6n46KYOlNSwDjUcGhjaYB8imfj.jpg
 storage\app\public\bukti-transfer\oK7jDWafV43Cpn11V1mmmrJ9rl21xHVbvZPX7b2K.jpg
 storage\app\public\bukti-transfer\pDcmEWuNbmHYqEnBRpYFFgDMcmJsK5H7YdwV7MiM.jpg
 storage\app\public\bukti-transfer\pI9L5Vox6UAMdopDkebC1qJAB8gtpxgwZbPwUuW4.jpg
+storage\app\public\bukti-transfer\pukGOi9mIoOpgcIV8t5HtyMIvRBHBgj8DWoMuBM7.jpg
 storage\app\public\bukti-transfer\Rv7cEqSApfAPfuWd1s759o3tlR1gqdTzT2rL8F49.png
 storage\app\public\bukti-transfer\SM413rJ1ZcpfIbotqrprEOvF7cCO4KVkfYhvBo6s.jpg
 storage\app\public\bukti-transfer\U0zUzLbD5WcEKBkXVxTNV3SSY2bQycZr9BHq8ZF2.jpg
@@ -316,6 +319,8 @@ storage\app\public\kwitansi\kwitansi-1-1759972626.docx
 storage\app\public\kwitansi\kwitansi-1-1759973084.docx
 storage\app\public\kwitansi\kwitansi-1-1760063863.docx
 storage\app\public\kwitansi\kwitansi-1-1760588287.pdf
+storage\app\public\kwitansi\kwitansi-1-1762221251.pdf
+storage\app\public\kwitansi\kwitansi-1-1762224291.pdf
 storage\app\public\kwitansi\kwitansi-10-1755671825.pdf
 storage\app\public\kwitansi\kwitansi-10-1757922868.docx
 storage\app\public\kwitansi\kwitansi-10-1759658289.docx
@@ -417,17 +422,21 @@ storage\framework\views\105b5ff0c377491b0ac4a9b05e57a80f.php
 storage\framework\views\140be810c6d1d8c5493a22d62b12e637.php
 storage\framework\views\1914677b37f2ea4c60ff96c7ec94fdd4.php
 storage\framework\views\228bd0b4605bbaec738e75e233f26191.php
+storage\framework\views\273988ab71d8dce2d7ebd15d7d39b1a0.php
 storage\framework\views\29b9873d46b252660074688efa1aaccd.php
 storage\framework\views\3320c1723d088fe593f5f39481f5b5eb.php
 storage\framework\views\3383ecbf1addae63c1a04ef88a765118.php
+storage\framework\views\3a44c2fbdf5081725d9c48adce324c86.php
 storage\framework\views\3b240750f1d842552d0ea4b7d88091c7.php
 storage\framework\views\40b6ff27839d47f455db6a794796a233.php
+storage\framework\views\4508058a6e0ff5db2e085cfc0bdd9f7a.php
 storage\framework\views\4b20185d74f69916349b547af5921882.php
 storage\framework\views\4b58e8a6b6736953110312d54bf38d31.php
 storage\framework\views\4f95587a7658cb05735a80cb093a497f.php
 storage\framework\views\56595294ee291b65fac38c234a14d063.php
 storage\framework\views\5b290d1076a93087c074cb9b13187cf0.php
 storage\framework\views\5c0bdedc719924690cced7e302b8bf67.php
+storage\framework\views\61dcbe8020a7f47c9b9ec8b6c99f47fb.php
 storage\framework\views\62d393743f2ba17bdb07f0d03c3158f7.php
 storage\framework\views\65df369a4528e71cd6754e70ddb11ac3.php
 storage\framework\views\689d09919c93a0fe09463f0b752ab503.php
@@ -452,10 +461,12 @@ storage\framework\views\a998dc2a3f7f3986099df1ce97876943.php
 storage\framework\views\aeaeafba3e10b429d9b038f56fbfedcf.php
 storage\framework\views\aef77bd3098e4b4d81b83abaa7cdc437.php
 storage\framework\views\b0a54795e0c776b45801907991c89cf4.php
+storage\framework\views\b5d814926f19b152feef1701b7046d0a.php
 storage\framework\views\b7cce8e5d32e8b45e1477b1738a4d727.php
 storage\framework\views\c138776a780a86e1edc42a1a668b094c.php
 storage\framework\views\c3d64acd4d1e73273b252f3b58d96f1d.php
 storage\framework\views\ca2fe6989e6fde34b86ac36d3951f9d0.php
+storage\framework\views\caba884bb2abeab7101e594d7d5487ca.php
 storage\framework\views\cbc52b083f3936f9817447ed78b10c91.php
 storage\framework\views\d2c1d62ba99d987ea7be6fb2c6fa66c2.php
 storage\framework\views\d82724f8b123daa8a4067222ecb5de35.php
@@ -468,6 +479,7 @@ storage\framework\views\f03997e446bad3f066fd89508960f607.php
 storage\framework\views\f17da4db2aa066019f0342a48e2fc1d1.php
 storage\framework\views\f188a06199ad1d49f7dab7ff511d2a90.php
 storage\framework\views\f49d54ba614b452869e77f68e82f8e78.php
+storage\framework\views\fa54ba9e6927a3266ebc1f8a53442eb9.php
 storage\framework\views\fae151e9517f1219a945f6532af53a86.php
 tests\Feature
 tests\Unit
@@ -488,75 +500,6 @@ whatsapp-service\node_modules
 whatsapp-service\index.js
 whatsapp-service\package-lock.json
 whatsapp-service\package.json
-whatsapp-service\baileys_auth_info\app-state-sync-key-AAAAAN8A.json
-whatsapp-service\baileys_auth_info\app-state-sync-key-AAAAAN8B.json
-whatsapp-service\baileys_auth_info\app-state-sync-key-AAAAAN8D.json
-whatsapp-service\baileys_auth_info\app-state-sync-key-AAAAAN8E.json
-whatsapp-service\baileys_auth_info\app-state-sync-key-AAAAAN8G.json
-whatsapp-service\baileys_auth_info\app-state-sync-key-AAAAAN8H.json
-whatsapp-service\baileys_auth_info\app-state-sync-key-AAAAAN8J.json
-whatsapp-service\baileys_auth_info\app-state-sync-key-AAAAAN8K.json
-whatsapp-service\baileys_auth_info\app-state-sync-key-AAAAAN8L.json
-whatsapp-service\baileys_auth_info\app-state-sync-key-AAAAAN8M.json
-whatsapp-service\baileys_auth_info\app-state-sync-key-AAAAAN8O.json
-whatsapp-service\baileys_auth_info\app-state-sync-key-AAAAAN8P.json
-whatsapp-service\baileys_auth_info\app-state-sync-version-critical_block.json
-whatsapp-service\baileys_auth_info\app-state-sync-version-critical_unblock_low.json
-whatsapp-service\baileys_auth_info\app-state-sync-version-regular_high.json
-whatsapp-service\baileys_auth_info\app-state-sync-version-regular_low.json
-whatsapp-service\baileys_auth_info\creds.json
-whatsapp-service\baileys_auth_info\pre-key-1.json
-whatsapp-service\baileys_auth_info\pre-key-10.json
-whatsapp-service\baileys_auth_info\pre-key-11.json
-whatsapp-service\baileys_auth_info\pre-key-13.json
-whatsapp-service\baileys_auth_info\pre-key-14.json
-whatsapp-service\baileys_auth_info\pre-key-15.json
-whatsapp-service\baileys_auth_info\pre-key-17.json
-whatsapp-service\baileys_auth_info\pre-key-18.json
-whatsapp-service\baileys_auth_info\pre-key-19.json
-whatsapp-service\baileys_auth_info\pre-key-2.json
-whatsapp-service\baileys_auth_info\pre-key-22.json
-whatsapp-service\baileys_auth_info\pre-key-24.json
-whatsapp-service\baileys_auth_info\pre-key-25.json
-whatsapp-service\baileys_auth_info\pre-key-26.json
-whatsapp-service\baileys_auth_info\pre-key-27.json
-whatsapp-service\baileys_auth_info\pre-key-28.json
-whatsapp-service\baileys_auth_info\pre-key-29.json
-whatsapp-service\baileys_auth_info\pre-key-3.json
-whatsapp-service\baileys_auth_info\pre-key-31.json
-whatsapp-service\baileys_auth_info\pre-key-32.json
-whatsapp-service\baileys_auth_info\pre-key-33.json
-whatsapp-service\baileys_auth_info\pre-key-34.json
-whatsapp-service\baileys_auth_info\pre-key-35.json
-whatsapp-service\baileys_auth_info\pre-key-36.json
-whatsapp-service\baileys_auth_info\pre-key-37.json
-whatsapp-service\baileys_auth_info\pre-key-38.json
-whatsapp-service\baileys_auth_info\pre-key-39.json
-whatsapp-service\baileys_auth_info\pre-key-4.json
-whatsapp-service\baileys_auth_info\pre-key-5.json
-whatsapp-service\baileys_auth_info\pre-key-7.json
-whatsapp-service\baileys_auth_info\pre-key-8.json
-whatsapp-service\baileys_auth_info\pre-key-9.json
-whatsapp-service\baileys_auth_info\sender-key-120363421135933006@g.us--189833377001589--0.json
-whatsapp-service\baileys_auth_info\sender-key-120363421135933006@g.us--209551487930455--0.json
-whatsapp-service\baileys_auth_info\sender-key-120363421135933006@g.us--87385454981224--0.json
-whatsapp-service\baileys_auth_info\sender-key-120363422464418684@g.us--209551487930455--0.json
-whatsapp-service\baileys_auth_info\sender-key-status@broadcast--6282292302808--0.json
-whatsapp-service\baileys_auth_info\sender-key-status@broadcast--6285343941074--0.json
-whatsapp-service\baileys_auth_info\session-189833377001589.0.json
-whatsapp-service\baileys_auth_info\session-209551487930455.0.json
-whatsapp-service\baileys_auth_info\session-237163883008141.0.json
-whatsapp-service\baileys_auth_info\session-6282292302808.0.json
-whatsapp-service\baileys_auth_info\session-6285179841091.0.json
-whatsapp-service\baileys_auth_info\session-6285179841091.36.json
-whatsapp-service\baileys_auth_info\session-6285179841091.42.json
-whatsapp-service\baileys_auth_info\session-6285342513758.0.json
-whatsapp-service\baileys_auth_info\session-6285342513758.47.json
-whatsapp-service\baileys_auth_info\session-6285342513758.48.json
-whatsapp-service\baileys_auth_info\session-6285342513758.49.json
-whatsapp-service\baileys_auth_info\session-6285343941074.0.json
-whatsapp-service\baileys_auth_info\session-6285824259786.0.json
-whatsapp-service\baileys_auth_info\session-87385454981224.0.json
 ```
 
 
@@ -570,11 +513,11 @@ Branch:
 main
 
 Last 5 commits:
+1d3bd06 deploy final v1
 201fadd fix baileys
 caabf93 hapus auth info untuk deploy v1
 74a6288 fix alur tolak
 e2b34ba ubah whatsapp tampil di ui
-fdbaccd update tampilan
 ```
 
 
@@ -819,86 +762,86 @@ require __DIR__ . '/auth.php';
 ## Routes (from command)
 ```
 
-  GET|HEAD        / ................................................................................................ LandingPageController@index
-  GET|HEAD        _debugbar/assets/javascript ...................................... debugbar.assets.js ΓÇ║ Barryvdh\Debugbar ΓÇ║ AssetController@js
-  GET|HEAD        _debugbar/assets/stylesheets ................................... debugbar.assets.css ΓÇ║ Barryvdh\Debugbar ΓÇ║ AssetController@css
-  DELETE          _debugbar/cache/{key}/{tags?} ............................. debugbar.cache.delete ΓÇ║ Barryvdh\Debugbar ΓÇ║ CacheController@delete
-  GET|HEAD        _debugbar/clockwork/{id} ............................ debugbar.clockwork ΓÇ║ Barryvdh\Debugbar ΓÇ║ OpenHandlerController@clockwork
-  GET|HEAD        _debugbar/open ....................................... debugbar.openhandler ΓÇ║ Barryvdh\Debugbar ΓÇ║ OpenHandlerController@handle
-  POST            _debugbar/queries/explain ........................... debugbar.queries.explain ΓÇ║ Barryvdh\Debugbar ΓÇ║ QueriesController@explain
-  GET|HEAD        akun ................................................................................... akun.index ΓÇ║ AkunWaliController@index
-  PUT|PATCH       akun/{user} .......................................................................... akun.update ΓÇ║ AkunWaliController@update
-  GET|HEAD        akun/{user}/edit ......................................................................... akun.edit ΓÇ║ AkunWaliController@edit
-  POST            akun/{user}/reset-password ............................................ akun.reset-password ΓÇ║ AkunWaliController@resetPassword
-  GET|HEAD        api/locations ................................................................... api.locations ΓÇ║ Api\LocationController@index
-  POST            api/whatsapp/logout .......................................................................................................... 
-  GET|HEAD        api/whatsapp/status .......................................................................................................... 
-  GET|HEAD        bendahara/dashboard ................................................ bendahara.dashboard ΓÇ║ Bendahara\DashboardController@index
-  GET|HEAD        confirm-password .................................................. password.confirm ΓÇ║ Auth\ConfirmablePasswordController@show
-  POST            confirm-password .................................................................... Auth\ConfirmablePasswordController@store
-  GET|HEAD        dashboard .................................................................................... dashboard ΓÇ║ DashboardController
-  GET|HEAD        detail-siswa/{siswa} ......................................................... wali.detail-siswa ΓÇ║ DetailSiswaController@index
-  POST            email/verification-notification ....................... verification.send ΓÇ║ Auth\EmailVerificationNotificationController@store
-  GET|HEAD        forgot-password ................................................... password.request ΓÇ║ Auth\PasswordResetLinkController@create
-  POST            forgot-password ...................................................... password.email ΓÇ║ Auth\PasswordResetLinkController@store
-  GET|HEAD        kelas .................................................................................... kelas.index ΓÇ║ KelasController@index
-  POST            kelas .................................................................................... kelas.store ΓÇ║ KelasController@store
-  GET|HEAD        kelas/create ........................................................................... kelas.create ΓÇ║ KelasController@create
-  PUT|PATCH       kelas/{kela} ........................................................................... kelas.update ΓÇ║ KelasController@update
-  DELETE          kelas/{kela} ......................................................................... kelas.destroy ΓÇ║ KelasController@destroy
-  GET|HEAD        kelas/{kela}/edit .......................................................................... kelas.edit ΓÇ║ KelasController@edit
-  GET|HEAD        ketua/dashboard ................................................. ketua.dashboard ΓÇ║ KetuaYayasan\DashboardController@dashboard
-  GET|HEAD        kwitansi/download/{kwitansi} ................................................. kwitansi.download ΓÇ║ KwitansiController@download
-  GET|HEAD        laporan .............................................................................. laporan.index ΓÇ║ LaporanController@index
-  GET|HEAD        laporan/excel ........................................................... laporan.export.excel ΓÇ║ LaporanController@exportExcel
-  GET|HEAD        laporan/pdf ................................................................. laporan.export.pdf ΓÇ║ LaporanController@exportPdf
-  GET|HEAD        login ..................................................................... login ΓÇ║ Auth\AuthenticatedSessionController@create
-  POST            login .............................................................................. Auth\AuthenticatedSessionController@store
-  POST            logout .................................................................. logout ΓÇ║ Auth\AuthenticatedSessionController@destroy
-  POST            midtrans/callback ........................................................................... MidtransWebhookController@handle
-  POST            midtrans/token ............................................................... midtrans.token ΓÇ║ PembayaranController@snapToken
-  PUT             password .................................................................... password.update ΓÇ║ Auth\PasswordController@update
-  POST            payment/token ............................................................ payment.token ΓÇ║ PaymentController@createTransaction
-  GET|HEAD        pembayaran .................................................................. payment.page ΓÇ║ PaymentController@showPaymentPage
-  GET|HEAD        pembayaran/manual/create ........................................ pembayaran.manual.create ΓÇ║ PembayaranController@createManual
-  POST            pembayaran/manual/store ........................................... pembayaran.manual.store ΓÇ║ PembayaranController@storeManual
-  GET|HEAD        pembayaran/midtrans/{id_siswa} ........................................ pembayaran.midtrans.form ΓÇ║ MidtransController@showForm
-  POST            pembayaran/midtrans/{id_siswa} ....................................... pembayaran.midtrans ΓÇ║ MidtransController@createMidtrans
-  GET|HEAD        pembayaran/verifikasi ........................................... pembayaran.verifikasi ΓÇ║ PembayaranController@indexVerifikasi
-  PATCH           pembayaran/verifikasi/{id} .............................. pembayaran.verifikasi.update ΓÇ║ PembayaranController@updateVerifikasi
-  GET|HEAD        pembayaran/{pembayaran}/resubmit ............................ pembayaran.resubmit.form ΓÇ║ PembayaranController@showResubmitForm
-  POST            pembayaran/{pembayaran}/resubmit ............................ pembayaran.resubmit.handle ΓÇ║ PembayaranController@handleResubmit
-  GET|HEAD        pembayaran/{siswa}/pilih-metode ........................................ pembayaran.pilih-metode ΓÇ║ PilihMetodeController@index
-  GET|HEAD        pemetaan ........................................................................... pemetaan.index ΓÇ║ PemetaanController@index
-  GET|HEAD        pengaturan ..................................................................... pengaturan.index ΓÇ║ PengaturanController@index
-  POST            pengaturan ................................................................... pengaturan.update ΓÇ║ PengaturanController@update
-  GET|HEAD        profile ................................................................................ profile.edit ΓÇ║ ProfileController@edit
-  PATCH           profile ............................................................................ profile.update ΓÇ║ ProfileController@update
-  DELETE          profile .......................................................................... profile.destroy ΓÇ║ ProfileController@destroy
-  GET|HEAD        register ..................................................................... register ΓÇ║ Auth\RegisteredUserController@create
-  POST            register ................................................................................. Auth\RegisteredUserController@store
-  POST            reset-password ............................................................. password.store ΓÇ║ Auth\NewPasswordController@store
-  GET|HEAD        reset-password/{token} .................................................... password.reset ΓÇ║ Auth\NewPasswordController@create
-  GET|HEAD        riwayat .............................................................................. riwayat.index ΓÇ║ RiwayatController@index
-  GET|HEAD        siswa .................................................................................... siswa.index ΓÇ║ SiswaController@index
-  POST            siswa .................................................................................... siswa.store ΓÇ║ SiswaController@store
-  GET|HEAD        siswa/create ........................................................................... siswa.create ΓÇ║ SiswaController@create
-  PUT|PATCH       siswa/{siswa} .......................................................................... siswa.update ΓÇ║ SiswaController@update
-  DELETE          siswa/{siswa} ........................................................................ siswa.destroy ΓÇ║ SiswaController@destroy
-  GET|HEAD        siswa/{siswa}/edit ......................................................................... siswa.edit ΓÇ║ SiswaController@edit
-  POST            siswa/{siswa}/reset-password ............................................ siswa.reset-password ΓÇ║ SiswaController@resetPassword
-  GET|HEAD        storage/{path} ................................................................................................. storage.local
-  GET|HEAD        tunggakan ........................................................................ tunggakan.index ΓÇ║ TunggakanController@index
-  POST            tunggakan/{id_tunggakan}/send-reminder ............................ tunggakan.send-reminder ΓÇ║ TunggakanController@sendReminder
-  GET|HEAD        up ........................................................................................................................... 
-  GET|HEAD        upload-transfer ................................................. pembayaran.upload.create ΓÇ║ PembayaranController@createUpload
-  POST            upload-transfer ................................................... pembayaran.upload.store ΓÇ║ PembayaranController@storeUpload
-  GET|HEAD        verify-email .................................................... verification.notice ΓÇ║ Auth\EmailVerificationPromptController
-  GET|HEAD        verify-email/{id}/{hash} .................................................... verification.verify ΓÇ║ Auth\VerifyEmailController
-  PUT             wali/alamat/{siswa} ........................................................ wali.alamat.update ΓÇ║ SiswaController@updateAlamat
-  GET|HEAD        wali/alamat/{siswa}/edit ....................................................... wali.alamat.edit ΓÇ║ SiswaController@editAlamat
+  GET|HEAD        / .............................................................................. LandingPageController@index
+  GET|HEAD        _debugbar/assets/javascript .................... debugbar.assets.js ΓÇ║ Barryvdh\Debugbar ΓÇ║ AssetController@js
+  GET|HEAD        _debugbar/assets/stylesheets ................. debugbar.assets.css ΓÇ║ Barryvdh\Debugbar ΓÇ║ AssetController@css
+  DELETE          _debugbar/cache/{key}/{tags?} ........... debugbar.cache.delete ΓÇ║ Barryvdh\Debugbar ΓÇ║ CacheController@delete
+  GET|HEAD        _debugbar/clockwork/{id} .......... debugbar.clockwork ΓÇ║ Barryvdh\Debugbar ΓÇ║ OpenHandlerController@clockwork
+  GET|HEAD        _debugbar/open ..................... debugbar.openhandler ΓÇ║ Barryvdh\Debugbar ΓÇ║ OpenHandlerController@handle
+  POST            _debugbar/queries/explain ......... debugbar.queries.explain ΓÇ║ Barryvdh\Debugbar ΓÇ║ QueriesController@explain
+  GET|HEAD        akun ................................................................. akun.index ΓÇ║ AkunWaliController@index
+  PUT|PATCH       akun/{user} ........................................................ akun.update ΓÇ║ AkunWaliController@update
+  GET|HEAD        akun/{user}/edit ....................................................... akun.edit ΓÇ║ AkunWaliController@edit
+  POST            akun/{user}/reset-password .......................... akun.reset-password ΓÇ║ AkunWaliController@resetPassword
+  GET|HEAD        api/locations ................................................. api.locations ΓÇ║ Api\LocationController@index
+  POST            api/whatsapp/logout ........................................................................................ 
+  GET|HEAD        api/whatsapp/status ........................................................................................ 
+  GET|HEAD        bendahara/dashboard .............................. bendahara.dashboard ΓÇ║ Bendahara\DashboardController@index
+  GET|HEAD        confirm-password ................................ password.confirm ΓÇ║ Auth\ConfirmablePasswordController@show
+  POST            confirm-password .................................................. Auth\ConfirmablePasswordController@store
+  GET|HEAD        dashboard .................................................................. dashboard ΓÇ║ DashboardController
+  GET|HEAD        detail-siswa/{siswa} ....................................... wali.detail-siswa ΓÇ║ DetailSiswaController@index
+  POST            email/verification-notification ..... verification.send ΓÇ║ Auth\EmailVerificationNotificationController@store
+  GET|HEAD        forgot-password ................................. password.request ΓÇ║ Auth\PasswordResetLinkController@create
+  POST            forgot-password .................................... password.email ΓÇ║ Auth\PasswordResetLinkController@store
+  GET|HEAD        kelas .................................................................. kelas.index ΓÇ║ KelasController@index
+  POST            kelas .................................................................. kelas.store ΓÇ║ KelasController@store
+  GET|HEAD        kelas/create ......................................................... kelas.create ΓÇ║ KelasController@create
+  PUT|PATCH       kelas/{kela} ......................................................... kelas.update ΓÇ║ KelasController@update
+  DELETE          kelas/{kela} ....................................................... kelas.destroy ΓÇ║ KelasController@destroy
+  GET|HEAD        kelas/{kela}/edit ........................................................ kelas.edit ΓÇ║ KelasController@edit
+  GET|HEAD        ketua/dashboard ............................... ketua.dashboard ΓÇ║ KetuaYayasan\DashboardController@dashboard
+  GET|HEAD        kwitansi/download/{kwitansi} ............................... kwitansi.download ΓÇ║ KwitansiController@download
+  GET|HEAD        laporan ............................................................ laporan.index ΓÇ║ LaporanController@index
+  GET|HEAD        laporan/excel ......................................... laporan.export.excel ΓÇ║ LaporanController@exportExcel
+  GET|HEAD        laporan/pdf ............................................... laporan.export.pdf ΓÇ║ LaporanController@exportPdf
+  GET|HEAD        login ................................................... login ΓÇ║ Auth\AuthenticatedSessionController@create
+  POST            login ............................................................ Auth\AuthenticatedSessionController@store
+  POST            logout ................................................ logout ΓÇ║ Auth\AuthenticatedSessionController@destroy
+  POST            midtrans/callback ......................................................... MidtransWebhookController@handle
+  POST            midtrans/token ............................................. midtrans.token ΓÇ║ PembayaranController@snapToken
+  PUT             password .................................................. password.update ΓÇ║ Auth\PasswordController@update
+  POST            payment/token .......................................... payment.token ΓÇ║ PaymentController@createTransaction
+  GET|HEAD        pembayaran ................................................ payment.page ΓÇ║ PaymentController@showPaymentPage
+  GET|HEAD        pembayaran/manual/create ...................... pembayaran.manual.create ΓÇ║ PembayaranController@createManual
+  POST            pembayaran/manual/store ......................... pembayaran.manual.store ΓÇ║ PembayaranController@storeManual
+  GET|HEAD        pembayaran/midtrans/{id_siswa} ...................... pembayaran.midtrans.form ΓÇ║ MidtransController@showForm
+  POST            pembayaran/midtrans/{id_siswa} ..................... pembayaran.midtrans ΓÇ║ MidtransController@createMidtrans
+  GET|HEAD        pembayaran/verifikasi ......................... pembayaran.verifikasi ΓÇ║ PembayaranController@indexVerifikasi
+  PATCH           pembayaran/verifikasi/{id} ............ pembayaran.verifikasi.update ΓÇ║ PembayaranController@updateVerifikasi
+  GET|HEAD        pembayaran/{pembayaran}/resubmit .......... pembayaran.resubmit.form ΓÇ║ PembayaranController@showResubmitForm
+  POST            pembayaran/{pembayaran}/resubmit .......... pembayaran.resubmit.handle ΓÇ║ PembayaranController@handleResubmit
+  GET|HEAD        pembayaran/{siswa}/pilih-metode ...................... pembayaran.pilih-metode ΓÇ║ PilihMetodeController@index
+  GET|HEAD        pemetaan ......................................................... pemetaan.index ΓÇ║ PemetaanController@index
+  GET|HEAD        pengaturan ................................................... pengaturan.index ΓÇ║ PengaturanController@index
+  POST            pengaturan ................................................. pengaturan.update ΓÇ║ PengaturanController@update
+  GET|HEAD        profile .............................................................. profile.edit ΓÇ║ ProfileController@edit
+  PATCH           profile .......................................................... profile.update ΓÇ║ ProfileController@update
+  DELETE          profile ........................................................ profile.destroy ΓÇ║ ProfileController@destroy
+  GET|HEAD        register ................................................... register ΓÇ║ Auth\RegisteredUserController@create
+  POST            register ............................................................... Auth\RegisteredUserController@store
+  POST            reset-password ........................................... password.store ΓÇ║ Auth\NewPasswordController@store
+  GET|HEAD        reset-password/{token} .................................. password.reset ΓÇ║ Auth\NewPasswordController@create
+  GET|HEAD        riwayat ............................................................ riwayat.index ΓÇ║ RiwayatController@index
+  GET|HEAD        siswa .................................................................. siswa.index ΓÇ║ SiswaController@index
+  POST            siswa .................................................................. siswa.store ΓÇ║ SiswaController@store
+  GET|HEAD        siswa/create ......................................................... siswa.create ΓÇ║ SiswaController@create
+  PUT|PATCH       siswa/{siswa} ........................................................ siswa.update ΓÇ║ SiswaController@update
+  DELETE          siswa/{siswa} ...................................................... siswa.destroy ΓÇ║ SiswaController@destroy
+  GET|HEAD        siswa/{siswa}/edit ....................................................... siswa.edit ΓÇ║ SiswaController@edit
+  POST            siswa/{siswa}/reset-password .......................... siswa.reset-password ΓÇ║ SiswaController@resetPassword
+  GET|HEAD        storage/{path} ............................................................................... storage.local
+  GET|HEAD        tunggakan ...................................................... tunggakan.index ΓÇ║ TunggakanController@index
+  POST            tunggakan/{id_tunggakan}/send-reminder .......... tunggakan.send-reminder ΓÇ║ TunggakanController@sendReminder
+  GET|HEAD        up ......................................................................................................... 
+  GET|HEAD        upload-transfer ............................... pembayaran.upload.create ΓÇ║ PembayaranController@createUpload
+  POST            upload-transfer ................................. pembayaran.upload.store ΓÇ║ PembayaranController@storeUpload
+  GET|HEAD        verify-email .................................. verification.notice ΓÇ║ Auth\EmailVerificationPromptController
+  GET|HEAD        verify-email/{id}/{hash} .................................. verification.verify ΓÇ║ Auth\VerifyEmailController
+  PUT             wali/alamat/{siswa} ...................................... wali.alamat.update ΓÇ║ SiswaController@updateAlamat
+  GET|HEAD        wali/alamat/{siswa}/edit ..................................... wali.alamat.edit ΓÇ║ SiswaController@editAlamat
 
-                                                                                                                             Showing [78] routes
+                                                                                                           Showing [78] routes
 
 ```
 
@@ -3123,15 +3066,42 @@ class TunggakanController extends Controller
      * Menampilkan daftar semua tunggakan yang belum lunas.
      */
     public function index()
-    {
-        // Ambil semua tunggakan dengan status 'belum_bayar' beserta relasi siswa dan walinya
-        $tunggakan = Tunggakan::where('status', 'belum_bayar')
-            ->with('siswa.wali')
-            ->latest()
-            ->paginate(15);
-            
-        return view('tunggakan.index', compact('tunggakan'));
+{
+    $query = Tunggakan::with(['siswa.wali', 'siswa.kelas'])
+        ->where('status', 'belum_bayar');
+
+    // Filter Kelas
+    if (request('kelas')) {
+        $query->whereHas('siswa', function ($q) {
+            $q->where('id_kelas', request('kelas'));
+        });
     }
+
+    // Filter Bulan
+    if (request('bulan')) {
+        $query->where('bulan', request('bulan'));
+    }
+
+    // Search Nama Siswa
+    if (request('search')) {
+        $query->whereHas('siswa', function ($q) {
+            $q->where('nama_siswa', 'like', '%' . request('search') . '%');
+        });
+    }
+
+    $tunggakan = $query->paginate(15)->withQueryString();
+
+    return view('tunggakan.index', [
+        'tunggakan' => $tunggakan,
+        'kelasList' => \App\Models\Kelas::all(),
+        'bulanList' => [
+            'Januari','Februari','Maret','April','Mei','Juni',
+            'Juli','Agustus','September','Oktober','November','Desember'
+        ],
+    ]);
+}
+
+
 
     /**
      * Mengirim notifikasi pengingat tunggakan ke wali murid.
@@ -7059,10 +7029,44 @@ $classes = ($active ?? false)
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 bg-white border-b border-gray-200">
                     <div class="overflow-x-auto">
+                        <form method="GET" class="mb-4 grid grid-cols-1 md:grid-cols-4 gap-3">
+
+                            {{-- Filter Kelas --}}
+                            <select name="kelas" class="border rounded px-2 py-1">
+                                <option value="">Semua Kelas</option>
+                                @foreach($kelasList as $kelas)
+                                    <option value="{{ $kelas->id }}" {{ request('kelas') == $kelas->id ? 'selected' : '' }}>
+                                        {{ $kelas->nama }}
+                                    </option>
+                                @endforeach
+                            </select>
+                        
+                            {{-- Filter Bulan --}}
+                            <select name="bulan" class="border rounded px-2 py-1">
+                                <option value="">Semua Bulan</option>
+                                @foreach($bulanList as $bulan)
+                                    <option value="{{ $bulan }}" {{ request('bulan') == $bulan ? 'selected' : '' }}>
+                                        {{ $bulan }}
+                                    </option>
+                                @endforeach
+                            </select>
+                        
+                            {{-- Search Siswa --}}
+                            <input type="text" 
+                                name="search" 
+                                value="{{ request('search') }}" 
+                                placeholder="Cari nama siswa"
+                                class="border rounded px-2 py-1"/>
+                        
+                            <button class="bg-indigo-600 text-white px-3 py-1 rounded">Filter</button>
+                        </form>
+                        
+                        
                         <table class="min-w-full divide-y divide-gray-200">
                             <thead class="bg-gray-50">
                                 <tr>
                                     <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Nama Siswa</th>
+                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Kelas</th>
                                     <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Wali Murid</th>
                                     <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Tunggakan</th>
                                     <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Jumlah</th>
@@ -7073,6 +7077,7 @@ $classes = ($active ?? false)
                                 @forelse ($tunggakan as $item)
                                     <tr>
                                         <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">{{ $item->siswa->nama_siswa }}</td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{ $item->siswa->kelas->nama ?? '-' }}</td>
                                         <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{ $item->siswa->wali->name ?? 'N/A' }}</td>
                                         <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{ $item->bulan }} {{ $item->tahun }}</td>
                                         <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">Rp {{ number_format($item->jumlah_tunggakan, 0, ',', '.') }}</td>
