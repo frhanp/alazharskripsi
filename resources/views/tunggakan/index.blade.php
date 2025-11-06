@@ -10,10 +10,44 @@
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 bg-white border-b border-gray-200">
                     <div class="overflow-x-auto">
+                        <form method="GET" class="mb-4 grid grid-cols-1 md:grid-cols-4 gap-3">
+
+                            {{-- Filter Kelas --}}
+                            <select name="kelas" class="border rounded px-2 py-1">
+                                <option value="">Semua Kelas</option>
+                                @foreach($kelasList as $kelas)
+                                    <option value="{{ $kelas->id }}" {{ request('kelas') == $kelas->id ? 'selected' : '' }}>
+                                        {{ $kelas->nama }}
+                                    </option>
+                                @endforeach
+                            </select>
+                        
+                            {{-- Filter Bulan --}}
+                            <select name="bulan" class="border rounded px-2 py-1">
+                                <option value="">Semua Bulan</option>
+                                @foreach($bulanList as $bulan)
+                                    <option value="{{ $bulan }}" {{ request('bulan') == $bulan ? 'selected' : '' }}>
+                                        {{ $bulan }}
+                                    </option>
+                                @endforeach
+                            </select>
+                        
+                            {{-- Search Siswa --}}
+                            <input type="text" 
+                                name="search" 
+                                value="{{ request('search') }}" 
+                                placeholder="Cari nama siswa"
+                                class="border rounded px-2 py-1"/>
+                        
+                            <button class="bg-indigo-600 text-white px-3 py-1 rounded">Filter</button>
+                        </form>
+                        
+                        
                         <table class="min-w-full divide-y divide-gray-200">
                             <thead class="bg-gray-50">
                                 <tr>
                                     <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Nama Siswa</th>
+                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Kelas</th>
                                     <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Wali Murid</th>
                                     <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Tunggakan</th>
                                     <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Jumlah</th>
@@ -24,6 +58,7 @@
                                 @forelse ($tunggakan as $item)
                                     <tr>
                                         <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">{{ $item->siswa->nama_siswa }}</td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{ $item->siswa->kelas->nama ?? '-' }}</td>
                                         <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{ $item->siswa->wali->name ?? 'N/A' }}</td>
                                         <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{ $item->bulan }} {{ $item->tahun }}</td>
                                         <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">Rp {{ number_format($item->jumlah_tunggakan, 0, ',', '.') }}</td>

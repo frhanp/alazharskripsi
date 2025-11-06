@@ -100,6 +100,7 @@ class KwitansiController extends Controller
 
             $outputDirectory = storage_path('app/public/' . $directoryName);
             $sofficePath = 'C:\Program Files\LibreOffice\program\soffice.exe';
+            //$sofficePath = 'libreoffice'; untuk armbian
 
             $process = new Process([$sofficePath, '--headless', '--convert-to', 'pdf', '--outdir', $outputDirectory, $fullDocxOutputPath]);
             // Beri batas waktu eksekusi, misal 15 detik

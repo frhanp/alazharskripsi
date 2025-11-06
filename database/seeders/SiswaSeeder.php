@@ -15,157 +15,191 @@ class SiswaSeeder extends Seeder
     /**
      * Run the database seeds.
      */
-    // public function run(): void
-    // {
-    //     $this->command->info('Memulai proses seeding data siswa lengkap...');
-
-    //     $dataSiswa = [
-    //         // Kelas 1
-    //         ['kelas' => 'Kelas 1', 'nama' => 'Ataya Aizza Aldhitri'],
-    //         ['kelas' => 'Kelas 1', 'nama' => 'Kirana Zhafira Komendangi'],
-    //         ['kelas' => 'Kelas 1', 'nama' => 'Andi Khalifah Nazril Mappa'],
-    //         ['kelas' => 'Kelas 1', 'nama' => 'Qyandra Almahyra Saleh'],
-    //         ['kelas' => 'Kelas 1', 'nama' => 'Keenan El-Shahzad Muhamad Yusuf'],
-    //         ['kelas' => 'Kelas 1', 'nama' => 'Rayya Kamila Alhaddar'],
-    //         ['kelas' => 'Kelas 1', 'nama' => 'Muh. Hanif Botutihe'],
-    //         ['kelas' => 'Kelas 1', 'nama' => 'Freya Alannah Corleon'],
-    //         ['kelas' => 'Kelas 1', 'nama' => 'Munzir Alhasni'],
-    //         ['kelas' => 'Kelas 1', 'nama' => 'Azzahra Varisha Mokoginta'],
-    //         ['kelas' => 'Kelas 1', 'nama' => 'Nizar Ali Alhasni'],
-    //         // Kelas 2
-    //         ['kelas' => 'Kelas 2', 'nama' => 'Andi Aqilah Azzahra'],
-    //         ['kelas' => 'Kelas 2', 'nama' => 'Rizkia Amirah Assegaf'],
-    //         ['kelas' => 'Kelas 2', 'nama' => 'Rafka Rahmatullah Buse'],
-    //         ['kelas' => 'Kelas 2', 'nama' => 'Medina Zareen Aldhitri'],
-    //         ['kelas' => 'Kelas 2', 'nama' => 'Adreena Naira Malika'],
-    //         ['kelas' => 'Kelas 2', 'nama' => 'Andi Muhammad Bilal Risal'],
-    //         // Kelas 3
-    //         ['kelas' => 'Kelas 3', 'nama' => 'Ghina Adzkiya Naray'],
-    //         ['kelas' => 'Kelas 3', 'nama' => 'Amzar Abyandra Ashari'],
-    //         ['kelas' => 'Kelas 3', 'nama' => 'Arya Dzaky Pradana'],
-    //         ['kelas' => 'Kelas 3', 'nama' => 'Adella Dewi Kartika'],
-    //         ['kelas' => 'Kelas 3', 'nama' => 'Naura Afifah Zakiya'],
-    //         ['kelas' => 'Kelas 3', 'nama' => 'Nur Magfirah. P. Sunge'],
-    //         ['kelas' => 'Kelas 3', 'nama' => 'Riesgita Keinnara Rissanto'],
-    //         ['kelas' => 'Kelas 3', 'nama' => 'Luna El Janah Carleon'],
-    //         // Kelas 4
-    //         ['kelas' => 'Kelas 4', 'nama' => 'Abrizam Khaliv Makarawo'],
-    //         ['kelas' => 'Kelas 4', 'nama' => 'Alvaren Rafelo Jevier Ismail'],
-    //         ['kelas' => 'Kelas 4', 'nama' => 'Muhammad Davin Aldiza'],
-    //         ['kelas' => 'Kelas 4', 'nama' => 'Muh. Rafandra Sangoensekamdo Sitorus'],
-    //         ['kelas' => 'Kelas 4', 'nama' => 'Muhammad Shohat Murad'],
-    //         ['kelas' => 'Kelas 4', 'nama' => 'Maria Megaswarna El Farid'],
-    //         ['kelas' => 'Kelas 4', 'nama' => 'Rajendra Brijaya'],
-    //         ['kelas' => 'Kelas 4', 'nama' => 'Syakira Aurelia Hasni'],
-    //         ['kelas' => 'Kelas 4', 'nama' => 'Ahmad Ashraf Bahmid'],
-    //         ['kelas' => 'Kelas 4', 'nama' => 'Abdullah Baihaqi Nasir'],
-    //         ['kelas' => 'Kelas 4', 'nama' => 'Ahmad Al Ghazali Zain'],
-    //         ['kelas' => 'Kelas 4', 'nama' => 'Anandita Calista Putri Z. Duma'],
-    //         ['kelas' => 'Kelas 4', 'nama' => 'Fathimatuz Zahrah Assegaf'],
-    //         ['kelas' => 'Kelas 4', 'nama' => 'Muhammad Ghiyats Alfattah Hulukati'],
-    //         ['kelas' => 'Kelas 4', 'nama' => 'Muhammad Abrar Rizky'],
-    //         ['kelas' => 'Kelas 4', 'nama' => 'Syakira Nafisyah Patuti'],
-    //         ['kelas' => 'Kelas 4', 'nama' => 'Qiana Aqila Mahreen'],
-    //         ['kelas' => 'Kelas 4', 'nama' => 'Andi Lara Alana Risal'],
-    //         // Kelas 5
-    //         ['kelas' => 'Kelas 5', 'nama' => 'Alfarizki Putra Daud'],
-    //         ['kelas' => 'Kelas 5', 'nama' => 'Aldrich Kenzi Rahman'],
-    //         ['kelas' => 'Kelas 5', 'nama' => 'Alivia Nakra Thafana Assagaf'],
-    //         ['kelas' => 'Kelas 5', 'nama' => 'Chairunnisa Salsabila Pakaya'],
-    //         ['kelas' => 'Kelas 5', 'nama' => 'Ibrahim Rafasya Mahanggi'],
-    //         ['kelas' => 'Kelas 5', 'nama' => 'Khairul Najib Botutihe'],
-    //         ['kelas' => 'Kelas 5', 'nama' => 'Muhammad Alkhalifi Zikri Hady'],
-    //         ['kelas' => 'Kelas 5', 'nama' => 'Nadiyah Ramadhani Monoarfa'],
-    //         ['kelas' => 'Kelas 5', 'nama' => 'Rehan Al Falah Uli'],
-    //         ['kelas' => 'Kelas 5', 'nama' => 'Raffa Inayah S. Utina'],
-    //         ['kelas' => 'Kelas 5', 'nama' => 'Siti Naafilah Kanaya Monoarfa'],
-    //         ['kelas' => 'Kelas 5', 'nama' => 'Shofia Karundeng'],
-    //         // Kelas 6
-    //         ['kelas' => 'Kelas 6', 'nama' => 'Fathina Kayyis Kamila'],
-    //         ['kelas' => 'Kelas 6', 'nama' => 'Abidzar Ramadhan Busyaeri Putra'],
-    //         ['kelas' => 'Kelas 6', 'nama' => 'Azka Alvaro Rahman'],
-    //         ['kelas' => 'Kelas 6', 'nama' => 'Ariefah Maulidya'],
-    //         ['kelas' => 'Kelas 6', 'nama' => 'Fatiya Kayyis Kafiya'],
-    //         ['kelas' => 'Kelas 6', 'nama' => 'Moh. Dwi Patjan Husain'],
-    //         ['kelas' => 'Kelas 6', 'nama' => 'Morino Rocci Andana Darmawan'],
-    //         ['kelas' => 'Kelas 6', 'nama' => 'Razka Alzidan Ashari'],
-    //         ['kelas' => 'Kelas 6', 'nama' => 'Muhammad Farizky Mubarakh'],
-    //         // TK
-    //         ['kelas' => 'TK A', 'nama' => 'Raffasyah Kasyafani Rizqullah F. Mohammad'],
-    //         ['kelas' => 'TK A', 'nama' => 'Rania Khairina Putri Hemuto'],
-    //         ['kelas' => 'TK A', 'nama' => 'Fatimah Humaira'],
-    //         ['kelas' => 'TK A', 'nama' => 'Ayunda Sastra Abdullah'],
-    //         ['kelas' => 'TK A', 'nama' => 'Khoirul Hanif Amili'],
-    //         ['kelas' => 'TK A', 'nama' => 'Moh. Samir Nasri Alamri'],
-    //         ['kelas' => 'TK A', 'nama' => 'Syakiel Pontoh'],
-    //         ['kelas' => 'TK B', 'nama' => 'Qalesya Althea Rianto'],
-    //         ['kelas' => 'TK B', 'nama' => 'Hanna Khumairah Setiawan'],
-    //         ['kelas' => 'TK B', 'nama' => 'Muhamad Alwi Diko'],
-    //         ['kelas' => 'TK B', 'nama' => 'Shelina Ramadhan Bakri'],
-    //     ];
-
-    //     $nisCounter = 25001; // NIS awal, bisa disesuaikan
-
-    //     foreach ($dataSiswa as $data) {
-    //         $namaSiswa = $data['nama'];
-    //         $emailName = preg_replace('/[^a-zA-Z0-9]/', '', $namaSiswa);
-
-    //         // Buat Akun "Wali Murid Bayangan"
-    //         $wali = User::create([
-    //             'name'     => 'Wali Murid dari ' . $namaSiswa,
-    //             'email'    => 'wali.' . strtolower($emailName) . '@gmail.com',
-    //             'password' => Hash::make('password'),
-    //             'role'     => 'wali_murid',
-    //         ]);
-
-    //         // Buat Data Siswa
-    //         Siswa::create([
-    //             'nama_siswa' => $namaSiswa,
-    //             'kelas'      => $data['kelas'],
-    //             'nis'        => $nisCounter++,
-    //             'id_wali'    => $wali->id,
-    //         ]);
-    //     }
-
-    //     $this->command->info('Proses seeding ' . count($dataSiswa) . ' data siswa selesai.');
-    // }
-
-
     public function run(): void
     {
-        // Ambil semua user dengan role wali_murid
-        $walis = User::where('role', 'wali_murid')->get();
+        $this->command->info('Memulai seeding data siswa...');
 
-        // Ambil semua ID dari tabel kelas
-        $kelasIds = Kelas::pluck('id');
+        $dataSiswa = [
+            // Kelas 1
+            ['kelas' => 'Kelas 1', 'nama' => 'Ataya Aizza Aldhitri'],
+            ['kelas' => 'Kelas 1', 'nama' => 'Kirana Zhafira Komendangi'],
+            ['kelas' => 'Kelas 1', 'nama' => 'Andi Khalifah Nazril Mappa'],
+            ['kelas' => 'Kelas 1', 'nama' => 'Qyandra Almahyra Saleh'],
+            ['kelas' => 'Kelas 1', 'nama' => 'Keenan El-Shahzad Muhamad Yusuf'],
+            ['kelas' => 'Kelas 1', 'nama' => 'Rayya Kamila Alhaddar'],
+            ['kelas' => 'Kelas 1', 'nama' => 'Muh. Hanif Botutihe'],
+            ['kelas' => 'Kelas 1', 'nama' => 'Freya Alannah Corleon'],
+            ['kelas' => 'Kelas 1', 'nama' => 'Munzir Alhasni'],
+            ['kelas' => 'Kelas 1', 'nama' => 'Azzahra Varisha Mokoginta'],
+            ['kelas' => 'Kelas 1', 'nama' => 'Nizar Ali Alhasni'],
 
-        // Pastikan ada wali dan kelas sebelum membuat siswa
-        if ($walis->isEmpty() || $kelasIds->isEmpty()) {
-            echo "Tidak bisa membuat siswa dummy karena tidak ada data wali murid atau kelas.\n";
-            return;
-        }
+            // Kelas 2
+            ['kelas' => 'Kelas 2', 'nama' => 'Andi Aqilah Azzahra'],
+            ['kelas' => 'Kelas 2', 'nama' => 'Rizkia Amirah Assegaf'],
+            ['kelas' => 'Kelas 2', 'nama' => 'Rafka Rahmatullah Buse'],
+            ['kelas' => 'Kelas 2', 'nama' => 'Medina Zareen Aldhitri'],
+            ['kelas' => 'Kelas 2', 'nama' => 'Adreena Naira Malika'],
+            ['kelas' => 'Kelas 2', 'nama' => 'Andi Muhammad Bilal Risal'],
 
-        // Buat 20 siswa dummy sebagai contoh
-        $minLat = 0.480000;
-        $maxLat = 0.600000;
-        $minLon = 122.980000;
-        $maxLon = 123.120000;
+            // Kelas 3
+            ['kelas' => 'Kelas 3', 'nama' => 'Ghina Adzkiya Naray'],
+            ['kelas' => 'Kelas 3', 'nama' => 'Amzar Abyandra Ashari'],
+            ['kelas' => 'Kelas 3', 'nama' => 'Arya Dzaky Pradana'],
+            ['kelas' => 'Kelas 3', 'nama' => 'Adella Dewi Kartika'],
+            ['kelas' => 'Kelas 3', 'nama' => 'Naura Afifah Zakiya'],
+            ['kelas' => 'Kelas 3', 'nama' => 'Nur Magfirah. P. Sunge'],
+            ['kelas' => 'Kelas 3', 'nama' => 'Riesgita Keinnara Rissanto'],
+            ['kelas' => 'Kelas 3', 'nama' => 'Luna El Janah Carleon'],
 
-        for ($i = 1; $i <= 20; $i++) {
-            // Hasilkan angka acak (float) di antara batas min/max
-            $latitude = $minLat + (mt_rand() / mt_getrandmax()) * ($maxLat - $minLat);
-            $longitude = $minLon + (mt_rand() / mt_getrandmax()) * ($maxLon - $minLon);
+            // Kelas 4
+            ['kelas' => 'Kelas 4', 'nama' => 'Abrizam Khaliv Makarawo'],
+            ['kelas' => 'Kelas 4', 'nama' => 'Alvaren Rafelo Jevier Ismail'],
+            ['kelas' => 'Kelas 4', 'nama' => 'Muhammad Davin Aldiza'],
+            ['kelas' => 'Kelas 4', 'nama' => 'Muh. Rafandra Sangoensekamdo Sitorus'],
+            ['kelas' => 'Kelas 4', 'nama' => 'Muhammad Shohat Murad'],
+            ['kelas' => 'Kelas 4', 'nama' => 'Maria Megaswarna El Farid'],
+            ['kelas' => 'Kelas 4', 'nama' => 'Rajendra Brijaya'],
+            ['kelas' => 'Kelas 4', 'nama' => 'Syakira Aurelia Hasni'],
+            ['kelas' => 'Kelas 4', 'nama' => 'Ahmad Ashraf Bahmid'],
+            ['kelas' => 'Kelas 4', 'nama' => 'Abdullah Baihaqi Nasir'],
+            ['kelas' => 'Kelas 4', 'nama' => 'Ahmad Al Ghazali Zain'],
+            ['kelas' => 'Kelas 4', 'nama' => 'Anandita Calista Putri Z. Duma'],
+            ['kelas' => 'Kelas 4', 'nama' => 'Fathimatuz Zahrah Assegaf'],
+            ['kelas' => 'Kelas 4', 'nama' => 'Muhammad Ghiyats Alfattah Hulukati'],
+            ['kelas' => 'Kelas 4', 'nama' => 'Muhammad Abrar Rizky'],
+            ['kelas' => 'Kelas 4', 'nama' => 'Syakira Nafisyah Patuti'],
+            ['kelas' => 'Kelas 4', 'nama' => 'Qiana Aqila Mahreen'],
+            ['kelas' => 'Kelas 4', 'nama' => 'Andi Lara Alana Risal'],
 
+            // Kelas 5
+            ['kelas' => 'Kelas 5', 'nama' => 'Alfarizki Putra Daud'],
+            ['kelas' => 'Kelas 5', 'nama' => 'Aldrich Kenzi Rahman'],
+            ['kelas' => 'Kelas 5', 'nama' => 'Alivia Nakra Thafana Assagaf'],
+            ['kelas' => 'Kelas 5', 'nama' => 'Chairunnisa Salsabila Pakaya'],
+            ['kelas' => 'Kelas 5', 'nama' => 'Ibrahim Rafasya Mahanggi'],
+            ['kelas' => 'Kelas 5', 'nama' => 'Khairul Najib Botutihe'],
+            ['kelas' => 'Kelas 5', 'nama' => 'Muhammad Alkhalifi Zikri Hady'],
+            ['kelas' => 'Kelas 5', 'nama' => 'Nadiyah Ramadhani Monoarfa'],
+            ['kelas' => 'Kelas 5', 'nama' => 'Rehan Al Falah Uli'],
+            ['kelas' => 'Kelas 5', 'nama' => 'Raffa Inayah S. Utina'],
+            ['kelas' => 'Kelas 5', 'nama' => 'Siti Naafilah Kanaya Monoarfa'],
+            ['kelas' => 'Kelas 5', 'nama' => 'Shofia Karundeng'],
+
+            // Kelas 6
+            ['kelas' => 'Kelas 6', 'nama' => 'Fathina Kayyis Kamila'],
+            ['kelas' => 'Kelas 6', 'nama' => 'Abidzar Ramadhan Busyaeri Putra'],
+            ['kelas' => 'Kelas 6', 'nama' => 'Azka Alvaro Rahman'],
+            ['kelas' => 'Kelas 6', 'nama' => 'Ariefah Maulidya'],
+            ['kelas' => 'Kelas 6', 'nama' => 'Fatiya Kayyis Kafiya'],
+            ['kelas' => 'Kelas 6', 'nama' => 'Moh. Dwi Patjan Husain'],
+            ['kelas' => 'Kelas 6', 'nama' => 'Morino Rocci Andana Darmawan'],
+            ['kelas' => 'Kelas 6', 'nama' => 'Razka Alzidan Ashari'],
+            ['kelas' => 'Kelas 6', 'nama' => 'Muhammad Farizky Mubarakh'],
+
+            // TK
+            ['kelas' => 'TK A', 'nama' => 'Raffasyah Kasyafani Rizqullah F. Mohammad'],
+            ['kelas' => 'TK A', 'nama' => 'Rania Khairina Putri Hemuto'],
+            ['kelas' => 'TK A', 'nama' => 'Fatimah Humaira'],
+            ['kelas' => 'TK A', 'nama' => 'Ayunda Sastra Abdullah'],
+            ['kelas' => 'TK A', 'nama' => 'Khoirul Hanif Amili'],
+            ['kelas' => 'TK A', 'nama' => 'Moh. Samir Nasri Alamri'],
+            ['kelas' => 'TK A', 'nama' => 'Syakiel Pontoh'],
+
+            ['kelas' => 'TK B', 'nama' => 'Qalesya Althea Rianto'],
+            ['kelas' => 'TK B', 'nama' => 'Hanna Khumairah Setiawan'],
+            ['kelas' => 'TK B', 'nama' => 'Muhamad Alwi Diko'],
+            ['kelas' => 'TK B', 'nama' => 'Shelina Ramadhan Bakri'],
+        ];
+
+        $nis = 25001;
+
+        // Data alamat sekitar sekolah
+        $alamatList = [
+            "Kel. Bugis, Kota Gorontalo",
+            "Kel. Biawao, Kota Gorontalo",
+            "Kel. Limba U I, Kota Gorontalo",
+            "Kel. Limba U II, Kota Gorontalo",
+            "Kel. Tenda, Kota Gorontalo",
+            "Kel. Huangobotu, Kota Gorontalo",
+        ];
+
+        $clusters = [
+            [0.541868, 123.080641], // Sekolah Al-Azhar (pusat)
+            [0.559406, 123.065865], // Barat (Sisingamangaraja / Moodu / Kota Barat)
+            [0.538851, 123.116809], // Timur (Hulonthalangi / Pilolodaa / Tenda area)
+        ];
+
+        foreach ($dataSiswa as $data) {
+
+            $kelas = Kelas::where('nama', $data['kelas'])->first();
+        
+            $wali = User::create([
+                'name' => 'Wali Murid dari ' . $data['nama'],
+                'email' => 'wali.' . strtolower(preg_replace('/[^a-zA-Z0-9]/', '', $data['nama'])) . '@gmail.com',
+                'password' => Hash::make('password'),
+                'role' => 'wali_murid',
+            ]);
+        
+            // Pilih cluster random
+            [$baseLat, $baseLng] = $clusters[array_rand($clusters)];
+        
+            // Radius lebih luas (400m – 2.2km)
+            $radius = mt_rand(400, 2200) / 1000; 
+            $angle = deg2rad(mt_rand(0, 360));
+        
+            $lat = $baseLat + ($radius * cos($angle) / 111.1);
+            $lng = $baseLng + ($radius * sin($angle) / (111.1 * cos(deg2rad($baseLat))));
+        
             Siswa::create([
-                'nama_siswa' => 'Siswa Dummy ' . $i,
-                'nis' => (string)(1000 + $i),
-                'id_wali' => $walis->random()->id,
-                'id_kelas' => $kelasIds->random(),
-                'alamat' => 'Alamat Siswa Dummy ' . $i,
-                // Gunakan koordinat yang baru dibuat
-                'latitude' => $latitude,
-                'longitude' => $longitude,
+                'nama_siswa' => $data['nama'],
+                'id_kelas' => $kelas->id,
+                'nis' => $nis++,
+                'id_wali' => $wali->id,
+                'alamat' => $alamatList[array_rand($alamatList)],
+                'latitude' => $lat,
+                'longitude' => $lng,
             ]);
         }
+
+        $this->command->info('✅ Seeding siswa selesai!');
     }
+
+
+    // public function run(): void
+    // {
+    //     // Ambil semua user dengan role wali_murid
+    //     $walis = User::where('role', 'wali_murid')->get();
+
+    //     // Ambil semua ID dari tabel kelas
+    //     $kelasIds = Kelas::pluck('id');
+
+    //     // Pastikan ada wali dan kelas sebelum membuat siswa
+    //     if ($walis->isEmpty() || $kelasIds->isEmpty()) {
+    //         echo "Tidak bisa membuat siswa dummy karena tidak ada data wali murid atau kelas.\n";
+    //         return;
+    //     }
+
+    //     // Buat 20 siswa dummy sebagai contoh
+    //     $minLat = 0.480000;
+    //     $maxLat = 0.600000;
+    //     $minLon = 122.980000;
+    //     $maxLon = 123.120000;
+
+    //     for ($i = 1; $i <= 20; $i++) {
+    //         // Hasilkan angka acak (float) di antara batas min/max
+    //         $latitude = $minLat + (mt_rand() / mt_getrandmax()) * ($maxLat - $minLat);
+    //         $longitude = $minLon + (mt_rand() / mt_getrandmax()) * ($maxLon - $minLon);
+
+    //         Siswa::create([
+    //             'nama_siswa' => 'Siswa Dummy ' . $i,
+    //             'nis' => (string)(1000 + $i),
+    //             'id_wali' => $walis->random()->id,
+    //             'id_kelas' => $kelasIds->random(),
+    //             'alamat' => 'Alamat Siswa Dummy ' . $i,
+    //             // Gunakan koordinat yang baru dibuat
+    //             'latitude' => $latitude,
+    //             'longitude' => $longitude,
+    //         ]);
+    //     }
+    // }
 }

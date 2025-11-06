@@ -10,11 +10,32 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
     
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.4.1/dist/MarkerCluster.css" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.4.1/dist/MarkerCluster.Default.css" />
     
     <style>
         body { font-family: 'Inter', sans-serif; }
         [x-cloak] { display: none !important; }
     </style>
+    <style>
+        @keyframes fade-in-up {
+            0% {
+                opacity: 0;
+                transform: translateY(12px) scale(.98);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+        .animate-fade-in {
+            animation: fade-in-up .7s ease-out forwards;
+        }
+        .delay-150 {
+            animation-delay: .15s;
+        }
+        </style>
+        
 </head>
 <body class="bg-white text-slate-900 antaliased">
 
@@ -54,9 +75,11 @@
         </header>
 
         <main>
-            <section class="relative pt-16 md:pt-24 pb-24 md:pb-32">
+            <section class="relative pt-16 md:pt-24 pb-24 md:pb-32 overflow-hidden">
                 <div class="max-w-7xl mx-auto px-6 grid md:grid-cols-2 gap-12 items-center">
-                    <div class="text-center md:text-left">
+            
+                    <!-- Text -->
+                    <div class="text-center md:text-left opacity-0 translate-y-4 animate-fade-in">
                         <h1 class="text-4xl md:text-5xl lg:text-6xl font-black leading-tight text-slate-900 mb-6">
                             Pembayaran SPP <span class="text-sky-600">Al-Azhar 43 Gorontalo</span> Kini Lebih Mudah
                         </h1>
@@ -67,11 +90,25 @@
                             Masuk ke Website
                         </a>
                     </div>
-                    <div>
-                        <img src="https://cdni.iconscout.com/illustration/premium/thumb/online-payment-app-4348238-3615958.png" alt="Ilustrasi Pembayaran Online SPP Al-Azhar Gorontalo" class="w-full h-auto">
+            
+                    <!-- Image -->
+                    <div class="relative flex justify-center items-center opacity-0 translate-y-4 animate-fade-in delay-150">
+                        <div class="absolute inset-0 bg-sky-300/20 blur-2xl rounded-3xl"></div>
+                        <div class="relative max-w-xs md:max-w-sm w-full">
+                            <div class="absolute inset-0 bg-gradient-to-tr from-sky-300/30 to-blue-500/20 blur-2xl rounded-3xl"></div>
+            
+                            <img 
+                                src="{{ asset('images/gedung.png') }}" 
+                                alt="Ilustrasi Pembayaran Online SPP Al-Azhar Gorontalo" 
+                                class="relative w-full h-auto rounded-3xl shadow-xl bg-white/60 backdrop-blur-xl ring-1 ring-sky-200/40 p-3
+                                       transition-transform duration-700 ease-out hover:scale-[1.03] hover:-rotate-1 hover:shadow-2xl"
+                            >
+                        </div>
                     </div>
+            
                 </div>
             </section>
+            
             
             <section id="data" class="py-24 bg-white">
                 <div class="max-w-7xl mx-auto px-6">
@@ -118,10 +155,38 @@
                         <h2 class="text-4xl font-extrabold text-slate-900 leading-snug">Dirancang untuk Kemudahan Semua Pihak</h2>
                         <p class="mt-4 text-lg text-slate-600">Tidak hanya mempermudah wali murid, sistem ini juga dilengkapi fitur canggih untuk membantu manajemen sekolah.</p>
                     </div>
-                    <div class="space-y-8">
-                        <div class="flex items-start gap-x-5"><div class="bg-sky-100 text-sky-600 p-3 rounded-full"><svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" /></svg></div><div><h3 class="text-xl font-bold">Pengingat Tagihan Cerdas</h3><p class="mt-1 text-slate-600">Ayah/Bunda tidak akan melewatkan jadwal pembayaran berkat notifikasi otomatis via Email atau WhatsApp.</p></div></div>
-                        <div class="flex items-start gap-x-5"><div class="bg-sky-100 text-sky-600 p-3 rounded-full"><svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l5.447 2.724A1 1 0 0021 16.382V5.618a1 1 0 00-1.447-.894L15 7m-6 3l6-3" /></svg></div><div><h3 class="text-xl font-bold">Pemetaan Siswa & Guru</h3><p class="mt-1 text-slate-600">Fitur khusus bagi manajemen sekolah untuk memvisualisasikan data sebaran domisili guru dan siswa.</p></div></div>
+                    <div class="space-y-10">
+
+                        <!-- Item -->
+                        <div class="flex items-start gap-4">
+                            <div class="flex items-center justify-center w-12 h-12 rounded-xl bg-sky-50">
+                                <img src="{{ asset('images/bell.png') }}" class="w-6 h-6 object-contain opacity-90" alt="Pengingat Tagihan">
+                            </div>
+                            <div>
+                                <h3 class="text-lg font-semibold text-slate-900">Pengingat Tagihan Cerdas</h3>
+                                <p class="mt-1 text-slate-600 leading-relaxed">
+                                    Notifikasi otomatis membantu Ayah/Bunda selalu tepat waktu dalam pembayaran SPP.
+                                </p>
+                            </div>
+                        </div>
+                    
+                        <!-- Item -->
+                        <div class="flex items-start gap-4">
+                            <div class="flex items-center justify-center w-12 h-12 rounded-xl bg-emerald-50">
+                                <img src="{{ asset('images/map.png') }}" class="w-6 h-6 object-contain opacity-90" alt="Pemetaan Siswa">
+                            </div>
+                            <div>
+                                <h3 class="text-lg font-semibold text-slate-900">Pemetaan Siswa & Guru</h3>
+                                <p class="mt-1 text-slate-600 leading-relaxed">
+                                    Visualisasi domisili siswa dan guru untuk mendukung perencanaan dan monitoring sekolah.
+                                </p>
+                            </div>
+                        </div>
+                    
                     </div>
+                    
+                    
+                    
                 </div>
             </section>
 
@@ -167,7 +232,7 @@
                 <h3 class="text-xl font-bold">KB - TK - SD Islam Al-Azhar 43 Gorontalo</h3>
                 <p class="mt-2 text-slate-400">Jl. Taman Pendidikan, Kel. Moodu, Kec. Kota Timur, Kota Gorontalo</p>
                 <div class="border-t border-slate-800 text-center py-6 mt-8">
-                    <p class="text-slate-500">&copy; {{ date('Y') }} YPI Al-Azhar. Seluruh Hak Cipta Dilindungi.</p>
+                    <p class="text-slate-500">&copy; {{ date('Y') }} Al-Azhar 43 Gorontalo. Seluruh Hak Cipta Dilindungi.</p>
                 </div>
             </div>
         </footer>
@@ -175,6 +240,7 @@
     </div>
 
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script src="https://unpkg.com/leaflet.markercluster@1.4.1/dist/leaflet.markercluster.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', function () {
             // Koordinat tengah untuk Gorontalo
@@ -185,17 +251,44 @@
                 attribution: 'Â© OpenStreetMap'
             }).addTo(map);
 
+            // AWAL MODIFIKASI
+            // 3. Inisialisasi marker cluster dengan opsi tooltip
+            const markers = L.markerClusterGroup({
+                // Fungsi ini akan membuat tooltip untuk setiap cluster
+                iconCreateFunction: function(cluster) {
+                    const childCount = cluster.getChildCount();
+                    const icon = L.divIcon({ 
+                        html: `<div><span>${childCount}</span></div>`, 
+                        className: 'marker-cluster marker-cluster-small', // Anda bisa sesuaikan class-nya
+                        iconSize: L.point(40, 40) 
+                    });
+                    
+                    // Tambahkan tooltip ke cluster icon
+                    const tooltipHtml = `Zoom in untuk melihat <b>${childCount} siswa</b> di area ini`;
+                    // Kita perlu 'wrapper' div karena L.divIcon tidak bisa langsung bindTooltip
+                    const wrapper = L.marker(cluster.getLatLng(), { icon: icon });
+                    wrapper.bindTooltip(tooltipHtml);
+                    
+                    return icon;
+                }
+            });
+            // AKHIR MODIFIKASI
+
             // Ambil data dari API publik
             fetch('{{ route('api.locations') }}')
                 .then(response => response.json())
                 .then(data => {
                     data.forEach(location => {
-                        // Hanya tampilkan siswa di peta landing page
                         if (location.tipe === 'siswa') {
-                            const marker = L.marker([location.latitude, location.longitude]).addTo(map);
-                            marker.bindTooltip(`<b>${location.nama}</b>`);
+                            // AWAL MODIFIKASI
+                            // 4. Modifikasi tooltip untuk marker individual
+                            const marker = L.marker([location.latitude, location.longitude]);
+                            marker.bindTooltip(`<b>Siswa:</b> ${location.nama}`); // Teks tooltip baru
+                            markers.addLayer(marker);
                         }
                     });
+                    map.addLayer(markers);
+                    
                 })
                 .catch(error => console.error('Error fetching locations:', error));
         });

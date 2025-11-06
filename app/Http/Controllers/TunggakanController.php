@@ -12,15 +12,42 @@ class TunggakanController extends Controller
      * Menampilkan daftar semua tunggakan yang belum lunas.
      */
     public function index()
-    {
-        // Ambil semua tunggakan dengan status 'belum_bayar' beserta relasi siswa dan walinya
-        $tunggakan = Tunggakan::where('status', 'belum_bayar')
-            ->with('siswa.wali')
-            ->latest()
-            ->paginate(15);
-            
-        return view('tunggakan.index', compact('tunggakan'));
+{
+    $query = Tunggakan::with(['siswa.wali', 'siswa.kelas'])
+        ->where('status', 'belum_bayar');
+
+    // Filter Kelas
+    if (request('kelas')) {
+        $query->whereHas('siswa', function ($q) {
+            $q->where('id_kelas', request('kelas'));
+        });
     }
+
+    // Filter Bulan
+    if (request('bulan')) {
+        $query->where('bulan', request('bulan'));
+    }
+
+    // Search Nama Siswa
+    if (request('search')) {
+        $query->whereHas('siswa', function ($q) {
+            $q->where('nama_siswa', 'like', '%' . request('search') . '%');
+        });
+    }
+
+    $tunggakan = $query->paginate(15)->withQueryString();
+
+    return view('tunggakan.index', [
+        'tunggakan' => $tunggakan,
+        'kelasList' => \App\Models\Kelas::all(),
+        'bulanList' => [
+            'Januari','Februari','Maret','April','Mei','Juni',
+            'Juli','Agustus','September','Oktober','November','Desember'
+        ],
+    ]);
+}
+
+
 
     /**
      * Mengirim notifikasi pengingat tunggakan ke wali murid.

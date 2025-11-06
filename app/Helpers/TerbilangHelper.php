@@ -11,30 +11,32 @@ class TerbilangHelper
 
     public static function convert($nilai)
     {
+        $hasil = ''; // Variabel untuk menampung hasil sementara
+
         if ($nilai < 12) {
-            return self::$angka[$nilai];
+            $hasil = self::$angka[$nilai];
+        } elseif ($nilai < 20) {
+            $hasil = self::convert($nilai - 10) . ' belas';
+        } elseif ($nilai < 100) {
+            $hasil = self::convert(floor($nilai / 10)) . ' puluh ' . self::convert($nilai % 10);
+        } elseif ($nilai < 200) {
+            $hasil = 'seratus ' . self::convert($nilai - 100);
+        } elseif ($nilai < 1000) {
+            $hasil = self::convert(floor($nilai / 100)) . ' ratus ' . self::convert($nilai % 100);
+        } elseif ($nilai < 2000) {
+            $hasil = 'seribu ' . self::convert($nilai - 1000);
+        } elseif ($nilai < 1000000) {
+            $hasil = self::convert(floor($nilai / 1000)) . ' ribu ' . self::convert($nilai % 1000);
+        } elseif ($nilai < 1000000000) {
+            $hasil = self::convert(floor($nilai / 1000000)) . ' juta ' . self::convert($nilai % 1000000);
         }
-        if ($nilai < 20) {
-            return self::convert($nilai - 10) . ' belas';
-        }
-        if ($nilai < 100) {
-            return self::convert($nilai / 10) . ' puluh ' . self::convert($nilai % 10);
-        }
-        if ($nilai < 200) {
-            return 'seratus ' . self::convert($nilai - 100);
-        }
-        if ($nilai < 1000) {
-            return self::convert($nilai / 100) . ' ratus ' . self::convert($nilai % 100);
-        }
-        if ($nilai < 2000) {
-            return 'seribu ' . self::convert($nilai - 1000);
-        }
-        if ($nilai < 1000000) {
-            return self::convert($nilai / 1000) . ' ribu ' . self::convert($nilai % 1000);
-        }
-        if ($nilai < 1000000000) {
-            return self::convert($nilai / 1000000) . ' juta ' . self::convert($nilai % 1000000);
-        }
-        return '';
+
+        // =======================================================
+        // PERUBAHAN DI SINI
+        // =======================================================
+        // 1. Ganti spasi ganda/lebih menjadi satu spasi.
+        // 2. Hapus spasi di awal dan akhir string.
+        return trim(preg_replace('/\s+/', ' ', $hasil));
+        // =======================================================
     }
 }
