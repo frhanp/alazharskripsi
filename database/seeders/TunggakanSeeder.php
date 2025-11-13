@@ -8,6 +8,10 @@ use App\Models\Pengaturan;
 use App\Models\Siswa;
 use App\Models\Tunggakan;
 use Carbon\Carbon;
+use App\Models\User;
+use App\Models\Pembayaran;
+use Illuminate\Support\Facades\Log;
+
 
 class TunggakanSeeder extends Seeder
 {
@@ -16,9 +20,8 @@ class TunggakanSeeder extends Seeder
      */
     public function run(): void
     {
-        $this->command->info('Seeding tunggakan versi ringan (TK/SD)...');
+        $this->command->info('Seeding tunggakan & pembayaran lunas (TK/SD)...');
 
-        
         // 1. Ambil KEDUA harga SPP
         $pengaturan = Pengaturan::whereIn('key', ['jumlah_spp_tk', 'jumlah_spp_sd'])
                                 ->pluck('value', 'key');
@@ -31,69 +34,102 @@ class TunggakanSeeder extends Seeder
             return;
         }
         
-        
         $tahun = (int) now()->year;
 
-        // Ambil 3 bulan terakhir dari bulan sekarang
+        // Daftar semua bulan
         $bulanListAll = [
-            'Januari',
-            'Februari',
-            'Maret',
-            'April',
-            'Mei',
-            'Juni',
-            'Juli',
-            'Agustus',
-            'September',
-            'Oktober',
-            'November',
-            'Desember',
+            'Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni',
+            'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember',
         ];
 
-        $bulanSaatIni = (int) now()->format('n');
-        // Logika 3 bulan terakhir Anda sudah benar
-        $bulanList = array_slice($bulanListAll, max(0, $bulanSaatIni - 3), 3); 
+        $bulanSaatIni = (int) now()->format('n'); // Misal: November = 11
 
-        $this->command->info('Bulan yang dipakai: ' . implode(', ', $bulanList));
+        // 2. Tentukan daftar bulan untuk TUNGGAKAN (3 bulan terakhir)
+        $startIndexTunggakan = max(0, $bulanSaatIni - 3);
+        $lengthTunggakan = min($bulanSaatIni, 3);
+        $bulanListTunggakan = array_slice($bulanListAll, $startIndexTunggakan, $lengthTunggakan); 
 
-        
-        // 2. Ambil siswa DENGAN relasi kelas
+        // 3. Tentukan daftar bulan untuk LUNAS (6 bulan terakhir)
+        $startIndexLunas = max(0, $bulanSaatIni - 6);
+        $lengthLunas = min($bulanSaatIni, 6);
+        $bulanListLunas = array_slice($bulanListAll, $startIndexLunas, $lengthLunas);
+
+        $this->command->info('Bulan Lunas (6 bln): ' . implode(', ', $bulanListLunas));
+        $this->command->info('Bulan Nunggak (3 bln): ' . implode(', ', $bulanListTunggakan));
+
+        // 4. Ambil siswa DENGAN relasi kelas
         $siswaList = \App\Models\Siswa::with('kelas')->get();
-        
+
+        // 5. Persiapan untuk data lunas
+        $metodeList = ['langsung', 'transfer', 'midtrans'];
+        // Ambil 1 ID bendahara untuk 'verified_by' (jika ada)
+        $adminBendaharaId = User::where('role', 'bendahara')->value('id'); 
+        if(!$adminBendaharaId) {
+            // Jika tidak ada bendahara, pakai ID 1 (biasanya admin)
+            $adminBendaharaId = User::first()->id ?? 1; 
+        }
 
         foreach ($siswaList as $siswa) {
 
-            // Hanya 25% siswa yang punya tunggakan (random)
-            if (mt_rand(1, 100) > 25) {
-                continue; // lainnya dianggap lunas semua
-            }
-
-            
-            // 3. Tentukan harga SPP berdasarkan jenjang siswa INI
+            // 6. Tentukan harga SPP berdasarkan jenjang siswa INI
             $jenjang = 'SD'; // Default jika siswa tidak punya kelas
             if ($siswa->kelas) {
                 $jenjang = $siswa->kelas->getJenjang(); // 'TK' atau 'SD'
             }
             $jumlahSPP = ($jenjang === 'TK') ? $hargaSppTK : $hargaSppSD;
-            
 
-            // Siswa ini punya 1–3 bulan tunggakan random
-            $bulanTunggakan = collect($bulanList)
-                ->shuffle()
-                ->take(mt_rand(1, 3));
+            // 75% LUNAS, 25% NUNGGAK
+            if (mt_rand(1, 100) <= 75) {
+                
+                // --- INI SISWA LUNAS (75%) ---
+                // Loop 6 bulan terakhir (sesuai permintaan)
+                foreach ($bulanListLunas as $bulan) {
+                    $metodeRandom = $metodeList[array_rand($metodeList)];
+                    
+                    // =======================================================
+                    // PATOKAN: database/seeders/TunggakanSeeder.php
+                    // AWAL PERUBAHAN (FIX Locale 'id')
+                    // =======================================================
+                    $tanggalVerifikasi = Carbon::createFromLocaleFormat('F, Y', 'id', "$bulan, $tahun")
+                                                ->addDays(rand(5, 15));
+                    // =======================================================
+                    // AKHIR PERUBAHAN
+                    // =======================================================
 
-            foreach ($bulanTunggakan as $bulan) {
-                \App\Models\Tunggakan::create([
-                    'id_siswa'           => $siswa->id_siswa,
-                    'bulan'              => $bulan,
-                    'tahun'              => $tahun,
-                    'jumlah_tunggakan'   => $jumlahSPP, // 4. Gunakan harga yang benar
-                    'status'             => 'belum_bayar',
-                    'last_reminder_sent_at' => null,
-                ]);
+                    Pembayaran::create([
+                        'id_siswa'           => $siswa->id_siswa,
+                        'bulan'              => [$bulan], // Simpan sebagai array JSON
+                        'tahun'              => $tahun,
+                        'jumlah'             => $jumlahSPP,
+                        'metode'             => $metodeRandom,
+                        'status'             => 'diterima',
+                        'verified_by'        => ($metodeRandom !== 'midtrans') ? $adminBendaharaId : null,
+                        'tanggal_verifikasi' => $tanggalVerifikasi, // Gunakan variabel yang sudah di-parse
+                        'is_midtrans'        => $metodeRandom === 'midtrans',
+                    ]);
+                }
+
+            } else {
+                
+                // --- INI SISWA NUNGGAK (25%) ---
+                // Loop 3 bulan terakhir (sesuai permintaan)
+                $bulanTunggakan = collect($bulanListTunggakan)
+                    ->shuffle()
+                    ->take(mt_rand(1, count($bulanListTunggakan))); // Ambil 1 s/d 3 bulan random
+
+                foreach ($bulanTunggakan as $bulan) {
+                    Tunggakan::create([
+                        'id_siswa'           => $siswa->id_siswa,
+                        'bulan'              => $bulan,
+                        'tahun'              => $tahun,
+                        'jumlah_tunggakan'   => $jumlahSPP,
+                        'status'             => 'belum_bayar',
+                        'last_reminder_sent_at' => null,
+                    ]);
+                }
             }
         }
 
-        $this->command->info('✅ Tunggakan versi ringan selesai!');
+        $this->command->info('✅ Seeding tunggakan & pembayaran lunas selesai!');
     }
 }

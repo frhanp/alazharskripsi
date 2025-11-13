@@ -57,6 +57,7 @@
                                 <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Siswa</th>
                                 <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Pembayaran</th>
                                 <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Jumlah</th>
+                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Metode</th>
                                 <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Status</th>
                                 <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Tgl. Verifikasi</th>
                             </tr>
@@ -67,6 +68,7 @@
                                     <td class="px-6 py-4">{{ $item->siswa->nama_siswa }}</td>
                                     <td class="px-6 py-4">{{ is_array($item->bulan) ? implode(', ', $item->bulan) : $item->bulan }} {{ $item->tahun }}</td>
                                     <td class="px-6 py-4">Rp {{ number_format($item->jumlah, 0, ',', '.') }}</td>
+                                    <td class="px-6 py-4">{{ ucfirst($item->metode) }}</td>
                                     <td class="px-6 py-4">{{ ucfirst($item->status) }}</td>
                                     <td class="px-6 py-4">{{ $item->tanggal_verifikasi ? \Carbon\Carbon::parse($item->tanggal_verifikasi)->format('d-m-Y') : '-' }}</td>
                                 </tr>

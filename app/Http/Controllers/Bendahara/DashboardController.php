@@ -22,7 +22,9 @@ class DashboardController extends Controller
             ->sum('jumlah');
 
         // 2. Kartu Statistik: Menunggu Verifikasi
-        $menungguVerifikasi = Pembayaran::where('status', 'menunggu')->count();
+        $menungguVerifikasi = Pembayaran::where('status', 'menunggu')
+            ->where('is_midtrans', false)
+            ->count();
 
         // 3. Kartu Statistik: Total Tunggakan
         $totalTunggakan = Tunggakan::where('status', 'belum_bayar')->sum('jumlah_tunggakan');

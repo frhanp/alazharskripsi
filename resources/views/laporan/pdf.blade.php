@@ -20,6 +20,7 @@
                 <th>Pembayaran</th>
                 <th>Jumlah</th>
                 <th>Status</th>
+                <th>Metode</th>
                 <th>Tgl. Verifikasi</th>
             </tr>
         </thead>
@@ -30,6 +31,7 @@
                     <td>{{ is_array($item->bulan) ? implode(', ', $item->bulan) : $item->bulan }} {{ $item->tahun }}</td>
                     <td>Rp {{ number_format($item->jumlah, 0, ',', '.') }}</td>
                     <td>{{ ucfirst($item->status) }}</td>
+                    <td>{{ ucfirst($item->metode) }}</td>
                     <td>{{ $item->tanggal_verifikasi ? \Carbon\Carbon::parse($item->tanggal_verifikasi)->format('d-m-Y') : '-' }}</td>
                 </tr>
             @endforeach
