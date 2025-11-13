@@ -99,7 +99,11 @@ class KwitansiController extends Controller
             $templateProcessor->saveAs($fullDocxOutputPath);
 
             $outputDirectory = storage_path('app/public/' . $directoryName);
-            $sofficePath = 'C:\Program Files\LibreOffice\program\soffice.exe';
+
+            $sofficePath = (PHP_OS_FAMILY === 'Windows')
+                ? 'C:\Program Files\LibreOffice\program\soffice.exe'
+                : 'libreoffice';
+            //$sofficePath = 'C:\Program Files\LibreOffice\program\soffice.exe';
             //$sofficePath = 'libreoffice'; untuk armbian
 
             $process = new Process([$sofficePath, '--headless', '--convert-to', 'pdf', '--outdir', $outputDirectory, $fullDocxOutputPath]);

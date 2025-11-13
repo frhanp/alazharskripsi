@@ -23,4 +23,7 @@ class Pengaturan extends Model
     {
         return static::getValue('midtrans_active', 'false') === 'true';
     }
+
+
+    
 }

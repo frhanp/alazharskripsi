@@ -9,6 +9,7 @@ use App\Models\Siswa;
 use App\Models\Pembayaran;
 use App\Models\Tunggakan;
 use App\Jobs\SendTunggakanNotification;
+use Illuminate\Support\Facades\Log;
 
 class BuatTunggakanBulanBerjalan extends Command
 {
@@ -39,8 +40,20 @@ class BuatTunggakanBulanBerjalan extends Command
         $bulanBerjalan = $periode->translatedFormat('F');
         $tahunBerjalan = $periode->year;
 
-        $jumlahSPP = Pengaturan::where('key', 'jumlah_spp')->value('value') ?? 0;
-        $siswas = Siswa::all();
+        $pengaturan = Pengaturan::whereIn('key', ['jumlah_spp_tk', 'jumlah_spp_sd'])
+                                ->pluck('value', 'key');
+        
+        $hargaSppTK = $pengaturan['jumlah_spp_tk'] ?? 0;
+        $hargaSppSD = $pengaturan['jumlah_spp_sd'] ?? 0;
+
+        if ($hargaSppTK == 0 || $hargaSppSD == 0) {
+            Log::error('[TUNGGAKAN] Harga SPP TK/SD belum diatur. Command dihentikan.');
+            $this->error('Harga SPP TK/SD belum diatur di Pengaturan. Command dihentikan.');
+            return 0;
+        }
+
+        // 2. Ambil semua siswa aktif DENGAN relasi kelas
+        $siswas = Siswa::with('kelas')->get();
         $tunggakanDibuat = 0;
 
         foreach ($siswas as $siswa) {
@@ -56,13 +69,23 @@ class BuatTunggakanBulanBerjalan extends Command
                 ->exists();
 
                 if (!$sudahLunas && !$tunggakanSudahAda) {
-                    $tunggakanBaru = Tunggakan::create([ // DIUBAH
-                        'id_siswa' => $siswa->id_siswa,
-                        'bulan' => $bulanBerjalan,
-                        'tahun' => $tahunBerjalan,
-                        'jumlah_tunggakan' => $jumlahSPP,
-                        'status' => 'belum_bayar'
-                    ]);
+
+                    $jenjang = 'SD (default)'; // Default
+                if (!$siswa->kelas) {
+                    Log::warning("[TUNGGAKAN] Siswa ID {$siswa->id_siswa} ({$siswa->nama_siswa}) tidak memiliki kelas, menggunakan harga SD.");
+                    $jumlahTunggakan = $hargaSppSD;
+                } else {
+                    $jenjang = $siswa->kelas->getJenjang(); // 'TK' atau 'SD'
+                    $jumlahTunggakan = ($jenjang === 'TK') ? $hargaSppTK : $hargaSppSD;
+                }
+
+                    $tunggakanBaru = Tunggakan::create([
+                    'id_siswa' => $siswa->id_siswa,
+                    'bulan' => $bulanBerjalan,
+                    'tahun' => $tahunBerjalan,
+                    'jumlah_tunggakan' => $jumlahTunggakan, // Gunakan variabel baru
+                    'status' => 'belum_bayar'
+                ]);
 
                 SendTunggakanNotification::dispatch($tunggakanBaru);
 

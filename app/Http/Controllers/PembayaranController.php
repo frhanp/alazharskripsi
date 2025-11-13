@@ -200,11 +200,25 @@ class PembayaranController extends Controller
     //PEMBAYARAN MANUAL
     public function createManual()
     {
-        $siswa = Siswa::orderBy('nama_siswa')->get();
-        // Di dalam method createManual() & createUpload()
-        $defaultJumlahSPP = Pengaturan::where('key', 'jumlah_spp')->value('value') ?? 0;
+        $siswa = Siswa::with('kelas')->orderBy('nama_siswa')->get();
 
-        return view('pembayaran.manual_create', compact('siswa', 'defaultJumlahSPP'));
+        // Ambil kedua harga SPP
+        $hargaSpp = Pengaturan::whereIn('key', ['jumlah_spp_tk', 'jumlah_spp_sd'])
+                            ->pluck('value', 'key');
+        
+        $sppTk = $hargaSpp['jumlah_spp_tk'] ?? 0;
+        $sppSd = $hargaSpp['jumlah_spp_sd'] ?? 0;
+
+        // Siapkan data siswa untuk TomSelect, termasuk jenjang
+        $siswaOptions = $siswa->map(function($item) {
+            return [
+                'id' => $item->id_siswa,
+                'nama' => $item->nama_siswa,
+                'jenjang' => $item->kelas ? $item->kelas->getJenjang() : 'SD' // default ke SD jika kelas null
+            ];
+        });
+
+        return view('pembayaran.manual_create', compact('siswaOptions', 'sppTk', 'sppSd', 'siswa'));
     }
 
     public function storeManual(Request $request)
@@ -250,7 +264,10 @@ class PembayaranController extends Controller
         // Lanjutkan proses penyimpanan jika tidak ada konflik...
 
         // Ambil jumlah SPP per bulan dari tabel pengaturans
-        $jumlahSPP = Pengaturan::where('key', 'jumlah_spp')->value('value') ?? 700000;
+        $siswa = Siswa::with('kelas')->findOrFail($request->id_siswa);
+        $jenjang = $siswa->kelas->getJenjang(); // 'TK' or 'SD'
+        $keySpp = 'jumlah_spp_' . strtolower($jenjang); // 'jumlah_spp_tk' or 'jumlah_spp_sd'
+        $jumlahSPP = Pengaturan::where('key', $keySpp)->value('value') ?? 0;
 
         // Validasi bahwa jumlah di form sesuai dengan perhitungan (opsional, untuk keamanan)
         $expectedTotal = count($request->bulan) * $jumlahSPP;
@@ -284,12 +301,16 @@ class PembayaranController extends Controller
     //PEMBAYARAN UPLOAD
     public function createUpload()
     {
-        $defaultJumlahSPP = Pengaturan::where('key', 'jumlah_spp')->value('value') ?? 0;
+        $hargaSpp = Pengaturan::whereIn('key', ['jumlah_spp_tk', 'jumlah_spp_sd'])
+                            ->pluck('value', 'key');
+        $sppTk = $hargaSpp['jumlah_spp_tk'] ?? 0;
+        $sppSd = $hargaSpp['jumlah_spp_sd'] ?? 0;
+        
         // Ambil siswa yang terkait dengan wali murid yang login
-        $siswa = Siswa::where('id_wali', Auth::id())->orderBy('nama_siswa')->get();
+        $siswa = Siswa::with('kelas')->where('id_wali', Auth::id())->orderBy('nama_siswa')->get();
         $nomorRekening = Pengaturan::where('key', 'nomor_rekening')->value('value');
 
-        return view('pembayaran.upload_transfer', compact('defaultJumlahSPP', 'siswa', 'nomorRekening'));
+        return view('pembayaran.upload_transfer', compact('sppTk', 'sppSd', 'siswa', 'nomorRekening'));
     }
 
     public function storeUpload(Request $request)
@@ -339,12 +360,15 @@ class PembayaranController extends Controller
         // =======================================================
 
         // Lanjutkan proses jika tidak ada konflik...
-        $jumlahSPP = Pengaturan::where('key', 'jumlah_spp')->value('value') ?? 700000;
+        $siswa = Siswa::with('kelas')->findOrFail($request->id_siswa); // $siswa sudah divalidasi di atas
+        $jenjang = $siswa->kelas->getJenjang();
+        $keySpp = 'jumlah_spp_' . strtolower($jenjang);
+        $jumlahSPP = Pengaturan::where('key', $keySpp)->value('value') ?? 0;
+
         $expectedTotal = count($request->bulan) * $jumlahSPP;
         if ($request->jumlah != $expectedTotal) {
             return back()->withErrors(['jumlah' => 'Total jumlah tidak sesuai dengan perhitungan.'])->withInput();
         }
-
         $path = $request->file('bukti_transfer')->store('bukti-transfer', 'public');
 
         foreach ($request->bulan as $bulan) {

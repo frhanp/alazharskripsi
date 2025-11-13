@@ -13,26 +13,48 @@
                     <h3 class="text-lg font-semibold text-gray-800 mb-4">Pengaturan Aplikasi</h3>
                     <form action="{{ route('pengaturan.update') }}" method="POST">
                         @csrf
-                        {{-- ... (Isi form pengaturan aplikasi tetap sama) ... --}}
+                        
+                        {{-- Nominal SPP TK --}}
                         <div x-data="{
-                                amount: '{{ old('jumlah_spp', $pengaturan['jumlah_spp'] ?? 700000) }}',
-                                formatAmount(value) {
-                                    let cleanValue = value.toString().replace(/[^0-9]/g, '');
-                                    if (cleanValue === '' || cleanValue === null) cleanValue = '0';
-                                    return new Intl.NumberFormat('id-ID').format(parseInt(cleanValue, 10));
-                                },
-                                updateValue(event) {
-                                    this.amount = event.target.value.replace(/[^0-9]/g, '');
-                                }
-                            }" class="mb-4">
-                            <label for="jumlah_spp_display" class="block text-sm font-medium text-gray-700">Nominal SPP (Rp)</label>
-                            <input type="text" id="jumlah_spp_display"
-                                x-on:input="event.target.value = formatAmount(event.target.value)"
-                                x-init="$el.value = formatAmount(amount)"
-                                @change="updateValue($event)"
-                                class="mt-1 block w-full border-gray-300 rounded-md shadow-sm" required>
-                            <input type="hidden" name="jumlah_spp" x-bind:value="amount">
-                        </div>
+                            amount: '{{ old('jumlah_spp_tk', $pengaturan['jumlah_spp_tk'] ?? 0) }}',
+                            formatAmount(value) {
+                                let cleanValue = value.toString().replace(/[^0-9]/g, '');
+                                if (cleanValue === '' || cleanValue === null) cleanValue = '0';
+                                return new Intl.NumberFormat('id-ID').format(parseInt(cleanValue, 10));
+                            },
+                            updateValue(event) {
+                                this.amount = event.target.value.replace(/[^0-9]/g, '');
+                            }
+                        }" class="mb-4">
+                        <label for="jumlah_spp_tk_display" class="block text-sm font-medium text-gray-700">Nominal SPP TK (Rp)</label>
+                        <input type="text" id="jumlah_spp_tk_display"
+                            x-on:input="event.target.value = formatAmount(event.target.value)"
+                            x-init="$el.value = formatAmount(amount)"
+                            @change="updateValue($event)"
+                            class="mt-1 block w-full border-gray-300 rounded-md shadow-sm" required>
+                        <input type="hidden" name="jumlah_spp_tk" x-bind:value="amount">
+                    </div>
+
+                    {{-- Nominal SPP SD --}}
+                    <div x-data="{
+                            amount: '{{ old('jumlah_spp_sd', $pengaturan['jumlah_spp_sd'] ?? 0) }}',
+                            formatAmount(value) {
+                                let cleanValue = value.toString().replace(/[^0-9]/g, '');
+                                if (cleanValue === '' || cleanValue === null) cleanValue = '0';
+                                return new Intl.NumberFormat('id-ID').format(parseInt(cleanValue, 10));
+                            },
+                            updateValue(event) {
+                                this.amount = event.target.value.replace(/[^0-9]/g, '');
+                            }
+                        }" class="mb-4">
+                        <label for="jumlah_spp_sd_display" class="block text-sm font-medium text-gray-700">Nominal SPP SD (Rp)</label>
+                        <input type="text" id="jumlah_spp_sd_display"
+                            x-on:input="event.target.value = formatAmount(event.target.value)"
+                            x-init="$el.value = formatAmount(amount)"
+                            @change="updateValue($event)"
+                            class="mt-1 block w-full border-gray-300 rounded-md shadow-sm" required>
+                        <input type="hidden" name="jumlah_spp_sd" x-bind:value="amount">
+                    </div>
                         <div class="mb-4">
                             <label for="midtrans_active" class="block text-sm font-medium text-gray-700">Pembayaran Midtrans</label>
                             <select name="midtrans_active" id="midtrans_active" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm">

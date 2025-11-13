@@ -17,8 +17,9 @@ class MidtransController extends Controller
     public function showForm($id_siswa)
     {
         $siswa = Siswa::findOrFail($id_siswa);
-        // Di dalam method showForm()
-        $jumlahSPP = Pengaturan::where('key', 'jumlah_spp')->value('value') ?? 0;
+        $jenjang = $siswa->kelas->getJenjang(); // 'TK' or 'SD'
+        $keySpp = 'jumlah_spp_' . strtolower($jenjang); // 'jumlah_spp_tk' or 'jumlah_spp_sd'
+        $jumlahSPP = Pengaturan::where('key', $keySpp)->value('value') ?? 0;
 
         return view('pembayaran.midtrans', compact('siswa', 'jumlahSPP'));
     }
@@ -61,7 +62,10 @@ class MidtransController extends Controller
         // AKHIR BLOK VALIDASI
         // =======================================================
 
-        $jumlahSPP = Pengaturan::where('key', 'jumlah_spp')->value('value') ?? 700000;
+        $jenjang = $siswa->kelas->getJenjang(); // 'TK' or 'SD'
+        $keySpp = 'jumlah_spp_' . strtolower($jenjang); // 'jumlah_spp_tk' or 'jumlah_spp_sd'
+        $jumlahSPP = Pengaturan::where('key', $keySpp)->value('value') ?? 0;
+        
         $totalBayar = $jumlahSPP * count($request->bulan);
 
         Config::$serverKey = env('MIDTRANS_SERVER_KEY');

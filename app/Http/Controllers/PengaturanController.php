@@ -17,7 +17,8 @@ class PengaturanController extends Controller
     {
         // Validasi input dari form
         $validatedData = $request->validate([
-            'jumlah_spp' => 'required|numeric|min:0',
+            'jumlah_spp_tk' => 'required|numeric|min:0',
+            'jumlah_spp_sd' => 'required|numeric|min:0',
             'midtrans_active' => 'required|in:true,false',
             'nomor_rekening' => 'nullable|string|max:255',
         ]);
